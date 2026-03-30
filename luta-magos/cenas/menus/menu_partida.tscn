@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://c2ppdl2yqxf16"]
+
+[ext_resource type="Script" uid="uid://dbcuijvqx5043" path="res://scripts/menus/menu_partida.gd" id="1_atdnb"]
+[ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_c11ds"]
+
+[node name="MenuPartida" type="Control" unique_id=260516147]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_atdnb")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1274343443]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1065529489]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -291.5
+offset_top = -261.5
+offset_right = 291.5
+offset_bottom = 261.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="LabelTit" type="Label" parent="VBoxContainer" unique_id=1611530765]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+theme_override_font_sizes/font_size = 50
+text = "Selecione suas Magias"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=2117898815]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 30
+columns = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer" unique_id=1231563723]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Diretas"
+
+[node name="Button" type="Button" parent="VBoxContainer/GridContainer" unique_id=1147279031]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 1"
+
+[node name="Button2" type="Button" parent="VBoxContainer/GridContainer" unique_id=1175413290]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 2"
+
+[node name="Button3" type="Button" parent="VBoxContainer/GridContainer" unique_id=272571243]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 3"
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer" unique_id=608878012]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Reveladora"
+
+[node name="Button4" type="Button" parent="VBoxContainer/GridContainer" unique_id=439790440]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 1"
+
+[node name="Button5" type="Button" parent="VBoxContainer/GridContainer" unique_id=346718541]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 2"
+
+[node name="Button6" type="Button" parent="VBoxContainer/GridContainer" unique_id=299249392]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 3"
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer" unique_id=2010060563]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Armadilha"
+
+[node name="Button7" type="Button" parent="VBoxContainer/GridContainer" unique_id=1197040957]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 1"
+
+[node name="Button8" type="Button" parent="VBoxContainer/GridContainer" unique_id=467529199]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 2"
+
+[node name="Button9" type="Button" parent="VBoxContainer/GridContainer" unique_id=1911736074]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Magia 3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=456677014]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=70929043]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Diretas"
+
+[node name="ButtonP" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=518669409]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Passiva 1"
+
+[node name="ButtonP2" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=277709361]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Passiva 2"
+
+[node name="ButtonP3" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1563861737]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Passiva 2"
+
+[node name="ButtonComecar" type="Button" parent="VBoxContainer" unique_id=1308500716]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Começar Partida"
+
+[node name="ButtonSair" type="Button" parent="VBoxContainer" unique_id=518067911]
+layout_mode = 2
+theme = ExtResource("2_c11ds")
+text = "Voltar"
+
+[connection signal="pressed" from="VBoxContainer/ButtonSair" to="." method="_on_button_sair_pressed"]

@@ -15,6 +15,10 @@ run/main_scene="uid://blu1n6bnam470"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TrocaCenaTemp="*uid://6ynnwdsloeup"
+
 [display]
 
 window/size/viewport_width=1920
@@ -29,10 +33,13 @@ folder_colors={
 "res://assets/": "red",
 "res://cenas/": "orange",
 "res://cenas/game/": "purple",
+"res://cenas/game/UI/": "green",
 "res://cenas/menus/": "yellow",
 "res://scripts/": "blue",
 "res://scripts/game/": "purple",
-"res://scripts/menus/": "yellow"
+"res://scripts/game/UI/": "green",
+"res://scripts/menus/": "yellow",
+"res://temas/": "teal"
 }
 
 [physics]
