@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cm7rbbwccvpap"]
+
+[ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/game_adm.gd" id="1_3lst8"]
+
+[node name="GameAdm" type="Node" unique_id=773607251]
+script = ExtResource("1_3lst8")
+
+[node name="Network" type="Node" parent="." unique_id=931206517]
+
+[node name="MapaAdm" type="Node" parent="." unique_id=1537938729]
+
+[node name="FeiticosAdm" type="Node" parent="." unique_id=783007562]
