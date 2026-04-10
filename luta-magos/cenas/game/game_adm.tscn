@@ -1,12 +1,22 @@
 [gd_scene format=3 uid="uid://cm7rbbwccvpap"]
 
 [ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/game_adm.gd" id="1_3lst8"]
+[ext_resource type="PackedScene" uid="uid://cqojyxy8t78mg" path="res://cenas/game/characters/jogador.tscn" id="2_pfvcb"]
+[ext_resource type="PackedScene" uid="uid://cydaaeay0mfes" path="res://cenas/game/mapas/mapa_teste.tscn" id="3_viw2k"]
 
 [node name="GameAdm" type="Node" unique_id=773607251]
 script = ExtResource("1_3lst8")
 
-[node name="Network" type="Node" parent="." unique_id=931206517]
+[node name="NetworkGame" type="Node" parent="." unique_id=931206517]
+
+[node name="Jogador" parent="NetworkGame" unique_id=1397014069 instance=ExtResource("2_pfvcb")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1118713620]
+spawn_path = NodePath("../NetworkGame")
+spawn_limit = 1
 
 [node name="MapaAdm" type="Node" parent="." unique_id=1537938729]
+
+[node name="MapaTeste" parent="MapaAdm" unique_id=13285931 instance=ExtResource("3_viw2k")]
 
 [node name="FeiticosAdm" type="Node" parent="." unique_id=783007562]
