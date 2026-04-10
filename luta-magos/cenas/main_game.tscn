@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://blu1n6bnam470"]
 
 [ext_resource type="PackedScene" uid="uid://6als3mloubtk" path="res://cenas/menus/menu_inicial.tscn" id="1_o6mfm"]
+[ext_resource type="Script" uid="uid://dejkuahbr2ht4" path="res://scripts/network/network.gd" id="2_clorf"]
 
 [node name="MainGame" type="Node" unique_id=211907479]
 
 [node name="MenuInicial" parent="." unique_id=1487474413 instance=ExtResource("1_o6mfm")]
+
+[node name="Network" type="Node" parent="." unique_id=1893332313]
+script = ExtResource("2_clorf")
