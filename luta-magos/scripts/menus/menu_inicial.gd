@@ -17,10 +17,13 @@ func _on_button_cancelar_pressed() -> void:
 	panel_jogar.hide()
 	ui.show()
 
-
 func _on_button_host_pressed() -> void:
-	TrocaCenaTemp.go_to_menu_partida()
-
+	TrocaCenaTemp.Network.create_server()
+	#TrocaCenaTemp.go_to_menu_partida()
+	TrocaCenaTemp.go_to_game()
+	
 
 func _on_button_join_pressed() -> void:
-	TrocaCenaTemp.go_to_menu_partida()
+	TrocaCenaTemp.Network.create_client()
+	#TrocaCenaTemp.go_to_menu_partida()
+	TrocaCenaTemp.go_to_game()
