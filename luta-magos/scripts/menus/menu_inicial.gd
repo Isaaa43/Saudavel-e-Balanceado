@@ -8,6 +8,8 @@ func _on_button_sair_jogo_pressed() -> void:
 
 func  _ready() -> void:
 	panel_jogar.hide()
+	# TODO: trocar para main game
+	Network.start()
 
 func _on_button_jogar_pressed() -> void:
 	panel_jogar.show()
@@ -18,12 +20,12 @@ func _on_button_cancelar_pressed() -> void:
 	ui.show()
 
 func _on_button_host_pressed() -> void:
-	TrocaCenaTemp.Network.create_server()
+	NetworkMatch.criar_lobby()
 	#TrocaCenaTemp.go_to_menu_partida()
-	TrocaCenaTemp.go_to_game()
+	##TrocaCenaTemp.go_to_game()
 	
 
 func _on_button_join_pressed() -> void:
-	TrocaCenaTemp.Network.create_client()
+	NetworkMatch.entrar_lobby()
 	#TrocaCenaTemp.go_to_menu_partida()
-	TrocaCenaTemp.go_to_game()
+	##TrocaCenaTemp.go_to_game()

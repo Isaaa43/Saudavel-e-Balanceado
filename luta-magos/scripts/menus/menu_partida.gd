@@ -1,14 +1,24 @@
 extends Control
+class_name MenuPartida
+
+# TODO: remover isso
+@export var debug_ignorar_checks := true
 
 @export var qntd_magias_grimorio : int = 4
 
-@onready var grid_container: GridContainer = $VBoxContainer/GridContainer
-@onready var h_box_container: HBoxContainer = $VBoxContainer/HBoxContainer
-@onready var button_comecar: Button = $VBoxContainer/ButtonComecar
-@onready var button_sair: Button = $VBoxContainer/ButtonSair
+@onready var grid_container: GridContainer = $VBoxMagias/GridContainer
+@onready var h_box_container: HBoxContainer = $VBoxMagias/HBoxContainer
+@onready var button_comecar: Button = $VBoxPartida/ButtonComecar
+@onready var button_sair: Button = $VBoxPartida/ButtonSair
+
+@onready var label_log: Label = $VBoxContainer/LabelLog
 
 var buttons_selecionados_list : Array[Button] = []
 var passiva_selecionada : Button = null
+
+# TODO: solucao melhor
+func add_log(txt : String) -> void:
+	label_log.text += '\n' + txt 
 
 func _ready() -> void:
 	# pego os botoes da grid
@@ -21,6 +31,11 @@ func _ready() -> void:
 	verificar_partida_comecar()
 
 func verificar_partida_comecar() -> void:
+	# TODO: remover
+	if debug_ignorar_checks: 
+		button_comecar.disabled = false 
+		return
+	
 	var condicao_comecar : bool = buttons_selecionados_list.size() == qntd_magias_grimorio
 	condicao_comecar = condicao_comecar and (passiva_selecionada != null)
 	button_comecar.disabled = not condicao_comecar
@@ -50,6 +65,9 @@ func passiva_select(button : Button) -> void:
 	passiva_selecionada.flat = true
 	
 	verificar_partida_comecar()
+
+func _on_button_comecar_pressed() -> void:
+	NetworkMatch.iniciar_partida()
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
