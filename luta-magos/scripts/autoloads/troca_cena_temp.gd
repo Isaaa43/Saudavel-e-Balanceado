@@ -16,6 +16,8 @@ func go_to_menu_inicial() -> void:
 	for c in main_game.get_children(): c.queue_free()
 	var menu_inicial := MENU_INICIAL.instantiate()
 	main_game.add_child(menu_inicial)
+	# TODO: encontrar lugar melhor para colocar isso
+	Network.end()
 
 func go_to_menu_partida() -> void:
 	for c in main_game.get_children(): c.queue_free()

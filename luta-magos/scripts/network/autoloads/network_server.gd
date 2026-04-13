@@ -4,16 +4,21 @@ signal spawnar_jogador(dados_jogador, peer_id)
 
 var dados_jogador_por_peer_id : Dictionary[int, DadosJogador] = {}
 
+func _ready() -> void:
+	_ready_lobby()
+
 # -----------------------------------------------------------------------------
 # Lobby
 # -----------------------------------------------------------------------------
+
+func _ready_lobby() -> void:
+	Network.on_peer_connected.connect(_lobby_add_jogador)
+	Network.on_peer_disconnected.connect(_lobby_rem_jogador)
 
 func criar_lobby() -> void:
 	Network.create_server()
 	TrocaCenaTemp.go_to_menu_partida()
 	LogsAdm.add_conexao_texto("Lobby criado")
-	Network.on_peer_connected.connect(_lobby_add_jogador)
-	Network.on_peer_disconnected.connect(_lobby_rem_jogador)
 	# cria os dados do jogador que criou o lobby
 	var dados_jog := NetworkClient.dados_jogador
 	_registrar_jogador_peer_id(dados_jog, Network.SERVER_ID)
@@ -71,18 +76,25 @@ func _peer_iniciar_partida() -> void:
 func _spawn_jogador(dados_jog : DadosJogador, peer_id: int) -> void:
 	emit_signal("spawnar_jogador", dados_jog, peer_id)
 
+## Chama o server para terminar a partida
 func terminar_partida() -> void:
-	if Network.is_server:
+	if multiplayer.is_server():
 		_server_terminar_partida()
 	else:
 		_server_terminar_partida.rpc_id(Network.SERVER_ID)
 
-@rpc("any_peer", "call_remote", "reliable")
-func _server_terminar_partida() -> void:	
+## Broadcast de terminar a partida para todos os peers
+@rpc("any_peer", "reliable")
+func _server_terminar_partida() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
+		print("peer id: ", peer_id)
 		_peer_terminar_partida.rpc_id(peer_id)
 
+## Cada peer termina sua partida
 @rpc("authority", "call_local", "reliable")
 func _peer_terminar_partida() -> void:
+	if multiplayer.is_server():
+		# TODO: solucao melhor que essa do timer
+		await get_tree().create_timer(0.2).timeout
 	#TODO: Network.server_disconnected ?
 	TrocaCenaTemp.go_to_menu_inicial()

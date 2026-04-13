@@ -2,16 +2,20 @@ extends Node
 
 @onready var dados_jogador : DadosJogador = criar_dados_jogador()
 
+func _ready() -> void:
+	_ready_lobby()
 # -----------------------------------------------------------------------------
 # Lobby
 # -----------------------------------------------------------------------------
 
+func _ready_lobby() -> void:
+	Network.on_connected_to_server.connect(_enviar_dados_jogador)
+	
 func entrar_lobby() -> void:
 	Network.create_client()
 	# atualiza os dados do jogador
 	dados_jogador.peer_id = multiplayer.get_unique_id()
 	
-	Network.on_connected_to_server.connect(_enviar_dados_jogador)
 	# TODO: tela de conexao
 	print("conectando ao servidor")
 

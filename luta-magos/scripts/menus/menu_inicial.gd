@@ -9,8 +9,6 @@ func _on_button_sair_jogo_pressed() -> void:
 
 func  _ready() -> void:
 	panel_jogar.hide()
-	# TODO: trocar para main game
-	Network.start()
 
 func _on_button_jogar_pressed() -> void:
 	panel_jogar.show()
