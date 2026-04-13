@@ -17,7 +17,7 @@ func _enviar_dados_jogador() -> void:
 	NetworkServer.registrar_jogador.rpc_id(Network.SERVER_ID, dados.to_dict())
 	
 	TrocaCenaTemp.go_to_menu_partida()
-	TrocaCenaTemp.partida.add_log("Entrou no lobby")
+	LogsAdm.add_conexao_texto("Entrou no lobby")
 
 func criar_dados_jogador() -> DadosJogador:
 	var dados := DadosJogador.new()

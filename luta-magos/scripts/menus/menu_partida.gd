@@ -22,6 +22,9 @@ func add_log(txt : String) -> void:
 	label_log.text += '\n' + txt 
 
 func _ready() -> void:
+	# TODO: mudar isso
+	LogsAdm.update_conexao_texto.connect(add_log)
+	
 	# pego os botoes da grid
 	for button : Button in grid_container.get_children().filter(func(a): return a is Button):
 		button.pressed.connect(clicado.bind(button))

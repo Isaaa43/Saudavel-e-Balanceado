@@ -11,7 +11,7 @@ var dados_jogador_por_peer_id : Dictionary[int, DadosJogador] = {}
 func criar_lobby() -> void:
 	Network.create_server()
 	TrocaCenaTemp.go_to_menu_partida()
-	TrocaCenaTemp.partida.add_log("Lobby criado")
+	LogsAdm.add_conexao_texto("Lobby criado")
 	Network.on_peer_connected.connect(_lobby_add_jogador)
 	Network.on_peer_disconnected.connect(_lobby_rem_jogador)
 	# cria os dados do jogador que criou o lobby
@@ -19,15 +19,15 @@ func criar_lobby() -> void:
 	dados_jogador_por_peer_id[Network.SERVER_ID] = dados_jog
 
 func _lobby_add_jogador(peer_id: int) -> void:
-	TrocaCenaTemp.partida.add_log("Jogador entrando (id: %d)" % peer_id)
+	LogsAdm.add_conexao_texto_peer("Jogador entrando", peer_id)
 	# vai receber o rpc
 
 func _lobby_rem_jogador(peer_id: int) -> void:
 	if not dados_jogador_por_peer_id.has(peer_id): return
 	
 	var nome := dados_jogador_por_peer_id[peer_id].nome
-	if TrocaCenaTemp.partida:
-		TrocaCenaTemp.partida.add_log("%s saiu (id %d)" % [nome, peer_id])
+	
+	LogsAdm.add_conexao_texto_peer("%s saiu" % nome, peer_id)
 	
 	dados_jogador_por_peer_id.erase(peer_id)
 
@@ -41,8 +41,11 @@ func registrar_jogador(dados: Dictionary) -> void:
 		return
 
 	var dados_jog := DadosJogador.from_dict(dados)
-	dados_jogador_por_peer_id[sender_peer_id] = dados_jog
-	TrocaCenaTemp.partida.add_log("%s entrou (id %d)" % [dados_jog.nome, sender_peer_id])
+	_registrar_jogador_peer_id(dados_jog, sender_peer_id)
+
+func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void:
+	dados_jogador_por_peer_id[peer_id] = dados_jog
+	LogsAdm.add_conexao_texto_peer("%s entrou" % [dados_jog.nome], peer_id)
 
 # -----------------------------------------------------------------------------
 # Partida
