@@ -13,7 +13,6 @@ script = ExtResource("2_j0w0j")
 [node name="MultiplayerSpawnerJogadores" type="MultiplayerSpawner" parent="NetworkGame" unique_id=1118713620]
 _spawnable_scenes = PackedStringArray("uid://cqojyxy8t78mg")
 spawn_path = NodePath("../Jogadores")
-spawn_limit = 1
 
 [node name="Jogadores" type="Node" parent="NetworkGame" unique_id=215918608]
 

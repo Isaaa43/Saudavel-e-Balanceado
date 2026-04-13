@@ -6,16 +6,23 @@ class_name Jogador
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+func _turn_off(node : Node) -> void:
+	node.set_process(false)
+	node.set_physics_process(false)
+	node.set_process_input(false)
+	node.set_process_unhandled_input(false)
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
+	print("Jogador %s  is_auth? " % name, is_multiplayer_authority())
 
 func _ready() -> void:
 	if not is_multiplayer_authority():
-		#set_process(false)
+		_turn_off(self)
+		_turn_off(camera_3d)
 		return
 	
-	camera_3d.make_current()
+	camera_3d.start()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

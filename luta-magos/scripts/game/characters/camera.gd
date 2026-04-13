@@ -5,8 +5,12 @@ extends Camera3D
 
 var mouse_sensitivity := 0.005
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func start() -> void:
+	make_current()
+	
+	# TODO: garantir que isso esta habilitado isso na build final
+	if not OS.is_debug_build():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
 	#if not is_multiplayer_authority(): return
