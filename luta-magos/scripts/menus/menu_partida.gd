@@ -35,6 +35,11 @@ func _ready() -> void:
 	verificar_partida_comecar()
 
 func verificar_partida_comecar() -> void:
+	# TODO: Por enquato vai isso, mas no futuro fazer um sistema de voto, tipo ready DBD
+	# somente o server pode iniciar a partida
+	button_comecar.disabled = not multiplayer.is_server()
+	return
+	
 	# TODO: remover
 	if debug_ignorar_checks: 
 		button_comecar.disabled = false 
