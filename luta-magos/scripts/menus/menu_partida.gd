@@ -17,6 +17,7 @@ var buttons_selecionados_list : Array[Button] = []
 var passiva_selecionada : Button = null
 
 # TODO: solucao melhor
+# TODO: Criar autoload para manter o log das acoes de rede
 func add_log(txt : String) -> void:
 	label_log.text += '\n' + txt 
 

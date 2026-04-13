@@ -1,7 +1,5 @@
 extends Node
 
-const SERVER_ID := 1
-
 # -----------------------------------------------------------------------------
 # Lobby
 # -----------------------------------------------------------------------------
@@ -16,7 +14,7 @@ func _enviar_dados_jogador() -> void:
 	var dados := criar_dados_jogador()
 	
 	# Send to server
-	NetworkServer.registrar_jogador.rpc_id(SERVER_ID, dados.to_dict())
+	NetworkServer.registrar_jogador.rpc_id(Network.SERVER_ID, dados.to_dict())
 	
 	TrocaCenaTemp.go_to_menu_partida()
 	TrocaCenaTemp.partida.add_log("Entrou no lobby")

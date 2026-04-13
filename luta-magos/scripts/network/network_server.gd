@@ -16,7 +16,7 @@ func criar_lobby() -> void:
 	Network.on_peer_disconnected.connect(_lobby_rem_jogador)
 	# cria os dados do jogador que criou o lobby
 	var dados_jog := NetworkClient.criar_dados_jogador()
-	dados_jogador_por_peer_id[NetworkClient.SERVER_ID] = dados_jog
+	dados_jogador_por_peer_id[Network.SERVER_ID] = dados_jog
 
 func _lobby_add_jogador(peer_id: int) -> void:
 	TrocaCenaTemp.partida.add_log("Jogador entrando (id: %d)" % peer_id)
@@ -49,7 +49,7 @@ func registrar_jogador(dados: Dictionary) -> void:
 # -----------------------------------------------------------------------------
 
 func iniciar_partida() -> void:
-	for peer_id in dados_jogador_por_peer_id.keys():
+	for peer_id : int in dados_jogador_por_peer_id.keys():
 		_peer_iniciar_partida.rpc_id(peer_id)
 
 @rpc("authority", "call_local", "reliable")
@@ -62,7 +62,23 @@ func _peer_iniciar_partida() -> void:
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		var dados_jog : DadosJogador = dados_jogador_por_peer_id[peer_id]
-		spawn_jogador(dados_jog, peer_id)
+		_spawn_jogador(dados_jog, peer_id)
 
-func spawn_jogador(dados_jog : DadosJogador, peer_id: int) -> void:
+func _spawn_jogador(dados_jog : DadosJogador, peer_id: int) -> void:
 	emit_signal("spawnar_jogador", dados_jog, peer_id)
+
+func terminar_partida() -> void:
+	if Network.is_server:
+		_server_terminar_partida()
+	else:
+		_server_terminar_partida.rpc_id(Network.SERVER_ID)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _server_terminar_partida() -> void:	
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		_peer_terminar_partida.rpc_id(peer_id)
+
+@rpc("authority", "call_local", "reliable")
+func _peer_terminar_partida() -> void:
+	#TODO: Network.server_disconnected ?
+	TrocaCenaTemp.go_to_menu_inicial()
