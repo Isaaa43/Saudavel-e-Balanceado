@@ -51,7 +51,7 @@ func _on_peer_connected(peer_id) -> void:
 
 func _on_peer_disconnected(peer_id) -> void:
 	print("peer_disconnected id: ", peer_id)
-	emit_signal("on_peer_disconnected")
+	emit_signal("on_peer_disconnected", peer_id)
 	set_process(false) 
 
 func _on_connected_to_server() -> void:

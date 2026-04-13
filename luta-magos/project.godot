@@ -19,7 +19,8 @@ config/icon="res://icon.svg"
 
 TrocaCenaTemp="*uid://6ynnwdsloeup"
 Network="*uid://dejkuahbr2ht4"
-NetworkMatch="*uid://bmoe5r6abpfhf"
+NetworkServer="*uid://bmoe5r6abpfhf"
+NetworkClient="*uid://c01qq0whjdvff"
 
 [display]
 

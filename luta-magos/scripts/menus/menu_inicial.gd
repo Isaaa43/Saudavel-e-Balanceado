@@ -20,12 +20,12 @@ func _on_button_cancelar_pressed() -> void:
 	ui.show()
 
 func _on_button_host_pressed() -> void:
-	NetworkMatch.criar_lobby()
+	NetworkServer.criar_lobby()
 	#TrocaCenaTemp.go_to_menu_partida()
 	##TrocaCenaTemp.go_to_game()
 	
 
 func _on_button_join_pressed() -> void:
-	NetworkMatch.entrar_lobby()
+	NetworkClient.entrar_lobby()
 	#TrocaCenaTemp.go_to_menu_partida()
 	##TrocaCenaTemp.go_to_game()

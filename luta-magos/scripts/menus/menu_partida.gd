@@ -67,7 +67,8 @@ func passiva_select(button : Button) -> void:
 	verificar_partida_comecar()
 
 func _on_button_comecar_pressed() -> void:
-	NetworkMatch.iniciar_partida()
+	if not is_multiplayer_authority(): return
+	NetworkServer.iniciar_partida()
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
