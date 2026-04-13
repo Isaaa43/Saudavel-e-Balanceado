@@ -7,7 +7,20 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_30vjq"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5tbn"]
+albedo_color = Color(1, 0.65333337, 0.35000002, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_s5tbn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf517"]
+albedo_color = Color(0.9298859, 0.430138, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s5tbn"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.3
+radial_segments = 8
+rings = 3
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5tbn"]
 properties/0/path = NodePath(".:position")
@@ -32,6 +45,7 @@ shape = SubResource("CapsuleShape3D_jbwqc")
 [node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=1306189236]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_30vjq")
+surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
 
 [node name="Cabeca" type="Node3D" parent="." unique_id=1241982120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -47,6 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 [node name="MeshCabeca" type="MeshInstance3D" parent="Cabeca/CabecaPivot" unique_id=1253220719]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
 mesh = SubResource("SphereMesh_s5tbn")
+surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1203761034]
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
