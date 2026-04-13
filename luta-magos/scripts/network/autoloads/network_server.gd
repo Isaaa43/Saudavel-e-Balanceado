@@ -12,8 +12,8 @@ func _ready() -> void:
 # -----------------------------------------------------------------------------
 
 func _ready_lobby() -> void:
-	Network.on_peer_connected.connect(_lobby_add_jogador)
-	Network.on_peer_disconnected.connect(_lobby_rem_jogador)
+	Network.server_peer_connected.connect(_lobby_add_jogador)
+	Network.server_peer_disconnected.connect(_lobby_rem_jogador)
 
 func criar_lobby() -> void:
 	Network.create_server()

@@ -1,8 +1,10 @@
 extends Node
 
-signal on_peer_connected(peer_id)
-signal on_peer_disconnected(peer_id)
-signal on_connected_to_server
+signal server_peer_connected(peer_id)
+signal server_peer_disconnected(peer_id)
+signal client_connection_ok
+signal client_connection_failed
+signal client_server_disconnected
 
 const SERVER_ID := 1
 
@@ -13,11 +15,11 @@ const MAX_CLIENTS 	:= 2
 func _ready() -> void:
 	set_process(false)
 	#
-	multiplayer.peer_connected.connect(_on_peer_connected)
-	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-	multiplayer.connected_to_server.connect(_on_connected_to_server)
-	multiplayer.connection_failed.connect(func():   print("connection_failed"))
-	multiplayer.server_disconnected.connect(func(): print("server_disconnected"))
+	multiplayer.peer_connected.connect(_server_peer_connected)
+	multiplayer.peer_disconnected.connect(_server_peer_disconnected)
+	multiplayer.connected_to_server.connect(_client_connection_ok)
+	multiplayer.connection_failed.connect(_client_connection_failed)
+	multiplayer.server_disconnected.connect(_client_server_disconnected)
 
 # ------------------------------------------------------------------------------
 # Iniciar Conexao
@@ -50,19 +52,27 @@ func create_client() -> void:
 # ------------------------------------------------------------------------------
 # Sinais
 # ------------------------------------------------------------------------------
-func _on_peer_connected(peer_id) -> void:
+func _server_peer_connected(peer_id) -> void:
 	if peer_id == 1: return
-	emit_signal("on_peer_connected", peer_id)
+	print("server_peer_connected id: ", peer_id)
+	emit_signal("server_peer_connected", peer_id)
 
-func _on_peer_disconnected(peer_id) -> void:
+func _server_peer_disconnected(peer_id) -> void:
 	print("peer_disconnected id: ", peer_id)
-	emit_signal("on_peer_disconnected", peer_id)
+	emit_signal("server_peer_disconnected", peer_id)
 	set_process(false) 
 
-func _on_connected_to_server() -> void:
-	print("connected_to_server")
-	emit_signal("on_connected_to_server")
+func _client_connection_ok() -> void:
+	print("connection_to_server_ok")
+	emit_signal("client_connection_ok")
 
+func _client_connection_failed() -> void:
+	print("connection_to_server_failed")
+	emit_signal("client_connection_failed")
+
+func _client_server_disconnected() -> void:
+	print("client_server_disconnected")
+	emit_signal("client_server_disconnected")
 # ------------------------------------------------------------------------------
 # Encerrar Conexao
 # ------------------------------------------------------------------------------

@@ -9,7 +9,7 @@ func _ready() -> void:
 # -----------------------------------------------------------------------------
 
 func _ready_lobby() -> void:
-	Network.on_connected_to_server.connect(_enviar_dados_jogador)
+	Network.client_connection_ok.connect(_enviar_dados_jogador)
 	
 func entrar_lobby() -> void:
 	Network.create_client()
