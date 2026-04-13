@@ -15,8 +15,8 @@ func criar_lobby() -> void:
 	Network.on_peer_connected.connect(_lobby_add_jogador)
 	Network.on_peer_disconnected.connect(_lobby_rem_jogador)
 	# cria os dados do jogador que criou o lobby
-	var dados_jog := NetworkClient.criar_dados_jogador()
-	dados_jogador_por_peer_id[Network.SERVER_ID] = dados_jog
+	var dados_jog := NetworkClient.dados_jogador
+	_registrar_jogador_peer_id(dados_jog, Network.SERVER_ID)
 
 func _lobby_add_jogador(peer_id: int) -> void:
 	LogsAdm.add_conexao_texto_peer("Jogador entrando", peer_id)
@@ -40,6 +40,7 @@ func registrar_jogador(dados: Dictionary) -> void:
 		push_warning("Mismatched peer_id from sender %d" % sender_peer_id)
 		return
 
+	print("dados_jog ", dados)
 	var dados_jog := DadosJogador.from_dict(dados)
 	_registrar_jogador_peer_id(dados_jog, sender_peer_id)
 

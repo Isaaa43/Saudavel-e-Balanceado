@@ -70,6 +70,12 @@ layout_mode = 2
 theme = ExtResource("2_avi7h")
 text = "Sair"
 
+[node name="LineEditNomeJogador" type="LineEdit" parent="UI/VBoxContainer" unique_id=563903003]
+layout_mode = 2
+placeholder_text = "Nome do Jogador"
+max_length = 15
+emoji_menu_enabled = false
+
 [node name="PanelJogar" type="Panel" parent="." unique_id=222910812]
 visible = false
 layout_mode = 1
