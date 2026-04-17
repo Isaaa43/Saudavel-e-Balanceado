@@ -1,7 +1,5 @@
 extends Node
 
-signal spawnar_jogador(dados_jogador, peer_id)
-
 var dados_jogador_por_peer_id : Dictionary[int, DadosJogador] = {}
 
 func _ready() -> void:
@@ -59,22 +57,10 @@ func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void
 
 func iniciar_partida() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
-		_peer_iniciar_partida.rpc_id(peer_id)
-
-@rpc("authority", "call_local", "reliable")
-func _peer_iniciar_partida() -> void:
-	TrocaCenaTemp.go_to_game()
-	
-	await get_tree().process_frame
-	
-	print("iniciar_partida id:", multiplayer.get_unique_id())
-	
-	for peer_id : int in dados_jogador_por_peer_id.keys():
-		var dados_jog : DadosJogador = dados_jogador_por_peer_id[peer_id]
-		_spawn_jogador(dados_jog, peer_id)
-
-func _spawn_jogador(dados_jog : DadosJogador, peer_id: int) -> void:
-	emit_signal("spawnar_jogador", dados_jog, peer_id)
+		NetworkClient.iniciar_partida.rpc_id(peer_id)
+		# TODO: melhorar isso com batch talvez
+		for dados_jog : DadosJogador in dados_jogador_por_peer_id.values():
+			NetworkClient.spawn_jogador.rpc_id(peer_id, dados_jog)
 
 ## Chama o server para terminar a partida
 func terminar_partida() -> void:
@@ -105,4 +91,4 @@ func jogador_lancar_feitico(feitico_id : String, target_pos : Vector3) -> void:
 	if not multiplayer.is_server(): return
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
-		NetworkClient.spawnar_feitico.rpc_id(peer_id, feitico_id, target_pos)
+		NetworkClient.spawn_feitico.rpc_id(peer_id, feitico_id, target_pos)

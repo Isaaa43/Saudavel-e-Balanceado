@@ -5,7 +5,7 @@ extends Node
 @export var spell_registry: RegistroFeiticos
 
 func _ready() -> void:
-	NetworkClient.spawn_feitico.connect(_spawnar_feitico)
+	NetworkClient.spawnar_feitico.connect(_spawnar_feitico)
 
 func _spawnar_feitico(feitico_id : String, target_pos: Vector3) -> void:
 	
