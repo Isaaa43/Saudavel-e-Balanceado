@@ -14,6 +14,7 @@ func _turn_off(node : Node) -> void:
 	node.set_physics_process(false)
 	node.set_process_input(false)
 	node.set_process_unhandled_input(false)
+	node.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -25,6 +26,7 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		_turn_off(camera_3d)
+		_turn_off(lancador_feiticos)
 		return
 	
 	camera_3d.start()

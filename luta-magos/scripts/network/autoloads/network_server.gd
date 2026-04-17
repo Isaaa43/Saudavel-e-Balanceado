@@ -17,6 +17,8 @@ func criar_lobby() -> void:
 	Network.create_server()
 	TrocaCenaTemp.go_to_menu_partida()
 	LogsAdm.add_conexao_texto("Lobby criado")
+	# salva o peer_id do server nos dados do jog
+	NetworkClient.dados_jogador.peer_id = Network.SERVER_ID
 	# cria os dados do jogador que criou o lobby
 	var dados_jog := NetworkClient.dados_jogador
 	_registrar_jogador_peer_id(dados_jog, Network.SERVER_ID)
@@ -48,6 +50,8 @@ func registrar_jogador(dados: Dictionary) -> void:
 	_registrar_jogador_peer_id(dados_jog, sender_peer_id)
 
 func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void:
+	if dados_jog.peer_id != peer_id:
+		print("_registrar_jogador_peer_id %d != %d" % [dados_jog.peer_id, peer_id])
 	dados_jogador_por_peer_id[peer_id] = dados_jog
 	LogsAdm.add_conexao_texto_peer("%s entrou" % [dados_jog.nome], peer_id)
 

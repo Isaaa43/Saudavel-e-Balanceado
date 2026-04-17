@@ -4,11 +4,13 @@ const JOGADOR = preload("uid://cqojyxy8t78mg")
 @onready var jogadores: Node = $Jogadores
 
 func _ready() -> void:
-	NetworkServer.spawnar_jogador.connect(spawnar_jogador)
+	NetworkClient.spawnar_jogador.connect(spawnar_jogador)
 	pass
 
-func spawnar_jogador(dados_jog : DadosJogador, peer_id : int) -> void:
+func spawnar_jogador(dados_jog : DadosJogador) -> void:
+	var peer_id : int = dados_jog.peer_id
 	print("spawnar_jogador dados: ", dados_jog, " id: ", peer_id)
+
 	var jogador : Jogador = JOGADOR.instantiate()
 	jogador.name = str(peer_id)
 	jogador.dados_jogador = dados_jog
