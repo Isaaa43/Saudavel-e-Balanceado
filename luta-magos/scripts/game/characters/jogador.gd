@@ -14,7 +14,7 @@ func _turn_off(node : Node) -> void:
 	node.set_physics_process(false)
 	node.set_process_input(false)
 	node.set_process_unhandled_input(false)
-	node.process_mode = Node.PROCESS_MODE_DISABLED
+	#node.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -52,3 +52,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+# TODO: somente teste, remover
+@onready var label_dano: Label3D = $LabelDano
+func levar_dano(dano: int) -> void:
+	print('Levar dano %d' % dano)
+	label_dano.text = "Dano:\n%d" % dano
+	label_dano.show()
+	get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )

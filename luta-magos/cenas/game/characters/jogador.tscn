@@ -64,6 +64,30 @@ feiticos = Dictionary[String, ExtResource("5_8vvjh")]({
 "BolaFogo": ExtResource("6_ytj1x")
 })
 
+[node name="HudAim" type="Control" parent="Cabeca/Camera3D" unique_id=623777350]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Cabeca/Camera3D/HudAim" unique_id=2068083543]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="CabecaPivot" type="Node3D" parent="Cabeca" unique_id=2010991378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 
@@ -74,3 +98,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1203761034]
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
+
+[node name="LabelDano" type="Label3D" parent="." unique_id=1477714311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5002263, 0)
+visible = false
+billboard = 2
+outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
+text = "Dano:
+"
+font_size = 50
+outline_size = 16

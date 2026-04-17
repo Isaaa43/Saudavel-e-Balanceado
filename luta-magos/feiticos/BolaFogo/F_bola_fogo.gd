@@ -53,8 +53,12 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:
+	if int(body.name) == criador: return
+	
+	if body is Jogador:
+		body.levar_dano(damage)
+	
 	print(body, " levou %d de " % damage, criador)
-	#if body == criador:
-		#return
+	
 	#if body.has_method("take_damage"): pass
 	#queue_free()

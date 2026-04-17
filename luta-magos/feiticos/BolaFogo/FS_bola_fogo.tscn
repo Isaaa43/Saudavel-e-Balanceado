@@ -5,13 +5,18 @@
 [sub_resource type="SphereMesh" id="SphereMesh_k3kbq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cup7"]
-albedo_color = Color(0.98263913, 0.34806895, 0, 1)
+albedo_color = Color(0.88, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.8
+roughness = 0.15
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fn0gy"]
 radius = 0.47009385
 
 [node name="FS_BolaFogo" type="Node3D" unique_id=1296584297]
 script = ExtResource("1_3cup7")
+speed = 10.0
+
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1965752395]
 mesh = SubResource("SphereMesh_k3kbq")
