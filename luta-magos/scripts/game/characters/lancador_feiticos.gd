@@ -14,7 +14,11 @@ func _process(delta: float) -> void:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
 
 func _lancar_feitico_escolhido(feitico_id: String) -> void:
+	if _cooldowns.get(feitico_id, 0) > 0.1: return
+	
 	var feitico_def : FeiticoDefinicaoRes = spell_registry.get_feitico(feitico_id)
+	
+	_cooldowns[feitico_id] = feitico_def.cooldown
 	
 	var feitico_contexto := FeiticoContexto.new()
 	feitico_contexto.feitico_id = feitico_def.feitico_id
