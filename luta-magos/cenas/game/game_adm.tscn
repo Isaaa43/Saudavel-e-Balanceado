@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://cm7rbbwccvpap"]
 
 [ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/game_adm.gd" id="1_3lst8"]
-[ext_resource type="Script" uid="uid://bmrb05718ew1j" path="res://scripts/network/network_game.gd" id="2_j0w0j"]
+[ext_resource type="Script" uid="uid://bmrb05718ew1j" path="res://scripts/network/jogadores_adm.gd" id="2_j0w0j"]
 [ext_resource type="PackedScene" uid="uid://cydaaeay0mfes" path="res://cenas/game/mapas/mapa_teste.tscn" id="3_viw2k"]
 
 [node name="GameAdm" type="Node" unique_id=773607251]
 script = ExtResource("1_3lst8")
 
-[node name="NetworkGame" type="Node" parent="." unique_id=931206517]
+[node name="JogadoresAdm" type="Node" parent="." unique_id=931206517]
 script = ExtResource("2_j0w0j")
 
-[node name="MultiplayerSpawnerJogadores" type="MultiplayerSpawner" parent="NetworkGame" unique_id=1118713620]
+[node name="MultiplayerSpawnerJogadores" type="MultiplayerSpawner" parent="JogadoresAdm" unique_id=1118713620]
 _spawnable_scenes = PackedStringArray("uid://cqojyxy8t78mg")
 spawn_path = NodePath("../Jogadores")
 
-[node name="Jogadores" type="Node" parent="NetworkGame" unique_id=215918608]
+[node name="Jogadores" type="Node" parent="JogadoresAdm" unique_id=215918608]
 
 [node name="MapaAdm" type="Node" parent="." unique_id=1537938729]
 

@@ -11,6 +11,7 @@ func spawnar_jogador(dados_jog : DadosJogador, peer_id : int) -> void:
 	print("spawnar_jogador dados: ", dados_jog, " id: ", peer_id)
 	var jogador : Jogador = JOGADOR.instantiate()
 	jogador.name = str(peer_id)
+	jogador.dados_jogador = dados_jog
 	
 	jogadores.add_child(jogador, true)
 	
