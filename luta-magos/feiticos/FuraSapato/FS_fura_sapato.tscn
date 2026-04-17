@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bxbxjx3vghjp8"]
+
+[ext_resource type="Script" uid="uid://cogyijv0p4cgn" path="res://feiticos/FuraSapato/F_fura_sapato.gd" id="1_7d02w"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
+height = 0.2
+radial_segments = 32
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7d02w"]
+albedo_color = Color(0.46466672, 0, 0.68, 1)
+metallic = 1.0
+metallic_specular = 0.48
+roughness = 0.46
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7d02w"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2w1e"]
+albedo_color = Color(0.8104371, 9.62615e-08, 0.42737412, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7d02w"]
+height = 1.0
+
+[node name="FS_FuraSapato" type="Node3D" unique_id=2102016733]
+script = ExtResource("1_7d02w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
+mesh = SubResource("CylinderMesh_xe436")
+surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
+
+[node name="Espinhos" type="Node3D" parent="." unique_id=297862689]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Espinhos" unique_id=1352420255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Espinhos" unique_id=1739246033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2387259, 0.2, -0.27394772)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Espinhos" unique_id=750582542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21720135, 0.2, -0.27003413)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Espinhos" unique_id=1395450309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2700342, 0.2, 0.26220715)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Espinhos" unique_id=1137226610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2250284, 0.2, 0.24655303)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1283389762]
+collision_layer = 257
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2018975955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("CylinderShape3D_7d02w")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

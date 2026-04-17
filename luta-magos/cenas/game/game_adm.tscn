@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/game/feiticos/registro_feiticos.gd" id="5_e2ubu"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="6_ewmxn"]
 [ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="7_p8iwo"]
+[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="8_ewmxn"]
 
 [node name="GameAdm" type="Node" unique_id=773607251]
 script = ExtResource("1_3lst8")
@@ -36,5 +37,6 @@ spawn_path = NodePath("../Feiticos")
 [node name="FeiticoReg" type="Node" parent="FeiticosAdm" unique_id=802382489]
 script = ExtResource("5_e2ubu")
 feiticos = Dictionary[String, ExtResource("6_ewmxn")]({
-"BolaFogo": ExtResource("7_p8iwo")
+"BolaFogo": ExtResource("7_p8iwo"),
+"FuraSapato": ExtResource("8_ewmxn")
 })

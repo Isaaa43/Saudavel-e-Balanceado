@@ -3,11 +3,15 @@ extends Node3D
 
 @export var spell_registry: RegistroFeiticos
 
+@onready var ray_cast_visao: RayCast3D = $RayCast3D
+
 var _cooldowns: Dictionary = {}
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("acao"):
 		_lancar_feitico_escolhido("BolaFogo")
+	if Input.is_action_just_pressed("acao_2"):
+		_lancar_feitico_escolhido("FuraSapato")
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
@@ -34,7 +38,11 @@ func _lancar_feitico_escolhido(feitico_id: String) -> void:
 		Feitico.Tipo.INSTANTANEO:
 			pass
 		Feitico.Tipo.POSICIONADO:
-			pass
+			ray_cast_visao.force_raycast_update()
+			if ray_cast_visao.is_colliding():
+				var posicao := ray_cast_visao.get_collision_point()
+				feitico_contexto.posicao_global_inicial = posicao
+				feitico_contexto.direcao = Vector3.FORWARD
 		Feitico.Tipo.EFEITO:
 			pass
 	

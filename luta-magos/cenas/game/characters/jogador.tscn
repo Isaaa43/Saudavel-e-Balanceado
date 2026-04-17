@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/game/feiticos/registro_feiticos.gd" id="4_s8iyn"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="5_8vvjh"]
 [ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="6_ytj1x"]
+[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="7_ytj1x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -61,8 +62,13 @@ spell_registry = NodePath("RegFeiticos")
 [node name="RegFeiticos" type="Node" parent="Cabeca/Camera3D/LancadorFeiticos" unique_id=1761984231]
 script = ExtResource("4_s8iyn")
 feiticos = Dictionary[String, ExtResource("5_8vvjh")]({
-"BolaFogo": ExtResource("6_ytj1x")
+"BolaFogo": ExtResource("6_ytj1x"),
+"FuraSapato": ExtResource("7_ytj1x")
 })
+
+[node name="RayCast3D" type="RayCast3D" parent="Cabeca/Camera3D/LancadorFeiticos" unique_id=576639506]
+target_position = Vector3(0, 0, -5)
+collide_with_areas = true
 
 [node name="HudAim" type="Control" parent="Cabeca/Camera3D" unique_id=623777350]
 layout_mode = 3
