@@ -87,6 +87,14 @@ debug={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Tudo"
+3d_physics/layer_2="Chao"
+3d_physics/layer_3="Cenario"
+3d_physics/layer_5="Jogadores"
+3d_physics/layer_9="Feiticos"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

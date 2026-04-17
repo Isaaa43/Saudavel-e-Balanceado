@@ -55,6 +55,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="StaticChao" type="StaticBody3D" parent="." unique_id=157821026]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticChao" unique_id=1263738365]
 visible = false
@@ -68,6 +69,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qnu6t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -11)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Pilares" unique_id=2024561732]
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pilares/StaticBody3D2" unique_id=391773757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -80,6 +82,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_gm2tg")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Pilares" unique_id=385902756]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -2, 4)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pilares/StaticBody3D3" unique_id=1950110144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -92,6 +95,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_gm2tg")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Pilares" unique_id=1529978506]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.961119, -3.8800006, 19.408901)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pilares/StaticBody3D4" unique_id=1839756526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -104,6 +108,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8uxsp")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="Pilares" unique_id=1418640251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.651348, -2.8404148, 21.220758)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pilares/StaticBody3D5" unique_id=1627902724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -116,6 +121,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8uxsp")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="Pilares" unique_id=675926384]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9178905, 2.152464, 25.33804)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pilares/StaticBody3D6" unique_id=1304880251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -128,6 +134,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_re11u")
 
 [node name="StaticRampa" type="StaticBody3D" parent="." unique_id=1393956325]
 transform = Transform3D(-1.3704423, 0, -1.4566702, 0, 2, 0, 1.4566702, 0, -1.3704423, 9.327, 1, -8.56)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticRampa" unique_id=723904316]
 shape = SubResource("ConvexPolygonShape3D_qnu6t")
