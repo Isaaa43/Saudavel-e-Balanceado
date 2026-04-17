@@ -5,49 +5,37 @@ extends Node3D
 
 var _cooldowns: Dictionary = {}
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("acao"):
-		cast_spell("BolaFogo", global_position)
+		_lancar_feitico_escolhido("BolaFogo")
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
 
+func _lancar_feitico_escolhido(feitico_id: String) -> void:
+	var feitico_def : FeiticoDefinicaoRes = spell_registry.get_feitico(feitico_id)
+	
+	var feitico_contexto := FeiticoContexto.new()
+	feitico_contexto.feitico_id = feitico_def.feitico_id
+	feitico_contexto.feitico_tipo = feitico_def.feitico_tipo
+	# TODO: achar outra solucao alem do peer id
+	feitico_contexto.criador = multiplayer.get_unique_id()
+	feitico_contexto.alvo = null
+	feitico_contexto.posicao_global_inicial = global_position
+	feitico_contexto.direcao = -get_global_transform().basis.z
+	
+	# TODO: mudar o contexto dependendo do tipo de feitico
+	match (feitico_def.feitico_tipo):
+		Feitico.Tipo.INSTANTANEO:
+			pass
+		Feitico.Tipo.POSICIONADO:
+			pass
+		Feitico.Tipo.EFEITO:
+			pass
+	
+	lancar_feitico(feitico_contexto)
+
 # Main entry point — call this locally AND replicate over network
-func cast_spell(spell_id: String, target_pos: Vector3, target_node: Node3D = null) -> void:
-	NetworkClient.lancar_feitico(spell_id, target_pos, target_node)
-	#
-	#var definition = spell_registry.get_feitico(spell_id)
-	#if not definition or _cooldowns.get(spell_id, 0.0) > 0.0:
-		#return
-#
-	#_cooldowns[spell_id] = definition.cooldown
-#
-#
-	#var spell: Feitico = definition.feitico_scene.instantiate()
-	##get_tree().current_scene.add_child(spell)
-	#add_child(spell)
-#
-	#spell.feitico_id       = spell_id
-	#spell.criador         = get_parent()
-	#spell.direcao = target_pos
-	#spell.alvo    = target_node
-#
-	#spell.lancar()
-
-# Serialize to send over ENet
-func build_cast_packet(spell_id: String, target_pos: Vector3) -> Dictionary:
-	return {
-		"type":       "cast",
-		"spell_id":   spell_id,
-		"caster_id":  get_parent().name,
-		"target_pos": { "x": target_pos.x, "y": target_pos.y, "z": target_pos.z },
-	}
-
-# Reconstruct and cast from a received packet
-func cast_from_packet(packet: Dictionary) -> void:
-	var pos = packet["target_pos"]
-	cast_spell(
-		packet["spell_id"],
-		Vector3(pos["x"], pos["y"], pos["z"])
-	)
+func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
+	NetworkClient.lancar_feitico(feitico_contexto)

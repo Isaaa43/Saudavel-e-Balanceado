@@ -62,9 +62,15 @@ func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void
 func iniciar_partida() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		NetworkClient.iniciar_partida.rpc_id(peer_id)
+	# TODO: solucao melhor que essa do timer
+	await get_tree().create_timer(0.2).timeout
+	_iniciar_partida()
+
+func _iniciar_partida() -> void:
+	for peer_id : int in dados_jogador_por_peer_id.keys():
 		# TODO: melhorar isso com batch talvez
 		for dados_jog : DadosJogador in dados_jogador_por_peer_id.values():
-			NetworkClient.spawn_jogador.rpc_id(peer_id, dados_jog)
+			NetworkClient.spawn_jogador.rpc_id(peer_id, dados_jog.to_dict())
 
 ## Chama o server para terminar a partida
 func terminar_partida() -> void:
@@ -91,8 +97,8 @@ func _peer_terminar_partida() -> void:
 
 
 @rpc("any_peer", "call_local", "reliable")
-func jogador_lancar_feitico(feitico_id : String, target_pos : Vector3) -> void:
+func jogador_lancar_feitico(feitico_contexto_net: Dictionary) -> void:
 	if not multiplayer.is_server(): return
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
-		NetworkClient.spawn_feitico.rpc_id(peer_id, feitico_id, target_pos)
+		NetworkClient.spawn_feitico.rpc_id(peer_id, feitico_contexto_net)

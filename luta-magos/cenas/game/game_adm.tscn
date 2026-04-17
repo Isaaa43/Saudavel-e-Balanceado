@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cydaaeay0mfes" path="res://cenas/game/mapas/mapa_teste.tscn" id="3_viw2k"]
 [ext_resource type="Script" uid="uid://dtnujgqdx58ih" path="res://scripts/game/feiticos/feiticos_adm.gd" id="4_j0w0j"]
 [ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/game/feiticos/registro_feiticos.gd" id="5_e2ubu"]
-[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao.gd" id="6_ewmxn"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="6_ewmxn"]
 [ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="7_p8iwo"]
 
 [node name="GameAdm" type="Node" unique_id=773607251]

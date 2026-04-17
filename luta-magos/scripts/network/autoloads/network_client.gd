@@ -37,8 +37,8 @@ func criar_dados_jogador() -> DadosJogador:
 # -----------------------------------------------------------------------------
 # Partida
 # -----------------------------------------------------------------------------
-signal spawnar_jogador(dados_jogador, peer_id)
-signal spawnar_feitico(feitico_id : String, target_pos : Vector3)
+signal spawnar_jogador(dados_jogador : DadosJogador)
+signal spawnar_feitico(feitico_contexto : FeiticoContexto)
 
 # TODO: trocar para load map, ou load game
 @rpc("authority", "call_local", "reliable")
@@ -48,13 +48,14 @@ func iniciar_partida() -> void:
 	print("iniciar_partida id:", multiplayer.get_unique_id())
 
 @rpc("authority", "call_local", "reliable")
-func spawn_jogador(dados_jog : DadosJogador) -> void:
+func spawn_jogador(dados_jog_dict : Dictionary) -> void:
+	var dados_jog := DadosJogador.from_dict(dados_jog_dict)
 	emit_signal("spawnar_jogador", dados_jog)
 
-func lancar_feitico(feitico_id : String, target_pos : Vector3, target_node) -> void:
-	NetworkServer.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_id, target_pos)
-
+func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
+	NetworkServer.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_contexto.to_dict())
 
 @rpc("authority", "call_local", "reliable")
-func spawn_feitico(feitico_id : String, target_pos : Vector3) -> void:
-	emit_signal("spawnar_feitico", feitico_id, target_pos)
+func spawn_feitico(feitico_contexto_net : Dictionary) -> void:
+	var feitico_contexto := FeiticoContexto.from_dict(feitico_contexto_net)
+	emit_signal("spawnar_feitico", feitico_contexto)

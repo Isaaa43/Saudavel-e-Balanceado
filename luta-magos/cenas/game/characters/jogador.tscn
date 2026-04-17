@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
 [ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
 [ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/game/feiticos/registro_feiticos.gd" id="4_s8iyn"]
-[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao.gd" id="5_8vvjh"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="5_8vvjh"]
 [ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="6_ytj1x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]

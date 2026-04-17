@@ -27,7 +27,7 @@ func _ready() -> void:
 ## Cria a magia, antes de lancar
 func criar() -> void:
 	look_at(direcao, Vector3.UP)
-	global_position = direcao
+	global_position = posicao_global_inicial
 
 ## Lanca a magia
 func lancar() -> void:
@@ -53,8 +53,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:
-	if body == criador:
-		return
-	if body.has_method("take_damage"):
-		print(body, " levou %d de " % damage, criador)
+	print(body, " levou %d de " % damage, criador)
+	#if body == criador:
+		#return
+	#if body.has_method("take_damage"): pass
 	#queue_free()

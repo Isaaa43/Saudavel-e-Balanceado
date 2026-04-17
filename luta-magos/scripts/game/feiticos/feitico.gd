@@ -6,10 +6,10 @@ var feitico_id : String = ""
 var nome: String = ""
 var feitico_tipo : Tipo = Tipo.INSTANTANEO
 
-var criador : Node = null
+var criador : int = -1
 var alvo : Node = null
 
-var posicao_inicial := Vector3.ZERO
+var posicao_global_inicial := Vector3.ZERO
 var direcao := Vector3.ZERO
 
 var efeitos : Array[FeiticoEfeito] = []

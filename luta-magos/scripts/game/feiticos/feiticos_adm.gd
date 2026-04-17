@@ -7,18 +7,20 @@ extends Node
 func _ready() -> void:
 	NetworkClient.spawnar_feitico.connect(_spawnar_feitico)
 
-func _spawnar_feitico(feitico_id : String, target_pos: Vector3) -> void:
+func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
+	var feitico_id : String = feitico_contexto.feitico_id
 	
-	var definition = spell_registry.get_feitico(feitico_id)
-	if not definition: return
+	
+	var feitico_def : FeiticoDefinicaoRes = spell_registry.get_feitico(feitico_id)
+	if not feitico_def: return
 
-	var spell: Feitico = definition.feitico_scene.instantiate()
-	#get_tree().current_scene.add_child(spell)
-	feiticos.add_child(spell)
+	var feitico: Feitico = feitico_def.feitico_scene.instantiate()
+	feiticos.add_child(feitico)
 
-	spell.feitico_id       = feitico_id
-	spell.criador         = get_parent()
-	spell.direcao = target_pos
-	spell.alvo    = null
+	feitico.feitico_id = feitico_id
+	feitico.criador = feitico_contexto.criador
+	feitico.direcao = feitico_contexto.direcao
+	feitico.alvo    = feitico_contexto.alvo
+	feitico.posicao_global_inicial = feitico_contexto.posicao_global_inicial
 
-	spell.lancar()
+	feitico.lancar()
