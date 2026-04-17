@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FeiticoDefinicao" format=3 uid="uid://c4ct5q6ves50i"]
+
+[ext_resource type="PackedScene" uid="uid://bkkbtsjf58c46" path="res://feiticos/BolaFogo/FS_bola_fogo.tscn" id="1_p0m5y"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao.gd" id="1_toj36"]
+
+[resource]
+script = ExtResource("1_toj36")
+feitico_id = "BolaFogo"
+nome = "Bola de Fogo"
+feitico_scene = ExtResource("1_p0m5y")
+metadata/_custom_type_script = "uid://dnavupkg51wgc"

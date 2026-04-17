@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/game_adm.gd" id="1_3lst8"]
 [ext_resource type="Script" uid="uid://bmrb05718ew1j" path="res://scripts/network/jogadores_adm.gd" id="2_j0w0j"]
 [ext_resource type="PackedScene" uid="uid://cydaaeay0mfes" path="res://cenas/game/mapas/mapa_teste.tscn" id="3_viw2k"]
+[ext_resource type="Script" uid="uid://dtnujgqdx58ih" path="res://scripts/game/feiticos/feiticos_adm.gd" id="4_j0w0j"]
+[ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/game/feiticos/registro_feiticos.gd" id="5_e2ubu"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao.gd" id="6_ewmxn"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="7_p8iwo"]
 
 [node name="GameAdm" type="Node" unique_id=773607251]
 script = ExtResource("1_3lst8")
@@ -20,4 +24,17 @@ spawn_path = NodePath("../Jogadores")
 
 [node name="MapaTeste" parent="MapaAdm" unique_id=13285931 instance=ExtResource("3_viw2k")]
 
-[node name="FeiticosAdm" type="Node" parent="." unique_id=783007562]
+[node name="FeiticosAdm" type="Node" parent="." unique_id=783007562 node_paths=PackedStringArray("spell_registry")]
+script = ExtResource("4_j0w0j")
+spell_registry = NodePath("FeiticoReg")
+
+[node name="MultiplayerSpawnerFeiticos" type="MultiplayerSpawner" parent="FeiticosAdm" unique_id=779446714]
+spawn_path = NodePath("../Feiticos")
+
+[node name="Feiticos" type="Node" parent="FeiticosAdm" unique_id=813403175]
+
+[node name="FeiticoReg" type="Node" parent="FeiticosAdm" unique_id=802382489]
+script = ExtResource("5_e2ubu")
+feiticos = Dictionary[String, ExtResource("6_ewmxn")]({
+"BolaFogo": ExtResource("7_p8iwo")
+})

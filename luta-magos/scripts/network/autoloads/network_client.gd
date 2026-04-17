@@ -37,3 +37,13 @@ func criar_dados_jogador() -> DadosJogador:
 # -----------------------------------------------------------------------------
 # Partida
 # -----------------------------------------------------------------------------
+signal spawn_feitico(feitico_id : String, target_pos : Vector3)
+
+func lancar_feitico(feitico_id : String, target_pos : Vector3, target_node) -> void:
+	NetworkServer.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_id, target_pos)
+
+
+
+@rpc("authority", "call_local", "reliable")
+func spawnar_feitico(feitico_id : String, target_pos : Vector3) -> void:
+	emit_signal("spawn_feitico", feitico_id, target_pos)

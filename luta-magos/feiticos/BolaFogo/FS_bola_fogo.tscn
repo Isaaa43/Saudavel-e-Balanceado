@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bkkbtsjf58c46"]
+
+[ext_resource type="Script" uid="uid://b1q8h64xwtalr" path="res://feiticos/BolaFogo/F_bola_fogo.gd" id="1_3cup7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k3kbq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cup7"]
+albedo_color = Color(0.98263913, 0.34806895, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fn0gy"]
+radius = 0.55833286
+
+[node name="FS_BolaFogo" type="Node3D" unique_id=1296584297]
+script = ExtResource("1_3cup7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1965752395]
+mesh = SubResource("SphereMesh_k3kbq")
+surface_material_override/0 = SubResource("StandardMaterial3D_3cup7")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1555616760]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1614252506]
+shape = SubResource("SphereShape3D_fn0gy")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

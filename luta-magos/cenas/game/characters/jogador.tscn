@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
 [ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
+[ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
+[ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/game/feiticos/registro_feiticos.gd" id="4_s8iyn"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao.gd" id="5_8vvjh"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="6_ytj1x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -14,13 +18,6 @@ albedo_color = Color(1, 0.65333337, 0.35000002, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf517"]
 albedo_color = Color(0.9298859, 0.430138, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_s5tbn"]
-top_radius = 0.0
-bottom_radius = 0.2
-height = 0.3
-radial_segments = 8
-rings = 3
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5tbn"]
 properties/0/path = NodePath(".:position")
@@ -54,6 +51,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("2_s5tbn")
 jogador = NodePath("../..")
 cabeca = NodePath("../CabecaPivot")
+
+[node name="LancadorFeiticos" type="Node3D" parent="Cabeca/Camera3D" unique_id=1643112298 node_paths=PackedStringArray("spell_registry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+script = ExtResource("3_qf517")
+spell_registry = NodePath("RegFeiticos")
+
+[node name="RegFeiticos" type="Node" parent="Cabeca/Camera3D/LancadorFeiticos" unique_id=1761984231]
+script = ExtResource("4_s8iyn")
+feiticos = Dictionary[String, ExtResource("5_8vvjh")]({
+"BolaFogo": ExtResource("6_ytj1x")
+})
 
 [node name="CabecaPivot" type="Node3D" parent="Cabeca" unique_id=2010991378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)

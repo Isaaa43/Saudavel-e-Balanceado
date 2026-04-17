@@ -98,3 +98,11 @@ func _peer_terminar_partida() -> void:
 		await get_tree().create_timer(0.2).timeout
 	#TODO: Network.server_disconnected ?
 	TrocaCenaTemp.go_to_menu_inicial()
+
+
+@rpc("any_peer", "call_local", "reliable")
+func jogador_lancar_feitico(feitico_id : String, target_pos : Vector3) -> void:
+	if not multiplayer.is_server(): return
+	
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		NetworkClient.spawnar_feitico.rpc_id(peer_id, feitico_id, target_pos)

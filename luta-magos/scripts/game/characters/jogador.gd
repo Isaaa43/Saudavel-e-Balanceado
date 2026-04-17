@@ -2,6 +2,9 @@ extends CharacterBody3D
 class_name Jogador
 
 @onready var camera_3d: Camera3D = $Cabeca/Camera3D
+@onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos
+
+var dados_jogador : DadosJogador
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -15,8 +18,10 @@ func _turn_off(node : Node) -> void:
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 	print("Jogador %s  is_auth? " % name, is_multiplayer_authority())
+	
 
 func _ready() -> void:
+	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		_turn_off(camera_3d)
