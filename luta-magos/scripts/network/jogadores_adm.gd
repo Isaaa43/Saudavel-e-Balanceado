@@ -4,6 +4,9 @@ const JOGADOR = preload("uid://cqojyxy8t78mg")
 @onready var jogadores: Node = $Jogadores
 
 func _ready() -> void:
+	# TODO: decidir se vai usar mult spanwer sync (se nao usar, remover esse if, e usar rpc para spawnar)
+	if not multiplayer.is_server(): return 
+	
 	NetworkClient.spawnar_jogador.connect(spawnar_jogador)
 	pass
 
