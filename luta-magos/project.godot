@@ -36,16 +36,16 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://_debug/": "gray",
 "res://assets/": "red",
-"res://cenas/": "orange",
-"res://cenas/game/": "purple",
+"res://cenas/": "yellow",
+"res://cenas/game/": "orange",
 "res://cenas/game/UI/": "green",
-"res://cenas/menus/": "yellow",
+"res://cenas/menus/": "teal",
 "res://feiticos/": "purple",
 "res://mods/": "gray",
 "res://scripts/": "blue",
-"res://scripts/game/": "purple",
+"res://scripts/game/": "orange",
 "res://scripts/game/UI/": "green",
-"res://scripts/menus/": "yellow",
+"res://scripts/menus/": "teal",
 "res://temas/": "teal"
 }
 
