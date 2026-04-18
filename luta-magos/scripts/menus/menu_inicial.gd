@@ -12,10 +12,15 @@ func  _ready() -> void:
 	panel_jogar.hide()
 	# TODO: criar loading
 	Network.client_connection_failed.connect(_habilitar_button_join.bind(true))
+	# TODO: 
+	$UI/VBoxContainer/ButtonJogar.grab_focus()
+
 
 func _on_button_jogar_pressed() -> void:
 	panel_jogar.show()
 	ui.hide()
+	# TODO:
+	button_join.grab_focus()
 	# pegar nome
 	var nome_jog := line_edit_nome_jogador.text
 	if nome_jog.length() < 2:

@@ -22,6 +22,9 @@ func add_log(txt : String) -> void:
 	label_log.text += '\n' + txt 
 
 func _ready() -> void:
+	# TODO:
+	button_comecar.grab_focus()
+	
 	# TODO: mudar isso
 	LogsAdm.update_conexao_texto.connect(add_log)
 	
