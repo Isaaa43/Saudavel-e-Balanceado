@@ -39,12 +39,14 @@ folder_colors={
 "res://cenas/": "yellow",
 "res://cenas/game/": "orange",
 "res://cenas/game/UI/": "green",
+"res://cenas/game/feiticos/": "purple",
 "res://cenas/menus/": "teal",
 "res://feiticos/": "purple",
 "res://mods/": "gray",
 "res://scripts/": "blue",
 "res://scripts/game/": "orange",
 "res://scripts/game/UI/": "green",
+"res://scripts/game/feiticos/": "purple",
 "res://scripts/menus/": "teal",
 "res://temas/": "teal"
 }
