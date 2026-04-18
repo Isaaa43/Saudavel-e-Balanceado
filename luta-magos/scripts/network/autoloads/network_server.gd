@@ -31,9 +31,7 @@ func _lobby_rem_jogador(peer_id: int) -> void:
 	if not dados_jogador_por_peer_id.has(peer_id): return
 	
 	var nome := dados_jogador_por_peer_id[peer_id].nome
-	
 	LogsAdm.add_conexao_texto_peer("%s saiu" % nome, peer_id)
-	
 	dados_jogador_por_peer_id.erase(peer_id)
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -84,17 +82,7 @@ func terminar_partida() -> void:
 func _server_terminar_partida() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		print("peer id: ", peer_id)
-		_peer_terminar_partida.rpc_id(peer_id)
-
-## Cada peer termina sua partida
-@rpc("authority", "call_local", "reliable")
-func _peer_terminar_partida() -> void:
-	if multiplayer.is_server():
-		# TODO: solucao melhor que essa do timer
-		await get_tree().create_timer(0.2).timeout
-	#TODO: Network.server_disconnected ?
-	TrocaCenaTemp.go_to_menu_inicial()
-
+		NetworkClient.terminar_partida.rpc_id(peer_id)
 
 @rpc("any_peer", "call_local", "reliable")
 func jogador_lancar_feitico(feitico_contexto_net: Dictionary) -> void:

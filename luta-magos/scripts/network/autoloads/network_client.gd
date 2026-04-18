@@ -47,6 +47,15 @@ func iniciar_partida() -> void:
 	await get_tree().process_frame
 	print("iniciar_partida id:", multiplayer.get_unique_id())
 
+## Cada peer termina sua partida
+@rpc("authority", "call_local", "reliable")
+func terminar_partida() -> void:
+	if multiplayer.is_server():
+		# TODO: solucao melhor que essa do timer
+		await get_tree().create_timer(0.2).timeout
+	#TODO: Network.server_disconnected ?
+	TrocaCenaTemp.go_to_menu_inicial()
+
 @rpc("authority", "call_local", "reliable")
 func spawn_jogador(dados_jog_dict : Dictionary) -> void:
 	var dados_jog := DadosJogador.from_dict(dados_jog_dict)
