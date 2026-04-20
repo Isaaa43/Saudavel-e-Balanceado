@@ -1,7 +1,7 @@
 class_name LancadorFeiticos
 extends Node3D
 
-@onready var spell_registry: RegistroFeiticos = Registros.reg_feiticos
+@onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
 
@@ -18,13 +18,23 @@ func _process(delta: float) -> void:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
 
 func _lancar_feitico_escolhido(feitico_id: String) -> void:
+	# se estiver no cooldown, nao continue
 	if _cooldowns.get(feitico_id, 0) > 0.1: return
 	
-	var feitico_def : FeiticoDefinicaoRes = spell_registry.get_feitico(feitico_id)
+	# cria o contexto do feitico
+	var feitico_def : FeiticoDefinicaoRes = registro_feiticos.get_feitico(feitico_id)
+	var feitico_contexto : FeiticoContexto = _criar_feitico_contexto(feitico_def)
+	# se nao foi possivel criar o contexto (ou lancar o feitico) pare
+	if not feitico_contexto: return
 	
+	# coloque o feitico no cooldown
 	_cooldowns[feitico_id] = feitico_def.cooldown
-	
+	# lancar o feitico
+	lancar_feitico(feitico_contexto)
+
+func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContexto:
 	var feitico_contexto := FeiticoContexto.new()
+	
 	feitico_contexto.feitico_id = feitico_def.feitico_id
 	feitico_contexto.feitico_tipo = feitico_def.feitico_tipo
 	# TODO: achar outra solucao alem do peer id
@@ -43,10 +53,13 @@ func _lancar_feitico_escolhido(feitico_id: String) -> void:
 				var posicao := ray_cast_visao.get_collision_point()
 				feitico_contexto.posicao_global_inicial = posicao
 				feitico_contexto.direcao = Vector3.FORWARD
+			else:
+				# se nao for possivel colocar, entao nao lance
+				return null
 		Feitico.Tipo.EFEITO:
 			pass
 	
-	lancar_feitico(feitico_contexto)
+	return feitico_contexto
 
 # Main entry point — call this locally AND replicate over network
 func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
