@@ -2,7 +2,7 @@ extends Node
 
 @onready var feiticos: Node = $Feiticos
 
-@export var spell_registry: RegistroFeiticos
+@onready var spell_registry: RegistroFeiticos = Registros.reg_feiticos
 
 func _ready() -> void:
 	NetworkClient.spawnar_feitico.connect(_spawnar_feitico)

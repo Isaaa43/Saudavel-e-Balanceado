@@ -1,7 +1,7 @@
 class_name LancadorFeiticos
 extends Node3D
 
-@export var spell_registry: RegistroFeiticos
+@onready var spell_registry: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
 
