@@ -37,6 +37,7 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://_debug/": "gray",
 "res://assets/": "red",
+"res://assets/temp/": "gray",
 "res://cenas/": "yellow",
 "res://cenas/game/": "orange",
 "res://cenas/game/UI/": "green",

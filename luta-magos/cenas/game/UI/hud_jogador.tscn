@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://c4x1fiwa5kwuq"]
+
+[ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
+[ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="1_bqy3s"]
+
+[node name="HUDjogador" type="Control" unique_id=31207200]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a8gqf")
+
+[node name="HudAim" type="Control" parent="." unique_id=1384346477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="HudAim" unique_id=599068103]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1206569448]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -32.0
+offset_right = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(52, 32)
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=2012555246]
+layout_mode = 2
+texture = ExtResource("1_bqy3s")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/TextureRect" unique_id=1251329543]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 1.0
+grow_horizontal = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=514923322]
+layout_mode = 2
+texture = ExtResource("1_bqy3s")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/TextureRect2" unique_id=1963435590]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 1.0
+grow_horizontal = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=439134738]
+layout_mode = 2
+texture = ExtResource("1_bqy3s")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/TextureRect3" unique_id=1823001661]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 1.0
+grow_horizontal = 2
+text = "3"
+horizontal_alignment = 1
