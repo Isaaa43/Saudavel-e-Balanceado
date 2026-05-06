@@ -1,5 +1,7 @@
 extends Control
 
+@export var focus_inicial: Control
+
 @onready var ui: PanelContainer = $UI
 @onready var panel_jogar: Panel = $PanelJogar
 @onready var line_edit_nome_jogador: LineEdit = $UI/VBoxContainer/LineEditNomeJogador
@@ -13,7 +15,7 @@ func  _ready() -> void:
 	# TODO: criar loading
 	Network.client_connection_failed.connect(_habilitar_button_join.bind(true))
 	# TODO: 
-	$UI/VBoxContainer/ButtonJogar.grab_focus()
+	focus_inicial.grab_focus()
 
 
 func _on_button_jogar_pressed() -> void:

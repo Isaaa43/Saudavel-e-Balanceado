@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifal0"]
 
-[node name="MenuInicial" type="Control" unique_id=1487474413]
+[node name="MenuInicial" type="Control" unique_id=1487474413 node_paths=PackedStringArray("focus_inicial")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mswjp")
+focus_inicial = NodePath("UI/VBoxContainer/ButtonJogar")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2054214569]
 layout_mode = 1
