@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbcuijvqx5043" path="res://scripts/menus/menu_partida.gd" id="1_atdnb"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_c11ds"]
+[ext_resource type="PackedScene" uid="uid://y0lqtqp2fme4" path="res://cenas/audio_player_musica.tscn" id="3_j53x0"]
 
 [node name="MenuPartida" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -13,7 +14,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_atdnb")
-qntd_magias_grimorio = 0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1274343443]
 layout_mode = 1
@@ -172,6 +172,8 @@ grow_horizontal = 0
 layout_mode = 2
 text = "Log:"
 horizontal_alignment = 2
+
+[node name="AudioPlayerMusica" parent="." unique_id=712370699 instance=ExtResource("3_j53x0")]
 
 [connection signal="pressed" from="VBoxPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
 [connection signal="pressed" from="VBoxPartida/ButtonSair" to="." method="_on_button_sair_pressed"]

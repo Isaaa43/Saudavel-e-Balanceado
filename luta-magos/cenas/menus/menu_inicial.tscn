@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c402r24c354fa" path="res://scripts/menus/menu_inicial.gd" id="1_mswjp"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_avi7h"]
+[ext_resource type="PackedScene" uid="uid://y0lqtqp2fme4" path="res://cenas/audio_player_musica.tscn" id="3_avi7h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
 
@@ -149,6 +150,8 @@ text = "Join"
 [node name="ButtonCancelar" type="Button" parent="PanelJogar/Control/Margin/VBoxContainer" unique_id=1606311039]
 layout_mode = 2
 text = "Cancelar"
+
+[node name="AudioPlayerMusica" parent="." unique_id=712370699 instance=ExtResource("3_avi7h")]
 
 [connection signal="pressed" from="UI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
