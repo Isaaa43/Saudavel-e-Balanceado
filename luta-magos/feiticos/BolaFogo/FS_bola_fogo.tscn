@@ -2,6 +2,32 @@
 
 [ext_resource type="Script" uid="uid://b1q8h64xwtalr" path="res://feiticos/BolaFogo/F_bola_fogo.gd" id="1_3cup7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqoy3"]
+albedo_color = Color(0.9904224, 0, 0.26082703, 1)
+
+[sub_resource type="Curve" id="Curve_oqki4"]
+bake_resolution = 10
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9033457, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x7hgg"]
+curve = SubResource("Curve_oqki4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kwl0c"]
+lifetime_randomness = 0.05
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_x7hgg")
+
+[sub_resource type="SphereMesh" id="SphereMesh_oocv6"]
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 4
+
 [sub_resource type="SphereMesh" id="SphereMesh_k3kbq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cup7"]
@@ -17,6 +43,16 @@ radius = 0.47009385
 script = ExtResource("1_3cup7")
 speed = 10.0
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1431240652]
+visible = false
+material_override = SubResource("StandardMaterial3D_rqoy3")
+amount = 150
+sub_emitter = NodePath(".")
+lifetime = 0.4
+explosiveness = 0.2
+randomness = 0.29
+process_material = SubResource("ParticleProcessMaterial_kwl0c")
+draw_pass_1 = SubResource("SphereMesh_oocv6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1965752395]
 mesh = SubResource("SphereMesh_k3kbq")
