@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
 [ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="1_bqy3s"]
+[ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="3_c7tbw"]
+[ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="4_tpt5k"]
 
 [node name="HUDjogador" type="Control" unique_id=31207200]
 layout_mode = 3
@@ -10,13 +12,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_a8gqf")
 
 [node name="HudAim" type="Control" parent="." unique_id=1384346477]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -44,8 +46,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -52.0
-offset_top = -32.0
+offset_top = -52.0
 offset_right = 52.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -72,7 +75,7 @@ horizontal_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=514923322]
 layout_mode = 2
-texture = ExtResource("1_bqy3s")
+texture = ExtResource("3_c7tbw")
 stretch_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/TextureRect2" unique_id=1963435590]
@@ -90,7 +93,7 @@ horizontal_alignment = 1
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=439134738]
 layout_mode = 2
-texture = ExtResource("1_bqy3s")
+texture = ExtResource("4_tpt5k")
 stretch_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/TextureRect3" unique_id=1823001661]
@@ -105,3 +108,40 @@ offset_bottom = 1.0
 grow_horizontal = 2
 text = "3"
 horizontal_alignment = 1
+
+[node name="Vida" type="Control" parent="." unique_id=125310063]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -79.0
+offset_right = 590.0
+offset_bottom = -23.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Vida" unique_id=1499339849]
+self_modulate = Color(0.627451, 0, 0, 1)
+layout_mode = 0
+offset_left = 23.0
+offset_top = -80.0
+offset_right = 124.0
+offset_bottom = -13.0
+theme_override_font_sizes/font_size = 48
+text = "Vida:"
+
+[node name="ColorRectVidaBaixo" type="ColorRect" parent="Vida" unique_id=180130073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.22745098)
+
+[node name="ColorRectVida" type="ColorRect" parent="Vida" unique_id=1074161473]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0.627451, 0, 0, 1)

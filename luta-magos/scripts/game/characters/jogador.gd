@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Jogador
 
+@export var hud : HUDJogador
+
 @onready var camera_3d: Camera3D = $Cabeca/Camera3D
 @onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos
 
@@ -20,6 +22,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 	print("Jogador %s  is_auth? " % name, is_multiplayer_authority())
 	
+	print("--------------")
+	print("jogador %s (no id:%d)" % [name, multiplayer.get_unique_id()])
 
 func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
@@ -57,6 +61,9 @@ func _physics_process(delta: float) -> void:
 @onready var label_dano: Label3D = $LabelDano
 func levar_dano(dano: int) -> void:
 	print('Levar dano %d' % dano)
+	
+	hud.levar_dano(dano)
+	
 	label_dano.text = "Dano:\n%d" % dano
 	label_dano.show()
 	get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )

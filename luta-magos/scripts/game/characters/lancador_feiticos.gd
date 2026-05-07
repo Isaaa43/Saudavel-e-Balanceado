@@ -4,14 +4,37 @@ extends Node3D
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
+# TODO: temp
+@onready var hud_jogador: HUDJogador = $"../HUDjogador"
 
 var _cooldowns: Dictionary = {}
 
+var selecao_feitico_id: int = 0
+
 func _input(_event: InputEvent) -> void:
+	if _event is InputEventKey and _event.pressed:
+		if _event.keycode == KEY_1:
+			_selecionar(0)
+		if _event.keycode == KEY_2:
+			_selecionar(1)
+		if _event.keycode == KEY_3:
+			_selecionar(2)
+	
 	if Input.is_action_just_pressed("acao"):
-		_lancar_feitico_escolhido("BolaFogo")
-	if Input.is_action_just_pressed("acao_2"):
-		_lancar_feitico_escolhido("FuraSapato")
+		_escolher_feitico()
+
+func _selecionar(id: int) -> void:
+	selecao_feitico_id = id
+	hud_jogador.selecionar(id)
+
+func _escolher_feitico() -> void:
+	match selecao_feitico_id:
+		0:
+			_lancar_feitico_escolhido("BolaFogo")
+		1:
+			_lancar_feitico_escolhido("FuraSapato")
+		2:
+			_lancar_feitico_escolhido("PuloImpulsionado")
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
@@ -57,7 +80,7 @@ func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContex
 				# se nao for possivel colocar, entao nao lance
 				return null
 		Feitico.Tipo.EFEITO:
-			pass
+			feitico_contexto.posicao_global_inicial = global_position
 	
 	return feitico_contexto
 
