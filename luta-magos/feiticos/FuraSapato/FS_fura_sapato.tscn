@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bxbxjx3vghjp8"]
 
 [ext_resource type="Script" uid="uid://cogyijv0p4cgn" path="res://feiticos/FuraSapato/F_fura_sapato.gd" id="1_7d02w"]
+[ext_resource type="AudioStream" uid="uid://dgute6wtwp6mn" path="res://assets/temp/audio/Espinho.mp3" id="2_f2w1e"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
 height = 0.2
@@ -65,6 +66,9 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2018975955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("CylinderShape3D_7d02w")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=334536741]
+stream = ExtResource("2_f2w1e")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

@@ -29,6 +29,7 @@ func acertar() -> void:
 ## Aplicar os efeitos do feitico no alvo
 func aplicar_efeito() -> void:
 	pass
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 func _on_body_entered(body: Node3D) -> void:
 	if not (body is Jogador): return
@@ -36,6 +37,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if int(jog.name) == criador: return
 	
 	espinhos.show()
+	audio_stream_player_3d.play()
+	
 	jog.levar_dano(damage)
 
 
