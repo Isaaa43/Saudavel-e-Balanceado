@@ -3,6 +3,8 @@ extends Node3D
 
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
+@export var sapo_anim : AnimationPlayer
+
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
 # TODO: temp
 @onready var hud_jogador: HUDJogador = $"../HUDjogador"
@@ -41,6 +43,7 @@ func _process(delta: float) -> void:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
 
 func _lancar_feitico_escolhido(feitico_id: String) -> void:
+	sapo_anim.play("Take 001")
 	# se estiver no cooldown, nao continue
 	if _cooldowns.get(feitico_id, 0) > 0.1: return
 	

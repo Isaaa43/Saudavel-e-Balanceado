@@ -21,16 +21,9 @@ func selecionar(id: int) -> void:
 	
 	icons[id].modulate = Color(2.454, 2.454, 2.454)
 
-func levar_dano(dano: int) -> void:
-	vida = max(0, vida - dano)
+func set_vida(_vida: int) -> void:
+	vida = _vida
 	_update_vida_bar()
-	
-	# acabar partida
-	if is_zero_approx(dano):
-		await get_tree().create_timer(0.7).timeout
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		NetworkServer.terminar_partida()
-	
 
 func _update_vida_bar() -> void:
 	var porcent : float = float(vida) / vida_inicial

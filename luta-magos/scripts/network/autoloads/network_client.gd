@@ -1,5 +1,7 @@
 extends Node
 
+var jogadores : Dictionary[int, Jogador] = {}
+
 @onready var dados_jogador : DadosJogador = criar_dados_jogador()
 
 func _ready() -> void:

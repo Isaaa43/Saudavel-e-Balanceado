@@ -23,4 +23,8 @@ func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	feitico.alvo    = feitico_contexto.alvo
 	feitico.posicao_global_inicial = feitico_contexto.posicao_global_inicial
 
+
+	var jog : Jogador = NetworkClient.jogadores[int(feitico_contexto.criador)]
+	jog.play_lancar()
+	
 	feitico.lancar()
