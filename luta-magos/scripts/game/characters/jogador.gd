@@ -1,7 +1,12 @@
 extends CharacterBody3D
 class_name Jogador
 
-@export var hud : HUDJogador
+
+
+@export var mesh_sapo : MeshInstance3D
+@export var sapo_anim : AnimationPlayer
+
+@onready var hud: HUDJogador = $Cabeca/Camera3D/HUDjogador
 
 @onready var camera_3d: Camera3D = $Cabeca/Camera3D
 @onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos
@@ -20,6 +25,8 @@ func _turn_off(node : Node) -> void:
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
+	NetworkClient.jogadores[str(name).to_int()] = self
+	
 	print("Jogador %s  is_auth? " % name, is_multiplayer_authority())
 	
 	print("--------------")
@@ -28,11 +35,14 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
+		hud = null
 		_turn_off(self)
 		_turn_off(camera_3d)
 		_turn_off(lancador_feiticos)
 		return
 	
+	mesh_sapo.set_layer_mask_value(2, true)
+	mesh_sapo.set_layer_mask_value(1, false)
 	camera_3d.start()
 
 func _physics_process(delta: float) -> void:
@@ -57,12 +67,28 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func play_lancar() -> void:
+	sapo_anim.play("Take 001")
+	await get_tree().create_timer(0.8).timeout
+	sapo_anim.play("Idle")
+
+var vida: int = 200
 # TODO: somente teste, remover
 @onready var label_dano: Label3D = $LabelDano
 func levar_dano(dano: int) -> void:
 	print('Levar dano %d' % dano)
 	
-	hud.levar_dano(dano)
+	vida = vida - dano
+	vida = max(0, vida)
+	
+	if hud:
+		hud.set_vida(vida)
+	
+	# acabar partida
+	if is_zero_approx(vida):
+		await get_tree().create_timer(0.7).timeout
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		NetworkServer.terminar_partida()
 	
 	label_dano.text = "Dano:\n%d" % dano
 	label_dano.show()

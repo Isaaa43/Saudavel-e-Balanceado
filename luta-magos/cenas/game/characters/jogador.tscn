@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
 [ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
 [ext_resource type="PackedScene" uid="uid://c4x1fiwa5kwuq" path="res://cenas/game/UI/hud_jogador.tscn" id="4_s8iyn"]
+[ext_resource type="PackedScene" uid="uid://lq7jkf0lf88m" path="res://assets/temp/sapo/RigSapo.glb" id="5_f2bc4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -28,16 +29,18 @@ properties/2/path = NodePath("Cabeca/CabecaPivot:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("hud")]
+[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("mesh_sapo", "sapo_anim")]
 collision_layer = 17
 script = ExtResource("1_30vjq")
-hud = NodePath("Cabeca/Camera3D/HUDjogador")
+mesh_sapo = NodePath("RigSapo/Armature/Skeleton3D/Frogger_Skinned")
+sapo_anim = NodePath("RigSapo/AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_jbwqc")
 
 [node name="Corpo" type="Node3D" parent="." unique_id=1370049106]
+visible = false
 
 [node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=1306189236]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -48,13 +51,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Cabeca" unique_id=786938037 node_paths=PackedStringArray("jogador", "cabeca")]
+cull_mask = 1048573
+near = 0.1
 script = ExtResource("2_s5tbn")
 jogador = NodePath("../..")
 cabeca = NodePath("../CabecaPivot")
 
-[node name="LancadorFeiticos" type="Node3D" parent="Cabeca/Camera3D" unique_id=1643112298]
+[node name="LancadorFeiticos" type="Node3D" parent="Cabeca/Camera3D" unique_id=1643112298 node_paths=PackedStringArray("sapo_anim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 script = ExtResource("3_qf517")
+sapo_anim = NodePath("../../../RigSapo/AnimationPlayer")
 
 [node name="RayCast3D" type="RayCast3D" parent="Cabeca/Camera3D/LancadorFeiticos" unique_id=576639506]
 target_position = Vector3(0, 0, -5)
@@ -68,6 +74,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 
 [node name="MeshCabeca" type="MeshInstance3D" parent="Cabeca/CabecaPivot" unique_id=1253220719]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
+visible = false
 mesh = SubResource("SphereMesh_s5tbn")
 surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
 
@@ -83,3 +90,38 @@ outline_size = 16
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1203761034]
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
+
+[node name="RigSapo" parent="." unique_id=689871875 instance=ExtResource("5_f2bc4")]
+transform = Transform3D(-6.54, 0, -5.71745e-07, 0, 6.54, 0, 5.71745e-07, 0, -6.54, 0, 0, 0)
+
+[node name="Skeleton3D" parent="RigSapo/Armature" parent_id_path=PackedInt32Array(689871875, 1148812922) index="0" unique_id=1299174247]
+bones/0/rotation = Quaternion(0.5199694, -0.5094453, -0.48495778, -0.48467854)
+bones/1/position = Vector3(7.6582623, 9.434297e-07, 7.386552e-08)
+bones/5/position = Vector3(3.7080913, 0.36025572, -0.13284376)
+bones/6/position = Vector3(0.5586213, -4.6191545, 1.0789877)
+bones/6/rotation = Quaternion(-0.031179233, -0.0006537109, -0.16290846, 0.98614824)
+bones/7/rotation = Quaternion(-0.17497768, -0.12648633, -0.3620591, 0.9068061)
+bones/9/rotation = Quaternion(0.067385234, -0.042692553, 0.020653604, 0.9965992)
+bones/14/rotation = Quaternion(-0.20952618, 0.049176432, -0.24779274, 0.94460535)
+bones/17/rotation = Quaternion(-0.39493272, 0.086085886, -0.4466514, 0.7981979)
+bones/18/rotation = Quaternion(0.04566259, 0.08727906, 0.17039427, 0.9804403)
+bones/21/position = Vector3(3.326479, 9.909274e-07, -5.960467e-08)
+bones/21/rotation = Quaternion(-8.381902e-09, 6.5192607e-09, -4.0046835e-08, 1)
+bones/22/position = Vector3(0.27798033, -4.5109496, -0.9555401)
+bones/22/rotation = Quaternion(0.07861485, -0.028231999, -0.033619575, 0.995938)
+bones/23/position = Vector3(-0.9596746, -1.1086491, -8.170887)
+bones/23/rotation = Quaternion(0.121859364, -0.037095822, 0.948863, 0.28884804)
+bones/25/rotation = Quaternion(0.11469706, 0.33496666, 0.10940164, 0.928802)
+bones/27/rotation = Quaternion(-0.00031638594, -0.08712054, -0.02472192, 0.9958909)
+bones/28/rotation = Quaternion(0.048106503, -0.37515065, 0.071300596, 0.9229648)
+bones/31/rotation = Quaternion(0.191614, -0.13351136, -0.25963336, 0.93704283)
+bones/33/rotation = Quaternion(-0.14434122, -0.1984486, -0.56944555, 0.7845479)
+bones/34/rotation = Quaternion(0.17277439, -0.03775042, -0.12074552, 0.97680324)
+
+[node name="Frogger_Skinned" parent="RigSapo/Armature/Skeleton3D" index="0" unique_id=695652222]
+layers = 3
+
+[node name="AnimationPlayer" parent="RigSapo" index="6" unique_id=1364309788]
+autoplay = &"Idle"
+
+[editable path="RigSapo"]
