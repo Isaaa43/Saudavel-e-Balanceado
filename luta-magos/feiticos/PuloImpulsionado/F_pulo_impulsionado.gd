@@ -5,7 +5,7 @@ extends Feitico
 
 @export var forca_impulso : float = 10.0
 
-var aplicado_por_body : Array[RigidBody3D] = []
+var aplicado_por_body : Array[Node3D] = []
 
 ## Cria a magia, antes de lancar
 func criar() -> void:
