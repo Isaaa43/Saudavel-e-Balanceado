@@ -1,5 +1,7 @@
 extends Node
 
+signal spawnar_jogador(dados_jogador : DadosJogador)
+
 var dados_jogador_por_peer_id : Dictionary[int, DadosJogador] = {}
 
 func _ready() -> void:
@@ -58,17 +60,26 @@ func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void
 # -----------------------------------------------------------------------------
 
 func iniciar_partida() -> void:
+	if not multiplayer.is_server(): return
+	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		NetworkClient.iniciar_partida.rpc_id(peer_id)
+	
 	# TODO: solucao melhor que essa do timer
 	await get_tree().create_timer(0.2).timeout
-	_iniciar_partida()
+	_server_iniciar_partida()
 
-func _iniciar_partida() -> void:
-	for peer_id : int in dados_jogador_por_peer_id.keys():
-		# TODO: melhorar isso com batch talvez
-		for dados_jog : DadosJogador in dados_jogador_por_peer_id.values():
-			NetworkClient.spawn_jogador.rpc_id(peer_id, dados_jog.to_dict())
+func _server_iniciar_partida() -> void:
+	# emite o sinal para spawnar cada jogador
+	for dados_jog : DadosJogador in dados_jogador_por_peer_id.values():
+		spawnar_jogador.emit(dados_jog)
+
+## 
+@rpc("any_peer", "call_remote", "reliable")
+func get_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
+	var peer_id_req = multiplayer.get_remote_sender_id()
+	var dados_jog = dados_jogador_por_peer_id[jogador_peer_id]
+	NetworkClient.receber_dados_jogador.rpc_id(peer_id_req, jogador_peer_id, dados_jog.to_dict())
 
 ## Chama o server para terminar a partida
 func terminar_partida() -> void:

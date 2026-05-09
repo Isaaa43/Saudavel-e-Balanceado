@@ -1,5 +1,7 @@
 extends Node
 
+signal ajustar_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador)
+
 @onready var dados_jogador : DadosJogador = criar_dados_jogador()
 
 func _ready() -> void:
@@ -37,7 +39,7 @@ func criar_dados_jogador() -> DadosJogador:
 # -----------------------------------------------------------------------------
 # Partida
 # -----------------------------------------------------------------------------
-signal spawnar_jogador(dados_jogador : DadosJogador)
+
 signal spawnar_feitico(feitico_contexto : FeiticoContexto)
 
 # TODO: trocar para load map, ou load game
@@ -56,10 +58,13 @@ func terminar_partida() -> void:
 	#TODO: Network.server_disconnected ?
 	TrocaCenaTemp.go_to_menu_inicial()
 
+func pedir_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
+	NetworkServer.get_dados_jogador_do_jogador.rpc_id(Network.SERVER_ID, jogador_peer_id)
+
 @rpc("authority", "call_local", "reliable")
-func spawn_jogador(dados_jog_dict : Dictionary) -> void:
+func receber_dados_jogador(jogador_peer_id: int, dados_jog_dict: Dictionary) -> void:
 	var dados_jog := DadosJogador.from_dict(dados_jog_dict)
-	spawnar_jogador.emit(dados_jog)
+	ajustar_dados_jogador.emit(jogador_peer_id, dados_jog)
 
 func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	NetworkServer.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_contexto.to_dict())
