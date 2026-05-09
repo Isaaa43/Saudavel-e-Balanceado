@@ -12,6 +12,8 @@ var _cooldowns: Dictionary = {}
 var selecao_feitico_id: int = 0
 
 func _input(_event: InputEvent) -> void:
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
+	
 	if _event is InputEventKey and _event.pressed:
 		if _event.keycode == KEY_1:
 			_selecionar(0)
