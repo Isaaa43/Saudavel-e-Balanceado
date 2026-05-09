@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b6h4x6lo81xq7"]
+
+[ext_resource type="Script" uid="uid://dtnujgqdx58ih" path="res://scripts/game/feiticos/feiticos_adm.gd" id="1_al6gf"]
+[ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/autoloads/registros/registro_feiticos.gd" id="2_ph4s3"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="3_ccqb5"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="4_hnepb"]
+[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="5_yrwqb"]
+
+[node name="FeiticosAdm" type="Node" unique_id=1853689985]
+script = ExtResource("1_al6gf")
+
+[node name="MultiplayerSpawnerFeiticos" type="MultiplayerSpawner" parent="." unique_id=1715930951]
+spawn_path = NodePath("../Feiticos")
+
+[node name="Feiticos" type="Node" parent="." unique_id=2136582501]
+
+[node name="FeiticoReg" type="Node" parent="." unique_id=1334773029]
+script = ExtResource("2_ph4s3")
+feiticos = Dictionary[String, ExtResource("3_ccqb5")]({
+"BolaFogo": ExtResource("4_hnepb"),
+"FuraSapato": ExtResource("5_yrwqb")
+})

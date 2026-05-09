@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d4j7w61agrxhk"]
+
+[ext_resource type="PackedScene" uid="uid://cydaaeay0mfes" path="res://cenas/game/mapas/mapa_teste.tscn" id="1_hg65k"]
+
+[node name="MapaAdm" type="Node" unique_id=1637281649]
+
+[node name="MapaTeste" parent="." unique_id=13285931 instance=ExtResource("1_hg65k")]

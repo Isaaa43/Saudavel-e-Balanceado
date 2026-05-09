@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://sscrh5g0oo6b"]
+
+[ext_resource type="Script" uid="uid://bmrb05718ew1j" path="res://scripts/network/jogadores_adm.gd" id="1_3y4dx"]
+
+[node name="JogadoresAdm" type="Node" unique_id=93310562]
+script = ExtResource("1_3y4dx")
+
+[node name="MultiplayerSpawnerJogadores" type="MultiplayerSpawner" parent="." unique_id=1959911209]
+_spawnable_scenes = PackedStringArray("uid://cqojyxy8t78mg")
+spawn_path = NodePath("../Jogadores")
+
+[node name="Jogadores" type="Node" parent="." unique_id=302942346]
+
+[connection signal="spawned" from="MultiplayerSpawnerJogadores" to="." method="_on_multiplayer_spawner_jogadores_spawned"]
