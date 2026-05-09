@@ -16,9 +16,10 @@ mouse_filter = 2
 script = ExtResource("1_a8gqf")
 
 [node name="HudAim" type="Control" parent="." unique_id=1384346477]
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -38,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1206569448]
+[node name="HBoxIcones" type="HBoxContainer" parent="." unique_id=1206569448]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -55,12 +56,12 @@ scale = Vector2(2, 2)
 pivot_offset = Vector2(52, 32)
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=2012555246]
+[node name="TextureRect" type="TextureRect" parent="HBoxIcones" unique_id=2012555246]
 layout_mode = 2
 texture = ExtResource("1_bqy3s")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/TextureRect" unique_id=1251329543]
+[node name="Label" type="Label" parent="HBoxIcones/TextureRect" unique_id=1251329543]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -73,12 +74,12 @@ grow_horizontal = 2
 text = "1"
 horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=514923322]
+[node name="TextureRect2" type="TextureRect" parent="HBoxIcones" unique_id=514923322]
 layout_mode = 2
 texture = ExtResource("3_c7tbw")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/TextureRect2" unique_id=1963435590]
+[node name="Label" type="Label" parent="HBoxIcones/TextureRect2" unique_id=1963435590]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -91,12 +92,12 @@ grow_horizontal = 2
 text = "2"
 horizontal_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=439134738]
+[node name="TextureRect3" type="TextureRect" parent="HBoxIcones" unique_id=439134738]
 layout_mode = 2
 texture = ExtResource("4_tpt5k")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/TextureRect3" unique_id=1823001661]
+[node name="Label" type="Label" parent="HBoxIcones/TextureRect3" unique_id=1823001661]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -120,7 +121,7 @@ offset_right = 590.0
 offset_bottom = -23.0
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="Vida" unique_id=1499339849]
+[node name="LabelVida" type="Label" parent="Vida" unique_id=1499339849]
 self_modulate = Color(0.627451, 0, 0, 1)
 layout_mode = 0
 offset_left = 23.0

@@ -25,7 +25,7 @@ func _input(_event: InputEvent) -> void:
 
 func _selecionar(id: int) -> void:
 	selecao_feitico_id = id
-	hud_jogador.selecionar(id)
+	hud_jogador.selecionar_magia(id)
 
 func _escolher_feitico() -> void:
 	match selecao_feitico_id:

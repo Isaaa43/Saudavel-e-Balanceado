@@ -28,6 +28,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
+		hud.queue_free()
 		_turn_off(self)
 		_turn_off(camera_3d)
 		_turn_off(lancador_feiticos)
@@ -57,13 +58,23 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+var vida_inicial : int = 100
+var vida : int = vida_inicial
+
 # TODO: somente teste, remover
 @onready var label_dano: Label3D = $LabelDano
 func levar_dano(dano: int) -> void:
 	print('Levar dano %d' % dano)
 	
-	hud.levar_dano(dano)
-	
 	label_dano.text = "Dano:\n%d" % dano
 	label_dano.show()
 	get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )
+	
+	vida = max(0, vida - dano)
+	if vida == 0:
+		await get_tree().create_timer(0.5).timeout
+		TrocaCenaTemp.go_to_menu_inicial()
+	
+	if hud and is_instance_valid(hud):
+		var porcent : float = float(vida) / vida_inicial
+		hud.display_vida(porcent)
