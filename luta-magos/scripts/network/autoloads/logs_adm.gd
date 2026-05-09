@@ -8,7 +8,7 @@ var conexao_historico :Array[String] = [] :
 
 func add_conexao_texto(txt: String) -> void:
 	conexao_historico.append(txt)
-	emit_signal("update_conexao_texto", txt)
+	update_conexao_texto.emit(txt)
 
 func add_conexao_texto_peer(txt: String, peer_id: int) -> void:
 	txt += " (id: %d)" % peer_id

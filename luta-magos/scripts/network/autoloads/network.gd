@@ -55,24 +55,24 @@ func create_client() -> void:
 func _server_peer_connected(peer_id) -> void:
 	if peer_id == 1: return
 	print("server_peer_connected id: ", peer_id)
-	emit_signal("server_peer_connected", peer_id)
+	server_peer_connected.emit(peer_id)
 
 func _server_peer_disconnected(peer_id) -> void:
 	print("peer_disconnected id: ", peer_id)
-	emit_signal("server_peer_disconnected", peer_id)
+	server_peer_disconnected.emit(peer_id)
 	set_process(false) 
 
 func _client_connection_ok() -> void:
 	print("connection_to_server_ok")
-	emit_signal("client_connection_ok")
+	client_connection_ok.emit()
 
 func _client_connection_failed() -> void:
 	print("connection_to_server_failed")
-	emit_signal("client_connection_failed")
+	client_connection_failed.emit()
 
 func _client_server_disconnected() -> void:
 	print("client_server_disconnected")
-	emit_signal("client_server_disconnected")
+	client_server_disconnected.emit()
 # ------------------------------------------------------------------------------
 # Encerrar Conexao
 # ------------------------------------------------------------------------------

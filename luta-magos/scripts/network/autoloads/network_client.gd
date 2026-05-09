@@ -59,7 +59,7 @@ func terminar_partida() -> void:
 @rpc("authority", "call_local", "reliable")
 func spawn_jogador(dados_jog_dict : Dictionary) -> void:
 	var dados_jog := DadosJogador.from_dict(dados_jog_dict)
-	emit_signal("spawnar_jogador", dados_jog)
+	spawnar_jogador.emit(dados_jog)
 
 func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	NetworkServer.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_contexto.to_dict())
@@ -67,4 +67,4 @@ func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 @rpc("authority", "call_local", "reliable")
 func spawn_feitico(feitico_contexto_net : Dictionary) -> void:
 	var feitico_contexto := FeiticoContexto.from_dict(feitico_contexto_net)
-	emit_signal("spawnar_feitico", feitico_contexto)
+	spawnar_feitico.emit(feitico_contexto)
