@@ -9,10 +9,17 @@ const MENU_PARTIDA = preload("uid://c2ppdl2yqxf16")
 
 const GAME_ADM = preload("uid://cm7rbbwccvpap")
 
+var jogo_iniciado : bool = false
+
 func _ready() -> void:
 	main_game = get_node("/root/MainGame")
+	await get_tree().create_timer(0.1).timeout
+	jogo_iniciado = true
 
 func go_to_menu_inicial() -> void:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	for c in main_game.get_children(): c.queue_free()
 	var menu_inicial := MENU_INICIAL.instantiate()
 	main_game.add_child(menu_inicial)

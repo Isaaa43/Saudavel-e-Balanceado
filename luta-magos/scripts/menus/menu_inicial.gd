@@ -11,6 +11,22 @@ func _on_button_sair_jogo_pressed() -> void:
 	get_tree().quit()
 
 func  _ready() -> void:
+	# TODO:
+	if not TrocaCenaTemp.jogo_iniciado:
+		var args = OS.get_cmdline_args()
+		print("args:")
+		print(args)		
+		for arg in args:
+			if arg.begins_with("-host"):
+				await get_tree().create_timer(0.1).timeout
+				NetworkClient.dados_jogador.nome = "Hosterson"
+				_on_button_host_pressed()
+			if arg.begins_with("-join"):
+				await get_tree().create_timer(0.1).timeout
+				NetworkClient.dados_jogador.nome = "Joiner"
+				_on_button_join_pressed()
+	
+	
 	panel_jogar.hide()
 	# TODO: criar loading
 	Network.client_connection_failed.connect(_habilitar_button_join.bind(true))

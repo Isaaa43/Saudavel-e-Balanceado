@@ -81,5 +81,12 @@ text = "Dano:
 font_size = 50
 outline_size = 16
 
+[node name="LabelNome" type="Label3D" parent="." unique_id=870158515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7698882, 0)
+billboard = 2
+outline_modulate = Color(0, 0, 0.40784314, 1)
+text = "Nome"
+font_size = 40
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1203761034]
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
