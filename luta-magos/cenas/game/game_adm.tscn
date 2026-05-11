@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/game_adm.gd" id="1_3lst8"]
 [ext_resource type="PackedScene" uid="uid://sscrh5g0oo6b" path="res://cenas/game/adminitradores/jogadores_adm.tscn" id="2_j0w0j"]
+[ext_resource type="PackedScene" uid="uid://c4x1fiwa5kwuq" path="res://cenas/game/UI/hud_jogador.tscn" id="2_yfoi5"]
 [ext_resource type="PackedScene" uid="uid://d4j7w61agrxhk" path="res://cenas/game/adminitradores/mapa_adm.tscn" id="3_yfoi5"]
 [ext_resource type="PackedScene" uid="uid://b6h4x6lo81xq7" path="res://cenas/game/adminitradores/feiticos_adm.tscn" id="4_1kxph"]
+[ext_resource type="PackedScene" uid="uid://cqojyxy8t78mg" path="res://cenas/game/characters/jogador.tscn" id="4_e2ubu"]
 
-[node name="GameAdm" type="Node" unique_id=773607251]
+[node name="GameAdm" type="Node" unique_id=773607251 node_paths=PackedStringArray("jogadores_adm")]
 script = ExtResource("1_3lst8")
+HUD_REF = ExtResource("2_yfoi5")
+jogadores_adm = NodePath("JogadoresAdm")
 
 [node name="JogadoresAdm" parent="." unique_id=93310562 instance=ExtResource("2_j0w0j")]
+JOGADOR_REF = ExtResource("4_e2ubu")
 
 [node name="MapaAdm" parent="." unique_id=1637281649 instance=ExtResource("3_yfoi5")]
 

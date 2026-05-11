@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
 [ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
 [ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
-[ext_resource type="PackedScene" uid="uid://c4x1fiwa5kwuq" path="res://cenas/game/UI/hud_jogador.tscn" id="4_s8iyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -31,7 +30,7 @@ properties/2/replication_mode = 1
 [node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("hud")]
 collision_layer = 17
 script = ExtResource("1_30vjq")
-hud = NodePath("Cabeca/Camera3D/HUDjogador")
+hud = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -60,8 +59,6 @@ script = ExtResource("3_qf517")
 target_position = Vector3(0, 0, -5)
 collision_mask = 6
 collide_with_areas = true
-
-[node name="HUDjogador" parent="Cabeca/Camera3D" unique_id=31207200 instance=ExtResource("4_s8iyn")]
 
 [node name="CabecaPivot" type="Node3D" parent="Cabeca" unique_id=2010991378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)

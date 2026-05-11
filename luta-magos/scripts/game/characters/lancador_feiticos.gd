@@ -5,7 +5,8 @@ extends Node3D
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
 # TODO: temp
-@onready var hud_jogador: HUDJogador = $"../HUDjogador"
+@onready var jogador: Jogador = $"../../.."
+var hud_jogador: HUDJogador
 
 var _cooldowns: Dictionary = {}
 
@@ -26,6 +27,10 @@ func _input(_event: InputEvent) -> void:
 		_escolher_feitico()
 
 func _selecionar(id: int) -> void:
+	# TODO: arrumar isso
+	if not hud_jogador:
+		hud_jogador = jogador.hud
+	
 	selecao_feitico_id = id
 	hud_jogador.selecionar_magia(id)
 

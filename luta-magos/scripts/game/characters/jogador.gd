@@ -31,7 +31,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
-		hud.queue_free()
 		_turn_off(self)
 		_turn_off(camera_3d)
 		_turn_off(lancador_feiticos)
