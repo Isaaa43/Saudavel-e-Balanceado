@@ -49,12 +49,25 @@ func iniciar_partida() -> void:
 	await get_tree().process_frame
 	print("iniciar_partida id:", multiplayer.get_unique_id())
 
+func pedir_terminar_partida() -> void:
+	# Multiplayer offline
+	if multiplayer.has_multiplayer_peer() or multiplayer.get_unique_id() == 0:
+		_terminar_partida()
+	
+	if multiplayer.is_server():
+		NetworkServer.pedir_terminar_partida()
+	else:
+		NetworkServer.pedir_terminar_partida.rpc_id(Network.SERVER_ID)
+
 ## Cada peer termina sua partida
 @rpc("authority", "call_local", "reliable")
-func terminar_partida() -> void:
+func receber_terminar_partida() -> void:
 	if multiplayer.is_server():
 		# TODO: solucao melhor que essa do timer
 		await get_tree().create_timer(0.2).timeout
+	_terminar_partida()
+
+func _terminar_partida() -> void:
 	#TODO: Network.server_disconnected ?
 	TrocaCenaTemp.go_to_menu_inicial()
 
