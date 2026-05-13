@@ -7,9 +7,10 @@ signal mudanca_vida(vida_porcentagem: float)
 # TODO: somente teste, remover
 @export var label_dano: Label3D
 
-@export var vida_max : float = 150
 
 var vida : float
+@export var vida_max : float = 150
+@onready var vida_max_inverso : float = 1 / vida_max
 
 func _ready() -> void:
 	vida = vida_max
@@ -44,7 +45,7 @@ func receber_vida(_vida: float) -> void:
 
 ## Emite sinal para atualizar a porcentagem de vida
 func _emitir_vida_porcentagem() -> void:
-	var vida_porcent : float = float(vida) / vida_max
+	var vida_porcent : float = vida * vida_max_inverso
 	mudanca_vida.emit(vida_porcent)
 
 # -----------------------------------------------------------------------------

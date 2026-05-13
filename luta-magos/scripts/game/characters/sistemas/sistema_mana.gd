@@ -6,6 +6,7 @@ signal mudanca_mana(mana_porcentagem: float)
 
 var mana : float
 @export var mana_max : float = 100
+@onready var mana_max_inverso : float = 1 / mana_max
 
 ## Quantidade de mana regenerada por segundo
 @export var mana_regen_seg : float = 1.5
@@ -58,5 +59,5 @@ func ganhar_mana(_mana_ganha: float) -> void:
 
 ## Emite sinal para atualizar a porcentagem de vida
 func _emitir_mana_porcentagem() -> void:
-	var mana_porcentagem : float = mana / mana_max
+	var mana_porcentagem : float = mana * mana_max_inverso
 	mudanca_mana.emit(mana_porcentagem)
