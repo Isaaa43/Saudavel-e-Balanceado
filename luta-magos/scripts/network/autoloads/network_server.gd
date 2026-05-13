@@ -84,15 +84,20 @@ func get_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
 ## Chama o server para terminar a partida
 @rpc("any_peer", "reliable")
 func pedir_terminar_partida() -> void:
+	# somente para o server executar
 	if not multiplayer.is_server(): return
-	
+	# server terminar a partida
 	_server_terminar_partida()
 
-## Broadcast de terminar a partida para todos os peers
+## Broadcast do server para todos os peers, de terminar a partida
 func _server_terminar_partida() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
-		print("peer id: ", peer_id)
-		NetworkClient.receber_terminar_partida.rpc_id(peer_id)
+		# pular o servidor
+		if peer_id != Network.SERVER_ID:
+			NetworkClient.receber_terminar_partida.rpc_id(peer_id)
+	# finalizar o servidor por ultimo
+	await get_tree().create_timer(0.2).timeout
+	NetworkClient.receber_terminar_partida()
 
 @rpc("any_peer", "call_local", "reliable")
 func jogador_lancar_feitico(feitico_contexto_net: Dictionary) -> void:

@@ -86,3 +86,9 @@ func end() -> void:
 		#for connection in connections:
 			#var sig = connection.signal
 			#sig.disconnect(connection.callable)
+
+func is_peer_connected() -> bool:
+	if multiplayer.get_peers().is_empty(): return false
+	if multiplayer.get_unique_id() == 0: return false
+	
+	return true

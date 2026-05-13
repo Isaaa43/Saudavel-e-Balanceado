@@ -51,7 +51,7 @@ func iniciar_partida() -> void:
 
 func pedir_terminar_partida() -> void:
 	# Multiplayer offline
-	if multiplayer.has_multiplayer_peer() or multiplayer.get_unique_id() == 0:
+	if not Network.is_peer_connected():
 		_terminar_partida()
 	
 	if multiplayer.is_server():
