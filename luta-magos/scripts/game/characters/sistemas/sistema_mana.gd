@@ -39,7 +39,7 @@ func _regen_mana() -> void:
 func gastar_mana(_mana_gastar: float) -> void:
 	if not tem_mana_suficiente(_mana_gastar): return
 	
-	print('gastar_mana %d' % _mana_gastar)
+	#print('gastar_mana %d' % _mana_gastar)
 	
 	# tirar a mana, ate minimo de 0
 	mana = max(0, mana - _mana_gastar)
@@ -47,7 +47,7 @@ func gastar_mana(_mana_gastar: float) -> void:
 	_emitir_mana_porcentagem()
 
 func ganhar_mana(_mana_ganha: float) -> void:
-	print('ganhar_mana %d' % _mana_ganha)
+	#print('ganhar_mana %d' % _mana_ganha)
 	
 	# adicionar mana ate maximo de mana_max
 	mana = min(mana_max, mana + _mana_ganha)
