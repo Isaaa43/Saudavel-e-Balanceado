@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="1_bqy3s"]
 [ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="3_c7tbw"]
 [ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="4_tpt5k"]
+[ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="5_5ifs1"]
 
 [node name="HUDjogador" type="Control" unique_id=31207200]
 layout_mode = 3
@@ -108,6 +109,24 @@ offset_right = 20.0
 offset_bottom = 1.0
 grow_horizontal = 2
 text = "3"
+horizontal_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxIcones" unique_id=1597423839]
+layout_mode = 2
+texture = ExtResource("5_5ifs1")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HBoxIcones/TextureRect4" unique_id=507907181]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 1.0
+grow_horizontal = 2
+text = "4"
 horizontal_alignment = 1
 
 [node name="Vida" type="Control" parent="." unique_id=125310063]
