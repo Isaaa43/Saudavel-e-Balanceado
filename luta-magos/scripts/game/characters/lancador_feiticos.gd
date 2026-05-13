@@ -1,6 +1,8 @@
 class_name LancadorFeiticos
 extends Node3D
 
+@export var sistema_mana : SistemaMana
+
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
@@ -53,6 +55,8 @@ func lancar_feitico_escolhido(feitico_id: String) -> void:
 	
 	# pega as definicoes do feitico
 	var feitico_def : FeiticoDefinicaoRes = registro_feiticos.get_feitico(feitico_id)
+	# verifica se tem mana o suficiente para criar o feitico
+	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): return
 	
 	# cria o contexto do feitico
 	var feitico_contexto : FeiticoContexto = _criar_feitico_contexto(feitico_def)
@@ -61,6 +65,9 @@ func lancar_feitico_escolhido(feitico_id: String) -> void:
 	
 	# coloque o feitico no cooldown
 	_cooldowns[feitico_id] = feitico_def.cooldown
+	# gasta a amana
+	sistema_mana.gastar_mana(feitico_def.custo)
+	
 	# lancar o feitico
 	_lancar_feitico(feitico_contexto)
 

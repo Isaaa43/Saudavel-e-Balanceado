@@ -165,3 +165,43 @@ anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 color = Color(0.627451, 0, 0, 1)
+
+[node name="Mana" type="Control" parent="." unique_id=2089352273]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -591.0
+offset_top = -80.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LabelVida" type="Label" parent="Mana" unique_id=1797175320]
+self_modulate = Color(0, 0.63, 0.5985, 1)
+layout_mode = 0
+offset_left = 23.0
+offset_top = -80.0
+offset_right = 124.0
+offset_bottom = -13.0
+theme_override_font_sizes/font_size = 48
+text = "Mana:"
+
+[node name="ColorRectManaBaixo" type="ColorRect" parent="Mana" unique_id=1391977775]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.22745098)
+
+[node name="ColorRectMana" type="ColorRect" parent="Mana" unique_id=1809627594]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0, 0.6313726, 0.6, 1)

@@ -11,8 +11,9 @@ func _ready() -> void:
 func ajustar_hud_jogador(_jogador: Jogador) -> void:
 	jogador = _jogador
 	
-	# mudanca de vida na hud
+	# conectar hud as mudanca de atributos do jogador
 	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)
+	jogador.sistema_mana.mudanca_mana.connect(hud.mostrar_mana)
 	
 	# TODO: arrumar
 	jogador.lancador_feiticos.hud_jogador = hud

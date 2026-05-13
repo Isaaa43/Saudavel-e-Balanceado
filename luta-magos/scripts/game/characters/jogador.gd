@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Jogador
 
 @export var sistema_vida : SistemaVida
+@export var sistema_mana : SistemaMana
 
 @onready var camera_3d: Camera3D = $Cabeca/Camera3D
 @onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos

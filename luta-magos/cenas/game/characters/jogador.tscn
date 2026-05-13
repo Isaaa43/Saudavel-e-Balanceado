@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
 [ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
 [ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="2_s8iyn"]
+[ext_resource type="Script" uid="uid://c2t8eacmbwf2u" path="res://scripts/game/characters/sistemas/sistema_mana.gd" id="3_f2bc4"]
 [ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
@@ -28,14 +29,18 @@ properties/2/path = NodePath("Cabeca/CabecaPivot:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("sistema_vida")]
+[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("sistema_vida", "sistema_mana")]
 collision_layer = 17
 script = ExtResource("1_30vjq")
 sistema_vida = NodePath("SistemaVida")
+sistema_mana = NodePath("SistemaMana")
 
 [node name="SistemaVida" type="Node" parent="." unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
 script = ExtResource("2_s8iyn")
 label_dano = NodePath("../LabelDano")
+
+[node name="SistemaMana" type="Node" parent="." unique_id=958811563]
+script = ExtResource("3_f2bc4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -56,9 +61,10 @@ script = ExtResource("2_s5tbn")
 jogador = NodePath("../..")
 cabeca = NodePath("../CabecaPivot")
 
-[node name="LancadorFeiticos" type="Node3D" parent="Cabeca/Camera3D" unique_id=1643112298]
+[node name="LancadorFeiticos" type="Node3D" parent="Cabeca/Camera3D" unique_id=1643112298 node_paths=PackedStringArray("sistema_mana")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 script = ExtResource("3_qf517")
+sistema_mana = NodePath("../../../SistemaMana")
 
 [node name="RayCast3D" type="RayCast3D" parent="Cabeca/Camera3D/LancadorFeiticos" unique_id=576639506]
 target_position = Vector3(0, 0, -5)
