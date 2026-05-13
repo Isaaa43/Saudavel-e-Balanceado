@@ -65,8 +65,11 @@ func _display_nome() -> void:
 	if dados_jogador.nome and dados_jogador.nome != "" and (not dados_jogador.nome.is_empty()):
 		label_nome.text = nome
 
-var vida_inicial : int = 100
-var vida : int = vida_inicial
-
-func levar_dano(dano: float) -> void:
-	sistema_vida.levar_dano(dano)
+# -----------------------------------------------------------------------------
+# Sistema Vida
+# -----------------------------------------------------------------------------
+func receber_dano(dano: float) -> void:
+	sistema_vida.receber_dano(dano)
+	
+func receber_vida(vida: float) -> void:
+	sistema_vida.receber_vida(vida)

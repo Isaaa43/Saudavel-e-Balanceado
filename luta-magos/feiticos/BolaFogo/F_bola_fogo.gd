@@ -56,7 +56,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if int(body.name) == criador: return
 	
 	if body is Jogador:
-		body.levar_dano(damage)
+		body.receber_dano(damage)
 	
 	print(body, " levou %d de " % damage, criador)
 	

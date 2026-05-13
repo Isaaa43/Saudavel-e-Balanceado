@@ -36,7 +36,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if int(jog.name) == criador: return
 	
 	espinhos.show()
-	jog.levar_dano(damage)
+	jog.receber_dano(damage)
 
 
 func _on_body_exited(body: Node3D) -> void:
