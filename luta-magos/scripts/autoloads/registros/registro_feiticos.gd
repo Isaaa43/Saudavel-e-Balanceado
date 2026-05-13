@@ -21,9 +21,11 @@ func _ready() -> void:
 const FD_BOLA_FOGO = "uid://c4ct5q6ves50i"
 const FD_FURA_SAPATO = "uid://c71eh6rcojqh0"
 const FD_PULO_IMPULSIONADO = "uid://skatmcv3uduk"
+const FD_OZEMPAGIC = "uid://cy0n07ui1fty2"
 
 const feiticos_definicoes_res := [
 	FD_BOLA_FOGO,
 	FD_FURA_SAPATO,
 	FD_PULO_IMPULSIONADO,
+	FD_OZEMPAGIC,
 ]

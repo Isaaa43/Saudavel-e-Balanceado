@@ -15,12 +15,15 @@ func _input(_event: InputEvent) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
 	
 	if _event is InputEventKey and _event.pressed:
-		if _event.keycode == KEY_1:
-			_selecionar(0)
-		if _event.keycode == KEY_2:
-			_selecionar(1)
-		if _event.keycode == KEY_3:
-			_selecionar(2)
+		match (_event.keycode):
+			KEY_1:
+				_selecionar(0)
+			KEY_2:
+				_selecionar(1)
+			KEY_3:
+				_selecionar(2)
+			KEY_4:
+				_selecionar(3)
 	
 	if Input.is_action_just_pressed("acao"):
 		_escolher_feitico()
@@ -37,6 +40,8 @@ func _escolher_feitico() -> void:
 			_lancar_feitico_escolhido("FuraSapato")
 		2:
 			_lancar_feitico_escolhido("PuloImpulsionado")
+		3:
+			_lancar_feitico_escolhido("Ozempagic")
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
