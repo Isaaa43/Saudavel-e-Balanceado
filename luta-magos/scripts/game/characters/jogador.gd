@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Jogador
 
-@export var hud : HUDJogador
+@export var sistema_vida : SistemaVida
 
 @onready var camera_3d: Camera3D = $Cabeca/Camera3D
 @onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos
@@ -23,10 +23,6 @@ func _turn_off(node : Node) -> void:
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
-	print("Jogador %s  is_auth? " % name, is_multiplayer_authority())
-	
-	print("--------------")
-	print("jogador %s (no id:%d)" % [name, multiplayer.get_unique_id()])
 
 func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
@@ -72,20 +68,5 @@ func _display_nome() -> void:
 var vida_inicial : int = 100
 var vida : int = vida_inicial
 
-# TODO: somente teste, remover
-@onready var label_dano: Label3D = $LabelDano
-func levar_dano(dano: int) -> void:
-	print('Levar dano %d' % dano)
-	
-	label_dano.text = "Dano:\n%d" % dano
-	label_dano.show()
-	get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )
-	
-	vida = max(0, vida - dano)
-	if vida == 0:
-		await get_tree().create_timer(0.5).timeout
-		TrocaCenaTemp.go_to_menu_inicial()
-	
-	if hud and is_instance_valid(hud):
-		var porcent : float = float(vida) / vida_inicial
-		hud.display_vida(porcent)
+func levar_dano(dano: float) -> void:
+	sistema_vida.levar_dano(dano)

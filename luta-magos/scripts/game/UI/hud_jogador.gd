@@ -8,7 +8,7 @@ extends Control
 
 func _ready() -> void:
 	selecionar_magia(0)
-	display_vida(1)
+	mostrar_vida(1)
 
 func selecionar_magia(id: int) -> void:
 	# deixa todos os icones no padrao
@@ -17,5 +17,5 @@ func selecionar_magia(id: int) -> void:
 	# magia escolhida
 	icons[id].modulate = Color(2.454, 2.454, 2.454)
 
-func display_vida(porcent: float) -> void:
+func mostrar_vida(porcent: float) -> void:
 	color_rect_vida.size.x = color_rect_vida_baixo.size.x * porcent

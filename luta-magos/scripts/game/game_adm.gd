@@ -6,7 +6,7 @@ extends Node
 
 func _ready() -> void:
 	# ajustar sinais
-	jogadores_adm.colocar_hud_jogador.connect(ui_adm.set_hud_jogador)
+	jogadores_adm.colocar_hud_jogador.connect(ui_adm.ajustar_hud_jogador)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):

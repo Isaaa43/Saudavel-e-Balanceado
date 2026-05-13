@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
 [ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
+[ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="2_s8iyn"]
 [ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
@@ -27,10 +28,23 @@ properties/2/path = NodePath("Cabeca/CabecaPivot:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("hud")]
+[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("sistema_vida")]
 collision_layer = 17
 script = ExtResource("1_30vjq")
-hud = NodePath("")
+sistema_vida = NodePath("SistemaVida")
+
+[node name="SistemaVida" type="Node" parent="." unique_id=1401696473]
+script = ExtResource("2_s8iyn")
+
+[node name="LabelDano" type="Label3D" parent="SistemaVida" unique_id=1477714311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4275663, 0)
+visible = false
+billboard = 2
+outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
+text = "Dano:
+"
+font_size = 50
+outline_size = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -67,16 +81,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
 mesh = SubResource("SphereMesh_s5tbn")
 surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
-
-[node name="LabelDano" type="Label3D" parent="." unique_id=1477714311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5002263, 0)
-visible = false
-billboard = 2
-outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
-text = "Dano:
-"
-font_size = 50
-outline_size = 16
 
 [node name="LabelNome" type="Label3D" parent="." unique_id=870158515]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7698882, 0)

@@ -3,9 +3,13 @@ extends Node
 
 @export var hud : HUDJogador
 
+var jogador : Jogador
+
 func _ready() -> void:
 	hud.show()
 
-func set_hud_jogador(jogador: Jogador) -> void:
-	# adiciona hud no jogador
-	jogador.hud = hud
+func ajustar_hud_jogador(_jogador: Jogador) -> void:
+	jogador = _jogador
+	
+	# mudanca de vida na hud
+	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)
