@@ -8,6 +8,7 @@ extends Control
 
 @onready var color_rect_mana_baixo: ColorRect = $Mana/ColorRectManaBaixo
 @onready var color_rect_mana: ColorRect = $Mana/ColorRectMana
+@onready var label_mana_valor: Label = $Mana/LabelManaValor
 
 func _ready() -> void:
 	selecionar_magia(0)
@@ -27,4 +28,5 @@ func mostrar_vida(porcent_vida: float) -> void:
 
 func mostrar_mana(porcent_mana: float) -> void:
 	color_rect_mana.size.x = color_rect_mana_baixo.size.x * porcent_mana
+	label_mana_valor.text = String.num(porcent_mana * 100, 2) + "%"
 	
