@@ -12,7 +12,6 @@ func _ready() -> void:
 func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	var feitico_id : String = feitico_contexto.feitico_id
 	
-	
 	var feitico_def : FeiticoDefinicaoRes = spell_registry.get_feitico(feitico_id)
 	if not feitico_def: return
 

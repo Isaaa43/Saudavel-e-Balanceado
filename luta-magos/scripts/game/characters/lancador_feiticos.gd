@@ -35,24 +35,26 @@ func _selecionar(id: int) -> void:
 func _escolher_feitico() -> void:
 	match selecao_feitico_id:
 		0:
-			_lancar_feitico_escolhido("BolaFogo")
+			lancar_feitico_escolhido("BolaFogo")
 		1:
-			_lancar_feitico_escolhido("FuraSapato")
+			lancar_feitico_escolhido("FuraSapato")
 		2:
-			_lancar_feitico_escolhido("PuloImpulsionado")
+			lancar_feitico_escolhido("PuloImpulsionado")
 		3:
-			_lancar_feitico_escolhido("Ozempagic")
+			lancar_feitico_escolhido("Ozempagic")
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
 
-func _lancar_feitico_escolhido(feitico_id: String) -> void:
+func lancar_feitico_escolhido(feitico_id: String) -> void:
 	# se estiver no cooldown, nao continue
 	if _cooldowns.get(feitico_id, 0) > 0.1: return
 	
-	# cria o contexto do feitico
+	# pega as definicoes do feitico
 	var feitico_def : FeiticoDefinicaoRes = registro_feiticos.get_feitico(feitico_id)
+	
+	# cria o contexto do feitico
 	var feitico_contexto : FeiticoContexto = _criar_feitico_contexto(feitico_def)
 	# se nao foi possivel criar o contexto (ou lancar o feitico) pare
 	if not feitico_contexto: return
@@ -60,7 +62,7 @@ func _lancar_feitico_escolhido(feitico_id: String) -> void:
 	# coloque o feitico no cooldown
 	_cooldowns[feitico_id] = feitico_def.cooldown
 	# lancar o feitico
-	lancar_feitico(feitico_contexto)
+	_lancar_feitico(feitico_contexto)
 
 func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContexto:
 	var feitico_contexto := FeiticoContexto.new()
@@ -91,6 +93,6 @@ func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContex
 	
 	return feitico_contexto
 
-# Main entry point — call this locally AND replicate over network
-func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
+# chama o network para enviar o feitico
+func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	NetworkClient.lancar_feitico(feitico_contexto)
