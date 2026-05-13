@@ -33,7 +33,7 @@ func aplicar_efeito() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if not (body is Jogador): return
 	var jog : Jogador = body
-	if int(jog.name) == criador: return
+	if jog == criador: return
 	
 	espinhos.show()
 	jog.receber_dano(damage)

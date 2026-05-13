@@ -63,3 +63,8 @@ func _verificar_hud_jogador(jogador: Jogador, jog_peer_id: int) -> void:
 	var meu_peer_id: int = NetworkClient.dados_jogador.peer_id
 	if meu_peer_id == jog_peer_id:
 		colocar_hud_jogador.emit(jogador)
+
+func get_jogador_peer_id(peer_id: int) -> Jogador:
+	if jogadores_por_peer_id.has(peer_id):
+		return jogadores_por_peer_id[peer_id]
+	return null

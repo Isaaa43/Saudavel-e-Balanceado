@@ -9,3 +9,5 @@ extends Resource
 @export var custo: float = 10.0
 
 @export var feitico_scene: PackedScene
+
+#TODO: lista de efeitos

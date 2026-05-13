@@ -1,5 +1,7 @@
 extends Node
 
+@export var jogadores_adm : JogadoresAdm
+
 @onready var feiticos: Node = $Feiticos
 
 @onready var spell_registry: RegistroFeiticos = Registros.reg_feiticos
@@ -18,9 +20,12 @@ func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	feiticos.add_child(feitico)
 
 	feitico.feitico_id = feitico_id
-	feitico.criador = feitico_contexto.criador
+	feitico.criador = _get_jogador_peer_id(feitico_contexto.criador)
 	feitico.direcao = feitico_contexto.direcao
 	feitico.alvo    = feitico_contexto.alvo
 	feitico.posicao_global_inicial = feitico_contexto.posicao_global_inicial
 
 	feitico.lancar()
+
+func _get_jogador_peer_id(peer_id: int) -> Jogador:
+	return jogadores_adm.get_jogador_peer_id(peer_id)

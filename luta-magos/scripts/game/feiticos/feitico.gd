@@ -6,7 +6,7 @@ var feitico_id : String = ""
 var nome: String = ""
 var feitico_tipo : Tipo = Tipo.INSTANTANEO
 
-var criador : int = -1
+var criador : Jogador = null
 var alvo : Node = null
 
 var posicao_global_inicial := Vector3.ZERO

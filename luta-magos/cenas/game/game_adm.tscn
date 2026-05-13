@@ -17,7 +17,8 @@ JOGADOR_REF = ExtResource("4_e2ubu")
 
 [node name="MapaAdm" parent="." unique_id=1637281649 instance=ExtResource("3_yfoi5")]
 
-[node name="FeiticosAdm" parent="." unique_id=1853689985 instance=ExtResource("4_1kxph")]
+[node name="FeiticosAdm" parent="." unique_id=1853689985 node_paths=PackedStringArray("jogadores_adm") instance=ExtResource("4_1kxph")]
+jogadores_adm = NodePath("../JogadoresAdm")
 
 [node name="UIAdm" parent="." unique_id=198701727 instance=ExtResource("7_e2ubu")]
 
