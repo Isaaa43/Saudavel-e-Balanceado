@@ -26,6 +26,8 @@ func _input(_event: InputEvent) -> void:
 				_selecionar(2)
 			KEY_4:
 				_selecionar(3)
+			KEY_5:
+				_selecionar(4)
 	
 	if Input.is_action_just_pressed("acao"):
 		_escolher_feitico()
@@ -44,6 +46,8 @@ func _escolher_feitico() -> void:
 			lancar_feitico_escolhido("PuloImpulsionado")
 		3:
 			lancar_feitico_escolhido("Ozempagic")
+		4:
+			lancar_feitico_escolhido("ToTeVendo")
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:

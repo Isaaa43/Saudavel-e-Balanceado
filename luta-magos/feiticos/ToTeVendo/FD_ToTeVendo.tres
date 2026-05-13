@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FeiticoDefinicaoRes" format=3 uid="uid://c5nanmgoej3wa"]
+
+[ext_resource type="PackedScene" uid="uid://c0xr3up2ldxh7" path="res://feiticos/ToTeVendo/FS_to_te_vendo.tscn" id="1_8gotu"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="2_qq211"]
+
+[resource]
+script = ExtResource("2_qq211")
+feitico_id = "ToTeVendo"
+nome = "Tô Te Vendo Hein"
+cooldown = 3.0
+custo = 20.0
+feitico_scene = ExtResource("1_8gotu")
+metadata/_custom_type_script = "uid://dnavupkg51wgc"

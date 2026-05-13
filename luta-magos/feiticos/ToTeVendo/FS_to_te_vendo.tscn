@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c0xr3up2ldxh7"]
+
+[ext_resource type="Script" uid="uid://buob4oliud4vd" path="res://feiticos/ToTeVendo/F_to_te_vendo.gd" id="1_akjgs"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k3kbq"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cup7"]
+transparency = 1
+albedo_color = Color(0.57, 0.44649997, 0, 0.627451)
+metallic = 1.0
+metallic_specular = 0.8
+roughness = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fn0gy"]
+radius = 2.0
+
+[node name="FS_ToTeVendo" type="Node3D" unique_id=1296584297]
+script = ExtResource("1_akjgs")
+speed = 5.0
+lifetime = 8.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1965752395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1465037, 0)
+mesh = SubResource("SphereMesh_k3kbq")
+surface_material_override/0 = SubResource("StandardMaterial3D_3cup7")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1555616760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1465037, 0)
+collision_layer = 257
+collision_mask = 272
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1614252506]
+shape = SubResource("SphereShape3D_fn0gy")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
