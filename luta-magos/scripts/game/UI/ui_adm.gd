@@ -13,3 +13,6 @@ func ajustar_hud_jogador(_jogador: Jogador) -> void:
 	
 	# mudanca de vida na hud
 	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)
+	
+	# TODO: arrumar
+	jogador.lancador_feiticos.hud_jogador = hud

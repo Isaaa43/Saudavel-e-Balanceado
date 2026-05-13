@@ -33,18 +33,9 @@ collision_layer = 17
 script = ExtResource("1_30vjq")
 sistema_vida = NodePath("SistemaVida")
 
-[node name="SistemaVida" type="Node" parent="." unique_id=1401696473]
+[node name="SistemaVida" type="Node" parent="." unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
 script = ExtResource("2_s8iyn")
-
-[node name="LabelDano" type="Label3D" parent="SistemaVida" unique_id=1477714311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4275663, 0)
-visible = false
-billboard = 2
-outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
-text = "Dano:
-"
-font_size = 50
-outline_size = 16
+label_dano = NodePath("../LabelDano")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -88,6 +79,16 @@ billboard = 2
 outline_modulate = Color(0, 0, 0.40784314, 1)
 text = "Nome"
 font_size = 40
+
+[node name="LabelDano" type="Label3D" parent="." unique_id=1477714311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4275663, 0)
+visible = false
+billboard = 2
+outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
+text = "Dano:
+"
+font_size = 50
+outline_size = 16
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1203761034]
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
