@@ -2,60 +2,72 @@
 
 [node name="MenuDeck" type="Control" unique_id=1395345366]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1865727326]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
 layout_mode = 0
-offset_right = 330.0
-offset_bottom = 27.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=692600027]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1442916409]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=998525463]
+[node name="DeckPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=2138749029]
 layout_mode = 2
 
-[node name="Coluna esquerda" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=1528682661]
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel" unique_id=585011591]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Coluna esquerda" unique_id=373229306]
+[node name="DeckTitle" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/VBoxContainer" unique_id=1388717779]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Coluna esquerda/VBoxContainer" unique_id=1411909002]
-layout_mode = 2
-text = "Meu deck"
-
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/Coluna esquerda/VBoxContainer" unique_id=480965293]
+[node name="DeckList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/VBoxContainer" unique_id=100819419]
 layout_mode = 2
 
-[node name="Coluna meio" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=2105084068]
+[node name="DeckCountLabel" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/VBoxContainer" unique_id=1702935466]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Coluna meio" unique_id=1119372644]
+[node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/VBoxContainer" unique_id=1018711789]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Coluna meio/VBoxContainer" unique_id=98829205]
+[node name="CardPoolPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1630717518]
 layout_mode = 2
-text = "Catálogo de Cartas"
+size_flags_horizontal = 4
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/Coluna meio/VBoxContainer" unique_id=464737207]
-layout_mode = 2
-
-[node name="Coluna direita" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=674400242]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CardPoolPanel" unique_id=1560006840]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Coluna direita" unique_id=53902722]
+[node name="CardPoolTitle" type="Label" parent="MarginContainer/HBoxContainer/CardPoolPanel/VBoxContainer" unique_id=466778573]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Coluna direita/VBoxContainer" unique_id=770631097]
+[node name="CardPool" type="ItemList" parent="MarginContainer/HBoxContainer/CardPoolPanel/VBoxContainer" unique_id=2090578027]
 layout_mode = 2
-text = "Info da Carta"
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/Coluna direita/VBoxContainer" unique_id=1152350924]
+[node name="InfoPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1049318992]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel" unique_id=811642422]
+layout_mode = 2
+
+[node name="CardArt" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoPanel/VBoxContainer" unique_id=367272998]
+layout_mode = 2
+
+[node name="CardName" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/VBoxContainer" unique_id=1750823515]
+layout_mode = 2
+
+[node name="CardTypeCost" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/VBoxContainer" unique_id=702212210]
+layout_mode = 2
+
+[node name="CardDescription" type="RichTextLabel" parent="MarginContainer/HBoxContainer/InfoPanel/VBoxContainer" unique_id=719554911]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/VBoxContainer" unique_id=440370027]
 layout_mode = 2
