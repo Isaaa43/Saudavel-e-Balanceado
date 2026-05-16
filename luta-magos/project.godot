@@ -50,6 +50,7 @@ folder_colors={
 "res://scripts/game/UI/": "green",
 "res://scripts/game/feiticos/": "purple",
 "res://scripts/menus/": "teal",
+"res://scripts/network/": "pink",
 "res://temas/": "teal"
 }
 

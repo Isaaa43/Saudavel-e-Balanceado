@@ -10,22 +10,24 @@ extends Control
 func _on_button_sair_jogo_pressed() -> void:
 	get_tree().quit()
 
-func  _ready() -> void:
-	# TODO:
+func _debug_auto_multiplas_inst() -> void:
 	if not TrocaCenaTemp.jogo_iniciado:
 		var args = OS.get_cmdline_args()
 		print("args:")
 		print(args)		
 		for arg in args:
-			if arg.begins_with("-host"):
+			if arg.begins_with("-host") or arg.begins_with("-server"):
 				await get_tree().create_timer(0.1).timeout
 				NetworkClient.dados_jogador.nome = "Hosterson"
 				_on_button_host_pressed()
-			if arg.begins_with("-join"):
+			if arg.begins_with("-join") or arg.begins_with("-client"):
 				await get_tree().create_timer(0.1).timeout
 				NetworkClient.dados_jogador.nome = "Joiner"
 				_on_button_join_pressed()
-	
+
+func  _ready() -> void:
+	# TODO: REMOVER
+	_debug_auto_multiplas_inst()
 	
 	panel_jogar.hide()
 	# TODO: criar loading
