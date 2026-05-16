@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://djncp32jv7ppr"]
+
+[node name="MenuDeck" type="Control" unique_id=1395345366]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1865727326]
+layout_mode = 0
+offset_right = 330.0
+offset_bottom = 27.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=692600027]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=998525463]
+layout_mode = 2
+
+[node name="Coluna esquerda" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=1528682661]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Coluna esquerda" unique_id=373229306]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Coluna esquerda/VBoxContainer" unique_id=1411909002]
+layout_mode = 2
+text = "Meu deck"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/Coluna esquerda/VBoxContainer" unique_id=480965293]
+layout_mode = 2
+
+[node name="Coluna meio" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=2105084068]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Coluna meio" unique_id=1119372644]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Coluna meio/VBoxContainer" unique_id=98829205]
+layout_mode = 2
+text = "Catálogo de Cartas"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/Coluna meio/VBoxContainer" unique_id=464737207]
+layout_mode = 2
+
+[node name="Coluna direita" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=674400242]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Coluna direita" unique_id=53902722]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Coluna direita/VBoxContainer" unique_id=770631097]
+layout_mode = 2
+text = "Info da Carta"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/Coluna direita/VBoxContainer" unique_id=1152350924]
+layout_mode = 2
