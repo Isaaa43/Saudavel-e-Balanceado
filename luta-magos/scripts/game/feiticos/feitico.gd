@@ -20,6 +20,11 @@ enum Tipo {
 	EFEITO
 }
 
+enum Espaco {
+	DECK,
+	PASSIVA
+}
+
 ## Cria a magia, antes de lancar
 func criar() -> void:
 	pass
