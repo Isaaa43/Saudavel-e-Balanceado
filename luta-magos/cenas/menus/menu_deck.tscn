@@ -40,7 +40,7 @@ layout_mode = 2
 
 [node name="DeckTitle" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1388717779]
 layout_mode = 2
-text = "DeckTitle"
+text = "Deck"
 
 [node name="DeckList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=100819419]
 unique_name_in_owner = true
@@ -70,7 +70,7 @@ layout_mode = 2
 
 [node name="CardPoolTitle" type="Label" parent="MarginContainer/HBoxContainer/CardPoolPanel/MarginContainer/VBoxContainer" unique_id=466778573]
 layout_mode = 2
-text = "CardPoolTitle"
+text = "Grimórios"
 
 [node name="CardPool" type="ItemList" parent="MarginContainer/HBoxContainer/CardPoolPanel/MarginContainer/VBoxContainer" unique_id=2090578027]
 unique_name_in_owner = true
