@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cm7rbbwccvpap"]
 
-[ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/game_adm.gd" id="1_3lst8"]
+[ext_resource type="Script" uid="uid://bxvj6lh72p8f" path="res://scripts/game/adms/game_adm.gd" id="1_3lst8"]
 [ext_resource type="PackedScene" uid="uid://sscrh5g0oo6b" path="res://cenas/game/adminitradores/jogadores_adm.tscn" id="2_j0w0j"]
 [ext_resource type="PackedScene" uid="uid://d4j7w61agrxhk" path="res://cenas/game/adminitradores/mapa_adm.tscn" id="3_yfoi5"]
 [ext_resource type="PackedScene" uid="uid://b6h4x6lo81xq7" path="res://cenas/game/adminitradores/feiticos_adm.tscn" id="4_1kxph"]

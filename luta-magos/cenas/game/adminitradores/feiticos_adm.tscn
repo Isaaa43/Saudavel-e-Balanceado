@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6h4x6lo81xq7"]
 
-[ext_resource type="Script" uid="uid://dtnujgqdx58ih" path="res://scripts/game/feiticos/feiticos_adm.gd" id="1_al6gf"]
+[ext_resource type="Script" uid="uid://dtnujgqdx58ih" path="res://scripts/game/adms/feiticos_adm.gd" id="1_al6gf"]
 [ext_resource type="Script" uid="uid://5lvt35ei2u2l" path="res://scripts/autoloads/registros/registro_feiticos.gd" id="2_ph4s3"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="3_ccqb5"]
 [ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="4_hnepb"]

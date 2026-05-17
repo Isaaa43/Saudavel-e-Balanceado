@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 TrocaCenaTemp="*uid://6ynnwdsloeup"
-Registros="*uid://1pr6jv1uhsxi"
 Network="*uid://dejkuahbr2ht4"
+Registros="*uid://1pr6jv1uhsxi"
 
 [display]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://boh1ydvfouvwi"]
 
-[ext_resource type="Script" uid="uid://54st3jcsbn03" path="res://scripts/game/UI/ui_adm.gd" id="1_6cx7f"]
+[ext_resource type="Script" uid="uid://54st3jcsbn03" path="res://scripts/game/adms/ui_adm.gd" id="1_6cx7f"]
 [ext_resource type="PackedScene" uid="uid://c4x1fiwa5kwuq" path="res://cenas/game/UI/hud_jogador.tscn" id="2_qk6fq"]
 
 [node name="UIAdm" type="Node" unique_id=198701727 node_paths=PackedStringArray("hud")]
