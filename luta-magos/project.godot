@@ -20,9 +20,6 @@ config/icon="res://icon.svg"
 TrocaCenaTemp="*uid://6ynnwdsloeup"
 Registros="*uid://1pr6jv1uhsxi"
 Network="*uid://dejkuahbr2ht4"
-NetworkServer="*uid://bmoe5r6abpfhf"
-NetworkClient="*uid://c01qq0whjdvff"
-LogsAdm="*uid://7kfwipts1ag7"
 
 [display]
 

@@ -7,7 +7,7 @@ extends Node
 @onready var spell_registry: RegistroFeiticos = Registros.reg_feiticos
 
 func _ready() -> void:
-	NetworkClient.spawnar_feitico.connect(_spawnar_feitico)
+	Network.client.spawnar_feitico.connect(_spawnar_feitico)
 
 func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	var feitico_id : String = feitico_contexto.feitico_id

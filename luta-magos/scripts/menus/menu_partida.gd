@@ -26,7 +26,7 @@ func _ready() -> void:
 	button_comecar.grab_focus()
 	
 	# TODO: mudar isso
-	LogsAdm.update_conexao_texto.connect(add_log)
+	Network.logs.update_conexao_texto.connect(add_log)
 	
 	# pego os botoes da grid
 	for button : Button in grid_container.get_children().filter(func(a): return a is Button):
@@ -80,7 +80,7 @@ func passiva_select(button : Button) -> void:
 
 func _on_button_comecar_pressed() -> void:
 	if not is_multiplayer_authority(): return
-	NetworkServer.iniciar_partida()
+	Network.server.iniciar_partida()
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()

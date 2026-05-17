@@ -17,11 +17,11 @@ func _ready() -> void:
 
 func _server_ready() -> void:
 	# server spawna os jogadores
-	NetworkServer.spawnar_jogador.connect(_server_spawnar_jogador)
+	Network.server.spawnar_jogador.connect(_server_spawnar_jogador)
 
 func _client_ready() -> void:
 	# client ajusta dados dos jogadores
-	NetworkClient.ajustar_dados_jogador.connect(_client_set_dados_jogador)
+	Network.client.ajustar_dados_jogador.connect(_client_set_dados_jogador)
 
 func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 	var peer_id : int = dados_jog.peer_id
@@ -57,10 +57,10 @@ func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	_verificar_hud_jogador(jogador, jog_peer_id)
 	
 	# peca para o server os dados desse jogador
-	NetworkClient.pedir_dados_jogador_do_jogador(jog_peer_id)
+	Network.client.pedir_dados_jogador_do_jogador(jog_peer_id)
 
 func _verificar_hud_jogador(jogador: Jogador, jog_peer_id: int) -> void:
-	var meu_peer_id: int = NetworkClient.dados_jogador.peer_id
+	var meu_peer_id: int = Network.client.dados_jogador.peer_id
 	if meu_peer_id == jog_peer_id:
 		colocar_hud_jogador.emit(jogador)
 

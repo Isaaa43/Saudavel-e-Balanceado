@@ -1,3 +1,4 @@
+class_name NetworkClient
 extends Node
 
 signal ajustar_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador)
@@ -23,10 +24,10 @@ func entrar_lobby() -> void:
 
 func _enviar_dados_jogador() -> void:	
 	# Send to server
-	NetworkServer.registrar_jogador.rpc_id(Network.SERVER_ID, dados_jogador.to_dict())
+	Network.server.registrar_jogador.rpc_id(Network.SERVER_ID, dados_jogador.to_dict())
 	
 	TrocaCenaTemp.go_to_menu_partida()
-	LogsAdm.add_conexao_texto("Entrou no lobby")
+	Network.logs.add_conexao_texto("Entrou no lobby")
 
 func criar_dados_jogador() -> DadosJogador:
 	var dados := DadosJogador.new()
@@ -55,9 +56,9 @@ func pedir_terminar_partida() -> void:
 		_terminar_partida()
 	
 	if multiplayer.is_server():
-		NetworkServer.pedir_terminar_partida()
+		Network.server.pedir_terminar_partida()
 	else:
-		NetworkServer.pedir_terminar_partida.rpc_id(Network.SERVER_ID)
+		Network.server.pedir_terminar_partida.rpc_id(Network.SERVER_ID)
 
 ## Cada peer termina sua partida
 @rpc("authority", "call_local", "reliable")
@@ -72,7 +73,7 @@ func _terminar_partida() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
 
 func pedir_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
-	NetworkServer.get_dados_jogador_do_jogador.rpc_id(Network.SERVER_ID, jogador_peer_id)
+	Network.server.get_dados_jogador_do_jogador.rpc_id(Network.SERVER_ID, jogador_peer_id)
 
 @rpc("authority", "call_local", "reliable")
 func receber_dados_jogador(jogador_peer_id: int, dados_jog_dict: Dictionary) -> void:
@@ -80,7 +81,7 @@ func receber_dados_jogador(jogador_peer_id: int, dados_jog_dict: Dictionary) -> 
 	ajustar_dados_jogador.emit(jogador_peer_id, dados_jog)
 
 func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
-	NetworkServer.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_contexto.to_dict())
+	Network.server.jogador_lancar_feitico.rpc_id(Network.SERVER_ID, feitico_contexto.to_dict())
 
 @rpc("authority", "call_local", "reliable")
 func spawn_feitico(feitico_contexto_net : Dictionary) -> void:

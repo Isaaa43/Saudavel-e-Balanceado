@@ -11,4 +11,4 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		NetworkClient.pedir_terminar_partida()
+		Network.client.pedir_terminar_partida()

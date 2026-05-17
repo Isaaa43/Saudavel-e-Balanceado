@@ -12,8 +12,16 @@ const PORT			:= 54321
 const IP_ADDR		:= "localhost"
 const MAX_CLIENTS 	:= 2
 
+var server : NetworkServer
+var client : NetworkClient
+var logs   : NetworkLogs
+
 func _ready() -> void:
 	set_process(false)
+	#
+	server = _criar_network_server()
+	client = _criar_network_client()
+	logs = _criar_network_logs()
 	#
 	multiplayer.peer_connected.connect(_server_peer_connected)
 	multiplayer.peer_disconnected.connect(_server_peer_disconnected)
@@ -92,3 +100,25 @@ func is_peer_connected() -> bool:
 	if multiplayer.get_unique_id() == 0: return false
 	
 	return true
+	
+# ------------------------------------------------------------------------------
+# Nodos Filhos
+# ------------------------------------------------------------------------------
+
+func _criar_network_server() -> NetworkServer:
+	var nodo : NetworkServer = NetworkServer.new()
+	nodo.name = "NetworkServer"
+	add_child(nodo, true)
+	return nodo
+
+func _criar_network_client() -> NetworkClient:
+	var nodo : NetworkClient = NetworkClient.new()
+	nodo.name = "NetworkClient"
+	add_child(nodo, true)
+	return nodo
+
+func _criar_network_logs() -> NetworkLogs:
+	var nodo : NetworkLogs = NetworkLogs.new()
+	nodo.name = "NetworkLogs"
+	add_child(nodo, true)
+	return nodo

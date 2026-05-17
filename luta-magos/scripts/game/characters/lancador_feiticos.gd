@@ -106,4 +106,4 @@ func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContex
 
 # chama o network para enviar o feitico
 func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
-	NetworkClient.lancar_feitico(feitico_contexto)
+	Network.client.lancar_feitico(feitico_contexto)
