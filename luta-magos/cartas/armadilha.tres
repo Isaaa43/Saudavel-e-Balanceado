@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CartaData" format=3 uid="uid://v34uj7f1x6b6"]
+
+[ext_resource type="Texture2D" uid="uid://ddfd0yq7hjjn0" path="res://assets/temp/feiticosIcones/2YellowAbility_10.png" id="1_u6oqg"]
+[ext_resource type="Script" uid="uid://compk0wkd7ldq" path="res://scripts/menus/CardData.gd" id="2_67u52"]
+
+[resource]
+script = ExtResource("2_67u52")
+nome = "Armadilha"
+custo = 20
+tipo = "Não passiva"
+descricao = "Posiciona uma armadilha de espinhos no chão que será ativada quando pisar encima"
+icone = ExtResource("1_u6oqg")
+metadata/_custom_type_script = "uid://compk0wkd7ldq"
