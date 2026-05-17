@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://61epvsflxpgn"]
-
-[node name="Button" type="Button" unique_id=807936658]
-offset_right = 8.0
-offset_bottom = 8.0
