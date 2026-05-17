@@ -8,11 +8,11 @@ class_name CardData
 @export var nome: String
 
 # Custo da carta.
-# Pode representar mana, energia, ação ou outro recurso do jogo.
+# Custo de mana para ativar a carta
 @export var custo: int
 
 # Tipo da carta.
-# Exemplos: Ataque, Defesa, Magia, Suporte etc.
+# Exemplos: Ataque, Defesa, Magia, Suporte etc. - passiva ou normal
 @export var tipo: String
 
 # Texto descritivo da carta.
