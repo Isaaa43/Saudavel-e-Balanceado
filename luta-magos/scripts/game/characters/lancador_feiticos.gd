@@ -88,7 +88,7 @@ func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContex
 	
 	# TODO: mudar o contexto dependendo do tipo de feitico
 	match (feitico_def.feitico_tipo):
-		Feitico.Tipo.INSTANTANEO:
+		Feitico.Tipo.PROJETIL:
 			pass
 		Feitico.Tipo.POSICIONADO:
 			ray_cast_visao.force_raycast_update()

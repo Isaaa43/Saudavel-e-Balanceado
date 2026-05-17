@@ -2,7 +2,7 @@ class_name FeiticoContexto
 extends RefCounted
 
 var feitico_id : String 	= ""
-var feitico_tipo 			:= Feitico.Tipo.INSTANTANEO
+var feitico_tipo 			:= Feitico.Tipo.PROJETIL
 
 var criador : int 			= -1
 var alvo : Node 			= null
