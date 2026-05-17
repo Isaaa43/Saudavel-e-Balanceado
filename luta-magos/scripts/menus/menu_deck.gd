@@ -5,7 +5,7 @@ extends Control
 @export var available_cards: Array[CardData] = []
 
 # Quantidade máxima de cartas permitida no deck do jogador.
-@export var max_deck_size: int = 20
+@export var max_deck_size: int = 3
 
 
 # Lista de cartas que o jogador adicionou ao deck durante a montagem.
@@ -63,7 +63,7 @@ func _populate_card_pool() -> void:
 
 	# Para cada carta disponível, cria um item visual no ItemList da coluna do meio.
 	for card in available_cards:
-		var text := "%s  |  Custo: %d" % [card.nome, card.custo]
+		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]
 
 		# Se a carta tiver um ícone, ele aparece junto do nome.
 		# Se não tiver, aparece apenas o texto.
@@ -79,11 +79,11 @@ func _update_deck_list() -> void:
 
 	# Adiciona na interface todas as cartas que estão no array deck_cards.
 	for card in deck_cards:
-		var text := "%s  |  Custo: %d" % [card.nome, card.custo]
+		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]
 		deck_list.add_item(text)
 
 	# Atualiza o contador de cartas do deck.
-	deck_count_label.text = "Cartas no deck: %d / %d" % [
+	deck_count_label.text = "Feitiços no grimório: %d / %d" % [
 		deck_cards.size(),
 		max_deck_size
 	]
@@ -95,7 +95,7 @@ func _show_card_info(card: CardData) -> void:
 
 	# Atualiza a coluna da direita com as informações da carta.
 	card_name.text = card.nome
-	card_type_cost.text = "%s | Custo: %d" % [card.tipo, card.custo]
+	card_type_cost.text = "%s | Custo de mana: %d" % [card.tipo, card.custo]
 	card_description.text = card.descricao
 
 	# Atualiza a imagem/ícone da carta.
@@ -109,9 +109,9 @@ func _clear_card_info() -> void:
 	# Limpa a seleção atual e coloca textos padrão na coluna de informações.
 	selected_card = null
 
-	card_name.text = "Nenhuma carta selecionada"
+	card_name.text = "Nenhum feitiço selecionado"
 	card_type_cost.text = ""
-	card_description.text = "Selecione uma carta para ver os detalhes."
+	card_description.text = "Selecione um feitiço para ver os detalhes."
 	card_art.texture = null
 
 
@@ -155,7 +155,7 @@ func _on_add_button_pressed() -> void:
 func _add_card_to_deck(card: CardData) -> void:
 	# Impede que o jogador ultrapasse o tamanho máximo permitido do deck.
 	if deck_cards.size() >= max_deck_size:
-		print("Deck cheio!")
+		print("Grimório cheio!")
 		return
 
 	# Adiciona a carta ao array do deck.

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dfdgujyipes5o"]
+
+[ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="1_70ijg"]
+[ext_resource type="Script" uid="uid://compk0wkd7ldq" path="res://scripts/menus/CardData.gd" id="2_ehqpa"]
+
+[resource]
+script = ExtResource("2_ehqpa")
+nome = "Gelo"
+custo = 15
+tipo = "Normal"
+descricao = "Gelo gelado que gela gente"
+icone = ExtResource("1_70ijg")
+metadata/_custom_type_script = "uid://compk0wkd7ldq"

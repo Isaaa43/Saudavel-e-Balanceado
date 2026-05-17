@@ -3,7 +3,6 @@ extends Node
 var main_game = get_node_or_null("/root/MainGame")
 
 var partida : MenuPartida
-
 const MENU_INICIAL = preload("uid://6als3mloubtk")
 const MENU_PARTIDA = preload("uid://c2ppdl2yqxf16")
 

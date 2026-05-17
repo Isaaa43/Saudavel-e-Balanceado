@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://compk0wkd7ldq" path="res://scripts/menus/CardData.gd" id="2_m5xgc"]
 [ext_resource type="Resource" uid="uid://v34uj7f1x6b6" path="res://cartas/armadilha.tres" id="3_4ijxk"]
 [ext_resource type="Resource" uid="uid://byifd6pxkhvix" path="res://cartas/bola_de_fogo.tres" id="4_wv7g0"]
+[ext_resource type="Resource" uid="uid://bdu40fla2gco0" path="res://cartas/cura.tres" id="5_wv7g0"]
+[ext_resource type="Resource" uid="uid://dfdgujyipes5o" path="res://cartas/gelo.tres" id="6_gr7sa"]
 
 [node name="MenuDeck" type="Control" unique_id=1395345366]
 layout_mode = 3
@@ -12,10 +14,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource("1_glkbn")
-available_cards = Array[ExtResource("2_m5xgc")]([ExtResource("3_4ijxk"), ExtResource("4_wv7g0")])
+available_cards = Array[ExtResource("2_m5xgc")]([ExtResource("3_4ijxk"), ExtResource("4_wv7g0"), ExtResource("5_wv7g0"), ExtResource("6_gr7sa")])
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
 layout_mode = 1
@@ -31,30 +31,36 @@ layout_mode = 2
 [node name="DeckPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=2138749029]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DeckPanel" unique_id=2105672495]
 layout_mode = 2
 
-[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer" unique_id=585011591]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer" unique_id=1461920499]
 layout_mode = 2
 
-[node name="DeckTitle" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1388717779]
+[node name="DeckCountLabel" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1702935466]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-text = "Deck"
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 44
+text = "DeckCount"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="DeckList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=100819419]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="DeckCountLabel" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1702935466]
-unique_name_in_owner = true
-layout_mode = 2
-text = "DeckCount"
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.6
 
 [node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1018711789]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Remover feitiço"
 
 [node name="CardPoolPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1630717518]
 unique_name_in_owner = true
@@ -70,12 +76,15 @@ layout_mode = 2
 
 [node name="CardPoolTitle" type="Label" parent="MarginContainer/HBoxContainer/CardPoolPanel/MarginContainer/VBoxContainer" unique_id=466778573]
 layout_mode = 2
-text = "Grimórios"
+theme_override_font_sizes/font_size = 44
+text = "Feitiços"
+horizontal_alignment = 1
 
 [node name="CardPool" type="ItemList" parent="MarginContainer/HBoxContainer/CardPoolPanel/MarginContainer/VBoxContainer" unique_id=2090578027]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
 
 [node name="InfoPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1049318992]
 layout_mode = 2
@@ -87,23 +96,37 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=811642422]
 layout_mode = 2
 
-[node name="CardArt" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=367272998]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="CardName" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=1750823515]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "CardName"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=1047566520]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CardArt" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=367272998]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 350)
+layout_mode = 2
 
 [node name="CardTypeCost" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=702212210]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 
 [node name="CardDescription" type="RichTextLabel" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=719554911]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 22
+text = "Descrição do feitiço selecionado"
 
 [node name="AddButton" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=440370027]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Adicionar feitiço"
