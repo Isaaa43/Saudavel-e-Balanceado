@@ -7,11 +7,9 @@
 [node name="LocalAdm" type="Node" unique_id=198701727 node_paths=PackedStringArray("hud", "lancador_feiticos")]
 script = ExtResource("1_p72xq")
 hud = NodePath("HUDjogador")
-lancador_feiticos = NodePath("RemoteTransform3D/LancadorFeiticos")
+lancador_feiticos = NodePath("LancadorFeiticos")
 
 [node name="HUDjogador" parent="." unique_id=31207200 instance=ExtResource("3_kn1pb")]
 visible = false
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=414903241]
-
-[node name="LancadorFeiticos" parent="RemoteTransform3D" unique_id=881569327 instance=ExtResource("2_d60qj")]
+[node name="LancadorFeiticos" parent="." unique_id=881569327 instance=ExtResource("2_d60qj")]

@@ -4,7 +4,7 @@ extends Node
 @export var hud : HUDJogador
 
 @export var lancador_feiticos : LancadorFeiticos
-@onready var remote_transform_3d: RemoteTransform3D = $RemoteTransform3D
+
 
 var jogador : Jogador
 
@@ -27,5 +27,4 @@ func _ajustar_lancador_feiticos() -> void:
 	# conectar lancador de feiticos com o sistema de mana
 	lancador_feiticos.sistema_mana = jogador.sistema_mana
 	# prende o lancador de feiticos na visao da camera
-	var pivot_path : String = jogador.camera_mira_pivot.get_path()
-	remote_transform_3d.remote_path = pivot_path
+	jogador.camera_jogador.set_target_remote_transform_mira(lancador_feiticos.get_path())
