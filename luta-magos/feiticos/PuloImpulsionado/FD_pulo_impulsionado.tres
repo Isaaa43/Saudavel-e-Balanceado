@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="FeiticoDefinicaoRes" format=3 uid="uid://skatmcv3uduk"]
+[gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://skatmcv3uduk"]
 
 [ext_resource type="PackedScene" uid="uid://cgvd5620tl6yn" path="res://feiticos/PuloImpulsionado/FS_pulo_impulsionado.tscn" id="1_n0lx8"]
-[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="2_i7opx"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_i7opx"]
 
 [resource]
 script = ExtResource("2_i7opx")

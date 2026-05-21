@@ -1,4 +1,4 @@
-class_name FeiticoDefinicaoRes
+class_name FeiticoDef
 extends Resource
 
 @export_group("ID")
@@ -15,7 +15,7 @@ extends Resource
 @export var custo: float = 10.0
 
 @export_group("Visual")
-@export var icone: Texture2D
+@export var icone_hud: Texture2D
 @export var feitico_scene: PackedScene
 
 #TODO: lista de efeitos

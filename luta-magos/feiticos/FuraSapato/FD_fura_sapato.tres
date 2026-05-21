@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="FeiticoDefinicaoRes" format=3 uid="uid://c71eh6rcojqh0"]
+[gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://c71eh6rcojqh0"]
 
-[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="1_h3qb0"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_h3qb0"]
 [ext_resource type="PackedScene" uid="uid://bxbxjx3vghjp8" path="res://feiticos/FuraSapato/FS_fura_sapato.tscn" id="1_pn68f"]
 
 [resource]

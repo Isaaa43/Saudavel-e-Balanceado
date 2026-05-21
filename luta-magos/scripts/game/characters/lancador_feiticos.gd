@@ -60,7 +60,7 @@ func lancar_feitico_escolhido(feitico_id: String) -> void:
 	if _cooldowns.get(feitico_id, 0) > 0.1: return
 	
 	# pega as definicoes do feitico
-	var feitico_def : FeiticoDefinicaoRes = registro_feiticos.get_feitico(feitico_id)
+	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
 	# verifica se tem mana o suficiente para criar o feitico
 	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): return
 	
