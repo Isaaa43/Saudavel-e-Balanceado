@@ -1,18 +1,18 @@
 class_name RegistroFeiticos
 extends Node
 
-@export var feiticos : Dictionary[String, FeiticoDefinicaoRes] = {}
+@export var feiticos : Dictionary[String, FeiticoDef] = {}
 
-func add_feitico(feitico_def : FeiticoDefinicaoRes) -> void:
+func add_feitico(feitico_def : FeiticoDef) -> void:
 	var feitico_id : String = feitico_def.feitico_id
 	feiticos[feitico_id] = feitico_def
 
-func get_feitico(feitico_id: String) -> FeiticoDefinicaoRes:
+func get_feitico(feitico_id: String) -> FeiticoDef:
 	return feiticos.get(feitico_id, null)
 
 func _ready() -> void:
 	for feitico_def_ref in feiticos_definicoes_res:
-		var feitico_def: FeiticoDefinicaoRes = load(feitico_def_ref)
+		var feitico_def: FeiticoDef = load(feitico_def_ref)
 		add_feitico(feitico_def)
 
 # --------------------------------------------------------------------------------------------------

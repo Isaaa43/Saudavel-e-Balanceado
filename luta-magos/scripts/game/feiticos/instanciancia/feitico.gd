@@ -4,7 +4,7 @@ extends Node3D
 
 var feitico_id : String = ""
 var nome: String = ""
-var feitico_tipo : Tipo = Tipo.INSTANTANEO
+var feitico_tipo : Tipo = Tipo.PROJETIL
 
 var criador : Jogador = null
 var alvo : Node = null
@@ -15,9 +15,14 @@ var direcao := Vector3.ZERO
 var efeitos : Array[FeiticoEfeito] = []
 
 enum Tipo {
-	INSTANTANEO,
+	PROJETIL,
 	POSICIONADO,
 	EFEITO
+}
+
+enum Espaco {
+	DECK,
+	PASSIVA
 }
 
 ## Cria a magia, antes de lancar

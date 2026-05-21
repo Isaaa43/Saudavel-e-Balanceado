@@ -1,7 +1,10 @@
+class_name CameraJogador
 extends Camera3D
 
 @export var jogador : Jogador
-@export var cabeca : Node3D
+@export var cabeca_pivot : Node3D
+
+@onready var remote_transform_mira: RemoteTransform3D = $RemoteTransformMira
 
 var mouse_sensitivity := 0.005
 var controller_sensitivity := 5.0
@@ -28,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.x = clamp(rotation.x, -PI/2, PI/2)
 		# rodar a cabeca
 		var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
-		cabeca.rotation.x = cabeca_rot
+		cabeca_pivot.rotation.x = cabeca_rot
 
 
 func _process(delta):
@@ -43,7 +46,7 @@ func _process(delta):
 		rotation.x = clamp(rotation.x, -PI/2, PI/2)
 		# rodar a cabeca
 		var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
-		cabeca.rotation.x = cabeca_rot
+		cabeca_pivot.rotation.x = cabeca_rot
 
 func _input(event):	
 	# esc para sair do capture
@@ -53,3 +56,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func set_target_remote_transform_mira(node_path: String) -> void:
+	remote_transform_mira.remote_path = node_path
+	remote_transform_mira.force_update_cache()

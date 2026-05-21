@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cqojyxy8t78mg"]
 
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
-[ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera.gd" id="2_s5tbn"]
 [ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="2_s8iyn"]
 [ext_resource type="Script" uid="uid://c2t8eacmbwf2u" path="res://scripts/game/characters/sistemas/sistema_mana.gd" id="3_f2bc4"]
-[ext_resource type="Script" uid="uid://dofbbhfx4m25a" path="res://scripts/game/characters/lancador_feiticos.gd" id="3_qf517"]
+[ext_resource type="PackedScene" uid="uid://dfpsqfdgmimqo" path="res://cenas/game/characters/camera_jogador.tscn" id="4_s8iyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -56,20 +55,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
 [node name="Cabeca" type="Node3D" parent="." unique_id=1241982120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Cabeca" unique_id=786938037 node_paths=PackedStringArray("jogador", "cabeca")]
-script = ExtResource("2_s5tbn")
+[node name="CameraJogador" parent="Cabeca" unique_id=840626129 node_paths=PackedStringArray("jogador", "cabeca_pivot") instance=ExtResource("4_s8iyn")]
 jogador = NodePath("../..")
-cabeca = NodePath("../CabecaPivot")
-
-[node name="LancadorFeiticos" type="Node3D" parent="Cabeca/Camera3D" unique_id=1643112298 node_paths=PackedStringArray("sistema_mana")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-script = ExtResource("3_qf517")
-sistema_mana = NodePath("../../../SistemaMana")
-
-[node name="RayCast3D" type="RayCast3D" parent="Cabeca/Camera3D/LancadorFeiticos" unique_id=576639506]
-target_position = Vector3(0, 0, -5)
-collision_mask = 6
-collide_with_areas = true
+cabeca_pivot = NodePath("../CabecaPivot")
 
 [node name="CabecaPivot" type="Node3D" parent="Cabeca" unique_id=2010991378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)

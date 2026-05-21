@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="FeiticoDefinicaoRes" format=3 uid="uid://cy0n07ui1fty2"]
+[gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://cy0n07ui1fty2"]
 
 [ext_resource type="PackedScene" uid="uid://bqh26u1rb6wm5" path="res://feiticos/Ozempagic/FS_ozempagic.tscn" id="1_7q7bd"]
-[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/feitico_definicao_res.gd" id="2_4ih6y"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_4ih6y"]
 
 [resource]
 script = ExtResource("2_4ih6y")

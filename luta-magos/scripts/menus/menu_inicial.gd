@@ -18,11 +18,11 @@ func _debug_auto_multiplas_inst() -> void:
 		for arg in args:
 			if arg.begins_with("-host") or arg.begins_with("-server"):
 				await get_tree().create_timer(0.1).timeout
-				NetworkClient.dados_jogador.nome = "Hosterson"
+				Network.client.dados_jogador.nome = "Hosterson"
 				_on_button_host_pressed()
 			if arg.begins_with("-join") or arg.begins_with("-client"):
 				await get_tree().create_timer(0.1).timeout
-				NetworkClient.dados_jogador.nome = "Joiner"
+				Network.client.dados_jogador.nome = "Joiner"
 				_on_button_join_pressed()
 
 func  _ready() -> void:
@@ -46,17 +46,17 @@ func _on_button_jogar_pressed() -> void:
 	if nome_jog.length() < 2:
 		nome_jog = "Jog_" + str(randi_range(1000, 9999))
 	print("nome_jog ", nome_jog)
-	NetworkClient.dados_jogador.nome = nome_jog
+	Network.client.dados_jogador.nome = nome_jog
 
 func _on_button_cancelar_pressed() -> void:
 	panel_jogar.hide()
 	ui.show()
 
 func _on_button_host_pressed() -> void:
-	NetworkServer.criar_lobby()
+	Network.server.criar_lobby()
 
 func _on_button_join_pressed() -> void:
-	NetworkClient.entrar_lobby()
+	Network.client.entrar_lobby()
 	# TODO: criar loading
 	_habilitar_button_join(false)
 

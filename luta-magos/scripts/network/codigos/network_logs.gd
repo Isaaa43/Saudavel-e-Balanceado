@@ -1,3 +1,4 @@
+class_name NetworkLogs
 extends Node
 
 signal update_conexao_texto(texto)

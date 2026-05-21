@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sscrh5g0oo6b"]
 
-[ext_resource type="Script" uid="uid://bmrb05718ew1j" path="res://scripts/network/jogadores_adm.gd" id="1_3y4dx"]
+[ext_resource type="Script" uid="uid://bmrb05718ew1j" path="res://scripts/game/adms/jogadores_adm.gd" id="1_3y4dx"]
 
 [node name="JogadoresAdm" type="Node" unique_id=93310562]
 script = ExtResource("1_3y4dx")

@@ -2,13 +2,13 @@ class_name GameAdm
 extends Node
 
 @export var jogadores_adm : JogadoresAdm
-@export var ui_adm : UIAdm
+@export var local_adm : LocalAdm
 
 func _ready() -> void:
 	# ajustar sinais
-	jogadores_adm.colocar_hud_jogador.connect(ui_adm.ajustar_hud_jogador)
+	jogadores_adm.recebido_jogador_authority.connect(local_adm.ajusta_para_jogador)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		NetworkClient.pedir_terminar_partida()
+		Network.client.pedir_terminar_partida()

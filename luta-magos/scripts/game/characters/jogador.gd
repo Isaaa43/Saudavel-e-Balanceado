@@ -4,8 +4,7 @@ class_name Jogador
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
 
-@onready var camera_3d: Camera3D = $Cabeca/Camera3D
-@onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos
+@onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
 
 var dados_jogador : DadosJogador :
 	set(_dados_jog):
@@ -29,11 +28,12 @@ func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
 		_turn_off(self)
-		_turn_off(camera_3d)
-		_turn_off(lancador_feiticos)
+		camera_jogador.queue_free()
+		#sistema_vida.queue_free() # TODO: pensar melhor nesse
+		sistema_mana.queue_free()
 		return
 	
-	camera_3d.start()
+	camera_jogador.start()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

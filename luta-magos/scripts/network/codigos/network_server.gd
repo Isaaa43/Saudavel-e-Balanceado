@@ -1,3 +1,4 @@
+class_name NetworkServer
 extends Node
 
 signal spawnar_jogador(dados_jogador : DadosJogador)
@@ -17,23 +18,24 @@ func _ready_lobby() -> void:
 
 func criar_lobby() -> void:
 	Network.create_server()
+	
 	TrocaCenaTemp.go_to_menu_partida()
-	LogsAdm.add_conexao_texto("Lobby criado")
+	Network.logs.add_conexao_texto("Lobby criado")
 	# salva o peer_id do server nos dados do jog
-	NetworkClient.dados_jogador.peer_id = Network.SERVER_ID
+	Network.client.dados_jogador.peer_id = Network.SERVER_ID
 	# cria os dados do jogador que criou o lobby
-	var dados_jog := NetworkClient.dados_jogador
+	var dados_jog := Network.client.dados_jogador
 	_registrar_jogador_peer_id(dados_jog, Network.SERVER_ID)
 
 func _lobby_add_jogador(peer_id: int) -> void:
-	LogsAdm.add_conexao_texto_peer("Jogador entrando", peer_id)
+	Network.logs.add_conexao_texto_peer("Jogador entrando", peer_id)
 	# vai receber o rpc
 
 func _lobby_rem_jogador(peer_id: int) -> void:
 	if not dados_jogador_por_peer_id.has(peer_id): return
 	
 	var nome := dados_jogador_por_peer_id[peer_id].nome
-	LogsAdm.add_conexao_texto_peer("%s saiu" % nome, peer_id)
+	Network.logs.add_conexao_texto_peer("%s saiu" % nome, peer_id)
 	dados_jogador_por_peer_id.erase(peer_id)
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -53,7 +55,7 @@ func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void
 	if dados_jog.peer_id != peer_id:
 		print("_registrar_jogador_peer_id %d != %d" % [dados_jog.peer_id, peer_id])
 	dados_jogador_por_peer_id[peer_id] = dados_jog
-	LogsAdm.add_conexao_texto_peer("%s entrou" % [dados_jog.nome], peer_id)
+	Network.logs.add_conexao_texto_peer("%s entrou" % [dados_jog.nome], peer_id)
 
 # -----------------------------------------------------------------------------
 # Partida
@@ -63,7 +65,7 @@ func iniciar_partida() -> void:
 	if not multiplayer.is_server(): return
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
-		NetworkClient.iniciar_partida.rpc_id(peer_id)
+		Network.client.iniciar_partida.rpc_id(peer_id)
 	
 	# TODO: solucao melhor que essa do timer
 	await get_tree().create_timer(0.2).timeout
@@ -79,7 +81,7 @@ func _server_iniciar_partida() -> void:
 func get_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
 	var peer_id_req = multiplayer.get_remote_sender_id()
 	var dados_jog = dados_jogador_por_peer_id[jogador_peer_id]
-	NetworkClient.receber_dados_jogador.rpc_id(peer_id_req, jogador_peer_id, dados_jog.to_dict())
+	Network.client.receber_dados_jogador.rpc_id(peer_id_req, jogador_peer_id, dados_jog.to_dict())
 
 ## Chama o server para terminar a partida
 @rpc("any_peer", "reliable")
@@ -94,14 +96,14 @@ func _server_terminar_partida() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		# pular o servidor
 		if peer_id != Network.SERVER_ID:
-			NetworkClient.receber_terminar_partida.rpc_id(peer_id)
+			Network.client.receber_terminar_partida.rpc_id(peer_id)
 	# finalizar o servidor por ultimo
 	await get_tree().create_timer(0.2).timeout
-	NetworkClient.receber_terminar_partida()
+	Network.client.receber_terminar_partida()
 
 @rpc("any_peer", "call_local", "reliable")
 func jogador_lancar_feitico(feitico_contexto_net: Dictionary) -> void:
 	if not multiplayer.is_server(): return
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
-		NetworkClient.spawn_feitico.rpc_id(peer_id, feitico_contexto_net)
+		Network.client.spawn_feitico.rpc_id(peer_id, feitico_contexto_net)

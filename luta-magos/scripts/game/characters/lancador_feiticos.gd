@@ -1,6 +1,8 @@
 class_name LancadorFeiticos
 extends Node3D
 
+signal lancar_feitico(feitico_contexto: FeiticoContexto)
+
 @export var sistema_mana : SistemaMana
 
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
@@ -53,57 +55,54 @@ func _process(delta: float) -> void:
 	for id in _cooldowns:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
 
+## Retorna a direcao normalizada que o lancador de feiticos esta mirando
+func get_direcao_mirando() -> Vector3:
+	var direcao : Vector3 = -get_global_transform().basis.z
+	return direcao.normalized()
+
+## Retorna a posicao global do lancador de feiticos ao fazer um raycast.
+## 		Retorna Vector3.INF se o raycast nao colidir
+func get_posicao_global_mirando() -> Vector3:
+	ray_cast_visao.force_raycast_update()
+	if ray_cast_visao.is_colliding():
+		var posicao_global := ray_cast_visao.get_collision_point()
+		return posicao_global
+	# 
+	return Vector3.INF
+
 func lancar_feitico_escolhido(feitico_id: String) -> void:
+	# --- Faz as verificacoes antes de lancar ---
 	# se estiver no cooldown, nao continue
 	if _cooldowns.get(feitico_id, 0) > 0.1: return
 	
 	# pega as definicoes do feitico
-	var feitico_def : FeiticoDefinicaoRes = registro_feiticos.get_feitico(feitico_id)
+	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
 	# verifica se tem mana o suficiente para criar o feitico
 	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): return
 	
+	# --- Tenta criar o Contexto do Feitico ---
 	# cria o contexto do feitico
 	var feitico_contexto : FeiticoContexto = _criar_feitico_contexto(feitico_def)
 	# se nao foi possivel criar o contexto (ou lancar o feitico) pare
 	if not feitico_contexto: return
 	
+	# --- Gasta os recursos para lancar ---
 	# coloque o feitico no cooldown
 	_cooldowns[feitico_id] = feitico_def.cooldown
 	# gasta a amana
 	sistema_mana.gastar_mana(feitico_def.custo)
 	
-	# lancar o feitico
+	# --- Lanca o feitico ---
 	_lancar_feitico(feitico_contexto)
 
-func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContexto:
-	var feitico_contexto := FeiticoContexto.new()
-	
-	feitico_contexto.feitico_id = feitico_def.feitico_id
-	feitico_contexto.feitico_tipo = feitico_def.feitico_tipo
-	# TODO: achar outra solucao alem do peer id
-	feitico_contexto.criador = multiplayer.get_unique_id()
-	feitico_contexto.alvo = null
-	feitico_contexto.posicao_global_inicial = global_position
-	feitico_contexto.direcao = -get_global_transform().basis.z
-	
-	# TODO: mudar o contexto dependendo do tipo de feitico
-	match (feitico_def.feitico_tipo):
-		Feitico.Tipo.INSTANTANEO:
-			pass
-		Feitico.Tipo.POSICIONADO:
-			ray_cast_visao.force_raycast_update()
-			if ray_cast_visao.is_colliding():
-				var posicao := ray_cast_visao.get_collision_point()
-				feitico_contexto.posicao_global_inicial = posicao
-				feitico_contexto.direcao = Vector3.FORWARD
-			else:
-				# se nao for possivel colocar, entao nao lance
-				return null
-		Feitico.Tipo.EFEITO:
-			feitico_contexto.posicao_global_inicial = global_position
-	
+func _criar_feitico_contexto(feitico_def : FeiticoDef) -> FeiticoContexto:
+	var feitico_contexto := FeiticoContexto.criar(
+												feitico_def, 
+												self, 
+												multiplayer.get_unique_id()
+												)
 	return feitico_contexto
 
-# chama o network para enviar o feitico
+# emite que esta lancando um feitico
 func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
-	NetworkClient.lancar_feitico(feitico_contexto)
+	lancar_feitico.emit(feitico_contexto)
