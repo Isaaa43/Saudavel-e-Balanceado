@@ -1,7 +1,10 @@
+class_name CameraJogador
 extends Camera3D
 
 @export var jogador : Jogador
 @export var cabeca : Node3D
+
+@onready var remote_transform_mira: RemoteTransform3D = $RemoteTransformMira
 
 var mouse_sensitivity := 0.005
 var controller_sensitivity := 5.0
@@ -53,3 +56,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func set_target_remote_transform_mira(node_path: String) -> void:
+	remote_transform_mira.remote_path = node_path
+	remote_transform_mira.force_update_cache()

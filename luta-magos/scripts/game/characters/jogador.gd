@@ -6,9 +6,7 @@ class_name Jogador
 
 var lancador_feiticos: LancadorFeiticos
 
-@onready var camera_3d: Camera3D = $Cabeca/Camera3D
-@onready var camera_mira_pivot: Node3D = $Cabeca/Camera3D/MiraPivot
-
+@onready var camera_jogador: CameraJogador = $Cabeca/Camera3D
 
 var dados_jogador : DadosJogador :
 	set(_dados_jog):
@@ -33,10 +31,11 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		_turn_off(lancador_feiticos)
+		camera_jogador.queue_free()
 		#_turn_off(lancador_feiticos)
 		return
 	
-	camera_3d.start()
+	camera_jogador.start()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
