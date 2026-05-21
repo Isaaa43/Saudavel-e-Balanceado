@@ -17,5 +17,9 @@ extends Resource
 @export_group("Visual")
 @export var icone_hud: Texture2D
 @export var feitico_scene: PackedScene
+@export var visual_def: FeiticoVisualRes
+
+@export_group("Comportamento")
+@export var comportamento_def: FeiticoComportamentoDef
 
 #TODO: lista de efeitos

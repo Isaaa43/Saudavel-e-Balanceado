@@ -15,6 +15,8 @@ var direcao := Vector3.ZERO
 
 var efeitos : Array[FeiticoEfeito] = []
 
+var comportamento: FeiticoComportamento
+var visual: Node3D
 enum Tipo {
 	PROJETIL,
 	POSICIONADO,
