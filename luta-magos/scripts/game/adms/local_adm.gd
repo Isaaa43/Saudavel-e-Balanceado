@@ -1,4 +1,4 @@
-class_name UIAdm
+class_name LocalAdm
 extends Node
 
 @export var hud : HUDJogador

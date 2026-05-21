@@ -2,7 +2,7 @@ class_name GameAdm
 extends Node
 
 @export var jogadores_adm : JogadoresAdm
-@export var ui_adm : UIAdm
+@export var local_adm : LocalAdm
 
 func _ready() -> void:
 	# ajustar sinais
