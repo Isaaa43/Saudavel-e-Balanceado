@@ -7,6 +7,6 @@
 script = ExtResource("2_i7opx")
 feitico_id = "PuloImpulsionado"
 nome = "Pulo Impulsionado"
-feitico_tipo = 2
 feitico_scene = ExtResource("1_n0lx8")
+tipo = 1
 metadata/_custom_type_script = "uid://dnavupkg51wgc"

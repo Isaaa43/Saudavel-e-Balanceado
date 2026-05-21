@@ -4,7 +4,8 @@ extends Node3D
 
 var feitico_id : String = ""
 var nome: String = ""
-var feitico_tipo : Tipo = Tipo.PROJETIL
+var tipo : Tipo = Tipo.PROJETIL
+var espaco : Espaco = Espaco.DECK
 
 var criador : Jogador = null
 var alvo : Node = null

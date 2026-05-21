@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 	#feitico_id = ""
 	#nome = ""
-	#feitico_tipo = Tipo.PROJETIL
+	#tipo = Tipo.PROJETIL
 #
 	#criador = null
 	#alvo = null
