@@ -4,8 +4,11 @@ class_name Jogador
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
 
+var lancador_feiticos: LancadorFeiticos
+
 @onready var camera_3d: Camera3D = $Cabeca/Camera3D
-@onready var lancador_feiticos: LancadorFeiticos = $Cabeca/Camera3D/LancadorFeiticos
+@onready var camera_mira_pivot: Node3D = $Cabeca/Camera3D/MiraPivot
+
 
 var dados_jogador : DadosJogador :
 	set(_dados_jog):
@@ -29,8 +32,8 @@ func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
 		_turn_off(self)
-		_turn_off(camera_3d)
 		_turn_off(lancador_feiticos)
+		#_turn_off(lancador_feiticos)
 		return
 	
 	camera_3d.start()

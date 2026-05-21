@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://boh1ydvfouvwi"]
 
-[ext_resource type="Script" uid="uid://54st3jcsbn03" path="res://scripts/game/adms/local_adm.gd" id="1_6cx7f"]
-[ext_resource type="PackedScene" uid="uid://c4x1fiwa5kwuq" path="res://cenas/game/UI/hud_jogador.tscn" id="2_qk6fq"]
+[ext_resource type="Script" uid="uid://54st3jcsbn03" path="res://scripts/game/adms/local_adm.gd" id="1_p72xq"]
+[ext_resource type="PackedScene" uid="uid://wafjcxla5f26" path="res://cenas/game/lancador_feiticos/lancador_feiticos.tscn" id="2_d60qj"]
+[ext_resource type="PackedScene" uid="uid://c4x1fiwa5kwuq" path="res://cenas/game/UI/hud_jogador.tscn" id="3_kn1pb"]
 
-[node name="LocalAdm" type="Node" unique_id=198701727 node_paths=PackedStringArray("hud")]
-script = ExtResource("1_6cx7f")
+[node name="LocalAdm" type="Node" unique_id=198701727 node_paths=PackedStringArray("hud", "lancador_feiticos")]
+script = ExtResource("1_p72xq")
 hud = NodePath("HUDjogador")
+lancador_feiticos = NodePath("RemoteTransform3D/LancadorFeiticos")
 
-[node name="HUDjogador" parent="." unique_id=31207200 instance=ExtResource("2_qk6fq")]
+[node name="HUDjogador" parent="." unique_id=31207200 instance=ExtResource("3_kn1pb")]
 visible = false
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=414903241]
+
+[node name="LancadorFeiticos" parent="RemoteTransform3D" unique_id=881569327 instance=ExtResource("2_d60qj")]
