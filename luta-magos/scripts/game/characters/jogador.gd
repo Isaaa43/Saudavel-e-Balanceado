@@ -4,7 +4,7 @@ class_name Jogador
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
 
-@onready var camera_jogador: CameraJogador = $Cabeca/Camera3D
+@onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
 
 var dados_jogador : DadosJogador :
 	set(_dados_jog):

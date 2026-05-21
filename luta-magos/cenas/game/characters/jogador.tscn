@@ -55,7 +55,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
 [node name="Cabeca" type="Node3D" parent="." unique_id=1241982120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="CameraJogador" parent="Cabeca" unique_id=840626129 instance=ExtResource("4_s8iyn")]
+[node name="CameraJogador" parent="Cabeca" unique_id=840626129 node_paths=PackedStringArray("jogador", "cabeca_pivot") instance=ExtResource("4_s8iyn")]
+jogador = NodePath("../..")
+cabeca_pivot = NodePath("../CabecaPivot")
 
 [node name="CabecaPivot" type="Node3D" parent="Cabeca" unique_id=2010991378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
