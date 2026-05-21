@@ -6,7 +6,7 @@ extends Control
 
 # Quantidade máxima de cartas permitida no deck do jogador.
 @export var max_deck_size: int = 3
-
+@export var card_button_scene: PackedScene
 
 # Lista de cartas que o jogador adicionou ao deck durante a montagem.
 # Essa lista existe apenas em tempo de execução.
@@ -23,7 +23,7 @@ var selected_deck_index: int = -1
 
 # Referências aos nós da interface.
 # O símbolo % funciona porque esses nós foram marcados como "Acessar como Nome Único".
-@onready var card_pool: ItemList = %CardPool
+@onready var card_grid: GridContainer = %CardGrid
 @onready var deck_list: ItemList = %DeckList
 
 @onready var card_art: TextureRect = %CardArt
@@ -37,40 +37,31 @@ var selected_deck_index: int = -1
 
 
 func _ready() -> void:
-	# Conecta os sinais da lista de cartas disponíveis.
-	# item_selected é chamado quando o jogador clica em uma carta.
-	# item_activated é chamado quando o jogador ativa o item, normalmente com duplo clique ou Enter.
-	card_pool.item_selected.connect(_on_card_pool_item_selected)
-	card_pool.item_activated.connect(_on_card_pool_item_activated)
-
-	# Conecta o sinal da lista do deck.
 	deck_list.item_selected.connect(_on_deck_list_item_selected)
 
-	# Conecta os botões da interface.
 	add_button.pressed.connect(_on_add_button_pressed)
 	remove_button.pressed.connect(_on_remove_button_pressed)
 
-	# Inicializa a interface.
 	_populate_card_pool()
 	_update_deck_list()
 	_clear_card_info()
 
-
 func _populate_card_pool() -> void:
-	# Limpa a lista antes de preenchê-la.
-	# Isso evita duplicar itens caso a função seja chamada novamente.
-	card_pool.clear()
+	for child in card_grid.get_children():
+		child.queue_free()
 
-	# Para cada carta disponível, cria um item visual no ItemList da coluna do meio.
+	if card_button_scene == null:
+		push_error("Card button scene não foi definida no Inspector.")
+		return
+
 	for card in available_cards:
-		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]
+		var card_button := card_button_scene.instantiate() as CardGridItem
 
-		# Se a carta tiver um ícone, ele aparece junto do nome.
-		# Se não tiver, aparece apenas o texto.
-		if card.icone:
-			card_pool.add_item(text, card.icone)
-		else:
-			card_pool.add_item(text)
+		card_grid.add_child(card_button)
+
+		card_button.setup(card)
+		card_button.card_selected.connect(_on_card_grid_item_selected)
+		card_button.card_activated.connect(_on_card_grid_item_activated)
 
 
 func _update_deck_list() -> void:
@@ -115,20 +106,11 @@ func _clear_card_info() -> void:
 	card_art.texture = null
 
 
-func _on_card_pool_item_selected(index: int) -> void:
-	# Quando o jogador clica em uma carta disponível,
-	# pegamos a carta correspondente no array available_cards.
-	var card := available_cards[index]
-
-	# Mostra as informações da carta na coluna da direita.
+func _on_card_grid_item_selected(card: CardData) -> void:
 	_show_card_info(card)
 
 
-func _on_card_pool_item_activated(index: int) -> void:
-	# Quando o jogador ativa uma carta disponível, normalmente com duplo clique,
-	# a carta é exibida na coluna da direita e adicionada ao deck.
-	var card := available_cards[index]
-
+func _on_card_grid_item_activated(card: CardData) -> void:
 	_show_card_info(card)
 	_add_card_to_deck(card)
 

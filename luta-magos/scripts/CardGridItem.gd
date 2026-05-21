@@ -1,0 +1,41 @@
+extends Button
+class_name CardGridItem
+
+signal card_selected(card: CardData)
+signal card_activated(card: CardData)
+
+var card_data: CardData = null
+
+@onready var card_icon: TextureRect = %CardIcon
+@onready var card_name_label: Label = %CardNameLabel
+@onready var card_cost_label: Label = %CardCostLabel
+
+
+func _ready() -> void:
+	pressed.connect(_on_pressed)
+
+
+func setup(card: CardData) -> void:
+	card_data = card
+
+	card_name_label.text = card.nome
+	card_cost_label.text = "Custo: %d" % card.custo
+	card_icon.texture = card.icone
+
+	tooltip_text = "%s\n%s" % [card.nome, card.descricao]
+
+
+func _on_pressed() -> void:
+	if card_data == null:
+		return
+
+	card_selected.emit(card_data)
+
+
+func _gui_input(event: InputEvent) -> void:
+	if card_data == null:
+		return
+
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and event.double_click:
+			card_activated.emit(card_data)
