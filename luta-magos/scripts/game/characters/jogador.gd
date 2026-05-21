@@ -30,9 +30,9 @@ func _ready() -> void:
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
 		_turn_off(self)
-		_turn_off(lancador_feiticos)
 		camera_jogador.queue_free()
-		#_turn_off(lancador_feiticos)
+		sistema_vida.queue_free()
+		sistema_mana.queue_free()
 		return
 	
 	camera_jogador.start()
