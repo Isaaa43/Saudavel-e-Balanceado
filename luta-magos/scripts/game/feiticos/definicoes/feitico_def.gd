@@ -6,8 +6,8 @@ extends Resource
 
 @export_group("Info")
 @export var nome: String = ""
-@export var feitico_tipo : Feitico.Tipo = Feitico.Tipo.PROJETIL
-@export var feitico_espaco : Feitico.Espaco = Feitico.Espaco.DECK
+@export var tipo : Feitico.Tipo = Feitico.Tipo.PROJETIL
+@export var espaco : Feitico.Espaco = Feitico.Espaco.DECK
 @export var descricao : String = ""
 
 @export_group("Status")
