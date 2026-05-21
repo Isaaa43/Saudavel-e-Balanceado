@@ -29,3 +29,35 @@ static func from_dict(dict : Dictionary) -> FeiticoContexto:
 	feitico_contexto.posicao_global_inicial = dict.get("posicao_global_inicial")
 	feitico_contexto.direcao = dict.get("direcao")
 	return feitico_contexto
+
+static func criar(
+	feitico_def: FeiticoDef,
+	lancador_feiticos: LancadorFeiticos,
+	criador_id: int
+) -> FeiticoContexto:
+	
+	var feitico_contexto := FeiticoContexto.new()
+	
+	feitico_contexto.feitico_id = feitico_def.feitico_id
+	feitico_contexto.feitico_tipo = feitico_def.feitico_tipo
+	# TODO: achar outra solucao alem do peer id
+	feitico_contexto.criador = criador_id
+	feitico_contexto.alvo = null
+	
+	# TODO: mudar o contexto dependendo do tipo de feitico
+	match (feitico_def.feitico_tipo):
+		Feitico.Tipo.PROJETIL:
+			feitico_contexto.posicao_global_inicial = lancador_feiticos.global_position
+			feitico_contexto.direcao = lancador_feiticos.get_direcao_mirando()
+		Feitico.Tipo.POSICIONADO:
+			var pos_global: Vector3 = lancador_feiticos.get_posicao_global_mirando()
+			if pos_global != Vector3.INF:
+				feitico_contexto.posicao_global_inicial = pos_global
+				feitico_contexto.direcao = Vector3.FORWARD
+			else:
+				# se nao for possivel colocar, entao nao lance
+				return null
+		Feitico.Tipo.EFEITO:
+			feitico_contexto.posicao_global_inicial = lancador_feiticos.global_position
+	
+	return feitico_contexto
