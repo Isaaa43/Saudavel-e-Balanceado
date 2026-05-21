@@ -11,6 +11,7 @@ var jogador : Jogador
 func _ready() -> void:
 	hud.show()
 	lancador_feiticos.hud_jogador = hud
+	lancador_feiticos.lancar_feitico.connect(_enviar_lancar_feitico)
 
 func ajusta_para_jogador(_jogador: Jogador) -> void:
 	jogador = _jogador
@@ -28,3 +29,6 @@ func _ajustar_lancador_feiticos() -> void:
 	lancador_feiticos.sistema_mana = jogador.sistema_mana
 	# prende o lancador de feiticos na visao da camera
 	jogador.camera_jogador.set_target_remote_transform_mira(lancador_feiticos.get_path())
+
+func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
+	Network.client.lancar_feitico(feitico_contexto)

@@ -1,6 +1,8 @@
 class_name LancadorFeiticos
 extends Node3D
 
+signal lancar_feitico(feitico_contexto: FeiticoContexto)
+
 @export var sistema_mana : SistemaMana
 
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
@@ -104,6 +106,6 @@ func _criar_feitico_contexto(feitico_def : FeiticoDefinicaoRes) -> FeiticoContex
 	
 	return feitico_contexto
 
-# chama o network para enviar o feitico
+# emite que esta lancando um feitico
 func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
-	Network.client.lancar_feitico(feitico_contexto)
+	lancar_feitico.emit(feitico_contexto)
