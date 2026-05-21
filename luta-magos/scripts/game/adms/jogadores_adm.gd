@@ -1,7 +1,7 @@
 class_name JogadoresAdm
 extends Node
 
-signal colocar_hud_jogador(jogador: Jogador)
+signal recebido_jogador_authority(jogador: Jogador)
 
 @export var JOGADOR_REF : PackedScene
 
@@ -33,7 +33,7 @@ func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 	
 	jogadores_node_pai.add_child(jogador, true)
 	jogadores_por_peer_id[peer_id] = jogador
-	_verificar_hud_jogador(jogador, peer_id)
+	_verificar_authority_jogador(jogador, peer_id)
 	
 	jogador.global_position = Vector3.ONE * randi_range(2, 5)
 	jogador.velocity = Vector3.ZERO
@@ -54,15 +54,14 @@ func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	var jogador : Jogador = node
 	var jog_peer_id : int = int(jogador.name)
 	jogadores_por_peer_id[jog_peer_id] = jogador
-	_verificar_hud_jogador(jogador, jog_peer_id)
-	
+	_verificar_authority_jogador(jogador, jog_peer_id)
 	# peca para o server os dados desse jogador
 	Network.client.pedir_dados_jogador_do_jogador(jog_peer_id)
 
-func _verificar_hud_jogador(jogador: Jogador, jog_peer_id: int) -> void:
-	var meu_peer_id: int = Network.client.dados_jogador.peer_id
-	if meu_peer_id == jog_peer_id:
-		colocar_hud_jogador.emit(jogador)
+func _verificar_authority_jogador(jogador: Jogador, jog_peer_id: int) -> void:
+	var authority_peer_id: int = Network.client.dados_jogador.peer_id
+	if authority_peer_id == jog_peer_id:
+		recebido_jogador_authority.emit(jogador)
 
 func get_jogador_peer_id(peer_id: int) -> Jogador:
 	if jogadores_por_peer_id.has(peer_id):

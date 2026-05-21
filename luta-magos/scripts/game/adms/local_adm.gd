@@ -12,7 +12,7 @@ func _ready() -> void:
 	hud.show()
 	lancador_feiticos.hud_jogador = hud
 
-func ajustar_hud_jogador(_jogador: Jogador) -> void:
+func ajusta_para_jogador(_jogador: Jogador) -> void:
 	jogador = _jogador
 	_ajustar_hud()
 	_ajustar_lancador_feiticos()
