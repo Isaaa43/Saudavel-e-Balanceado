@@ -29,7 +29,7 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		camera_jogador.queue_free()
-		sistema_vida.queue_free()
+		#sistema_vida.queue_free() # TODO: pensar melhor nesse
 		sistema_mana.queue_free()
 		return
 	
