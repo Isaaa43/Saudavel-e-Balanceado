@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="1_ax7ax"]
 [ext_resource type="PackedScene" uid="uid://bkkbtsjf58c46" path="res://feiticos/BolaFogo/FS_bola_fogo.tscn" id="1_p0m5y"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_toj36"]
-[ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_u0jac"]
+[ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_ax7ax"]
 
 [sub_resource type="Resource" id="Resource_ax7ax"]
 script = ExtResource("1_ax7ax")
