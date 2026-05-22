@@ -43,9 +43,8 @@ static func criar(
 	# TODO: achar outra solucao alem do peer id
 	feitico_contexto.criador = criador_id
 	feitico_contexto.alvo = null
-	
 	# TODO: mudar o contexto dependendo do tipo de feitico
-	match (feitico_def.feitico_tipo):
+	match (feitico_contexto.tipo):
 		Feitico.Tipo.PROJETIL:
 			feitico_contexto.posicao_global_inicial = lancador_feiticos.global_position
 			feitico_contexto.direcao = lancador_feiticos.get_direcao_mirando()
@@ -61,3 +60,13 @@ static func criar(
 			feitico_contexto.posicao_global_inicial = lancador_feiticos.global_position
 	
 	return feitico_contexto
+
+func aplicar_contexto(feitico: Feitico) -> void:
+	# se nao for o mesmo id, do feitico e do contexto, pare
+	if feitico.feitico_id != feitico_id: return
+	
+	feitico.tipo = tipo
+	#feitico.criador = criador
+	#feitico.alvo = alvo
+	feitico.posicao_global_inicial = posicao_global_inicial
+	feitico.direcao = direcao
