@@ -10,7 +10,7 @@ extends Resource
 @export var espaco : Feitico.Espaco = Feitico.Espaco.DECK
 @export_multiline() var descricao : String = ""
 
-@export_group("Status")
+@export_group("Stats")
 @export var cooldown: float = 1.0
 @export var custo: float = 10.0
 
