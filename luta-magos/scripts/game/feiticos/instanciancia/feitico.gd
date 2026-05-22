@@ -37,6 +37,9 @@ func criar() -> void:
 ## Lanca a magia
 func lancar() -> void:
 	criar()
+	
+	if visual.particulas:
+		visual.particulas.emitting = true
 
 ## Ao colidir com objetos
 func colidir() -> void:
