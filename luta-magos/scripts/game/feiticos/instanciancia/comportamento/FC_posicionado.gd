@@ -5,5 +5,11 @@ extends FeiticoComportamento
 ## 		Valores menores que 0.1 nao sao ativados
 var reativacao_seg: float
 
+var efeitos_ativacao : Array[FeiticoEfeito] = []
+
 func physics_process(delta: float) -> void:
 	pass
+
+func aplicar_efeitos(jogador: Jogador) -> void:
+	for efeito : FeiticoEfeito in efeitos_ativacao:
+		efeito.aplicar(jogador)

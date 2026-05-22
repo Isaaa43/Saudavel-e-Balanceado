@@ -21,9 +21,19 @@ func _init(duracao_seg: float) -> void:
 
 func _ready() -> void:
 	set_physics_process(false)
+	# TODO AAAAAA
+	corpo.area.body_entered.connect(_aplicar_efeitos)
+
+func _aplicar_efeitos(body: Node3D) -> void:
+	if body is Jogador:
+		var jog : Jogador = body
+		aplicar_efeitos(jog)
 
 @abstract
 func physics_process(delta: float) -> void
+
+@abstract
+func aplicar_efeitos(jogador: Jogador) -> void
 
 func _physics_process(delta: float) -> void:
 	duracao_seg_restante -= delta
