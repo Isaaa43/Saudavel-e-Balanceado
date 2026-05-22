@@ -23,6 +23,7 @@ func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	feitico.name = feitico_id + "_1"
 	feiticos.add_child(feitico, true)
 	
+	feitico.criar()
 	feitico.lancar()
 
 func _get_jogador_peer_id(peer_id: int) -> Jogador:

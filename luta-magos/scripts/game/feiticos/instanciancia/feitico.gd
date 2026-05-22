@@ -34,13 +34,23 @@ enum Espaco {
 
 ## Cria a magia, antes de lancar
 func criar() -> void:
+	# TODO: remover o force_readable_name
+	# Visual 
+	visual.name = "Visual"
+	add_child(visual, true)
+	# Comportamento
+	comportamento.name = "Comportamento"
+	comportamento.corpo = corpo
+	comportamento.acabou.connect(destruir)
+	add_child(comportamento, true)
+	# Corpo
+	corpo.name = "Corpo"
+	add_child(corpo, true)
 	corpo.global_position = posicao_global_inicial
 	corpo.set_visual_transform(visual.visual_3d)
 
 ## Lanca a magia
 func lancar() -> void:
-	criar()
-	
 	if visual.particulas:
 		visual.particulas.emitting = true
 
