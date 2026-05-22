@@ -46,4 +46,7 @@ func criar_feitico() -> Feitico:
 	feitico.visual.name = "Visual"
 	feitico.add_child(feitico.visual, true)
 	
+	feitico.corpo = FeiticoCorpo.criar()
+	feitico.corpo.name = "Corpo"
+	feitico.add_child(feitico.corpo, true)
 	return feitico

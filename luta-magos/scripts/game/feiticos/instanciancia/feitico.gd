@@ -15,6 +15,7 @@ var direcao := Vector3.ZERO
 var efeitos : Array[FeiticoEfeito] = []
 
 var comportamento: FeiticoComportamento
+var corpo: FeiticoCorpo
 var visual: FeiticoVisual
 
 enum Tipo {
@@ -30,7 +31,7 @@ enum Espaco {
 
 ## Cria a magia, antes de lancar
 func criar() -> void:
-	visual.corpo_feitico.global_position = posicao_global_inicial
+	corpo.global_position = posicao_global_inicial
 
 ## Lanca a magia
 func lancar() -> void:
