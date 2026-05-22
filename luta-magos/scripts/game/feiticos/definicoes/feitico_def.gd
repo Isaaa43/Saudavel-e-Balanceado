@@ -8,7 +8,7 @@ extends Resource
 @export var nome: String = ""
 @export var tipo : Feitico.Tipo = Feitico.Tipo.PROJETIL
 @export var espaco : Feitico.Espaco = Feitico.Espaco.DECK
-@export var descricao : String = ""
+@export_multiline() var descricao : String = ""
 
 @export_group("Status")
 @export var cooldown: float = 1.0
