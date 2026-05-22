@@ -15,8 +15,6 @@ var direcao := Vector3.ZERO :
 		direcao = _direcao
 		comportamento.direcao = direcao
 
-var efeitos : Array[FeiticoEfeito] = []
-
 var comportamento: FeiticoComportamento
 var corpo: FeiticoCorpo
 var visual: FeiticoVisual
