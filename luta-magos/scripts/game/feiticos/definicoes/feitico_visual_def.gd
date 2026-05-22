@@ -3,6 +3,15 @@ extends Resource
 
 @export var cena: PackedScene
 
+func criar() -> FeiticoVisual:
+	var visual := FeiticoVisual.new()
+	visual.corpo_feitico = cena.instantiate()
+	
+	visual.add_child(visual.corpo_feitico, true)
+	
+	return visual
+
+
 #@export var cor: Color = Color.RED
 #@export var escala: float = 1.0
 
