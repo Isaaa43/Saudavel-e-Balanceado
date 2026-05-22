@@ -7,8 +7,14 @@
 [ext_resource type="Script" uid="uid://y7sfo5fwt5aw" path="res://scripts/game/feiticos/definicoes/efeitos/FE_cura_inst_def.gd" id="2_pgmsf"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_8a4q1"]
 
+[sub_resource type="Resource" id="Resource_6ch30"]
+script = ExtResource("2_pgmsf")
+cura = 20.0
+metadata/_custom_type_script = "uid://y7sfo5fwt5aw"
+
 [sub_resource type="Resource" id="Resource_1bgnk"]
 script = ExtResource("1_1bgnk")
+efeitos = Array[ExtResource("1_2wky8")]([SubResource("Resource_6ch30")])
 metadata/_custom_type_script = "uid://dbe4px883cphk"
 
 [sub_resource type="Resource" id="Resource_8a4q1"]
