@@ -1,4 +1,4 @@
-class_name FeiticoVisualRes
+class_name FeiticoVisualDef
 extends Resource
 
 @export var cena: PackedScene
