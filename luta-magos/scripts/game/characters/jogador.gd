@@ -12,9 +12,6 @@ var dados_jogador : DadosJogador :
 		dados_jogador = _dados_jog
 		call_deferred("_display_nome")
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
 func _turn_off(node : Node) -> void:
 	node.set_process(false)
 	node.set_physics_process(false)
@@ -35,28 +32,6 @@ func _ready() -> void:
 	camera_jogador.start()
 	# conectar os sinais
 	sistema_vida.morreu.connect(morrer)
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("pular") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("esquerda", "direita", "frente", "tras")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
 
 @onready var label_nome: Label3D = $LabelNome
 func _display_nome() -> void:
