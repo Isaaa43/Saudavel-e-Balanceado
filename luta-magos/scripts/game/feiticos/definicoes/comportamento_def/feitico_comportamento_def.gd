@@ -7,5 +7,5 @@ extends Resource
 ## 		Valores menores que 0.1 deixam vivos indefinidamente
 @export var duracao_seg: float
 
-func criar() -> FeiticoComportamento:
-	return null
+@abstract
+func criar() -> FeiticoComportamento
