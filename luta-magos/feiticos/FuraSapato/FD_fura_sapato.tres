@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://c71eh6rcojqh0"]
 
+[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos/feitico_efeito_def.gd" id="1_ce6wc"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_h3qb0"]
 [ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_posicionado_def.gd" id="1_j3fjn"]
 [ext_resource type="PackedScene" uid="uid://bxbxjx3vghjp8" path="res://feiticos/FuraSapato/FS_fura_sapato.tscn" id="1_pn68f"]
