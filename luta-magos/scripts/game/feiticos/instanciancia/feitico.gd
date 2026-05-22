@@ -32,6 +32,7 @@ enum Espaco {
 ## Cria a magia, antes de lancar
 func criar() -> void:
 	corpo.global_position = posicao_global_inicial
+	corpo.set_visual_transform(visual.visual_3d)
 
 ## Lanca a magia
 func lancar() -> void:
