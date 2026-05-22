@@ -33,12 +33,7 @@ func criar_feitico() -> Feitico:
 	feitico.tipo = tipo
 	feitico.espaco = espaco
 	
-	# Comportamento
-	var comportamento: FeiticoComportamento = comportamento_def.criar()
-	feitico.comportamento = comportamento
-	feitico.comportamento.name = "Comportamento"
-	#feitico.comportamento.
-	feitico.add_child(feitico.comportamento, true)
+	# TODO: remover o force_readable_name
 	
 	# Parte visual
 	var visual: FeiticoVisual = visual_def.criar()
@@ -49,4 +44,13 @@ func criar_feitico() -> Feitico:
 	feitico.corpo = FeiticoCorpo.criar()
 	feitico.corpo.name = "Corpo"
 	feitico.add_child(feitico.corpo, true)
+	
+	# Comportamento
+	var comportamento: FeiticoComportamento = comportamento_def.criar()
+	feitico.comportamento = comportamento
+	feitico.comportamento.name = "Comportamento"
+	feitico.comportamento.corpo = feitico.corpo
+	feitico.comportamento.acabou.connect(feitico.destruir)
+	feitico.add_child(feitico.comportamento, true)
+	
 	return feitico
