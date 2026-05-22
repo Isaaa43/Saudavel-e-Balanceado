@@ -6,7 +6,7 @@ extends Resource
 func criar() -> FeiticoVisual:
 	var visual := FeiticoVisual.new()
 	visual.visual_3d = cena.instantiate()
-	visual.add_child(visual.visual_3d, true)
+	visual.add_child(visual.visual_3d)
 	
 	return visual
 
