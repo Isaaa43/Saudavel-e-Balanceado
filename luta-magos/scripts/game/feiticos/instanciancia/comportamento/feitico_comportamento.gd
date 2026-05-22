@@ -19,6 +19,9 @@ func _init(duracao_seg: float) -> void:
 		duracao_seg_restante = 999
 		tem_duracao = false
 
+func _ready() -> void:
+	set_physics_process(false)
+
 @abstract
 func physics_process(delta: float) -> void
 
@@ -28,6 +31,10 @@ func _physics_process(delta: float) -> void:
 		acabar()
 	
 	physics_process(delta)
+
+func iniciar(pos_global_inicial: Vector3) -> void:
+	corpo.global_position = pos_global_inicial
+	set_physics_process(true)
 
 func acabar() -> void:
 	acabou.emit()
