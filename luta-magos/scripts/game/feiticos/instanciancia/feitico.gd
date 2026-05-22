@@ -46,11 +46,11 @@ func criar() -> void:
 	# Corpo
 	corpo.name = "Corpo"
 	add_child(corpo, true)
-	corpo.global_position = posicao_global_inicial
 	corpo.set_visual_transform(visual.visual_3d)
 
 ## Lanca a magia
 func lancar() -> void:
+	comportamento.iniciar(posicao_global_inicial)
 	if visual.particulas:
 		visual.particulas.emitting = true
 
