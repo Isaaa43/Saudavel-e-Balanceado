@@ -16,10 +16,34 @@ extends Resource
 
 @export_group("Visual")
 @export var icone_hud: Texture2D
-@export var feitico_scene: PackedScene
 @export var visual_def: FeiticoVisualDef
 
 @export_group("Comportamento")
 @export var comportamento_def: FeiticoComportamentoDef
 
+
+
 #TODO: lista de efeitos
+
+func criar_feitico() -> Feitico:
+	var feitico := Feitico.new()
+	
+	feitico.feitico_id = feitico_id
+	feitico.nome = nome
+	feitico.tipo = tipo
+	feitico.espaco = espaco
+	
+	# Comportamento
+	var comportamento: FeiticoComportamento = comportamento_def.criar()
+	feitico.comportamento = comportamento
+	feitico.comportamento.name = "Comportamento"
+	#feitico.comportamento.
+	feitico.add_child(feitico.comportamento, true)
+	
+	# Parte visual
+	var visual: FeiticoVisual = visual_def.criar()
+	feitico.visual = visual
+	feitico.visual.name = "Visual"
+	feitico.add_child(feitico.visual, true)
+	
+	return feitico

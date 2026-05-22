@@ -1,6 +1,5 @@
-@abstract
 class_name Feitico
-extends Node3D
+extends Node
 
 var feitico_id : String = ""
 var nome: String = ""
@@ -31,11 +30,11 @@ enum Espaco {
 
 ## Cria a magia, antes de lancar
 func criar() -> void:
-	pass
+	visual.corpo_feitico.global_position = posicao_global_inicial
 
 ## Lanca a magia
 func lancar() -> void:
-	pass
+	criar()
 
 ## Ao colidir com objetos
 func colidir() -> void:

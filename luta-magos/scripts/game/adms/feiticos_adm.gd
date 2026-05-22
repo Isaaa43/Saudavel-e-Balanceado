@@ -9,21 +9,20 @@ extends Node
 func _ready() -> void:
 	Network.client.spawnar_feitico.connect(_spawnar_feitico)
 
+
 func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	var feitico_id : String = feitico_contexto.feitico_id
-	
 	var feitico_def : FeiticoDef = spell_registry.get_feitico(feitico_id)
-	if not feitico_def: return
-
-	var feitico: Feitico = feitico_def.feitico_scene.instantiate()
-	feiticos.add_child(feitico)
-
-	feitico.feitico_id = feitico_id
+	if (not feitico_id) or (not feitico_def): return
+	
+	var feitico: Feitico = feitico_def.criar_feitico()
+	
+	feitico_contexto.aplicar_contexto(feitico)
 	feitico.criador = _get_jogador_peer_id(feitico_contexto.criador)
-	feitico.direcao = feitico_contexto.direcao
-	feitico.alvo    = feitico_contexto.alvo
-	feitico.posicao_global_inicial = feitico_contexto.posicao_global_inicial
-
+	
+	feitico.name = feitico_id + "_1"
+	feiticos.add_child(feitico, true)
+	
 	feitico.lancar()
 
 func _get_jogador_peer_id(peer_id: int) -> Jogador:
