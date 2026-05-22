@@ -7,7 +7,7 @@ extends FeiticoComportamentoDef
 @export var reativacao_seg: float
 
 func criar() -> FeiticoComportamentoPosicionado:
-	var comportamento := FeiticoComportamentoPosicionado.new()
+	var comportamento := FeiticoComportamentoPosicionado.new(duracao_seg)
 	comportamento.tipo = Feitico.Tipo.POSICIONADO
 	
 	return comportamento

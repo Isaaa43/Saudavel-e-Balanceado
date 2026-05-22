@@ -10,7 +10,10 @@ var criador : Jogador = null
 var alvo : Node = null
 
 var posicao_global_inicial := Vector3.ZERO
-var direcao := Vector3.ZERO
+var direcao := Vector3.ZERO : 
+	set(_direcao):
+		direcao = _direcao
+		comportamento.direcao = direcao
 
 var efeitos : Array[FeiticoEfeito] = []
 
@@ -52,3 +55,6 @@ func acertar() -> void:
 ## Aplicar os efeitos do feitico no alvo
 func aplicar_efeito() -> void:
 	pass
+
+func destruir() -> void:
+	queue_free()
