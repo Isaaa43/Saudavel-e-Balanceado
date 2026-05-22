@@ -22,7 +22,6 @@ extends Resource
 @export var comportamento_def: FeiticoComportamentoDef
 
 
-
 #TODO: lista de efeitos
 
 func criar_feitico() -> Feitico:
@@ -33,24 +32,9 @@ func criar_feitico() -> Feitico:
 	feitico.tipo = tipo
 	feitico.espaco = espaco
 	
-	# TODO: remover o force_readable_name
-	
-	# Parte visual
-	var visual: FeiticoVisual = visual_def.criar()
-	feitico.visual = visual
-	feitico.visual.name = "Visual"
-	feitico.add_child(feitico.visual, true)
-	
+	# Cria os sub sistemas do feitico
 	feitico.corpo = FeiticoCorpo.criar()
-	feitico.corpo.name = "Corpo"
-	feitico.add_child(feitico.corpo, true)
-	
-	# Comportamento
-	var comportamento: FeiticoComportamento = comportamento_def.criar()
-	feitico.comportamento = comportamento
-	feitico.comportamento.name = "Comportamento"
-	feitico.comportamento.corpo = feitico.corpo
-	feitico.comportamento.acabou.connect(feitico.destruir)
-	feitico.add_child(feitico.comportamento, true)
+	feitico.visual = visual_def.criar()
+	feitico.comportamento = comportamento_def.criar()
 	
 	return feitico
