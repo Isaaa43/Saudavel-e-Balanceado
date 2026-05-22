@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://bxbxjx3vghjp8"]
 
-[ext_resource type="Script" uid="uid://cogyijv0p4cgn" path="res://feiticos/FuraSapato/F_fura_sapato.gd" id="1_7d02w"]
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
 height = 0.2
 radial_segments = 32
@@ -25,7 +23,6 @@ albedo_color = Color(0.8104371, 9.62615e-08, 0.42737412, 1)
 height = 1.0
 
 [node name="FS_FuraSapato" type="Node3D" unique_id=2102016733]
-script = ExtResource("1_7d02w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
 mesh = SubResource("CylinderMesh_xe436")

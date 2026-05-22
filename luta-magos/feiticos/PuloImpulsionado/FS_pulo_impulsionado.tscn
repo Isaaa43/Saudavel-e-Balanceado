@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://cgvd5620tl6yn"]
 
-[ext_resource type="Script" uid="uid://cvlb11o57s2ih" path="res://feiticos/PuloImpulsionado/F_pulo_impulsionado.gd" id="1_5mxcy"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7d02w"]
 height = 1.0
 
@@ -21,9 +19,7 @@ height = 0.2
 
 [sub_resource type="Skin" id="Skin_prwku"]
 
-[node name="FS_PuloImpulsionado" type="Node3D" unique_id=2102016733 node_paths=PackedStringArray("area_3d")]
-script = ExtResource("1_5mxcy")
-area_3d = NodePath("Area3D")
+[node name="FS_PuloImpulsionado" type="Node3D" unique_id=2102016733]
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1283389762]
 collision_layer = 257
