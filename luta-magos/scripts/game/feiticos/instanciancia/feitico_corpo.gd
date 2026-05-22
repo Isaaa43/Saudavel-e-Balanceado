@@ -7,12 +7,15 @@ var remote_transf_area: RemoteTransform3D
 static func criar() -> FeiticoCorpo:
 	var corpo := FeiticoCorpo.new()
 	
-	corpo.remote_transf_visual = RemoteTransform3D.new()
-	corpo.remote_transf_area = RemoteTransform3D.new()
-	corpo.add_child(corpo.remote_transf_visual)
-	corpo.add_child(corpo.remote_transf_area)
+	corpo._criar_remote_transforms()
 	
 	return corpo
+
+func _criar_remote_transforms() -> void:
+	remote_transf_visual = RemoteTransform3D.new()
+	remote_transf_area = RemoteTransform3D.new()
+	add_child(remote_transf_visual)
+	add_child(remote_transf_area)
 
 func set_visual_transform(visual: Node) -> void:
 	remote_transf_visual.remote_path = visual.get_path()
