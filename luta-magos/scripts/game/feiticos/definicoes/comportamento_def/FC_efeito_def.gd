@@ -4,5 +4,7 @@ extends FeiticoComportamentoDef
 @export_group("Efeito")
 
 func criar() -> FeiticoComportamentoEfeito:
-	var definicao := FeiticoComportamentoEfeito.new()
-	return definicao
+	var comportamento := FeiticoComportamentoEfeito.new()
+	comportamento.tipo = Feitico.Tipo.EFEITO
+	
+	return comportamento
