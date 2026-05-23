@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
 [ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="2_1hr55"]
+[ext_resource type="Script" uid="uid://gk6kcpugdbb" path="res://scripts/game/characters/sistemas/sistema_movimento.gd" id="2_f2bc4"]
 [ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="2_s8iyn"]
 [ext_resource type="Script" uid="uid://c2t8eacmbwf2u" path="res://scripts/game/characters/sistemas/sistema_mana.gd" id="3_f2bc4"]
 [ext_resource type="Script" uid="uid://cqm03tg7qe4ca" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_ganhar_mana_def.gd" id="4_8vvjh"]
@@ -60,7 +61,10 @@ sistema_mana = NodePath("SistemaMana")
 sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
 
 [node name="SistemaVida" type="Node" parent="ReceptorEfeitos" unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
-script = ExtResource("2_s8iyn")
+[node name="SistemaMovimento" type="Node" parent="." unique_id=3784261 node_paths=PackedStringArray("jogador")]
+script = ExtResource("2_f2bc4")
+jogador = NodePath("..")
+
 label_dano = NodePath("../../LabelDano")
 
 [node name="SistemaMana" type="Node" parent="ReceptorEfeitos" unique_id=958811563 node_paths=PackedStringArray("sistema_efeitos_feiticos")]
