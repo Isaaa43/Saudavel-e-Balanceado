@@ -12,6 +12,8 @@ var direcao := Vector3.ZERO
 
 var visual: FeiticoVisual
 
+var efeitos : Array[FeiticoEfeito] = []
+
 func _init(duracao_seg: float) -> void:
 	duracao_seg_restante = duracao_seg
 	
@@ -35,13 +37,12 @@ func _ready() -> void:
 func _aplicar_efeitos(body: Node3D) -> void:
 	if body is Jogador:
 		var jog : Jogador = body
-		aplicar_efeitos(jog)
+		
+		for efeito: FeiticoEfeito in efeitos:
+			jog.receber_feitico_efeito(efeito)
 
 @abstract
 func physics_process(delta: float) -> void
-
-@abstract
-func aplicar_efeitos(jogador: Jogador) -> void
 
 func _physics_process(delta: float) -> void:
 	duracao_seg_restante -= delta

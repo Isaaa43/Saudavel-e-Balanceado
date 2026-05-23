@@ -6,12 +6,7 @@ extends FeiticoComportamentoDef
 ## 		Valores menores que 0.1 nao sao ativados
 @export var reativacao_seg: float
 
-@export var efeitos_ativacao : Array[FeiticoEfeitoDef] = []
-
 func _criar() -> FeiticoComportamentoArmadilha:
 	var comportamento := FeiticoComportamentoArmadilha.new(duracao_seg)
-	
-	for efeito_def : FeiticoEfeitoDef in efeitos_ativacao:
-		comportamento.efeitos_ativacao.append(efeito_def.criar())
 	
 	return comportamento

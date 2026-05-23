@@ -4,7 +4,13 @@
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_h3qb0"]
 [ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_armadilha_def.gd" id="1_j3fjn"]
 [ext_resource type="PackedScene" uid="uid://bxbxjx3vghjp8" path="res://feiticos/FuraSapato/FS_fura_sapato.tscn" id="1_pn68f"]
+[ext_resource type="Script" uid="uid://b4tn3wkf7ejho" path="res://scripts/game/feiticos/definicoes/efeitos/instantaneo/FE_inst_dano_def.gd" id="2_cn0kq"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_ce6wc"]
+
+[sub_resource type="Resource" id="Resource_6w07u"]
+script = ExtResource("2_cn0kq")
+dano = 10.0
+metadata/_custom_type_script = "uid://b4tn3wkf7ejho"
 
 [sub_resource type="Resource" id="Resource_ce6wc"]
 script = ExtResource("4_ce6wc")
@@ -13,6 +19,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_j3fjn"]
 script = ExtResource("1_j3fjn")
+efeitos = Array[ExtResource("1_ce6wc")]([SubResource("Resource_6w07u")])
 visual_def = SubResource("Resource_ce6wc")
 metadata/_custom_type_script = "uid://dohcgiora0lml"
 

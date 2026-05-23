@@ -7,12 +7,19 @@ extends Resource
 ## 		Valores menores que 0.1 deixam vivos indefinidamente
 @export var duracao_seg: float
 
+@export var efeitos: Array[FeiticoEfeitoDef]
+
 @export_group("Visual")
 @export var visual_def: FeiticoVisualDef
 
 func criar() -> FeiticoComportamento:
+	# cria o comportamento especifico
 	var comportamento : FeiticoComportamento = _criar()
 	_criar_sub_sistemas(comportamento)
+	# adiciona os efeitos
+	for efeito_def : FeiticoEfeitoDef in efeitos:
+		comportamento.efeitos.append(efeito_def.criar())
+	# retorna o comportamento especifico criado
 	return comportamento
 
 @abstract

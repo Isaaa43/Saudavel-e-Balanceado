@@ -3,6 +3,7 @@ class_name Jogador
 
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
+@export var sistema_feitico_efeitos : SistemaEfeitosFeiticos
 
 @onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
 
@@ -74,3 +75,9 @@ func receber_dano(dano: float) -> void:
 	
 func receber_vida(vida: float) -> void:
 	sistema_vida.receber_vida(vida)
+
+# -----------------------------------------------------------------------------
+# Sistema Efeitos dos Feiticos
+# -----------------------------------------------------------------------------
+func receber_feitico_efeito(feitico_efeito: FeiticoEfeito) -> void:
+	sistema_feitico_efeitos.receber_feitico_efeito(feitico_efeito)

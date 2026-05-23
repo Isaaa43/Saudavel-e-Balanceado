@@ -3,8 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://c0xr3up2ldxh7" path="res://feiticos/ToTeVendo/FS_to_te_vendo.tscn" id="1_8gotu"]
 [ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="1_8wl8k"]
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos/feitico_efeito_def.gd" id="1_bfg0o"]
+[ext_resource type="Script" uid="uid://ddk2ga5ldf3f7" path="res://scripts/game/feiticos/definicoes/efeitos/instantaneo/FE_inst_impulso_def.gd" id="2_ogy7c"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_qq211"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="3_ckelo"]
+
+[sub_resource type="Resource" id="Resource_sdo8q"]
+script = ExtResource("2_ogy7c")
+velocidade_adicional = 1.0
+metadata/_custom_type_script = "uid://ddk2ga5ldf3f7"
 
 [sub_resource type="Resource" id="Resource_bfg0o"]
 script = ExtResource("3_ckelo")
@@ -15,6 +21,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 script = ExtResource("1_8wl8k")
 velocidade = 5.0
 duracao_seg = 10.0
+efeitos = Array[ExtResource("1_bfg0o")]([SubResource("Resource_sdo8q")])
 visual_def = SubResource("Resource_bfg0o")
 metadata/_custom_type_script = "uid://cf63pij16plhl"
 
