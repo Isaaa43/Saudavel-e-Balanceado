@@ -29,6 +29,10 @@ var efeitos : Array[FeiticoEfeito] = []
 var corpo: FeiticoCorpo
 var direcao := Vector3.ZERO
 
+# Area Ativacao
+# -----------------------------------------------------------------------------
+var area_ativacao: FeiticoAreaAtivacao
+
 # Visual
 # -----------------------------------------------------------------------------
 var visual: FeiticoVisual
@@ -44,15 +48,19 @@ func _init(duracao_seg: float) -> void:
 func _ready() -> void:
 	set_physics_process(false)
 	# TODO AAAAAA
-	corpo.area.body_entered.connect(_aplicar_efeitos)
 	
 	# Visual 
 	visual.name = "Visual"
 	add_child(visual, true)
+	# AreaAtivacao
+	area_ativacao.name = "AreaAtivacao"
+	add_child(area_ativacao, true)
+	area_ativacao.body_entered.connect(_aplicar_efeitos)
 	# Corpo
 	corpo.name = "Corpo"
 	add_child(corpo, true)
 	corpo.set_visual_transform(visual.visual_3d)
+	corpo.set_area_transform(area_ativacao)
 
 func _aplicar_efeitos(body: Node3D) -> void:
 	if body is Jogador:

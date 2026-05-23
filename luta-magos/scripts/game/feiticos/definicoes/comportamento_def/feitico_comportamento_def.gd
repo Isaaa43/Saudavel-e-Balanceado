@@ -39,4 +39,5 @@ func _criar() -> FeiticoComportamento
 
 func _criar_sub_sistemas(comportamento: FeiticoComportamento) -> void:
 	comportamento.visual = visual_def.criar()
+	comportamento.area_ativacao = FeiticoAreaAtivacao.new()
 	comportamento.corpo = FeiticoCorpo.criar()
