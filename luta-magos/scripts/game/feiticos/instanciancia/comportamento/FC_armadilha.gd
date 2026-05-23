@@ -1,4 +1,4 @@
-class_name FeiticoComportamentoPosicionado
+class_name FeiticoComportamentoArmadilha
 extends FeiticoComportamento
 
 ## Tempo em segundos para reativar o feitico.
