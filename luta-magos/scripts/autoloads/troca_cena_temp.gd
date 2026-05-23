@@ -1,8 +1,9 @@
 extends Node
 
-var main_game = get_node_or_null("/root/MainGame")
-
+var main_game : Node
+# TODO: criar solucao melhor
 var partida : MenuPartida
+
 const MENU_INICIAL = preload("uid://6als3mloubtk")
 const MENU_PARTIDA = preload("uid://c2ppdl2yqxf16")
 
@@ -11,11 +12,9 @@ const GAME_ADM = preload("uid://cm7rbbwccvpap")
 var jogo_iniciado : bool = false
 
 func _ready() -> void:
-	var main_game = get_node_or_null("/root/MainGame")
 	main_game = get_node("/root/MainGame")
 	await get_tree().create_timer(0.1).timeout
 	jogo_iniciado = true
-	
 
 func go_to_menu_inicial() -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
