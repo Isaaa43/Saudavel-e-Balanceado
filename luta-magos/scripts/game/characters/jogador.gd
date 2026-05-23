@@ -35,6 +35,8 @@ func _ready() -> void:
 		return
 	
 	camera_jogador.start()
+	# conectar os sinais
+	sistema_vida.morreu.connect(morrer)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -75,6 +77,10 @@ func receber_dano(dano: float) -> void:
 	
 func receber_vida(vida: float) -> void:
 	sistema_vida.receber_vida(vida)
+
+func morrer() -> void:
+	await get_tree().create_timer(0.5).timeout
+	Network.client.pedir_terminar_partida()
 
 # -----------------------------------------------------------------------------
 # Sistema Efeitos dos Feiticos
