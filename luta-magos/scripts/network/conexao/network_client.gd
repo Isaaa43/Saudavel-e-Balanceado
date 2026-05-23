@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func _ready_lobby() -> void:
 	Network.client_connection_ok.connect(_enviar_dados_jogador)
+	Network.client_server_disconnected.connect(_terminar_partida)
 	
 func entrar_lobby() -> void:
 	Network.create_client()
