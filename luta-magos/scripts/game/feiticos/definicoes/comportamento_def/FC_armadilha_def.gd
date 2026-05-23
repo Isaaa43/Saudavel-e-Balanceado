@@ -10,7 +10,6 @@ extends FeiticoComportamentoDef
 
 func criar() -> FeiticoComportamentoArmadilha:
 	var comportamento := FeiticoComportamentoArmadilha.new(duracao_seg)
-	comportamento.tipo = Feitico.Tipo.POSICIONADO
 	
 	for efeito_def : FeiticoEfeitoDef in efeitos_ativacao:
 		comportamento.efeitos_ativacao.append(efeito_def.criar())

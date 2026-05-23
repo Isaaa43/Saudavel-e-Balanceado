@@ -7,7 +7,6 @@ extends FeiticoComportamentoDef
 
 func criar() -> FeiticoComportamentoSomenteEfeito:
 	var comportamento := FeiticoComportamentoSomenteEfeito.new(duracao_seg)
-	comportamento.tipo = Feitico.Tipo.EFEITO
 	
 	for efeito_def : FeiticoEfeitoDef in efeitos:
 		comportamento.efeitos.append(efeito_def.criar())

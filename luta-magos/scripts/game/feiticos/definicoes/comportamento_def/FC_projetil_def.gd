@@ -9,7 +9,6 @@ extends FeiticoComportamentoDef
 
 func criar() -> FeiticoComportamentoProjetil:
 	var comportamento := FeiticoComportamentoProjetil.new(duracao_seg)
-	comportamento.tipo = Feitico.Tipo.PROJETIL
 	
 	comportamento.velocidade = velocidade
 	comportamento.perfura = perfura

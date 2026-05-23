@@ -4,8 +4,6 @@ extends Node
 
 signal acabou
 
-var tipo: Feitico.Tipo
-
 var duracao_seg_restante: float
 var tem_duracao : bool = true
 
