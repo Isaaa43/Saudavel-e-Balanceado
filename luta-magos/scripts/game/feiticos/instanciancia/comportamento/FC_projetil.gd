@@ -2,7 +2,7 @@ class_name FeiticoComportamentoProjetil
 extends FeiticoComportamento
 
 var velocidade: float
-var perfura: bool
+var perfurar: bool
 
 var efeitos_impacto : Array[FeiticoEfeito] = []
 

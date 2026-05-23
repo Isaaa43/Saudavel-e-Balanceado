@@ -2,9 +2,9 @@
 class_name FeiticoComportamentoDef
 extends Resource
 
-@export_group("Comportamento")
+@export_group("Duracao")
 ## Tempo em segundos que o feitico existe no mapa.
-## 		Valores menores que 0.1 deixam vivos indefinidamente
+## 		(Valores menores que 0.1 deixam vivos indefinidamente)
 @export var duracao_seg: float
 
 @export var efeitos: Array[FeiticoEfeitoDef]
