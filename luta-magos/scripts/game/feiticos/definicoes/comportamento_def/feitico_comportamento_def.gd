@@ -14,7 +14,7 @@ extends Resource
 @export var afetados := FeiticoComportamento.Afetados.TODOS
 ## Mascara de colisao de fisica3D, contendo quem eh detectado
 ## e afetado pelo comportamento, quem vai receber os efeitos 
-@export_flags_3d_physics var mascara_afetados = 16
+@export_flags_3d_physics var mascara_afetados = 256
 
 @export var efeitos: Array[FeiticoEfeitoDef]
 
