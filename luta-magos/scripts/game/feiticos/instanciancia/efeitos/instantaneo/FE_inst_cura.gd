@@ -1,4 +1,4 @@
-class_name FeiticoEfeitoCuraInstantaneo
+class_name FeiticoEfeitoInstantaneoCura
 extends FeiticoEfeito
 
 var cura: float = 0.0
