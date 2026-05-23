@@ -16,7 +16,6 @@ extends Resource
 
 @export_group("Visual")
 @export var icone_hud: Texture2D
-@export var visual_def: FeiticoVisualDef
 
 @export_group("Comportamento")
 @export var comportamento_def: FeiticoComportamentoDef
@@ -33,8 +32,6 @@ func criar_feitico() -> Feitico:
 	feitico.espaco = espaco
 	
 	# Cria os sub sistemas do feitico
-	feitico.corpo = FeiticoCorpo.criar()
-	feitico.visual = visual_def.criar()
 	feitico.comportamento = comportamento_def.criar()
 	
 	return feitico

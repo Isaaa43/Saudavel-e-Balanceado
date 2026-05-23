@@ -5,7 +5,7 @@ extends FeiticoComportamentoDef
 
 @export var efeitos : Array[FeiticoEfeitoDef] = []
 
-func criar() -> FeiticoComportamentoSomenteEfeito:
+func _criar() -> FeiticoComportamentoSomenteEfeito:
 	var comportamento := FeiticoComportamentoSomenteEfeito.new(duracao_seg)
 	
 	for efeito_def : FeiticoEfeitoDef in efeitos:

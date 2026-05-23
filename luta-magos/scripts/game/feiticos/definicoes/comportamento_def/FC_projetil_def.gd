@@ -7,7 +7,7 @@ extends FeiticoComportamentoDef
 
 @export var efeitos_impacto : Array[FeiticoEfeitoDef] = []
 
-func criar() -> FeiticoComportamentoProjetil:
+func _criar() -> FeiticoComportamentoProjetil:
 	var comportamento := FeiticoComportamentoProjetil.new(duracao_seg)
 	
 	comportamento.velocidade = velocidade

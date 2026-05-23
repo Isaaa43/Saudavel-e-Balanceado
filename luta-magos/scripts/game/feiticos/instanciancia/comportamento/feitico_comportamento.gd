@@ -10,6 +10,8 @@ var tem_duracao : bool = true
 var corpo: FeiticoCorpo
 var direcao := Vector3.ZERO
 
+var visual: FeiticoVisual
+
 func _init(duracao_seg: float) -> void:
 	duracao_seg_restante = duracao_seg
 	
@@ -21,6 +23,14 @@ func _ready() -> void:
 	set_physics_process(false)
 	# TODO AAAAAA
 	corpo.area.body_entered.connect(_aplicar_efeitos)
+	
+	# Visual 
+	visual.name = "Visual"
+	add_child(visual, true)
+	# Corpo
+	corpo.name = "Corpo"
+	add_child(corpo, true)
+	corpo.set_visual_transform(visual.visual_3d)
 
 func _aplicar_efeitos(body: Node3D) -> void:
 	if body is Jogador:
@@ -43,6 +53,8 @@ func _physics_process(delta: float) -> void:
 func iniciar(pos_global_inicial: Vector3) -> void:
 	corpo.global_position = pos_global_inicial
 	set_physics_process(true)
+	if visual.particulas:
+		visual.particulas.emitting = true
 
 func acabar() -> void:
 	acabou.emit()

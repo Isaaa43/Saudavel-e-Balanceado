@@ -8,7 +8,7 @@ extends FeiticoComportamentoDef
 
 @export var efeitos_ativacao : Array[FeiticoEfeitoDef] = []
 
-func criar() -> FeiticoComportamentoArmadilha:
+func _criar() -> FeiticoComportamentoArmadilha:
 	var comportamento := FeiticoComportamentoArmadilha.new(duracao_seg)
 	
 	for efeito_def : FeiticoEfeitoDef in efeitos_ativacao:
