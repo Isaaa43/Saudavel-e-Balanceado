@@ -30,7 +30,8 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("sistema_vida", "sistema_mana", "sistema_feitico_efeitos")]
-collision_layer = 17
+collision_layer = 257
+collision_mask = 278
 script = ExtResource("1_30vjq")
 sistema_vida = NodePath("SistemaVida")
 sistema_mana = NodePath("SistemaMana")
