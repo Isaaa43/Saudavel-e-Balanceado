@@ -87,3 +87,6 @@ func iniciar(pos_global_inicial: Vector3) -> void:
 
 func acabar() -> void:
 	acabou.emit()
+
+func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
+	area_ativacao.set_feitico_tipo(tipo)

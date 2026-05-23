@@ -1,6 +1,15 @@
 class_name FeiticoAreaAtivacao
 extends Area3D
 
+func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
+	match (tipo):
+		Feitico.Tipo.PROJETIL:
+			pass
+		Feitico.Tipo.POSICIONADO:
+			pass
+		Feitico.Tipo.EFEITO:
+			pass
+
 
 func _ready() -> void:
 	_criar_area()

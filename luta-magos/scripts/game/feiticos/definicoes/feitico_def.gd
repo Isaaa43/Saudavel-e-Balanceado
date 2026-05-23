@@ -33,5 +33,6 @@ func criar_feitico() -> Feitico:
 	
 	# Cria os sub sistemas do feitico
 	feitico.comportamento = comportamento_def.criar()
+	feitico.comportamento.set_feitico_tipo(tipo)
 	
 	return feitico
