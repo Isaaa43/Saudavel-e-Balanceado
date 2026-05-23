@@ -1,4 +1,4 @@
-class_name FeiticoComportamentoEfeito
+class_name FeiticoComportamentoSomenteEfeito
 extends FeiticoComportamento
 
 var efeitos : Array[FeiticoEfeito] = []
