@@ -67,3 +67,8 @@ func _habilitar_button_join(habilitar: bool) -> void:
 		button_join.text = "Conectando"
 	else:
 		button_join.text = "Join"
+
+
+func _on_button_deck_pressed() -> void:
+	TrocaCenaTemp.menu_deck()
+	pass # Replace with function body.

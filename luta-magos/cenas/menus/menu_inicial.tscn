@@ -151,6 +151,7 @@ layout_mode = 2
 text = "Cancelar"
 
 [connection signal="pressed" from="UI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]

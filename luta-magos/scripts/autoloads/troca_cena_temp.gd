@@ -6,6 +6,7 @@ var partida : MenuPartida
 
 const MENU_INICIAL = preload("uid://6als3mloubtk")
 const MENU_PARTIDA = preload("uid://c2ppdl2yqxf16")
+const MENU_DECK = preload("uid://djncp32jv7ppr")
 
 const GAME_ADM = preload("uid://cm7rbbwccvpap")
 
@@ -38,3 +39,9 @@ func go_to_game() -> void:
 	
 	var game := GAME_ADM.instantiate()
 	main_game.add_child(game)
+
+func menu_deck() -> void:
+	for c in main_game.get_children(): c.queue_free()
+	var menu_deck := MENU_DECK.instantiate()
+	# TODO: criar soluacao melhor
+	main_game.add_child(menu_deck)
