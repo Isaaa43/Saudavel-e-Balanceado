@@ -4,15 +4,35 @@ extends Node
 
 signal acabou
 
+enum Afetados {
+	TODOS, 		## Todos
+	SOLO,		## Somente o criador do feitico
+	ALVO,		## Somente o alvo selecionado
+	ALIADOS,	## Todos os alidos
+	INIMIGOS,	## Todos os inimigos
+}
+
+# Duracao
+# -----------------------------------------------------------------------------
 var duracao_seg_restante: float
 var tem_duracao : bool = true
 
+# Efeitos
+# -----------------------------------------------------------------------------
+var afetados : Afetados
+var mask_afetados : Variant
+ 
+var efeitos : Array[FeiticoEfeito] = []
+
+# Corpo Feitico
+# -----------------------------------------------------------------------------
 var corpo: FeiticoCorpo
 var direcao := Vector3.ZERO
 
+# Visual
+# -----------------------------------------------------------------------------
 var visual: FeiticoVisual
 
-var efeitos : Array[FeiticoEfeito] = []
 
 func _init(duracao_seg: float) -> void:
 	duracao_seg_restante = duracao_seg
