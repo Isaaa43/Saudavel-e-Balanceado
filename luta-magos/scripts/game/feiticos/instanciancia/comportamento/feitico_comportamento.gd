@@ -38,6 +38,10 @@ var area_ativacao: FeiticoAreaAtivacao
 var visual: FeiticoVisual
 
 
+# -----------------------------------------------------------------------------
+# Init e Ready do node
+# -----------------------------------------------------------------------------
+
 func _init(duracao_seg: float) -> void:
 	duracao_seg_restante = duracao_seg
 	
@@ -46,9 +50,13 @@ func _init(duracao_seg: float) -> void:
 		tem_duracao = false
 
 func _ready() -> void:
+	# desliga a fisca ate iniciar() ser chamado
 	set_physics_process(false)
-	# TODO AAAAAA
 	
+	# criar sub sistemas
+	_ready_sub_sistemas()
+
+func _ready_sub_sistemas() -> void:
 	# Visual 
 	visual.name = "Visual"
 	add_child(visual, true)
@@ -62,12 +70,37 @@ func _ready() -> void:
 	corpo.set_visual_transform(visual.visual_3d)
 	corpo.set_area_transform(area_ativacao)
 
+# -----------------------------------------------------------------------------
+# Aplica os efeitos
+# -----------------------------------------------------------------------------
+
 func _aplicar_efeitos(body: Node3D) -> void:
 	if body is Jogador:
 		var jog : Jogador = body
 		
 		for efeito: FeiticoEfeito in efeitos:
 			jog.receber_feitico_efeito(efeito)
+
+# -----------------------------------------------------------------------------
+# Iniciar
+# -----------------------------------------------------------------------------
+
+func iniciar(pos_global_inicial: Vector3) -> void:
+	corpo.global_position = pos_global_inicial
+	set_physics_process(true)
+	if visual.particulas:
+		visual.particulas.emitting = true
+
+# -----------------------------------------------------------------------------
+# Fim
+# -----------------------------------------------------------------------------
+
+func acabar() -> void:
+	acabou.emit()
+
+# -----------------------------------------------------------------------------
+# Processar
+# -----------------------------------------------------------------------------
 
 @abstract
 func physics_process(delta: float) -> void
@@ -79,14 +112,8 @@ func _physics_process(delta: float) -> void:
 	
 	physics_process(delta)
 
-func iniciar(pos_global_inicial: Vector3) -> void:
-	corpo.global_position = pos_global_inicial
-	set_physics_process(true)
-	if visual.particulas:
-		visual.particulas.emitting = true
-
-func acabar() -> void:
-	acabou.emit()
-
+# -----------------------------------------------------------------------------
+# Area Ativacao
+# -----------------------------------------------------------------------------
 func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
 	area_ativacao.set_feitico_tipo(tipo)
