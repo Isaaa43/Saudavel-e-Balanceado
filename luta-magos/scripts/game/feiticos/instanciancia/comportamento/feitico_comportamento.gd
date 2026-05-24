@@ -20,7 +20,12 @@ var tem_duracao : bool = true
 # Efeitos
 # -----------------------------------------------------------------------------
 var afetados : Afetados
-var mask_afetados : Variant
+
+## Camadas de fisica 3d que sao afetadas
+var mask_afetados : int :
+	set(_mask_afetados):
+		mask_afetados = _mask_afetados
+		area_ativacao.mask_afetados = _mask_afetados
  
 var efeitos : Array[FeiticoEfeito] = []
 

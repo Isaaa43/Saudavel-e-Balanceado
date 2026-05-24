@@ -1,6 +1,27 @@
 class_name FeiticoAreaAtivacao
 extends Area3D
 
+## Camadas de fisica 3d que sao afetadas
+var mask_afetados: int : 
+	set(_mask_afetados):
+		mask_afetados = _mask_afetados
+		_update_mask()
+
+func _ready() -> void:
+	_criar_area()
+
+func _criar_area() -> void:
+	var col := CollisionShape3D.new()
+	var sphere_shape := SphereShape3D.new()
+	sphere_shape.radius = 0.6
+	col.shape = sphere_shape
+	add_child(col)
+	
+	#force_area_update()
+	
+	body_entered.connect(func(x): print("entrou ", x))
+
+
 func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
 	# Layers: 
 	#	Todos (L 1 = int 1), 
@@ -18,18 +39,5 @@ func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
 			# Efeitos (L 20)
 			set_collision_layer_value(20, true)
 
-func _ready() -> void:
-	_criar_area()
-
-func _criar_area() -> void:
-	
-	var col := CollisionShape3D.new()
-	var sphere_shape := SphereShape3D.new()
-	sphere_shape.radius = 0.6
-	col.shape = sphere_shape
-	add_child(col)
-	
-	#force_area_update()
-	
-	body_entered.connect(func(x): print("entrou ", x))
-	
+func _update_mask() -> void:
+	collision_mask = mask_afetados
