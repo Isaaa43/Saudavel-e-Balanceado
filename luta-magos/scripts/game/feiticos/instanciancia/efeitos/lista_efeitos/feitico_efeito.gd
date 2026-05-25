@@ -14,3 +14,9 @@ func _aplicar(jogador: Jogador) -> void
 
 func aplicar(jogador: Jogador) -> void:
 	_aplicar(jogador)
+
+
+func has_modificador() -> bool:
+	if modificador and is_instance_valid(modificador):
+		return true
+	return false
