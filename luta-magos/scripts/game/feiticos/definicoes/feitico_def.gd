@@ -35,7 +35,7 @@ func criar_feitico(contexto: FeiticoContexto) -> Feitico:
 	assert(feitico_id == contexto.feitico_id, "Feitico_id diferentes no feitico e contexto")
 	
 	# Cria os sub sistemas do feitico
-	feitico.comportamento = comportamento_def.criar()
+	feitico.comportamento = comportamento_def.criar(contexto)
 	feitico.comportamento.set_feitico_tipo(tipo)
 	
 	return feitico

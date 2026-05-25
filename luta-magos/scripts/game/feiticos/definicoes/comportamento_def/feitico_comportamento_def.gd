@@ -22,10 +22,12 @@ extends Resource
 @export_group("Visual")
 @export var visual_def: FeiticoVisualDef
 
-func criar() -> FeiticoComportamento:
+func criar(contexto: FeiticoContexto) -> FeiticoComportamento:
 	# --- cria o comportamento especifico
 	var comportamento : FeiticoComportamento = _criar()
 	_criar_sub_sistemas(comportamento)
+	
+	comportamento.contexto = contexto
 	# --- efeitos
 	comportamento.afetados = afetados
 	comportamento.mask_afetados = mascara_afetados
