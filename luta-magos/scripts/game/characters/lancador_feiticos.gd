@@ -99,11 +99,7 @@ func lancar_feitico_escolhido(feitico_id: String) -> void:
 	_lancar_feitico(feitico_contexto)
 
 func _criar_feitico_contexto(feitico_def : FeiticoDef) -> FeiticoContexto:
-	var feitico_contexto := FeiticoContexto.criar(
-												feitico_def, 
-												self, 
-												multiplayer.get_unique_id()
-												)
+	var feitico_contexto := FeiticoContexto.criar(feitico_def, self)
 	return feitico_contexto
 
 # emite que esta lancando um feitico
