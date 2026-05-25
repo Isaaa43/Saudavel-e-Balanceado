@@ -8,7 +8,7 @@ enum Afetados {
 	TODOS, 		## Todos
 	CRIADOR,	## Somente o criador do feitico
 	ALVO,		## Somente o alvo selecionado
-	ALIADOS,	## Todos os alidos
+	ALIADOS,	## Todos os aliados
 	INIMIGOS,	## Todos os inimigos
 	TODOS_EXCETO_CRIADOR, 	## Todos, exceto o criador do feitico
 	TODOS_EXCETO_ALVO, 		## Todos, exceto o alvo do feitico
