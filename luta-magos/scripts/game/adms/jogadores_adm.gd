@@ -2,6 +2,7 @@ class_name JogadoresAdm
 extends Node
 
 signal recebido_jogador_authority(jogador: Jogador)
+signal recebido_dados_jog_authority(dados_jog: DadosJogador)
 
 @export var JOGADOR_REF : PackedScene
 
@@ -33,7 +34,10 @@ func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 	
 	jogadores_node_pai.add_child(jogador, true)
 	jogadores_por_peer_id[peer_id] = jogador
-	_verificar_authority_jogador(jogador, peer_id)
+	# se for o jogador desse PC, emitir jogador e dados
+	if _verificar_authority_jogador(peer_id):
+		recebido_jogador_authority.emit(jogador)
+		recebido_dados_jog_authority.emit(dados_jog)
 	
 	jogador.global_position = Vector3.ONE * randi_range(2, 5)
 	jogador.velocity = Vector3.ZERO
@@ -43,6 +47,9 @@ func _client_set_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador) -> voi
 	# adiciona os dados do jogador, ao jogador
 	var jogador: Jogador = jogadores_por_peer_id[jog_peer_id]
 	jogador.dados_jogador = dados_jog
+	# se for o jogador desse PC, emitir os dados do jog
+	if _verificar_authority_jogador(jog_peer_id):
+		recebido_dados_jog_authority.emit(dados_jog)
 
 func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	# se for o server pare
@@ -54,14 +61,18 @@ func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	var jogador : Jogador = node
 	var jog_peer_id : int = int(jogador.name)
 	jogadores_por_peer_id[jog_peer_id] = jogador
-	_verificar_authority_jogador(jogador, jog_peer_id)
+	# se for o jogador desse PC, emitir jogador
+	if _verificar_authority_jogador(jog_peer_id):
+		recebido_jogador_authority.emit(jogador)
 	# peca para o server os dados desse jogador
 	Network.client.pedir_dados_jogador_do_jogador(jog_peer_id)
 
-func _verificar_authority_jogador(jogador: Jogador, jog_peer_id: int) -> void:
+## Retorna true se o jog_peer_id for a autoridade desse PC
+func _verificar_authority_jogador(jog_peer_id: int) -> bool:
 	var authority_peer_id: int = Network.client.dados_jogador.peer_id
 	if authority_peer_id == jog_peer_id:
-		recebido_jogador_authority.emit(jogador)
+		return true
+	return false
 
 func get_jogador_peer_id(peer_id: int) -> Jogador:
 	if jogadores_por_peer_id.has(peer_id):

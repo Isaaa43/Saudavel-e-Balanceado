@@ -5,7 +5,6 @@ extends Node
 
 @export var lancador_feiticos : LancadorFeiticos
 
-
 var jogador : Jogador
 
 func _ready() -> void:
@@ -18,6 +17,9 @@ func ajusta_para_jogador(_jogador: Jogador) -> void:
 	_ajustar_hud()
 	_ajustar_lancador_feiticos()
 
+func ajusta_dados_jogador(_dados_jog: DadosJogador) -> void:
+	# passa o id do jogador para o lancador de feiticos
+	lancador_feiticos.jogador_id = jogador.dados_jogador.peer_id
 
 func _ajustar_hud() -> void:
 	# conectar hud as mudanca de atributos do jogador

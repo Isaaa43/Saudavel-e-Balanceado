@@ -8,8 +8,11 @@ signal lancar_feitico(feitico_contexto: FeiticoContexto)
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
-# TODO: temp
+
+## Hud do jogador desse PC
 var hud_jogador: HUDJogador
+## Peer id do jogador que eh dono desse lancador de feiticos
+var jogador_id : int
 
 var _cooldowns: Dictionary = {}
 

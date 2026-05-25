@@ -7,6 +7,7 @@ extends Node
 func _ready() -> void:
 	# ajustar sinais
 	jogadores_adm.recebido_jogador_authority.connect(local_adm.ajusta_para_jogador)
+	jogadores_adm.recebido_dados_jog_authority.connect(local_adm.ajusta_dados_jogador)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
