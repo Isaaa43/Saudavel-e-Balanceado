@@ -16,7 +16,7 @@ extends Resource
 ## e afetado pelo comportamento, quem vai receber os efeitos 
 @export_flags_3d_physics var mascara_afetados = 256
 
-@export var efeitos: Array[FeiticoEfeitoDef]
+@export var lista_efeitos: Array[FeiticoEfeitoDef]
 
 # -----------------------------------------------------------------------------
 @export_group("Visual")
@@ -31,7 +31,7 @@ func criar(contexto: FeiticoContexto) -> FeiticoComportamento:
 	# --- efeitos
 	comportamento.afetados = afetados
 	comportamento.mask_afetados = mascara_afetados
-	comportamento.criar_efeitos(efeitos)
+	comportamento.criar_efeitos(lista_efeitos)
 	# --- retorna o comportamento especifico criado
 	return comportamento
 

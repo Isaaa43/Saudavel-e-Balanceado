@@ -11,9 +11,11 @@ extends Resource
 
 const tipo := FeiticoEfeito.Tipo.INSTANTANEO
 
+@export_group("Efeito Base")
+@export var valor: float
+
 @export var modificador : FeiticoModificadorEfeitoDef
 
-@export var valor: float
 
 func criar() -> FeiticoEfeito:
 	var efeito := _criar()
