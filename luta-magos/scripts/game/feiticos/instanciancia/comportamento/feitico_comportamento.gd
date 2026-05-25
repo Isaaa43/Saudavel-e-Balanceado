@@ -32,7 +32,6 @@ var efeitos : Array[FeiticoEfeito] = []
 # Corpo Feitico
 # -----------------------------------------------------------------------------
 var corpo: FeiticoCorpo
-var direcao := Vector3.ZERO
 
 # Area Ativacao
 # -----------------------------------------------------------------------------
@@ -42,6 +41,9 @@ var area_ativacao: FeiticoAreaAtivacao
 # -----------------------------------------------------------------------------
 var visual: FeiticoVisual
 
+# Dados Feitico
+# -----------------------------------------------------------------------------
+var contexto: FeiticoContexto
 
 # -----------------------------------------------------------------------------
 # Init e Ready do node
@@ -90,11 +92,18 @@ func _aplicar_efeitos(body: Node3D) -> void:
 # Iniciar
 # -----------------------------------------------------------------------------
 
-func iniciar(pos_global_inicial: Vector3) -> void:
-	corpo.global_position = pos_global_inicial
+func iniciar() -> void:
+	# posiciona o corpo do feitico no local, e inicia o process da fisica
+	corpo.global_position = contexto.posicao_global_inicial
 	set_physics_process(true)
+	# TODO melhorar: se tiver particulas, comece a emitr
 	if visual.particulas:
 		visual.particulas.emitting = true
+	# inicia o comportamento especifico das classes derivadas
+	iniciar_comportamento()
+
+@abstract
+func iniciar_comportamento() -> void
 
 # -----------------------------------------------------------------------------
 # Fim

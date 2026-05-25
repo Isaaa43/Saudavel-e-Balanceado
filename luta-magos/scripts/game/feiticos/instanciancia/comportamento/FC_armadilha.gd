@@ -7,6 +7,9 @@ var reativacao_seg: float
 
 var efeitos_ativacao : Array[FeiticoEfeito] = []
 
+func iniciar_comportamento() -> void:
+	pass
+
 func physics_process(delta: float) -> void:
 	pass
 

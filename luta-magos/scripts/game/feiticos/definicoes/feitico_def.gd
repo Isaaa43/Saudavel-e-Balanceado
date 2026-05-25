@@ -23,13 +23,16 @@ extends Resource
 
 #TODO: lista de efeitos
 
-func criar_feitico() -> Feitico:
+func criar_feitico(contexto: FeiticoContexto) -> Feitico:
 	var feitico := Feitico.new()
 	
 	feitico.feitico_id = feitico_id
 	feitico.nome = nome
 	feitico.tipo = tipo
 	feitico.espaco = espaco
+	
+	feitico.contexto = contexto
+	assert(feitico_id == contexto.feitico_id, "Feitico_id diferentes no feitico e contexto")
 	
 	# Cria os sub sistemas do feitico
 	feitico.comportamento = comportamento_def.criar()
