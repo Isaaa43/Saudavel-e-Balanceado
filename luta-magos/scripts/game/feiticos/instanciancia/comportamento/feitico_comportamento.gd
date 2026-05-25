@@ -6,10 +6,12 @@ signal acabou
 
 enum Afetados {
 	TODOS, 		## Todos
-	SOLO,		## Somente o criador do feitico
+	CRIADOR,	## Somente o criador do feitico
 	ALVO,		## Somente o alvo selecionado
 	ALIADOS,	## Todos os alidos
 	INIMIGOS,	## Todos os inimigos
+	TODOS_EXCETO_CRIADOR, 	## Todos, exceto o criador do feitico
+	TODOS_EXCETO_ALVO, 		## Todos, exceto o alvo do feitico
 }
 
 # Duracao
@@ -88,10 +90,41 @@ func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
 func _aplicar_efeitos(body: Node3D) -> void:
 	if body is Jogador:
 		var jog : Jogador = body
-		
 		for efeito: FeiticoEfeito in efeitos:
-			if jog.dados_jogador.peer_id != contexto.criador_id:
-				jog.receber_feitico_efeito(efeito)
+			_aplicar_efeito_jogador(efeito, jog)
+
+func _aplicar_efeito_jogador(efeito: FeiticoEfeito, jogador: Jogador) -> void:
+	var jog_id : int = jogador.dados_jogador.peer_id
+	
+	match (afetados):
+		Afetados.TODOS:
+			jogador.receber_feitico_efeito(efeito)
+		Afetados.CRIADOR:
+			# somente criador do feitico
+			if jog_id == contexto.criador_id:
+				jogador.receber_feitico_efeito(efeito)
+		Afetados.ALVO:
+			# somente alvo do feitico
+			if jog_id == contexto.alvo_id:
+				jogador.receber_feitico_efeito(efeito)
+		Afetados.ALIADOS:
+			# TODO:
+			# somente criador e (aliados do criador)
+			if jog_id != contexto.criador_id:
+				jogador.receber_feitico_efeito(efeito)
+		Afetados.INIMIGOS:
+			# TODO:
+			# somente inimigos
+			if jog_id != contexto.criador_id:
+				jogador.receber_feitico_efeito(efeito)
+		Afetados.TODOS_EXCETO_CRIADOR:
+			# todos, exceto somente o criador do feitico
+			if jog_id != contexto.criador_id:
+				jogador.receber_feitico_efeito(efeito)
+		Afetados.TODOS_EXCETO_ALVO:
+			# todos, exceto somente o alvo do feitico
+			if jog_id != contexto.alvo_id:
+				jogador.receber_feitico_efeito(efeito)
 
 # -----------------------------------------------------------------------------
 # Iniciar

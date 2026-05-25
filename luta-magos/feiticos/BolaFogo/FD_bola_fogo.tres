@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 script = ExtResource("1_ax7ax")
 perfurar = true
 duracao_seg = 4.0
+afetados = 4
 efeitos = Array[ExtResource("1_u0jac")]([SubResource("Resource_p4nti")])
 visual_def = SubResource("Resource_hg8pb")
 metadata/_custom_type_script = "uid://cf63pij16plhl"

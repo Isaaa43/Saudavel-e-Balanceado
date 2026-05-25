@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 script = ExtResource("1_8wl8k")
 velocidade = 5.0
 duracao_seg = 10.0
+afetados = 5
 efeitos = Array[ExtResource("1_bfg0o")]([SubResource("Resource_sdo8q")])
 visual_def = SubResource("Resource_bfg0o")
 metadata/_custom_type_script = "uid://cf63pij16plhl"
