@@ -5,7 +5,7 @@ extends FeiticoEfeitoDef
 @export var velocidade_adicional: float = 10.0
 @export var direcao: Vector3 = Vector3.UP
 
-func criar() -> FeiticoEfeitoInstantaneoImpulso:
+func _criar() -> FeiticoEfeitoInstantaneoImpulso:
 	var efeito := FeiticoEfeitoInstantaneoImpulso.new()
 	efeito.velocidade_adicional = velocidade_adicional
 	efeito.direcao = direcao.normalized()
