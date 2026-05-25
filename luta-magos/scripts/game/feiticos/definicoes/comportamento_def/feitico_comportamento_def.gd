@@ -31,8 +31,7 @@ func criar(contexto: FeiticoContexto) -> FeiticoComportamento:
 	# --- efeitos
 	comportamento.afetados = afetados
 	comportamento.mask_afetados = mascara_afetados
-	for efeito_def : FeiticoEfeitoDef in efeitos:
-		comportamento.efeitos.append(efeito_def.criar())
+	comportamento.criar_efeitos(efeitos)
 	# --- retorna o comportamento especifico criado
 	return comportamento
 

@@ -5,4 +5,3 @@ extends Node
 
 func receber_feitico_efeito(feitico_efeito: FeiticoEfeito) -> void:
 	feitico_efeito.aplicar(jogador)
-	

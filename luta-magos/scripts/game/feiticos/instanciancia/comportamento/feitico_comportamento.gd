@@ -78,15 +78,20 @@ func _ready_sub_sistemas() -> void:
 	corpo.set_area_transform(area_ativacao)
 
 # -----------------------------------------------------------------------------
-# Aplica os efeitos
+# Efeitos
 # -----------------------------------------------------------------------------
+
+func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
+	for efeito_def : FeiticoEfeitoDef in lista_efeito_def:
+		efeitos.append(efeito_def.criar())
 
 func _aplicar_efeitos(body: Node3D) -> void:
 	if body is Jogador:
 		var jog : Jogador = body
 		
 		for efeito: FeiticoEfeito in efeitos:
-			jog.receber_feitico_efeito(efeito)
+			if jog.dados_jogador.peer_id != contexto.criador_id:
+				jog.receber_feitico_efeito(efeito)
 
 # -----------------------------------------------------------------------------
 # Iniciar
