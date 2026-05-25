@@ -9,7 +9,7 @@ var mana : float
 @onready var mana_max_inverso : float = 1 / mana_max
 
 @export var sistema_efeitos_feiticos: SistemaEfeitosFeiticos
-@export var efeito_regen_mana_def: FeiticoEfeitoDuradouroRegenManaDef
+@export var efeito_regen_mana_def: FeiticoEfeitoGanharManaDef
 
 func _ready() -> void:
 	mana = mana_max

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c0xr3up2ldxh7" path="res://feiticos/ToTeVendo/FS_to_te_vendo.tscn" id="1_8gotu"]
 [ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="1_8wl8k"]
-[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos/feitico_efeito_def.gd" id="1_bfg0o"]
-[ext_resource type="Script" uid="uid://ddk2ga5ldf3f7" path="res://scripts/game/feiticos/definicoes/efeitos/instantaneo/FE_inst_impulso_def.gd" id="2_ogy7c"]
+[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_bfg0o"]
+[ext_resource type="Script" uid="uid://ddk2ga5ldf3f7" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_impulso_def.gd" id="2_ogy7c"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_qq211"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="3_ckelo"]
 

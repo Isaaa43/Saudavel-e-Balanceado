@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://cy0n07ui1fty2"]
 
 [ext_resource type="Script" uid="uid://dbe4px883cphk" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_somente_efeito_def.gd" id="1_1bgnk"]
-[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos/feitico_efeito_def.gd" id="1_2wky8"]
+[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_2wky8"]
 [ext_resource type="PackedScene" uid="uid://bqh26u1rb6wm5" path="res://feiticos/Ozempagic/FS_ozempagic.tscn" id="1_7q7bd"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_4ih6y"]
-[ext_resource type="Script" uid="uid://y7sfo5fwt5aw" path="res://scripts/game/feiticos/definicoes/efeitos/instantaneo/FE_inst_cura_def.gd" id="2_pgmsf"]
+[ext_resource type="Script" uid="uid://y7sfo5fwt5aw" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_cura_def.gd" id="2_pgmsf"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_8a4q1"]
 
 [sub_resource type="Resource" id="Resource_6ch30"]
