@@ -66,6 +66,12 @@ func get_direcao_mirando() -> Vector3:
 ## Retorna a posicao global do lancador de feiticos ao fazer um raycast.
 ## 		Retorna Vector3.INF se o raycast nao colidir
 func get_posicao_global_mirando() -> Vector3:
+	# TODO: corrigir isso, problema que fazer o await cria uma cadeia de await
+	# 		criar func especifica para posicionar (feiticos que usam raycast)
+	## so executa o raycast dentro do physics_frame
+	#if not Engine.is_in_physics_frame():
+		#await get_tree().physics_frame
+	#
 	ray_cast_visao.force_raycast_update()
 	if ray_cast_visao.is_colliding():
 		var posicao_global := ray_cast_visao.get_collision_point()
