@@ -1,9 +1,9 @@
 extends CharacterBody3D
 class_name Jogador
 
+@export var receptor_efeitos: ReceptorEfeitos
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
-@export var sistema_feitico_efeitos : SistemaEfeitosFeiticos
 
 @onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
 
@@ -30,8 +30,6 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		camera_jogador.queue_free()
-		#sistema_vida.queue_free() # TODO: pensar melhor nesse
-		sistema_mana.queue_free()
 		return
 	
 	camera_jogador.start()
@@ -75,9 +73,3 @@ func _display_nome() -> void:
 func morrer() -> void:
 	await get_tree().create_timer(0.5).timeout
 	Network.client.pedir_terminar_partida()
-
-# -----------------------------------------------------------------------------
-# Sistema Efeitos dos Feiticos
-# -----------------------------------------------------------------------------
-func receber_feitico_efeito(feitico_efeito: FeiticoEfeito) -> void:
-	sistema_feitico_efeitos.receber_feitico_efeito(feitico_efeito)

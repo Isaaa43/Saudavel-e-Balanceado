@@ -87,11 +87,13 @@ func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
 	for efeito_def : FeiticoEfeitoDef in lista_efeito_def:
 		efeitos.append(efeito_def.criar())
 
-func _aplicar_efeitos(body: Node3D) -> void:
-	if body is Jogador:
-		var jog : Jogador = body
-		for efeito: FeiticoEfeito in efeitos:
-			_aplicar_efeito_jogador(efeito, jog)
+func _aplicar_efeitos(node: Node3D) -> void:
+	var receptor := ReceptorEfeitos.encontrar_receptor_efeitos(node)
+	if receptor != null:
+		_aplicar_efeitos_receptor(receptor)
+
+func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos) -> void:
+	receptor.receber_lista_efeitos(efeitos)
 
 func _aplicar_efeito_jogador(efeito: FeiticoEfeito, jogador: Jogador) -> void:
 	var jog_id : int = jogador.dados_jogador.peer_id
