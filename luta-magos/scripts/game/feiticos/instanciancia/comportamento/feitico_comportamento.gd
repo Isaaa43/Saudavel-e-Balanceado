@@ -90,43 +90,49 @@ func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
 func _aplicar_efeitos(node: Node3D) -> void:
 	var receptor := ReceptorEfeitos.encontrar_receptor_efeitos(node)
 	if receptor != null:
-		_aplicar_efeitos_receptor(receptor)
+		_aplicar_efeitos_receptor(receptor, node)
 
-func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos) -> void:
-	receptor.receber_lista_efeitos(efeitos)
+func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, node: Node3D) -> void:
+	if _deve_aplicar_efeito(node):
+		receptor.receber_lista_efeitos(efeitos)
 
-func _aplicar_efeito_jogador(efeito: FeiticoEfeito, jogador: Jogador) -> void:
+func _deve_aplicar_efeito(node: Node3D) -> bool:
+	# TODO: verificar mais tipos do que so o jogador
+	if not node is Jogador: return false
+	var jogador: Jogador = node
 	var jog_id : int = jogador.dados_jogador.peer_id
 	
 	match (afetados):
 		Afetados.TODOS:
-			jogador.receber_feitico_efeito(efeito)
+			return true
 		Afetados.CRIADOR:
 			# somente criador do feitico
 			if jog_id == contexto.criador_id:
-				jogador.receber_feitico_efeito(efeito)
+				return true
 		Afetados.ALVO:
 			# somente alvo do feitico
 			if jog_id == contexto.alvo_id:
-				jogador.receber_feitico_efeito(efeito)
+				return true
 		Afetados.ALIADOS:
 			# TODO:
 			# somente criador e (aliados do criador)
 			if jog_id != contexto.criador_id:
-				jogador.receber_feitico_efeito(efeito)
+				return true
 		Afetados.INIMIGOS:
 			# TODO:
 			# somente inimigos
 			if jog_id != contexto.criador_id:
-				jogador.receber_feitico_efeito(efeito)
+				return true
 		Afetados.TODOS_EXCETO_CRIADOR:
 			# todos, exceto somente o criador do feitico
 			if jog_id != contexto.criador_id:
-				jogador.receber_feitico_efeito(efeito)
+				return true
 		Afetados.TODOS_EXCETO_ALVO:
 			# todos, exceto somente o alvo do feitico
 			if jog_id != contexto.alvo_id:
-				jogador.receber_feitico_efeito(efeito)
+				return true
+	# se nao cair em nenhum, false
+	return false
 
 # -----------------------------------------------------------------------------
 # Iniciar
