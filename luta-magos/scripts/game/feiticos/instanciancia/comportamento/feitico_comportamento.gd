@@ -163,6 +163,9 @@ func iniciar_comportamento() -> void
 func acabar() -> void:
 	acabou.emit()
 
+func destruir() -> void:
+	queue_free()
+
 # -----------------------------------------------------------------------------
 # Processar
 # -----------------------------------------------------------------------------
@@ -180,5 +183,8 @@ func _physics_process(delta: float) -> void:
 # -----------------------------------------------------------------------------
 # Area Ativacao
 # -----------------------------------------------------------------------------
+# TODO: colocar no init ?
+var feitico_tipo: Feitico.Tipo
 func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
 	area_ativacao.set_feitico_tipo(tipo)
+	feitico_tipo = tipo

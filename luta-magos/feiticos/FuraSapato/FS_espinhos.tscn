@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dl5hnl0sxf6j4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7d02w"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2w1e"]
+albedo_color = Color(0.8104371, 9.62615e-08, 0.42737412, 1)
+
+[node name="Espinhos" type="Node3D" unique_id=1104900511]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=577788761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1707266044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2387259, 0.2, -0.27394772)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1235356639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21720135, 0.2, -0.27003413)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1805903350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2700342, 0.2, 0.26220715)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=405319096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2250284, 0.2, 0.24655303)
+mesh = SubResource("CylinderMesh_7d02w")
+surface_material_override/0 = SubResource("StandardMaterial3D_f2w1e")

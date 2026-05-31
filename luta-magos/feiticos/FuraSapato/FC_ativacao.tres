@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FeiticoComportamentoArmadilhaDef" format=3 uid="uid://cntchr3fclpy1"]
+
+[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_vr3lw"]
+[ext_resource type="Script" uid="uid://b4tn3wkf7ejho" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_dano_def.gd" id="2_rxrhi"]
+[ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_armadilha_def.gd" id="3_unnob"]
+[ext_resource type="PackedScene" uid="uid://dl5hnl0sxf6j4" path="res://feiticos/FuraSapato/FS_espinhos.tscn" id="4_8cf4s"]
+[ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="5_acd8x"]
+
+[sub_resource type="Resource" id="Resource_71k2u"]
+script = ExtResource("2_rxrhi")
+valor = 15.0
+metadata/_custom_type_script = "uid://b4tn3wkf7ejho"
+
+[sub_resource type="Resource" id="Resource_i55dk"]
+script = ExtResource("5_acd8x")
+cena = ExtResource("4_8cf4s")
+metadata/_custom_type_script = "uid://d2ynerodv584f"
+
+[resource]
+script = ExtResource("3_unnob")
+duracao_seg = 2.0
+afetados = 4
+lista_efeitos = Array[ExtResource("1_vr3lw")]([SubResource("Resource_71k2u")])
+visual_def = SubResource("Resource_i55dk")
+metadata/_custom_type_script = "uid://dohcgiora0lml"
