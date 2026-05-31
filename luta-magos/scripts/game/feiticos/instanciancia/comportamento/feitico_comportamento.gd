@@ -31,6 +31,8 @@ var mask_afetados : int :
  
 var efeitos : Array[FeiticoEfeito] = []
 
+var lista_receberam_efeitos : Array[Node3D] = []
+
 # Corpo Feitico
 # -----------------------------------------------------------------------------
 var corpo: FeiticoCorpo
@@ -88,6 +90,9 @@ func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
 		efeitos.append(efeito_def.criar())
 
 func _aplicar_efeitos(node: Node3D) -> void:
+	if lista_receberam_efeitos.has(node): return
+	lista_receberam_efeitos.append(node)
+	
 	var receptor := ReceptorEfeitos.encontrar_receptor_efeitos(node)
 	if receptor != null:
 		_aplicar_efeitos_receptor(receptor, node)
