@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Jogador
 
+@export var receptor_efeitos: ReceptorEfeitos
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
 
@@ -29,11 +30,11 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		camera_jogador.queue_free()
-		#sistema_vida.queue_free() # TODO: pensar melhor nesse
-		sistema_mana.queue_free()
 		return
 	
 	camera_jogador.start()
+	# conectar os sinais
+	sistema_vida.morreu.connect(morrer)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -69,8 +70,6 @@ func _display_nome() -> void:
 # -----------------------------------------------------------------------------
 # Sistema Vida
 # -----------------------------------------------------------------------------
-func receber_dano(dano: float) -> void:
-	sistema_vida.receber_dano(dano)
-	
-func receber_vida(vida: float) -> void:
-	sistema_vida.receber_vida(vida)
+func morrer() -> void:
+	await get_tree().create_timer(0.5).timeout
+	Network.client.pedir_terminar_partida()

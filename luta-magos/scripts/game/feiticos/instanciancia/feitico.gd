@@ -6,18 +6,10 @@ var nome: String = ""
 var tipo : Tipo = Tipo.PROJETIL
 var espaco : Espaco = Espaco.DECK
 
-var criador : Jogador = null
-var alvo : Node = null
-
-var posicao_global_inicial := Vector3.ZERO
-var direcao := Vector3.ZERO : 
-	set(_direcao):
-		direcao = _direcao
-		comportamento.direcao = direcao
-
 var comportamento: FeiticoComportamento
-var corpo: FeiticoCorpo
-var visual: FeiticoVisual
+
+var contexto: FeiticoContexto
+
 
 enum Tipo {
 	PROJETIL,
@@ -33,24 +25,15 @@ enum Espaco {
 ## Cria a magia, antes de lancar
 func criar() -> void:
 	# TODO: remover o force_readable_name
-	# Visual 
-	visual.name = "Visual"
-	add_child(visual, true)
 	# Comportamento
+	comportamento.contexto = contexto
 	comportamento.name = "Comportamento"
-	comportamento.corpo = corpo
 	comportamento.acabou.connect(destruir)
 	add_child(comportamento, true)
-	# Corpo
-	corpo.name = "Corpo"
-	add_child(corpo, true)
-	corpo.set_visual_transform(visual.visual_3d)
 
 ## Lanca a magia
 func lancar() -> void:
-	comportamento.iniciar(posicao_global_inicial)
-	if visual.particulas:
-		visual.particulas.emitting = true
+	comportamento.iniciar()
 
 ## Ao colidir com objetos
 func colidir() -> void:

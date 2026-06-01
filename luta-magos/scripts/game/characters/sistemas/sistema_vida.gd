@@ -3,6 +3,7 @@ extends Node
 
 ## Quando ocorre mudanca na vida, com porcentagem total da vida maxima [0.0, 1.0] 
 signal mudanca_vida(vida_porcentagem: float)
+signal morreu
 
 # TODO: somente teste, remover
 @export var label_dano: Label3D
@@ -56,5 +57,4 @@ func _verificar_morte() -> void:
 		morrer()
 
 func morrer() -> void:
-	await get_tree().create_timer(0.5).timeout
-	TrocaCenaTemp.go_to_menu_inicial()
+	morreu.emit()

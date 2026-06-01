@@ -16,7 +16,6 @@ extends Resource
 
 @export_group("Visual")
 @export var icone_hud: Texture2D
-@export var visual_def: FeiticoVisualDef
 
 @export_group("Comportamento")
 @export var comportamento_def: FeiticoComportamentoDef
@@ -24,7 +23,7 @@ extends Resource
 
 #TODO: lista de efeitos
 
-func criar_feitico() -> Feitico:
+func criar_feitico(contexto: FeiticoContexto) -> Feitico:
 	var feitico := Feitico.new()
 	
 	feitico.feitico_id = feitico_id
@@ -32,9 +31,11 @@ func criar_feitico() -> Feitico:
 	feitico.tipo = tipo
 	feitico.espaco = espaco
 	
+	feitico.contexto = contexto
+	assert(feitico_id == contexto.feitico_id, "Feitico_id diferentes no feitico e contexto")
+	
 	# Cria os sub sistemas do feitico
-	feitico.corpo = FeiticoCorpo.criar()
-	feitico.visual = visual_def.criar()
-	feitico.comportamento = comportamento_def.criar()
+	feitico.comportamento = comportamento_def.criar(contexto)
+	feitico.comportamento.set_feitico_tipo(tipo)
 	
 	return feitico

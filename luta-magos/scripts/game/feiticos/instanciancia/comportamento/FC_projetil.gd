@@ -2,9 +2,14 @@ class_name FeiticoComportamentoProjetil
 extends FeiticoComportamento
 
 var velocidade: float
-var perfura: bool
+var perfurar: bool
 
 var efeitos_impacto : Array[FeiticoEfeito] = []
+
+var direcao := Vector3.ZERO
+
+func iniciar_comportamento() -> void:
+	direcao = contexto.direcao
 
 func physics_process(delta: float) -> void:
 	corpo.global_position += direcao * velocidade * delta

@@ -8,46 +8,39 @@ var mana : float
 @export var mana_max : float = 100
 @onready var mana_max_inverso : float = 1 / mana_max
 
-## Quantidade de mana regenerada por segundo
-@export var mana_regen_seg : float = 1.5
-var tempo_regen : float = 1.0
+@export var sistema_efeitos_feiticos: SistemaEfeitosFeiticos
+@export var efeito_regen_mana_def: FeiticoEfeitoGanharManaDef
 
 func _ready() -> void:
 	mana = mana_max
+	# cria a regeneracao de mana
+	if sistema_efeitos_feiticos:
+		_criar_efeito_mana_regen()
 
-func tem_mana_suficiente(_mana_gastar: float) -> bool:
-	return mana >= _mana_gastar
 
 # -----------------------------------------------------------------------------
 # Regeneracao de Mana
 # -----------------------------------------------------------------------------
-func _physics_process(delta: float) -> void:
-	if tempo_regen <= 0.0: 
-		tempo_regen += 1.0
-		_regen_mana()
-	
-	tempo_regen -= delta
 
-func _regen_mana() -> void:
-	if is_equal_approx(mana, mana_max): return
-	
-	ganhar_mana(mana_regen_seg)
+func _criar_efeito_mana_regen() -> void:
+	var efeito_regen := efeito_regen_mana_def.criar()
+	sistema_efeitos_feiticos.receber_feitico_efeito(efeito_regen)
 
 # -----------------------------------------------------------------------------
 # Mudar Mana
 # -----------------------------------------------------------------------------
+func tem_mana_suficiente(_mana_gastar: float) -> bool:
+	return mana >= _mana_gastar
+
 func gastar_mana(_mana_gastar: float) -> void:
 	if not tem_mana_suficiente(_mana_gastar): return
-	
-	#print('gastar_mana %d' % _mana_gastar)
-	
 	# tirar a mana, ate minimo de 0
 	mana = max(0, mana - _mana_gastar)
 	# emite sinal para atualizar a porcentagem de mana
 	_emitir_mana_porcentagem()
 
 func ganhar_mana(_mana_ganha: float) -> void:
-	#print('ganhar_mana %d' % _mana_ganha)
+	if is_equal_approx(mana, mana_max) or mana > mana_max: return
 	
 	# adicionar mana ate maximo de mana_max
 	mana = min(mana_max, mana + _mana_ganha)

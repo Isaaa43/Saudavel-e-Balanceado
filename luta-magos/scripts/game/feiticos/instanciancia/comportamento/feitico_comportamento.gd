@@ -4,13 +4,54 @@ extends Node
 
 signal acabou
 
-var tipo: Feitico.Tipo
+enum Afetados {
+	TODOS, 		## Todos
+	CRIADOR,	## Somente o criador do feitico
+	ALVO,		## Somente o alvo selecionado
+	ALIADOS,	## Todos os aliados
+	INIMIGOS,	## Todos os inimigos
+	TODOS_EXCETO_CRIADOR, 	## Todos, exceto o criador do feitico
+	TODOS_EXCETO_ALVO, 		## Todos, exceto o alvo do feitico
+}
 
+# Duracao
+# -----------------------------------------------------------------------------
 var duracao_seg_restante: float
 var tem_duracao : bool = true
 
+# Efeitos
+# -----------------------------------------------------------------------------
+var afetados : Afetados
+
+## Camadas de fisica 3d que sao afetadas
+var mask_afetados : int :
+	set(_mask_afetados):
+		mask_afetados = _mask_afetados
+		area_ativacao.mask_afetados = _mask_afetados
+ 
+var efeitos : Array[FeiticoEfeito] = []
+
+var lista_receberam_efeitos : Array[Node3D] = []
+
+# Corpo Feitico
+# -----------------------------------------------------------------------------
 var corpo: FeiticoCorpo
-var direcao := Vector3.ZERO
+
+# Area Ativacao
+# -----------------------------------------------------------------------------
+var area_ativacao: FeiticoAreaAtivacao
+
+# Visual
+# -----------------------------------------------------------------------------
+var visual: FeiticoVisual
+
+# Dados Feitico
+# -----------------------------------------------------------------------------
+var contexto: FeiticoContexto
+
+# -----------------------------------------------------------------------------
+# Init e Ready do node
+# -----------------------------------------------------------------------------
 
 func _init(duracao_seg: float) -> void:
 	duracao_seg_restante = duracao_seg
@@ -20,20 +61,117 @@ func _init(duracao_seg: float) -> void:
 		tem_duracao = false
 
 func _ready() -> void:
+	# desliga a fisca ate iniciar() ser chamado
 	set_physics_process(false)
-	# TODO AAAAAA
-	corpo.area.body_entered.connect(_aplicar_efeitos)
+	
+	# criar sub sistemas
+	_ready_sub_sistemas()
 
-func _aplicar_efeitos(body: Node3D) -> void:
-	if body is Jogador:
-		var jog : Jogador = body
-		aplicar_efeitos(jog)
+func _ready_sub_sistemas() -> void:
+	# Visual 
+	visual.name = "Visual"
+	add_child(visual, true)
+	# AreaAtivacao
+	area_ativacao.name = "AreaAtivacao"
+	add_child(area_ativacao, true)
+	area_ativacao.body_entered.connect(_aplicar_efeitos)
+	# Corpo
+	corpo.name = "Corpo"
+	add_child(corpo, true)
+	corpo.set_visual_transform(visual.visual_3d)
+	corpo.set_area_transform(area_ativacao)
+
+# -----------------------------------------------------------------------------
+# Efeitos
+# -----------------------------------------------------------------------------
+
+func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
+	for efeito_def : FeiticoEfeitoDef in lista_efeito_def:
+		efeitos.append(efeito_def.criar())
+
+func _aplicar_efeitos(node: Node3D) -> void:
+	if lista_receberam_efeitos.has(node): return
+	lista_receberam_efeitos.append(node)
+	
+	var receptor := ReceptorEfeitos.encontrar_receptor_efeitos(node)
+	if receptor != null:
+		_aplicar_efeitos_receptor(receptor, node)
+
+func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, node: Node3D) -> void:
+	if _deve_aplicar_efeito(node):
+		receptor.receber_lista_efeitos(efeitos)
+
+func _deve_aplicar_efeito(node: Node3D) -> bool:
+	# TODO: verificar mais tipos do que so o jogador
+	if not node is Jogador: return false
+	var jogador: Jogador = node
+	var jog_id : int = jogador.dados_jogador.peer_id
+	
+	match (afetados):
+		Afetados.TODOS:
+			return true
+		Afetados.CRIADOR:
+			# somente criador do feitico
+			if jog_id == contexto.criador_id:
+				return true
+		Afetados.ALVO:
+			# somente alvo do feitico
+			if jog_id == contexto.alvo_id:
+				return true
+		Afetados.ALIADOS:
+			# TODO:
+			# somente criador e (aliados do criador)
+			if jog_id != contexto.criador_id:
+				return true
+		Afetados.INIMIGOS:
+			# TODO:
+			# somente inimigos
+			if jog_id != contexto.criador_id:
+				return true
+		Afetados.TODOS_EXCETO_CRIADOR:
+			# todos, exceto somente o criador do feitico
+			if jog_id != contexto.criador_id:
+				return true
+		Afetados.TODOS_EXCETO_ALVO:
+			# todos, exceto somente o alvo do feitico
+			if jog_id != contexto.alvo_id:
+				return true
+	# se nao cair em nenhum, false
+	return false
+
+# -----------------------------------------------------------------------------
+# Iniciar
+# -----------------------------------------------------------------------------
+
+func iniciar() -> void:
+	# posiciona o corpo do feitico no local, e inicia o process da fisica
+	corpo.global_position = contexto.posicao_global_inicial
+	set_physics_process(true)
+	# TODO melhorar: se tiver particulas, comece a emitr
+	if visual.particulas:
+		visual.particulas.emitting = true
+	# inicia o comportamento especifico das classes derivadas
+	iniciar_comportamento()
+
+@abstract
+func iniciar_comportamento() -> void
+
+# -----------------------------------------------------------------------------
+# Fim
+# -----------------------------------------------------------------------------
+
+func acabar() -> void:
+	acabou.emit()
+
+func destruir() -> void:
+	queue_free()
+
+# -----------------------------------------------------------------------------
+# Processar
+# -----------------------------------------------------------------------------
 
 @abstract
 func physics_process(delta: float) -> void
-
-@abstract
-func aplicar_efeitos(jogador: Jogador) -> void
 
 func _physics_process(delta: float) -> void:
 	duracao_seg_restante -= delta
@@ -42,9 +180,11 @@ func _physics_process(delta: float) -> void:
 	
 	physics_process(delta)
 
-func iniciar(pos_global_inicial: Vector3) -> void:
-	corpo.global_position = pos_global_inicial
-	set_physics_process(true)
-
-func acabar() -> void:
-	acabou.emit()
+# -----------------------------------------------------------------------------
+# Area Ativacao
+# -----------------------------------------------------------------------------
+# TODO: colocar no init ?
+var feitico_tipo: Feitico.Tipo
+func set_feitico_tipo(tipo: Feitico.Tipo) -> void:
+	area_ativacao.set_feitico_tipo(tipo)
+	feitico_tipo = tipo

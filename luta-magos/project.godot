@@ -135,8 +135,12 @@ olhar_direita={
 3d_physics/layer_1="Tudo"
 3d_physics/layer_2="Chao"
 3d_physics/layer_3="Cenario"
-3d_physics/layer_5="Jogadores"
-3d_physics/layer_9="Feiticos"
+3d_physics/layer_5="Limite Mapa"
+3d_physics/layer_9="Jogadores"
+3d_physics/layer_17="Todos Feiticos"
+3d_physics/layer_18="Projeteis"
+3d_physics/layer_19="Posicionados"
+3d_physics/layer_20="Efeitos"
 
 [physics]
 

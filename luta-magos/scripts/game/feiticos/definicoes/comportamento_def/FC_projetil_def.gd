@@ -3,18 +3,14 @@ extends FeiticoComportamentoDef
 
 @export_group("Projetil")
 @export var velocidade: float 	= 10.0
-@export var perfura: bool		= false
+@export var perfurar: bool		= false
 
-@export var efeitos_impacto : Array[FeiticoEfeitoDef] = []
+@export_flags_3d_physics var mascara_impacto = 1
 
-func criar() -> FeiticoComportamentoProjetil:
+func _criar() -> FeiticoComportamentoProjetil:
 	var comportamento := FeiticoComportamentoProjetil.new(duracao_seg)
-	comportamento.tipo = Feitico.Tipo.PROJETIL
 	
 	comportamento.velocidade = velocidade
-	comportamento.perfura = perfura
-	
-	for efeito_def : FeiticoEfeitoDef in efeitos_impacto:
-		comportamento.efeitos_impacto.append(efeito_def.criar())
+	comportamento.perfurar = perfurar
 	
 	return comportamento

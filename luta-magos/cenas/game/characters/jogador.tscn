@@ -1,9 +1,26 @@
 [gd_scene format=3 uid="uid://cqojyxy8t78mg"]
 
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/characters/jogador.gd" id="1_30vjq"]
+[ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="2_1hr55"]
 [ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="2_s8iyn"]
 [ext_resource type="Script" uid="uid://c2t8eacmbwf2u" path="res://scripts/game/characters/sistemas/sistema_mana.gd" id="3_f2bc4"]
+[ext_resource type="Script" uid="uid://cqm03tg7qe4ca" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_ganhar_mana_def.gd" id="4_8vvjh"]
+[ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="4_f2bc4"]
 [ext_resource type="PackedScene" uid="uid://dfpsqfdgmimqo" path="res://cenas/game/characters/camera_jogador.tscn" id="4_s8iyn"]
+[ext_resource type="Script" uid="uid://dd6jn1dqna1hv" path="res://scripts/game/feiticos/definicoes/efeitos_def/modificadores/feitico_modificador_efeito_duradouro_def.gd" id="4_ytj1x"]
+
+[sub_resource type="Resource" id="Resource_1hr55"]
+script = ExtResource("4_ytj1x")
+alterar_tipo_efeito = true
+novo_tipo_efeito = 2
+cooldown_seg = 1.0
+metadata/_custom_type_script = "uid://dd6jn1dqna1hv"
+
+[sub_resource type="Resource" id="Resource_ytj1x"]
+script = ExtResource("4_8vvjh")
+valor = 1.5
+modificador_def = SubResource("Resource_1hr55")
+metadata/_custom_type_script = "uid://cqm03tg7qe4ca"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -28,18 +45,32 @@ properties/2/path = NodePath("Cabeca/CabecaPivot:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("sistema_vida", "sistema_mana")]
-collision_layer = 17
+[node name="Jogador" type="CharacterBody3D" unique_id=1397014069 node_paths=PackedStringArray("receptor_efeitos", "sistema_vida", "sistema_mana")]
+collision_layer = 257
+collision_mask = 278
 script = ExtResource("1_30vjq")
+receptor_efeitos = NodePath("ReceptorEfeitos")
+sistema_vida = NodePath("ReceptorEfeitos/SistemaVida")
+sistema_mana = NodePath("ReceptorEfeitos/SistemaMana")
+
+[node name="ReceptorEfeitos" type="Node" parent="." unique_id=1904251997 node_paths=PackedStringArray("sistema_vida", "sistema_mana", "sistema_efeitos")]
+script = ExtResource("2_1hr55")
 sistema_vida = NodePath("SistemaVida")
 sistema_mana = NodePath("SistemaMana")
+sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
 
-[node name="SistemaVida" type="Node" parent="." unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
+[node name="SistemaVida" type="Node" parent="ReceptorEfeitos" unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
 script = ExtResource("2_s8iyn")
-label_dano = NodePath("../LabelDano")
+label_dano = NodePath("../../LabelDano")
 
-[node name="SistemaMana" type="Node" parent="." unique_id=958811563]
+[node name="SistemaMana" type="Node" parent="ReceptorEfeitos" unique_id=958811563 node_paths=PackedStringArray("sistema_efeitos_feiticos")]
 script = ExtResource("3_f2bc4")
+sistema_efeitos_feiticos = NodePath("../SistemaEfeitosFeiticos")
+efeito_regen_mana_def = SubResource("Resource_ytj1x")
+
+[node name="SistemaEfeitosFeiticos" type="Node" parent="ReceptorEfeitos" unique_id=1018972706 node_paths=PackedStringArray("jogador")]
+script = ExtResource("4_f2bc4")
+jogador = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

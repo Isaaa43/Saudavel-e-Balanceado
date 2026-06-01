@@ -1,5 +1,5 @@
 class_name DadosJogador
-extends Resource
+extends RefCounted
 
 var peer_id: int = -1
 var nome: String = ""
