@@ -32,7 +32,7 @@ feitico_id = "Ozempagic"
 nome = "Ozempagic"
 tipo = 2
 descricao = "\"Se o nome é cura deve curar né\" - Algum Mago
-(Cura [valor] de vida)"
+(Cura {valor} de vida)"
 cooldown = 3.0
 custo = 30.0
 icone_hud = ExtResource("6_pgmsf")

@@ -203,29 +203,50 @@ class CardData:
 		nome 		= feitico_def.nome
 		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
 		espaco 		= _feitico_espaco_para_string(feitico_def.espaco)
-		descricao 	= _formatar_descricao(feitico_def.descricao)
+		descricao 	= _formatar_descricao(feitico_def)
 		custo 		= int(feitico_def.custo)
 		icone 		= feitico_def.icone_hud
 	
-	func _formatar_descricao(descricao_raw: String) -> String:
-		return descricao_raw
+	func _formatar_descricao(feitico_def: FeiticoDef) -> String:
+		var descricao_raw: String = feitico_def.descricao
+		var valor: float = 0.0
+		
+		# -- pega o valor
+		# obtem o comportamento def
+		if not feitico_def.comportamento_def: return descricao_raw
+		var comportamento_def : FeiticoComportamentoDef = feitico_def.comportamento_def
+		
+		# TODO : aaaaaaaaaa
+		if comportamento_def is FeiticoComportamentoArmadilhaDef:
+			comportamento_def = comportamento_def.comportamento_ativacao_def
+		
+		# obtem a lista de efeitos
+		if not comportamento_def.lista_efeitos: return descricao_raw
+		var lista_efeitos: Array = comportamento_def.lista_efeitos
+		if lista_efeitos.is_empty(): return descricao_raw
+		# obtem o primeiro efeito
+		var efeito_def : FeiticoEfeitoDef = lista_efeitos.get(0)
+		# obtem o valor
+		valor = efeito_def.valor
+		# -- retorna o texto formatado
+		return descricao_raw.format({"valor": int(valor)})
 	
-	func _feitico_tipo_para_string(tipo: Feitico.Tipo) -> String:
-		match (tipo):
+	func _feitico_tipo_para_string(_tipo: Feitico.Tipo) -> String:
+		match (_tipo):
 			Feitico.Tipo.PROJETIL:
-				return "projetil"
+				return "Projetil"
 			Feitico.Tipo.POSICIONADO:
-				return "posicionado"
+				return "Posicionado"
 			Feitico.Tipo.EFEITO:
-				return "efeito"
+				return "Efeito"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
-		return "Feitico.Tipo_" + str(tipo)
+		return "Feitico.Tipo_" + str(_tipo)
 	
-	func _feitico_espaco_para_string(espaco: Feitico.Espaco) -> String:
-		match (espaco):
+	func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
+		match (_espaco):
 			Feitico.Espaco.DECK:
-				return "deck"
+				return "Deck"
 			Feitico.Espaco.PASSIVA:
-				return "passiva"
+				return "Passiva"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
-		return "Feitico.Espaco_" + str(espaco)
+		return "Feitico.Espaco_" + str(_espaco)
