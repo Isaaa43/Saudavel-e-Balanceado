@@ -234,3 +234,25 @@ anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 color = Color(0, 0.6313726, 0.6, 1)
+
+[node name="Relogio" type="Control" parent="." unique_id=1493878235]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="LabelRelogio" type="Label" parent="Relogio" unique_id=1743959866]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.5
+offset_right = 38.5
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "20:30"

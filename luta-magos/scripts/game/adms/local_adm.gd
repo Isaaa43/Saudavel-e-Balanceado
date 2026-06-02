@@ -21,6 +21,9 @@ func ajusta_dados_jogador(_dados_jog: DadosJogador) -> void:
 	# passa o id do jogador para o lancador de feiticos
 	lancador_feiticos.jogador_id = jogador.dados_jogador.peer_id
 
+func ajusta_tempo_partida(_tempo_restante_seg: float) -> void:
+	hud.atualizar_tempo_restante_seg(_tempo_restante_seg)
+
 func _ajustar_hud() -> void:
 	# conectar hud as mudanca de atributos do jogador
 	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)
