@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://djncp32jv7ppr"]
 
 [ext_resource type="Script" uid="uid://cax3wk7gbmnc7" path="res://scripts/menus/menu_deck.gd" id="1_glkbn"]
-[ext_resource type="Script" uid="uid://compk0wkd7ldq" path="res://scripts/menus/CardData.gd" id="2_m5xgc"]
+[ext_resource type="Script" uid="uid://compk0wkd7ldq" path="res://scripts/menus/menu_deck/CardData.gd" id="2_m5xgc"]
 [ext_resource type="Resource" uid="uid://v34uj7f1x6b6" path="res://cartas/armadilha.tres" id="3_4ijxk"]
 [ext_resource type="Resource" uid="uid://byifd6pxkhvix" path="res://cartas/bola_de_fogo.tres" id="4_wv7g0"]
 [ext_resource type="Resource" uid="uid://bdu40fla2gco0" path="res://cartas/cura.tres" id="5_wv7g0"]
 [ext_resource type="Resource" uid="uid://dfdgujyipes5o" path="res://cartas/gelo.tres" id="6_gr7sa"]
-[ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/CardGridItem.tscn" id="7_gr7sa"]
+[ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/menu_deck/CardGridItem.tscn" id="7_gr7sa"]
 
 [node name="MenuDeck" type="Control" unique_id=1395345366]
 layout_mode = 3
