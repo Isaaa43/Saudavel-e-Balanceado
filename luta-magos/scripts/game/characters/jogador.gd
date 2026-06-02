@@ -6,14 +6,12 @@ class_name Jogador
 @export var sistema_mana : SistemaMana
 
 @onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
+@onready var sistema_movimento: SistemaMovimento = $SistemaMovimento
 
 var dados_jogador : DadosJogador :
 	set(_dados_jog):
 		dados_jogador = _dados_jog
 		call_deferred("_display_nome")
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 
 func _turn_off(node : Node) -> void:
 	node.set_process(false)
@@ -30,33 +28,12 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		camera_jogador.queue_free()
+		sistema_movimento.queue_free()
 		return
 	
 	camera_jogador.start()
 	# conectar os sinais
 	sistema_vida.morreu.connect(morrer)
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("pular") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("esquerda", "direita", "frente", "tras")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
 
 @onready var label_nome: Label3D = $LabelNome
 func _display_nome() -> void:

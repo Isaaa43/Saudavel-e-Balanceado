@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ddk2ga5ldf3f7" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_impulso_def.gd" id="2_ogy7c"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_qq211"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="3_ckelo"]
+[ext_resource type="Texture2D" uid="uid://ddfd0yq7hjjn0" path="res://assets/temp/feiticosIcones/2YellowAbility_10.png" id="6_sdo8q"]
 
 [sub_resource type="Resource" id="Resource_ogy7c"]
 script = ExtResource("2_ogy7c")
@@ -31,7 +32,9 @@ metadata/_custom_type_script = "uid://cf63pij16plhl"
 script = ExtResource("2_qq211")
 feitico_id = "ToTeVendo"
 nome = "Tô Te Vendo Hein"
+descricao = "Lança uma esfera a frente, revelando inimigos e armadilhas pelo caminho."
 cooldown = 3.0
 custo = 20.0
+icone_hud = ExtResource("6_sdo8q")
 comportamento_def = SubResource("Resource_8wl8k")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"

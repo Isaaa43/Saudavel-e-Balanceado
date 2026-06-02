@@ -1,8 +1,12 @@
+class_name MenuDeck
 extends Control
 
+# TODO: trocar para algo automatico dps
+## Essa lista é preenchida pelo Inspector da Godot, arrastando arquivos .tres dos Feiticos.
+@export var lista_feiticos: Array[FeiticoDef] = []
+
 # Lista de cartas que aparecem na coluna do meio.
-# Essa lista é preenchida pelo Inspector da Godot, arrastando arquivos .tres do tipo CardData.
-@export var available_cards: Array[CardData] = []
+var available_cards: Array[CardData] = []
 
 # Quantidade máxima de cartas permitida no deck do jogador.
 @export var max_deck_size: int = 3
@@ -41,10 +45,21 @@ func _ready() -> void:
 
 	add_button.pressed.connect(_on_add_button_pressed)
 	remove_button.pressed.connect(_on_remove_button_pressed)
-
+	
+	_create_cards_from_spells()
+	
 	_populate_card_pool()
 	_update_deck_list()
 	_clear_card_info()
+
+func _create_cards_from_spells() -> void:
+	var qtd_feiticos := lista_feiticos.size()
+	# cria o espaco para cada carta (mais rapido que append)
+	available_cards.resize(qtd_feiticos)
+	# para cada feitico def crie um CardData
+	for i in range(qtd_feiticos):
+		var feitico_def: FeiticoDef = lista_feiticos[i]
+		available_cards[i] = CardData.new(feitico_def)
 
 func _populate_card_pool() -> void:
 	for child in card_grid.get_children():
@@ -164,3 +179,74 @@ func _on_remove_button_pressed() -> void:
 
 	# Atualiza a lista visual do deck.
 	_update_deck_list()
+
+# =============================================================================
+# Card Data
+# =============================================================================
+class CardData:
+	extends RefCounted
+
+	## Texto com o nome da carta
+	var nome: String
+	## Tipo da carta
+	var tipo: String
+	## Espaco que a carta ocupa (Deck, Passiva)
+	var espaco: String
+	## Texto descritivo da carta.
+	var descricao: String
+	## Custo de mana para ativar a carta
+	var custo: int
+	## imagem da carta exibida na interface.
+	var icone: Texture2D
+	
+	func _init(feitico_def: FeiticoDef) -> void:
+		nome 		= feitico_def.nome
+		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
+		espaco 		= _feitico_espaco_para_string(feitico_def.espaco)
+		descricao 	= _formatar_descricao(feitico_def)
+		custo 		= int(feitico_def.custo)
+		icone 		= feitico_def.icone_hud
+	
+	func _formatar_descricao(feitico_def: FeiticoDef) -> String:
+		var descricao_raw: String = feitico_def.descricao
+		var valor: float = 0.0
+		
+		# -- pega o valor
+		# obtem o comportamento def
+		if not feitico_def.comportamento_def: return descricao_raw
+		var comportamento_def : FeiticoComportamentoDef = feitico_def.comportamento_def
+		
+		# TODO : aaaaaaaaaa
+		if comportamento_def is FeiticoComportamentoArmadilhaDef:
+			comportamento_def = comportamento_def.comportamento_ativacao_def
+		
+		# obtem a lista de efeitos
+		if not comportamento_def.lista_efeitos: return descricao_raw
+		var lista_efeitos: Array = comportamento_def.lista_efeitos
+		if lista_efeitos.is_empty(): return descricao_raw
+		# obtem o primeiro efeito
+		var efeito_def : FeiticoEfeitoDef = lista_efeitos.get(0)
+		# obtem o valor
+		valor = efeito_def.valor
+		# -- retorna o texto formatado
+		return descricao_raw.format({"valor": int(valor)})
+	
+	func _feitico_tipo_para_string(_tipo: Feitico.Tipo) -> String:
+		match (_tipo):
+			Feitico.Tipo.PROJETIL:
+				return "Projetil"
+			Feitico.Tipo.POSICIONADO:
+				return "Posicionado"
+			Feitico.Tipo.EFEITO:
+				return "Efeito"
+		# caso de erro, retorne essa opcao para podermos diagnosticar
+		return "Feitico.Tipo_" + str(_tipo)
+	
+	func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
+		match (_espaco):
+			Feitico.Espaco.DECK:
+				return "Deck"
+			Feitico.Espaco.PASSIVA:
+				return "Passiva"
+		# caso de erro, retorne essa opcao para podermos diagnosticar
+		return "Feitico.Espaco_" + str(_espaco)

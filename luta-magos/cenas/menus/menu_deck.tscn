@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://djncp32jv7ppr"]
 
 [ext_resource type="Script" uid="uid://cax3wk7gbmnc7" path="res://scripts/menus/menu_deck.gd" id="1_glkbn"]
-[ext_resource type="Script" uid="uid://compk0wkd7ldq" path="res://scripts/menus/CardData.gd" id="2_m5xgc"]
-[ext_resource type="Resource" uid="uid://v34uj7f1x6b6" path="res://cartas/armadilha.tres" id="3_4ijxk"]
-[ext_resource type="Resource" uid="uid://byifd6pxkhvix" path="res://cartas/bola_de_fogo.tres" id="4_wv7g0"]
-[ext_resource type="Resource" uid="uid://bdu40fla2gco0" path="res://cartas/cura.tres" id="5_wv7g0"]
-[ext_resource type="Resource" uid="uid://dfdgujyipes5o" path="res://cartas/gelo.tres" id="6_gr7sa"]
-[ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/CardGridItem.tscn" id="7_gr7sa"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_hcvlw"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="3_gv3pd"]
+[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="4_k0n5w"]
+[ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="5_6eq1e"]
+[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="6_i2h36"]
+[ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/menu_deck/CardGridItem.tscn" id="7_gr7sa"]
+[ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="7_wfhn1"]
+[ext_resource type="Resource" uid="uid://c5nanmgoej3wa" path="res://feiticos/ToTeVendo/FD_ToTeVendo.tres" id="8_devs0"]
 
 [node name="MenuDeck" type="Control" unique_id=1395345366]
 layout_mode = 3
@@ -16,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
-available_cards = Array[ExtResource("2_m5xgc")]([ExtResource("3_4ijxk"), ExtResource("4_wv7g0"), ExtResource("5_wv7g0"), ExtResource("6_gr7sa")])
+lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("6_i2h36"), ExtResource("7_wfhn1"), ExtResource("8_devs0")])
 card_button_scene = ExtResource("7_gr7sa")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
