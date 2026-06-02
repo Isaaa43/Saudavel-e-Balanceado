@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_h3qb0"]
 [ext_resource type="Resource" uid="uid://1ejd6l4gci0m" path="res://feiticos/FuraSapato/FC_fura_sapato.tres" id="1_pn68f"]
+[ext_resource type="Texture2D" uid="uid://bkxhv1pvvvptu" path="res://assets/temp/feiticosIcones/Ice Spells13.png" id="2_73ckh"]
 
 [resource]
 script = ExtResource("1_h3qb0")
 feitico_id = "FuraSapato"
 nome = "Fura Sapato"
 tipo = 1
+descricao = "Posiciona uma armadilha de espinhos no chão que será ativada quando pisar em cima, causando [valor] de dano."
+icone_hud = ExtResource("2_73ckh")
 comportamento_def = ExtResource("1_pn68f")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"

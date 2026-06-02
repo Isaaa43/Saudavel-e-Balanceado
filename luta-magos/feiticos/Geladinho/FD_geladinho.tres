@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://d2quugw6e5igw"]
+
+[ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="1_h375f"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_ugo83"]
+
+[resource]
+script = ExtResource("1_ugo83")
+feitico_id = "Geladinho"
+nome = "Geladinho"
+descricao = "Gelo gelado que gela gente, congelando por [valor] segundos."
+cooldown = 3.0
+custo = 20.0
+icone_hud = ExtResource("1_h375f")
+metadata/_custom_type_script = "uid://dnavupkg51wgc"

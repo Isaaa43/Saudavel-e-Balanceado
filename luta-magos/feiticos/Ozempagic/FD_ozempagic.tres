@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_4ih6y"]
 [ext_resource type="Script" uid="uid://y7sfo5fwt5aw" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_cura_def.gd" id="2_pgmsf"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_8a4q1"]
+[ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="6_pgmsf"]
 
 [sub_resource type="Resource" id="Resource_pgmsf"]
 script = ExtResource("2_pgmsf")
@@ -30,7 +31,10 @@ script = ExtResource("2_4ih6y")
 feitico_id = "Ozempagic"
 nome = "Ozempagic"
 tipo = 2
+descricao = "\"Se o nome é cura deve curar né\" - Algum Mago
+(Cura [valor] de vida)"
 cooldown = 3.0
 custo = 30.0
+icone_hud = ExtResource("6_pgmsf")
 comportamento_def = SubResource("Resource_1bgnk")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"
