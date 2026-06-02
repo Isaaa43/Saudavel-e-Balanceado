@@ -1,10 +1,10 @@
-extends Button
 class_name CardGridItem
+extends Button
 
-signal card_selected(card: CardData)
-signal card_activated(card: CardData)
+signal card_selected(card: MenuDeck.CardData)
+signal card_activated(card: MenuDeck.CardData)
 
-var card_data: CardData = null
+var card_data: MenuDeck.CardData = null
 
 @onready var card_icon: TextureRect = %CardIcon
 @onready var card_name_label: Label = %CardNameLabel
@@ -15,7 +15,7 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 
-func setup(card: CardData) -> void:
+func setup(card: MenuDeck.CardData) -> void:
 	card_data = card
 
 	card_name_label.text = card.nome
