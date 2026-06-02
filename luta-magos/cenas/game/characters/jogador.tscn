@@ -61,10 +61,7 @@ sistema_mana = NodePath("SistemaMana")
 sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
 
 [node name="SistemaVida" type="Node" parent="ReceptorEfeitos" unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
-[node name="SistemaMovimento" type="Node" parent="." unique_id=3784261 node_paths=PackedStringArray("jogador")]
-script = ExtResource("2_f2bc4")
-jogador = NodePath("..")
-
+script = ExtResource("2_s8iyn")
 label_dano = NodePath("../../LabelDano")
 
 [node name="SistemaMana" type="Node" parent="ReceptorEfeitos" unique_id=958811563 node_paths=PackedStringArray("sistema_efeitos_feiticos")]
@@ -75,6 +72,10 @@ efeito_regen_mana_def = SubResource("Resource_ytj1x")
 [node name="SistemaEfeitosFeiticos" type="Node" parent="ReceptorEfeitos" unique_id=1018972706 node_paths=PackedStringArray("jogador")]
 script = ExtResource("4_f2bc4")
 jogador = NodePath("../..")
+
+[node name="SistemaMovimento" type="Node" parent="." unique_id=3784261 node_paths=PackedStringArray("jogador")]
+script = ExtResource("2_f2bc4")
+jogador = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=531717979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

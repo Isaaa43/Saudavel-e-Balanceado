@@ -6,6 +6,7 @@ class_name Jogador
 @export var sistema_mana : SistemaMana
 
 @onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
+@onready var sistema_movimento: SistemaMovimento = $SistemaMovimento
 
 var dados_jogador : DadosJogador :
 	set(_dados_jog):
@@ -27,6 +28,7 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		_turn_off(self)
 		camera_jogador.queue_free()
+		sistema_movimento.queue_free()
 		return
 	
 	camera_jogador.start()

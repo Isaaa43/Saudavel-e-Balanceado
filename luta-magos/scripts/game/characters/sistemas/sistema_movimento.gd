@@ -1,11 +1,12 @@
+class_name SistemaMovimento
 extends Node
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
 @export var jogador: Jogador
 
-
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	# Add the gravity.
 	if not jogador.is_on_floor():
 		jogador.velocity += jogador.get_gravity() * delta
