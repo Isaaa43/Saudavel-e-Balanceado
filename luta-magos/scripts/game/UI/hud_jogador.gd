@@ -35,4 +35,4 @@ func mostrar_mana(porcent_mana: float) -> void:
 func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 	var seg: int = int(_tempo_restante_seg) % 60
 	var min: int = int((_tempo_restante_seg - seg) / 60)
-	label_relogio.text = str(min) + ":" + str(seg)
+	label_relogio.text = "%d:%02d" % [min, seg]
