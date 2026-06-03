@@ -47,16 +47,13 @@ func ganhar_mana(_mana_ganha: float) -> void:
 	# emite sinal para atualizar a porcentagem de mana
 	_emitir_mana_porcentagem()
 
-func get_mana_previsao_porcent(_mana_gastar: float) -> float:
-	return _calc_porcentegem_mana(mana - _mana_gastar)
-
 # -----------------------------------------------------------------------------
 # Emitir sinais
 
 ## Emite sinal para atualizar a porcentagem de vida
 func _emitir_mana_porcentagem() -> void:
-	var mana_porcentagem : float = _calc_porcentegem_mana(mana)
+	var mana_porcentagem : float = calc_porcentegem_mana(mana)
 	mudanca_mana.emit(mana_porcentagem)
 
-func _calc_porcentegem_mana(_mana: float) -> float:
+func calc_porcentegem_mana(_mana: float) -> float:
 	return _mana * mana_max_inverso

@@ -47,8 +47,10 @@ func _mostrar_custo_mana(id: int) -> void:
 	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
 	var custo_mana : float = feitico_def.custo
 	if sistema_mana.tem_mana_suficiente(custo_mana):
-		var mana_prev_porcent : float = sistema_mana.get_mana_previsao_porcent(custo_mana)
-		hud_jogador.mostrar_previsao_mana(mana_prev_porcent)
+		var custo_porcent : float = sistema_mana.calc_porcentegem_mana(custo_mana)
+		hud_jogador.atualizar_custo_mana_previsto(custo_porcent)
+	else:
+		hud_jogador.atualizar_custo_mana_previsto(0.0)
 
 func _get_feitico_id_from_id(id: int) -> String:
 	match id:

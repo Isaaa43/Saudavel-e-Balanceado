@@ -227,7 +227,7 @@ grow_vertical = 2
 texture = ExtResource("10_c48wk")
 expand_mode = 1
 
-[node name="TextureProgPrevisao" type="TextureRect" parent="Mana" unique_id=628228282]
+[node name="TextureProgAtual" type="TextureRect" parent="Mana" unique_id=628228282]
 self_modulate = Color(0.58, 0.58, 0.58, 1)
 layout_mode = 1
 anchors_preset = 6

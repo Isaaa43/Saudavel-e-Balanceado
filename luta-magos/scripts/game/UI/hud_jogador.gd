@@ -7,7 +7,9 @@ extends Control
 
 @onready var texture_vida_prog: TextureRect = $Vida/TextureProg
 @onready var texture_mana_prog: TextureRect = $Mana/TextureProg
-@onready var texture_mana_prog_previsao: TextureRect = $Mana/TextureProgPrevisao
+@onready var texture_mana_prog_atual: TextureRect = $Mana/TextureProgAtual
+
+var custo_mana_porcent: float = 0.0
 
 func _ready() -> void:
 	selecionar_magia(0)
@@ -31,15 +33,16 @@ func mostrar_vida(porcent_vida: float) -> void:
 func mostrar_mana(porcent_mana: float) -> void:
 	# limita minimo em 0.0
 	porcent_mana = max(porcent_mana, 0.0)
+	var mana_prevista : float = max(porcent_mana - custo_mana_porcent, 0.0)
 	# atualiza o icone na hud
-	texture_mana_prog.scale.x = porcent_mana
-	texture_mana_prog_previsao.scale.x = porcent_mana
+	texture_mana_prog_atual.scale.x = porcent_mana
+	texture_mana_prog.scale.x = mana_prevista
 
-func mostrar_previsao_mana(porcent_mana_previsto: float) -> void:
-	# limita minimo em 0.0
-	porcent_mana_previsto = max(porcent_mana_previsto, 0.0)
-	# atualiza o icone na hud
-	texture_mana_prog.scale.x = porcent_mana_previsto
+func atualizar_custo_mana_previsto(porcent_custo_mana: float) -> void:
+	# atualiza o custo de mana
+	custo_mana_porcent = porcent_custo_mana
+	# mostra custo de mana
+	mostrar_mana(texture_mana_prog_atual.scale.x)
 
 func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 	var tempo_seg: int = int(_tempo_restante_seg) % 60
