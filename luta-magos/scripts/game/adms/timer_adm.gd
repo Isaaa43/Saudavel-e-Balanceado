@@ -39,8 +39,15 @@ func _physics_process(delta: float) -> void:
 	# atualiza o tempo_restante
 	tempo_restante_seg -= delta
 	tempo_atualizado.emit(tempo_restante_seg)
-	# se acabou o tempo, pare, e emita tempo_esgotado
+	# se acabou o tempo, fim do timer
 	if tempo_restante_seg <= 0.0:
 		tempo_restante_seg = 0.0
-		rodando = false
-		tempo_esgotado.emit()
+		_fim_timer()
+
+# pare, e emita tempo_esgotado
+func _fim_timer() -> void:
+	if not multiplayer.is_server(): return
+	
+	rodando = false
+	tempo_esgotado.emit()
+	

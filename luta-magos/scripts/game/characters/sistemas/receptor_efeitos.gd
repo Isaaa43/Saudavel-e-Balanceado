@@ -5,7 +5,7 @@ extends Node
 @export var sistema_mana: SistemaMana
 @export var sistema_efeitos: SistemaEfeitosFeiticos
 
-var dono_id: int
+var cura_desativada: bool = false
 
 static func encontrar_receptor_efeitos(nodo: Node) -> ReceptorEfeitos:
 	var receptor : ReceptorEfeitos = nodo.get("receptor_efeitos")
@@ -19,12 +19,12 @@ func receber_lista_efeitos(lista_efeitos: Array[FeiticoEfeito]) -> void:
 		receber_efeito(efeito)
 
 func receber_efeito(efeito: FeiticoEfeito) -> void:
+	# se a cura estiver desativa, e for uma cura, pare e nao aplique o efeito
+	if cura_desativada:
+		if efeito is FeiticoEfeitoCura: return
+	# aplica o efeito
 	sistema_efeitos.receber_feitico_efeito(efeito)
 
-#func receber_dano(valor: float) -> void:
-	#if sistema_vida:
-		#sistema_vida.receber_dano(valor)
-#
-#func receber_mana(valor: float) -> void:
-	#if sistema_mana:
-		#sistema_mana.ganhar_mana(valor)
+## Desativa as curas
+func desativar_cura() -> void:
+	cura_desativada = true

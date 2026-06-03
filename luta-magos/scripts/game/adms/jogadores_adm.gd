@@ -78,3 +78,10 @@ func get_jogador_peer_id(peer_id: int) -> Jogador:
 	if jogadores_por_peer_id.has(peer_id):
 		return jogadores_por_peer_id[peer_id]
 	return null
+
+func dimiuir_vida_jogadores(efeito_def: FeiticoEfeitoDef) -> void:
+	print("aplicar ao ", multiplayer.get_unique_id())
+	for jogador: Jogador in jogadores_por_peer_id.values():
+		jogador.receptor_efeitos.desativar_cura()
+		var efeito_dano : FeiticoEfeito = efeito_def.criar()
+		jogador.receptor_efeitos.receber_efeito(efeito_dano)

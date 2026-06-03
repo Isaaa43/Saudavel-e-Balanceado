@@ -1,6 +1,7 @@
 class_name SistemaEfeitosFeiticos
 extends Node
 
+# TODO: melhorar aqui, remover isso, deixar generico
 @export var jogador: Jogador
 
 var efeitos_mantidos: Array[DadosEfeito]
