@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="4_tpt5k"]
 [ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="5_5ifs1"]
 [ext_resource type="Texture2D" uid="uid://ddfd0yq7hjjn0" path="res://assets/temp/feiticosIcones/2YellowAbility_10.png" id="6_x222b"]
+[ext_resource type="Texture2D" uid="uid://ccie6v4ygel0c" path="res://assets/UI/hud_jogador/vida/BASE_VIDA.png" id="7_18wio"]
+[ext_resource type="Texture2D" uid="uid://dnxpghv5mgca5" path="res://assets/UI/hud_jogador/vida/BARRA_VIDA.png" id="8_wsdra"]
+[ext_resource type="Texture2D" uid="uid://15t5lbcmifo5" path="res://assets/UI/hud_jogador/vida/TEXTURA_VIDA.png" id="9_mtgw6"]
+[ext_resource type="Texture2D" uid="uid://bh0be6wyusnda" path="res://assets/UI/hud_jogador/mana/BASE_MANA.png" id="10_c48wk"]
+[ext_resource type="Texture2D" uid="uid://7sj1rnw3v2sr" path="res://assets/UI/hud_jogador/mana/BARRA_MANA.png" id="11_jk3uq"]
+[ext_resource type="Texture2D" uid="uid://h58c0mtnjpxw" path="res://assets/UI/hud_jogador/mana/TEXTURA_MANA.png" id="12_gdimr"]
 
 [node name="HUDjogador" type="Control" unique_id=31207200]
 layout_mode = 3
@@ -153,37 +159,46 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = -79.0
-offset_right = 590.0
-offset_bottom = -23.0
+offset_top = -202.0
+offset_right = 466.0
 grow_vertical = 0
 
-[node name="LabelVida" type="Label" parent="Vida" unique_id=1499339849]
-self_modulate = Color(0.627451, 0, 0, 1)
-layout_mode = 0
-offset_left = 23.0
-offset_top = -80.0
-offset_right = 124.0
-offset_bottom = -13.0
-theme_override_font_sizes/font_size = 48
-text = "Vida:"
-
-[node name="ColorRectVidaBaixo" type="ColorRect" parent="Vida" unique_id=180130073]
+[node name="TextureBase" type="TextureRect" parent="Vida" unique_id=690882061]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 650.8148
+offset_bottom = 230.0
 grow_vertical = 2
-color = Color(0, 0, 0, 0.22745098)
+texture = ExtResource("7_18wio")
+expand_mode = 1
 
-[node name="ColorRectVida" type="ColorRect" parent="Vida" unique_id=1074161473]
+[node name="TextureProg" type="TextureRect" parent="Vida" unique_id=1044707268]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 651.0
+offset_bottom = 230.0
 grow_vertical = 2
-color = Color(0.627451, 0, 0, 1)
+pivot_offset = Vector2(85.655, 250)
+texture = ExtResource("8_wsdra")
+expand_mode = 1
+
+[node name="TextureTop3" type="TextureRect" parent="Vida" unique_id=237041291]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 650.8148
+offset_bottom = 230.0
+grow_vertical = 2
+texture = ExtResource("9_mtgw6")
+expand_mode = 1
 
 [node name="Mana" type="Control" parent="." unique_id=2089352273]
 layout_mode = 1
@@ -192,48 +207,56 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -591.0
-offset_top = -80.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_left = -466.0
+offset_top = -202.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="LabelMana" type="Label" parent="Mana" unique_id=1797175320]
-self_modulate = Color(0, 0.63, 0.5985, 1)
-layout_mode = 0
-offset_left = 23.0
-offset_top = -80.0
-offset_right = 124.0
-offset_bottom = -13.0
-theme_override_font_sizes/font_size = 48
-text = "Mana:"
-
-[node name="LabelManaValor" type="Label" parent="Mana" unique_id=904015265]
-self_modulate = Color(0, 0.63, 0.5985, 1)
-layout_mode = 0
-offset_left = 190.0
-offset_top = -80.0
-offset_right = 334.0
-offset_bottom = -13.0
-theme_override_font_sizes/font_size = 48
-text = "100"
-
-[node name="ColorRectManaBaixo" type="ColorRect" parent="Mana" unique_id=1391977775]
+[node name="TextureBase" type="TextureRect" parent="Mana" unique_id=288052114]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -650.8148
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
 grow_vertical = 2
-color = Color(0, 0, 0, 0.22745098)
+texture = ExtResource("10_c48wk")
+expand_mode = 1
 
-[node name="ColorRectMana" type="ColorRect" parent="Mana" unique_id=1809627594]
+[node name="TextureProg" type="TextureRect" parent="Mana" unique_id=628228282]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
 grow_vertical = 2
-color = Color(0, 0.6313726, 0.6, 1)
+pivot_offset = Vector2(546.785, 250)
+texture = ExtResource("11_jk3uq")
+expand_mode = 1
+
+[node name="TextureTop3" type="TextureRect" parent="Mana" unique_id=1129916370]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -650.8148
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("12_gdimr")
+expand_mode = 1
 
 [node name="Relogio" type="Control" parent="." unique_id=1493878235]
 layout_mode = 1
@@ -256,3 +279,21 @@ offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "20:30"
+
+[node name="TexturaVida2" type="Sprite2D" parent="." unique_id=1722517202]
+visible = false
+position = Vector2(362, 964.00006)
+scale = Vector2(0.14502569, 0.14502567)
+texture = ExtResource("7_18wio")
+
+[node name="TexturaVida3" type="Sprite2D" parent="." unique_id=1284782238]
+visible = false
+position = Vector2(298.1319, 964.00006)
+scale = Vector2(0.11927761, 0.14502567)
+texture = ExtResource("8_wsdra")
+
+[node name="TexturaVida" type="Sprite2D" parent="." unique_id=1573788311]
+visible = false
+position = Vector2(362, 964.00006)
+scale = Vector2(0.14502569, 0.14502567)
+texture = ExtResource("9_mtgw6")

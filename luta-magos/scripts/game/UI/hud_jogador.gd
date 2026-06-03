@@ -3,14 +3,10 @@ extends Control
 
 @onready var icons: Array[Node] = $HBoxIcones.get_children()
 
-@onready var color_rect_vida_baixo: ColorRect = $Vida/ColorRectVidaBaixo
-@onready var color_rect_vida: ColorRect = $Vida/ColorRectVida
-
-@onready var color_rect_mana_baixo: ColorRect = $Mana/ColorRectManaBaixo
-@onready var color_rect_mana: ColorRect = $Mana/ColorRectMana
-@onready var label_mana_valor: Label = $Mana/LabelManaValor
-
 @onready var label_relogio: Label = $Relogio/LabelRelogio
+
+@onready var texture_vida_prog: TextureRect = $Vida/TextureProg
+@onready var texture_mana_prog: TextureRect = $Mana/TextureProg
 
 func _ready() -> void:
 	selecionar_magia(0)
@@ -26,13 +22,12 @@ func selecionar_magia(id: int) -> void:
 	icons[id].modulate = Color(2.454, 2.454, 2.454)
 
 func mostrar_vida(porcent_vida: float) -> void:
-	color_rect_vida.size.x = color_rect_vida_baixo.size.x * porcent_vida
+	texture_vida_prog.scale.x = porcent_vida
 
 func mostrar_mana(porcent_mana: float) -> void:
-	color_rect_mana.size.x = color_rect_mana_baixo.size.x * porcent_mana
-	label_mana_valor.text = String.num(porcent_mana * 100, 2) + "%"
+	texture_mana_prog.scale.x = porcent_mana
 
 func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
-	var seg: int = int(_tempo_restante_seg) % 60
-	var min: int = int((_tempo_restante_seg - seg) / 60)
-	label_relogio.text = "%d:%02d" % [min, seg]
+	var tempo_seg: int = int(_tempo_restante_seg) % 60
+	var tempo_min: int = int((_tempo_restante_seg - tempo_seg) / 60)
+	label_relogio.text = "%d:%02d" % [tempo_min, tempo_seg]
