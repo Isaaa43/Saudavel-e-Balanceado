@@ -227,7 +227,24 @@ grow_vertical = 2
 texture = ExtResource("10_c48wk")
 expand_mode = 1
 
-[node name="TextureProg" type="TextureRect" parent="Mana" unique_id=628228282]
+[node name="TextureProgPrevisao" type="TextureRect" parent="Mana" unique_id=628228282]
+self_modulate = Color(0.58, 0.58, 0.58, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(546.785, 250)
+texture = ExtResource("11_jk3uq")
+expand_mode = 1
+
+[node name="TextureProg" type="TextureRect" parent="Mana" unique_id=626341032]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

@@ -40,19 +40,34 @@ func _input(_event: InputEvent) -> void:
 func _selecionar(id: int) -> void:
 	selecao_feitico_id = id
 	hud_jogador.selecionar_magia(id)
+	_mostrar_custo_mana(id)
+
+func _mostrar_custo_mana(id: int) -> void:
+	var feitico_id := _get_feitico_id_from_id(id)
+	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
+	var custo_mana : float = feitico_def.custo
+	if sistema_mana.tem_mana_suficiente(custo_mana):
+		var mana_prev_porcent : float = sistema_mana.get_mana_previsao_porcent(custo_mana)
+		hud_jogador.mostrar_previsao_mana(mana_prev_porcent)
+
+func _get_feitico_id_from_id(id: int) -> String:
+	match id:
+		0:
+			return "BolaFogo"
+		1:
+			return "FuraSapato"
+		2:
+			return "PuloImpulsionado"
+		3:
+			return "Ozempagic"
+		4:
+			return "ToTeVendo"
+	return ""
 
 func _escolher_feitico() -> void:
-	match selecao_feitico_id:
-		0:
-			lancar_feitico_escolhido("BolaFogo")
-		1:
-			lancar_feitico_escolhido("FuraSapato")
-		2:
-			lancar_feitico_escolhido("PuloImpulsionado")
-		3:
-			lancar_feitico_escolhido("Ozempagic")
-		4:
-			lancar_feitico_escolhido("ToTeVendo")
+	var feitico_id := _get_feitico_id_from_id(selecao_feitico_id)
+	if feitico_id != "":
+		lancar_feitico_escolhido(feitico_id)
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
