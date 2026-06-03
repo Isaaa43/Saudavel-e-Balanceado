@@ -188,7 +188,7 @@ pivot_offset = Vector2(85.655, 250)
 texture = ExtResource("8_wsdra")
 expand_mode = 1
 
-[node name="TextureTop3" type="TextureRect" parent="Vida" unique_id=237041291]
+[node name="TextureTop" type="TextureRect" parent="Vida" unique_id=237041291]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -243,7 +243,7 @@ pivot_offset = Vector2(546.785, 250)
 texture = ExtResource("11_jk3uq")
 expand_mode = 1
 
-[node name="TextureTop3" type="TextureRect" parent="Mana" unique_id=1129916370]
+[node name="TextureTop" type="TextureRect" parent="Mana" unique_id=1129916370]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

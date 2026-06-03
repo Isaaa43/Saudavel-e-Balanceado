@@ -22,9 +22,15 @@ func selecionar_magia(id: int) -> void:
 	icons[id].modulate = Color(2.454, 2.454, 2.454)
 
 func mostrar_vida(porcent_vida: float) -> void:
+	# limita minimo em 0.0
+	porcent_vida = max(porcent_vida, 0.0)
+	# atualiza o icone na hud
 	texture_vida_prog.scale.x = porcent_vida
 
 func mostrar_mana(porcent_mana: float) -> void:
+	# limita minimo em 0.0
+	porcent_mana = max(porcent_mana, 0.0)
+	# atualiza o icone na hud
 	texture_mana_prog.scale.x = porcent_mana
 
 func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
