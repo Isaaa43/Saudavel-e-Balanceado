@@ -29,9 +29,10 @@ metadata/_custom_type_script = "uid://dbe4px883cphk"
 [resource]
 script = ExtResource("2_4ih6y")
 feitico_id = "Ozempagic"
-nome = "Ozempagic"
+nome = "Sara-Mago"
 tipo = 2
-descricao = "\"Se o nome é cura deve curar né\" - Algum Mago
+descricao = "\"Se o nome é cura, deve curar né\"
+- Um leitor ávido
 (Cura {valor} de vida)"
 cooldown = 3.0
 custo = 30.0

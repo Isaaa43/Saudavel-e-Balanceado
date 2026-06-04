@@ -5,6 +5,9 @@ extends FeiticoComportamentoDef
 @export var velocidade: float 	= 10.0
 @export var perfurar: bool		= false
 
+## TODO: Direcao inicial
+## direcao mundo, direcao jogador olhando, direcao alvo proximo
+
 @export_flags_3d_physics var mascara_impacto = 1
 
 func _criar() -> FeiticoComportamentoProjetil:
