@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="4_f2bc4"]
 [ext_resource type="PackedScene" uid="uid://dfpsqfdgmimqo" path="res://cenas/game/characters/camera_jogador.tscn" id="4_s8iyn"]
 [ext_resource type="Script" uid="uid://dd6jn1dqna1hv" path="res://scripts/game/feiticos/definicoes/efeitos_def/modificadores/feitico_modificador_efeito_duradouro_def.gd" id="4_ytj1x"]
+[ext_resource type="AudioStream" uid="uid://cx77yj6ddh625" path="res://assets/audios/acertandoinimigo.mp3" id="10_lx53a"]
 
 [sub_resource type="Resource" id="Resource_1hr55"]
 script = ExtResource("4_ytj1x")
@@ -60,9 +61,8 @@ sistema_vida = NodePath("SistemaVida")
 sistema_mana = NodePath("SistemaMana")
 sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
 
-[node name="SistemaVida" type="Node" parent="ReceptorEfeitos" unique_id=1401696473 node_paths=PackedStringArray("label_dano")]
+[node name="SistemaVida" type="Node" parent="ReceptorEfeitos" unique_id=1401696473]
 script = ExtResource("2_s8iyn")
-label_dano = NodePath("../../LabelDano")
 
 [node name="SistemaMana" type="Node" parent="ReceptorEfeitos" unique_id=958811563 node_paths=PackedStringArray("sistema_efeitos_feiticos")]
 script = ExtResource("3_f2bc4")
@@ -102,6 +102,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
 mesh = SubResource("SphereMesh_s5tbn")
 surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
+
+[node name="AudioPlayerDano" type="AudioStreamPlayer3D" parent="." unique_id=596116658]
+stream = ExtResource("10_lx53a")
 
 [node name="LabelNome" type="Label3D" parent="." unique_id=870158515]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7698882, 0)

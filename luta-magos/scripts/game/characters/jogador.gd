@@ -8,6 +8,9 @@ class_name Jogador
 @onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
 @onready var sistema_movimento: SistemaMovimento = $SistemaMovimento
 
+@onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
+@onready var label_dano: Label3D = $LabelDano
+
 var dados_jogador : DadosJogador :
 	set(_dados_jog):
 		dados_jogador = _dados_jog
@@ -34,6 +37,7 @@ func _ready() -> void:
 	camera_jogador.start()
 	# conectar os sinais
 	sistema_vida.morreu.connect(morrer)
+	sistema_vida.levou_dano.connect(_mostrar_levar_dano)
 
 @onready var label_nome: Label3D = $LabelNome
 func _display_nome() -> void:
@@ -47,6 +51,13 @@ func _display_nome() -> void:
 # -----------------------------------------------------------------------------
 # Sistema Vida
 # -----------------------------------------------------------------------------
+func _mostrar_levar_dano(dano: float) -> void:
+	audio_player_dano.play()
+	# mostra o dano em cima do jog
+	label_dano.text = "Dano:\n%d" % dano
+	label_dano.show()
+	get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )
+
 func morrer() -> void:
 	await get_tree().create_timer(0.5).timeout
 	Network.client.pedir_terminar_partida()
