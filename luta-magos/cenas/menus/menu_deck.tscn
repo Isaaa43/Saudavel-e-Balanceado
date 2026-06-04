@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
-lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("6_i2h36"), ExtResource("7_wfhn1"), ExtResource("8_devs0")])
+lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("5_6eq1e"), ExtResource("4_k0n5w"), ExtResource("8_devs0"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
 card_button_scene = ExtResource("7_gr7sa")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
