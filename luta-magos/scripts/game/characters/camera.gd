@@ -2,9 +2,11 @@ class_name CameraJogador
 extends Camera3D
 
 @export var jogador : Jogador
-@export var cabeca_pivot : Node3D
+
+@onready var pivot_olhando: Node3D = $PivotOlhando
 
 @onready var remote_transform_mira: RemoteTransform3D = $RemoteTransformMira
+@onready var remote_transform_cabeca: RemoteTransform3D = $PivotOlhando/RemoteTransformCabeca
 
 const SENSITIVITY_BASE_MOUSE := 0.005
 const SENSITIVITY_BASE_CONTROLLER := 5.0
@@ -33,8 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_x(-event.relative.y * mouse_sensitivity)
 		rotation.x = clamp(rotation.x, -PI/2, PI/2)
 		# rodar a cabeca
-		var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
-		cabeca_pivot.rotation.x = cabeca_rot
+		#var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
+		#pivot_olhando.rotation.x = cabeca_rot
 
 
 func _process(delta):
@@ -48,8 +50,8 @@ func _process(delta):
 		rotate_x(-look_input.y * controller_sensitivity * delta)
 		rotation.x = clamp(rotation.x, -PI/2, PI/2)
 		# rodar a cabeca
-		var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
-		cabeca_pivot.rotation.x = cabeca_rot
+		#var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
+		#pivot_olhando.rotation.x = cabeca_rot
 
 func set_sensibilidade(sensi: float) -> void:
 	# Controle
@@ -60,5 +62,14 @@ func set_sensibilidade(sensi: float) -> void:
 		mouse_sensitivity = SENSITIVITY_BASE_MOUSE * sensi
 
 func set_target_remote_transform_mira(node_path: String) -> void:
-	remote_transform_mira.remote_path = node_path
-	remote_transform_mira.force_update_cache()
+	_set_target_of_remote_transform(remote_transform_mira, node_path)
+
+func set_target_remote_transform_cabeca(node_path: String) -> void:
+	_set_target_of_remote_transform(remote_transform_cabeca, node_path)
+
+func _set_target_of_remote_transform(
+	remote_transform: RemoteTransform3D,
+	node_path: String
+) -> void:
+	remote_transform.remote_path = node_path
+	remote_transform.force_update_cache()

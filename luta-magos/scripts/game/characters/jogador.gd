@@ -5,8 +5,10 @@ class_name Jogador
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
 
-@onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
 @onready var sistema_movimento: SistemaMovimento = $SistemaMovimento
+
+@onready var camera_jogador: CameraJogador = $Cabeca/CameraJogador
+@onready var cabeca_pivot: Node3D = $Cabeca/CabecaPivot
 
 @onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
 @onready var label_dano: Label3D = $LabelDano
@@ -34,10 +36,16 @@ func _ready() -> void:
 		sistema_movimento.queue_free()
 		return
 	
-	camera_jogador.start()
+	_ready_camera()
 	# conectar os sinais
 	sistema_vida.morreu.connect(morrer)
 	sistema_vida.levou_dano.connect(_mostrar_levar_dano)
+
+func _ready_camera() -> void:
+	camera_jogador.start()
+	# prende o lancador de feiticos na visao da camera
+	camera_jogador.set_target_remote_transform_cabeca(cabeca_pivot.get_path())
+	
 
 @onready var label_nome: Label3D = $LabelNome
 func _display_nome() -> void:
