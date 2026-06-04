@@ -35,6 +35,7 @@ folder_colors={
 "res://_debug/": "gray",
 "res://assets/": "red",
 "res://assets/UI/": "green",
+"res://assets/audios/": "blue",
 "res://assets/temp/": "gray",
 "res://cenas/": "yellow",
 "res://cenas/game/": "orange",
