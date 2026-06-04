@@ -1,6 +1,8 @@
 class_name HUDJogador
 extends Control
 
+@export var menu_pause: HudMenuPause
+
 @onready var icons: Array[Node] = $HBoxIcones.get_children()
 
 @onready var label_relogio: Label = $Relogio/LabelRelogio
@@ -11,7 +13,21 @@ extends Control
 
 var custo_mana_porcent: float = 0.0
 
+func _input(event):
+	# esc para sair do capture
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		menu_pause.show()
+	# click
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if not menu_pause.visible: # menu pause nao esta visivel
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _ready() -> void:
+	menu_pause.hide()
+	menu_pause.voltar_partida.connect(_esconder_menu_pause)
+	
 	selecionar_magia(0)
 	# inicia os mostradores
 	mostrar_vida(1.0)
@@ -48,3 +64,7 @@ func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 	var tempo_seg: int = int(_tempo_restante_seg) % 60
 	var tempo_min: int = int((_tempo_restante_seg - tempo_seg) / 60)
 	label_relogio.text = "%d:%02d" % [tempo_min, tempo_seg]
+
+func _esconder_menu_pause() -> void:
+	menu_pause.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

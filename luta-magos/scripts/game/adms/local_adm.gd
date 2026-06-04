@@ -1,6 +1,8 @@
 class_name LocalAdm
 extends Node
 
+signal pediu_sair_partida
+
 @export var hud : HUDJogador
 
 @export var lancador_feiticos : LancadorFeiticos
@@ -11,6 +13,9 @@ func _ready() -> void:
 	hud.show()
 	lancador_feiticos.hud_jogador = hud
 	lancador_feiticos.lancar_feitico.connect(_enviar_lancar_feitico)
+	#
+	hud.menu_pause.sensibilidade_mira_atualizada.connect(_atualizar_sensibilidade_mira)
+	hud.menu_pause.sair_partida.connect(_pedir_sair_partida)
 
 func ajusta_para_jogador(_jogador: Jogador) -> void:
 	jogador = _jogador
@@ -37,3 +42,9 @@ func _ajustar_lancador_feiticos() -> void:
 
 func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
 	Network.client.lancar_feitico(feitico_contexto)
+
+func _atualizar_sensibilidade_mira(sensi: float) -> void:
+	jogador.camera_jogador.set_sensibilidade(sensi)
+
+func _pedir_sair_partida() -> void:
+	pediu_sair_partida.emit()

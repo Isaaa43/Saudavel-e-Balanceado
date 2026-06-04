@@ -13,8 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bh0be6wyusnda" path="res://assets/UI/hud_jogador/mana/BASE_MANA.png" id="10_c48wk"]
 [ext_resource type="Texture2D" uid="uid://7sj1rnw3v2sr" path="res://assets/UI/hud_jogador/mana/BARRA_MANA.png" id="11_jk3uq"]
 [ext_resource type="Texture2D" uid="uid://h58c0mtnjpxw" path="res://assets/UI/hud_jogador/mana/TEXTURA_MANA.png" id="12_gdimr"]
+[ext_resource type="PackedScene" uid="uid://e33rvm32gwqu" path="res://cenas/game/UI/hud_menu_pause.tscn" id="14_gdimr"]
 
-[node name="HUDjogador" type="Control" unique_id=31207200]
+[node name="HUDjogador" type="Control" unique_id=31207200 node_paths=PackedStringArray("menu_pause")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_a8gqf")
+menu_pause = NodePath("MenuPause")
 
 [node name="HudAim" type="Control" parent="." unique_id=1384346477]
 layout_mode = 1
@@ -295,3 +297,6 @@ offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "20:30"
+
+[node name="MenuPause" parent="." unique_id=1536525716 instance=ExtResource("14_gdimr")]
+layout_mode = 1

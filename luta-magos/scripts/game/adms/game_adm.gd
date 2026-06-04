@@ -23,14 +23,20 @@ func _conectar_sinais() -> void:
 	timer_adm.tempo_esgotado.connect(fim_tempo)
 	# estado da partida
 	estado_partida_adm.estado_atualizado.connect(_atualizar_estado_partida)
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		Network.client.pedir_terminar_partida()
+	# 
+	local_adm.pediu_sair_partida.connect(_pedir_sair_partida)
 
 func fim_tempo() -> void:
 	estado_partida_adm.set_fim_tempo()
+
+func _pedir_sair_partida() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Network.client.pedir_terminar_partida()
+
+# TODO: Alterar fora do debug
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("debug"):
+		_pedir_sair_partida()
 
 # Estado da Partida
 # -----------------------------------------------------------------------------

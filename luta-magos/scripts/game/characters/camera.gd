@@ -6,8 +6,11 @@ extends Camera3D
 
 @onready var remote_transform_mira: RemoteTransform3D = $RemoteTransformMira
 
-var mouse_sensitivity := 0.005
-var controller_sensitivity := 5.0
+const SENSITIVITY_BASE_MOUSE := 0.005
+const SENSITIVITY_BASE_CONTROLLER := 5.0
+
+var mouse_sensitivity 		:= SENSITIVITY_BASE_MOUSE
+var controller_sensitivity 	:= SENSITIVITY_BASE_CONTROLLER
 
 var has_controller : bool = false
 
@@ -48,14 +51,13 @@ func _process(delta):
 		var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
 		cabeca_pivot.rotation.x = cabeca_rot
 
-func _input(event):	
-	# esc para sair do capture
-	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	# click
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func set_sensibilidade(sensi: float) -> void:
+	# Controle
+	if has_controller:
+		controller_sensitivity = SENSITIVITY_BASE_CONTROLLER * sensi
+	# Mouse
+	else:
+		mouse_sensitivity = SENSITIVITY_BASE_MOUSE * sensi
 
 func set_target_remote_transform_mira(node_path: String) -> void:
 	remote_transform_mira.remote_path = node_path
