@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
 [ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="1_bqy3s"]
+[ext_resource type="Texture2D" uid="uid://bpmjjpxemo56r" path="res://assets/UI/hud_jogador/crosshair/crosshair004.png" id="2_jk3uq"]
 [ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="3_c7tbw"]
 [ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="4_tpt5k"]
 [ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="5_5ifs1"]
@@ -32,20 +33,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="HudAim" unique_id=599068103]
+[node name="PivotCentro" type="Control" parent="HudAim" unique_id=1625364563]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+
+[node name="SpriteCrosshair" type="Sprite2D" parent="HudAim/PivotCentro" unique_id=168685830]
+texture = ExtResource("2_jk3uq")
 
 [node name="HBoxIcones" type="HBoxContainer" parent="." unique_id=1206569448]
 layout_mode = 1
@@ -296,21 +295,3 @@ offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "20:30"
-
-[node name="TexturaVida2" type="Sprite2D" parent="." unique_id=1722517202]
-visible = false
-position = Vector2(362, 964.00006)
-scale = Vector2(0.14502569, 0.14502567)
-texture = ExtResource("7_18wio")
-
-[node name="TexturaVida3" type="Sprite2D" parent="." unique_id=1284782238]
-visible = false
-position = Vector2(298.1319, 964.00006)
-scale = Vector2(0.11927761, 0.14502567)
-texture = ExtResource("8_wsdra")
-
-[node name="TexturaVida" type="Sprite2D" parent="." unique_id=1573788311]
-visible = false
-position = Vector2(362, 964.00006)
-scale = Vector2(0.14502569, 0.14502567)
-texture = ExtResource("9_mtgw6")
