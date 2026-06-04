@@ -4,10 +4,12 @@ extends Node3D
 signal lancar_feitico(feitico_contexto: FeiticoContexto)
 
 @export var sistema_mana : SistemaMana
+@export var audio_cast : AudioStream
 
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
+@onready var audio_stream_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 ## Hud do jogador desse PC
 var hud_jogador: HUDJogador
@@ -17,6 +19,9 @@ var jogador_id : int
 var _cooldowns: Dictionary = {}
 
 var selecao_feitico_id: int = 0
+
+func _ready() -> void:
+	audio_stream_player.stream = audio_cast
 
 func _input(_event: InputEvent) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
@@ -128,3 +133,5 @@ func _criar_feitico_contexto(feitico_def : FeiticoDef) -> FeiticoContexto:
 # emite que esta lancando um feitico
 func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	lancar_feitico.emit(feitico_contexto)
+	# emite o audio
+	audio_stream_player.play()

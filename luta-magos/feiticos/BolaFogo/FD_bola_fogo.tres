@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://c4ct5q6ves50i"]
 
+[ext_resource type="AudioStream" uid="uid://dw268mfdfoabm" path="res://assets/audios/feiticos/boladefogo.mp3" id="1_2f3yf"]
 [ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="1_ax7ax"]
 [ext_resource type="PackedScene" uid="uid://bkkbtsjf58c46" path="res://feiticos/BolaFogo/FS_bola_fogo.tscn" id="1_p0m5y"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_toj36"]
@@ -25,6 +26,7 @@ duracao_seg = 4.0
 afetados = 4
 lista_efeitos = Array[ExtResource("1_u0jac")]([SubResource("Resource_p4nti")])
 visual_def = SubResource("Resource_hg8pb")
+audio_stream = ExtResource("1_2f3yf")
 metadata/_custom_type_script = "uid://cf63pij16plhl"
 
 [resource]

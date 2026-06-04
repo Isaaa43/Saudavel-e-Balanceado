@@ -21,11 +21,13 @@ extends Resource
 # -----------------------------------------------------------------------------
 @export_group("Visual")
 @export var visual_def: FeiticoVisualDef
+@export var audio_stream: AudioStream
 
 func criar(contexto: FeiticoContexto) -> FeiticoComportamento:
 	# --- cria o comportamento especifico
 	var comportamento : FeiticoComportamento = _criar()
 	_criar_sub_sistemas(comportamento)
+	comportamento.audio_stream = audio_stream
 	
 	comportamento.contexto = contexto
 	# --- efeitos

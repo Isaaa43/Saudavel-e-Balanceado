@@ -44,6 +44,7 @@ var area_ativacao: FeiticoAreaAtivacao
 # Visual
 # -----------------------------------------------------------------------------
 var visual: FeiticoVisual
+var audio_stream : AudioStream
 
 # Dados Feitico
 # -----------------------------------------------------------------------------
@@ -150,6 +151,13 @@ func iniciar() -> void:
 	# TODO melhorar: se tiver particulas, comece a emitr
 	if visual.particulas:
 		visual.particulas.emitting = true
+	# audio
+	# TODO: melhorar essa parte
+	if audio_stream:
+		var audio_player := AudioStreamPlayer3D.new()
+		audio_player.stream = audio_stream
+		corpo.add_child(audio_player)
+		audio_player.play()
 	# inicia o comportamento especifico das classes derivadas
 	iniciar_comportamento()
 
