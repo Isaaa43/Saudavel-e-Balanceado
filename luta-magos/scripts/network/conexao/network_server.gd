@@ -21,6 +21,8 @@ func criar_lobby() -> void:
 	
 	TrocaCenaTemp.go_to_menu_partida()
 	Network.logs.add_conexao_texto("Lobby criado")
+	Network.logs.add_conexao_texto("IP: " + Network.IP_ADDR)
+	Network.logs.add_conexao_texto("Port: %d" % Network.PORT)
 	# salva o peer_id do server nos dados do jog
 	Network.client.dados_jogador.peer_id = Network.SERVER_ID
 	# cria os dados do jogador que criou o lobby

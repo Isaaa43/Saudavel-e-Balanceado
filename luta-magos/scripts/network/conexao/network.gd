@@ -8,8 +8,8 @@ signal client_server_disconnected
 
 const SERVER_ID := 1
 
-const PORT			:= 54321
-const IP_ADDR		:= "localhost"
+var PORT			:= 45678
+var IP_ADDR			:= "127.0.0.1"
 const MAX_CLIENTS 	:= 2
 
 var server : NetworkServer
@@ -100,7 +100,21 @@ func is_peer_connected() -> bool:
 	if multiplayer.get_unique_id() == 0: return false
 	
 	return true
-	
+
+# ------------------------------------------------------------------------------
+# Dados Conexao
+# ------------------------------------------------------------------------------
+
+func get_ip() -> String:
+	for address in IP.get_local_addresses():
+		# pega enderecos IP v4
+		if (address.split('.').size() == 4):
+			# IP interno, normalmente na forma 192.168.*.*
+			if address.contains("192.168"):
+				return address
+	# IP para localhost, ambos jogos rodando no mesmo PC
+	return "127.0.0.1"
+
 # ------------------------------------------------------------------------------
 # Nodos Filhos
 # ------------------------------------------------------------------------------
