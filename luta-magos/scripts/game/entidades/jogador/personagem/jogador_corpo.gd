@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 var camera_jogador: CameraJogador
 
+@onready var sistema_animacao: SistemaAnimacao = $SistemaAnimacao
+
 @onready var cabeca_pivot: Node3D = $Corpo/Cabeca/CabecaPivot
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca
 @onready var mesh_corpo: MeshInstance3D = $Corpo/MeshCorpo

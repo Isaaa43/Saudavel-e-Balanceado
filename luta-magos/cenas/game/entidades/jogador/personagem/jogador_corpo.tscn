@@ -2,17 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bovowbww38f7m" path="res://scripts/game/entidades/jogador/personagem/jogador_corpo.gd" id="1_tbhp6"]
 [ext_resource type="AudioStream" uid="uid://cx77yj6ddh625" path="res://assets/audios/acertandoinimigo.mp3" id="2_dbt5w"]
-[ext_resource type="PackedScene" uid="uid://bgxm6vels3fo2" path="res://assets/personagem/Rig_Sapo.glb" id="2_jpww1"]
 [ext_resource type="Shader" uid="uid://cp0bx4eechkhk" path="res://scripts/shaders/outline_revelar.gdshader" id="2_jxg5t"]
+[ext_resource type="Script" uid="uid://t1neyfaggex2" path="res://scripts/game/characters/sistemas/sistema_animacao.gd" id="2_mxy06"]
+[ext_resource type="PackedScene" uid="uid://dxrs17vw4ikxp" path="res://assets/personagem/rig_sapo.tscn" id="3_mxy06"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxy06"]
-render_priority = 1
-shader = ExtResource("2_jxg5t")
-shader_parameter/outline_color = Color(1, 0.69803923, 0, 1)
-shader_parameter/outline_width = 10.0
-shader_parameter/depth_threshold = 9.999999747e-05
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jpww1"]
 render_priority = 1
@@ -41,9 +35,16 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("JogadorCorpo/Corpo/Cabeca/CabecaPivot:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("JogadorCorpo/SistemaAnimacao:animacao_acontecendo")
+properties/3/spawn = true
+properties/3/replication_mode = 2
 
 [node name="JogadorCorpo" type="CharacterBody3D" unique_id=1543690626]
 script = ExtResource("1_tbhp6")
+
+[node name="SistemaAnimacao" type="Node" parent="." unique_id=1315448621 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("2_mxy06")
+animation_player = NodePath("../Corpo/Rig_Sapo/AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=827753563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -51,11 +52,7 @@ shape = SubResource("CapsuleShape3D_jbwqc")
 
 [node name="Corpo" type="Node3D" parent="." unique_id=59201550]
 
-[node name="Rig_Sapo" parent="Corpo" unique_id=1676190954 instance=ExtResource("2_jpww1")]
-transform = Transform3D(6.5, 0, 0, 0, 6.5, 0, 0, 0, 6.5, 0, 0, 0)
-
-[node name="Frogger_Skinned" parent="Corpo/Rig_Sapo/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1676190954, 1340778397) index="0" unique_id=1161527019]
-material_overlay = SubResource("ShaderMaterial_mxy06")
+[node name="Rig_Sapo" parent="Corpo" unique_id=378789027 instance=ExtResource("3_mxy06")]
 
 [node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=211919447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

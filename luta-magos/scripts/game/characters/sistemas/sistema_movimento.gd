@@ -27,8 +27,10 @@ func _process(delta: float) -> void:
 	if direction:
 		jogador.velocity.x = direction.x * SPEED
 		jogador.velocity.z = direction.z * SPEED
+		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.ANDAR)
 	else:
 		jogador.velocity.x = move_toward(jogador.velocity.x, 0, SPEED)
 		jogador.velocity.z = move_toward(jogador.velocity.z, 0, SPEED)
+		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.IDLE)
 
 	jogador.move_and_slide()

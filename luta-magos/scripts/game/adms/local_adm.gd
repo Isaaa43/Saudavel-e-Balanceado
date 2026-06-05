@@ -42,6 +42,9 @@ func _ajustar_lancador_feiticos() -> void:
 
 func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
 	Network.client.lancar_feitico(feitico_contexto)
+	# animacao
+	var anim := SistemaAnimacao.Animacao.ATACAR
+	jogador.jogador_corpo.sistema_animacao.acao(anim)
 
 func _atualizar_sensibilidade_mira(sensi: float) -> void:
 	jogador.camera_jogador.set_sensibilidade(sensi)
