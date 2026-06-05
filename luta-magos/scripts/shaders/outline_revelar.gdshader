@@ -4,8 +4,8 @@ render_mode unshaded, depth_test_disabled;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_nearest;
 uniform vec4 outline_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
-uniform float outline_width : hint_range(1.0, 10.0, 0.5) = 2.0;
-uniform float depth_threshold : hint_range(0.0001, 0.02, 0.0001) = 0.01;
+uniform float outline_width : hint_range(1.0, 20.0, 0.5) = 2.0;
+uniform float depth_threshold : hint_range(0.0001, 0.01, 0.0001) = 0.01;
 
 void fragment() {
     vec2 pixel_size = outline_width / VIEWPORT_SIZE;

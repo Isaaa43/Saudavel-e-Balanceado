@@ -2,8 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bovowbww38f7m" path="res://scripts/game/entidades/jogador/personagem/jogador_corpo.gd" id="1_tbhp6"]
 [ext_resource type="AudioStream" uid="uid://cx77yj6ddh625" path="res://assets/audios/acertandoinimigo.mp3" id="2_dbt5w"]
+[ext_resource type="Shader" uid="uid://cp0bx4eechkhk" path="res://scripts/shaders/outline_revelar.gdshader" id="2_jxg5t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpww1"]
+render_priority = 1
+shader = ExtResource("2_jxg5t")
+shader_parameter/outline_color = Color(1, 0.69803923, 0, 1)
+shader_parameter/outline_width = 20.0
+shader_parameter/depth_threshold = 9.999999747e-05
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_30vjq"]
 
@@ -37,6 +45,7 @@ shape = SubResource("CapsuleShape3D_jbwqc")
 
 [node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=211919447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_overlay = SubResource("ShaderMaterial_jpww1")
 mesh = SubResource("CapsuleMesh_30vjq")
 surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
 
@@ -60,9 +69,9 @@ stream = ExtResource("2_dbt5w")
 
 [node name="LabelNome" type="Label3D" parent="." unique_id=1612619769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7698882, 0)
+visible = false
 billboard = 2
 outline_modulate = Color(0, 0, 0.40784314, 1)
-text = "Nome"
 font_size = 40
 
 [node name="LabelDano" type="Label3D" parent="." unique_id=1095774123]

@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bxbxjx3vghjp8"]
 
-[ext_resource type="Shader" uid="uid://ur5ywwx8nxte" path="res://scripts/shaders/outline.gdshader" id="1_7d02w"]
+[ext_resource type="Shader" uid="uid://cp0bx4eechkhk" path="res://scripts/shaders/outline_revelar.gdshader" id="1_7d02w"]
+[ext_resource type="Script" uid="uid://d02tjgthl5ds4" path="res://scripts/game/entidades/entidade.gd" id="2_xokil"]
+[ext_resource type="Script" uid="uid://b55gy4hmxuw8g" path="res://feiticos/FuraSapato/static_body_armadilha.gd" id="3_edd6a"]
+[ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="4_edd6a"]
+[ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="4_krbqj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7d02w"]
 render_priority = 1
@@ -10,8 +14,8 @@ shader_parameter/outline_width = 10.0
 shader_parameter/depth_threshold = 9.999999747e-05
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
-top_radius = 1.5
-bottom_radius = 1.5
+top_radius = 1.2
+bottom_radius = 1.2
 height = 0.2
 radial_segments = 32
 rings = 2
@@ -21,6 +25,10 @@ albedo_color = Color(0.14, 0.14, 0.14, 1)
 metallic_specular = 0.0
 roughness = 0.78
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_krbqj"]
+height = 0.19372559
+radius = 1.1850586
+
 [node name="FS_FuraSapato" type="Node3D" unique_id=2102016733]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
@@ -28,3 +36,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1390037, 0)
 material_overlay = SubResource("ShaderMaterial_7d02w")
 mesh = SubResource("CylinderMesh_xe436")
 surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
+
+[node name="Entidade" type="Node" parent="MeshInstance3D" unique_id=89584569 node_paths=PackedStringArray("receptor_efeitos", "corpo")]
+script = ExtResource("2_xokil")
+receptor_efeitos = NodePath("ReceptorEfeitos")
+corpo = NodePath("../../StaticBody3D")
+is_especial = true
+metadata/_custom_type_script = "uid://d02tjgthl5ds4"
+
+[node name="ReceptorEfeitos" type="Node" parent="MeshInstance3D/Entidade" unique_id=1149353616 node_paths=PackedStringArray("sistema_efeitos")]
+script = ExtResource("4_edd6a")
+sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
+metadata/_custom_type_script = "uid://dc2tlxsdy1hq0"
+
+[node name="SistemaEfeitosFeiticos" type="Node" parent="MeshInstance3D/Entidade/ReceptorEfeitos" unique_id=1075681397 node_paths=PackedStringArray("entidade")]
+script = ExtResource("4_krbqj")
+entidade = NodePath("../..")
+metadata/_custom_type_script = "uid://rm63or2vve4e"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1579397504]
+collision_layer = 327937
+collision_mask = 0
+script = ExtResource("3_edd6a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2029491153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1428833, 0)
+shape = SubResource("CylinderShape3D_krbqj")

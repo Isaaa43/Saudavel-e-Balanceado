@@ -6,15 +6,16 @@ extends Node
 @export var sistema_efeitos: SistemaEfeitosFeiticos
 
 var cura_desativada: bool = false
-
-static func encontrar_receptor_efeitos(nodo: Node) -> ReceptorEfeitos:
-	var receptor : ReceptorEfeitos = nodo.get("receptor_efeitos")
-	if receptor != null and receptor is ReceptorEfeitos: return receptor
-	# else
-	return nodo.find_child("ReceptorEfeitos")
-
- 
+#
+#static func encontrar_receptor_efeitos(nodo: Node) -> ReceptorEfeitos:
+	#var receptor : ReceptorEfeitos = nodo.get("receptor_efeitos")
+	#if receptor != null and receptor is ReceptorEfeitos: return receptor
+	## else
+	#return nodo.find_child("ReceptorEfeitos")
+#
+ #
 func receber_lista_efeitos(lista_efeitos: Array[FeiticoEfeito]) -> void:
+	print("receber_lista_efeitos")
 	for efeito: FeiticoEfeito in lista_efeitos:
 		receber_efeito(efeito)
 
