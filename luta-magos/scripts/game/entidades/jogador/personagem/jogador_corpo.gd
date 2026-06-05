@@ -6,12 +6,13 @@ var camera_jogador: CameraJogador
 @onready var cabeca_pivot: Node3D = $Corpo/Cabeca/CabecaPivot
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca
 @onready var mesh_corpo: MeshInstance3D = $Corpo/MeshCorpo
+@onready var frogger_skinned: MeshInstance3D = $Corpo/Rig_Sapo/Armature/Skeleton3D/Frogger_Skinned
 
 @onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
 @onready var label_dano: Label3D = $LabelDano
 
 func _ready() -> void:
-	mesh_instance_3d = mesh_corpo
+	mesh_instance_3d = frogger_skinned
 	_material_outline = mesh_instance_3d.material_overlay
 	toggle_shader_revelacao(false)
 
