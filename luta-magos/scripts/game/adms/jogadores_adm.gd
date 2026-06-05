@@ -39,8 +39,7 @@ func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 		recebido_jogador_authority.emit(jogador)
 		recebido_dados_jog_authority.emit(dados_jog)
 	
-	jogador.global_position = Vector3.ONE * randi_range(2, 5)
-	jogador.velocity = Vector3.ZERO
+	jogador.spawnar(Vector3.ONE * randi_range(2, 5))
 
 func _client_set_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador) -> void:
 	if not jogadores_por_peer_id.has(jog_peer_id): return

@@ -1,12 +1,14 @@
 class_name CameraJogador
-extends Camera3D
+extends Node3D
 
-@export var jogador : Jogador
+@export var jogador : JogadorCorpo
 
-@onready var pivot_olhando: Node3D = $PivotOlhando
+@onready var camera: Camera3D = $Camera
 
-@onready var remote_transform_mira: RemoteTransform3D = $RemoteTransformMira
-@onready var remote_transform_cabeca: RemoteTransform3D = $PivotOlhando/RemoteTransformCabeca
+@onready var pivot_olhando: Node3D = $Camera/PivotOlhando
+
+@onready var remote_transform_mira: RemoteTransform3D = $Camera/RemoteTransformMira
+@onready var remote_transform_cabeca: RemoteTransform3D = $Camera/PivotOlhando/RemoteTransformCabeca
 
 const SENSITIVITY_BASE_MOUSE := 0.005
 const SENSITIVITY_BASE_CONTROLLER := 5.0
@@ -21,37 +23,35 @@ func start() -> void:
 	has_controller = Input.get_connected_joypads().size() > 0
 	set_process(has_controller)
 	
-	make_current()
+	camera.make_current()
 	
 	# TODO: garantir que isso esta habilitado isso na build final
 	if not OS.is_debug_build():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	#if not is_multiplayer_authority(): return
-	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		jogador.rotate_y(-event.relative.x * mouse_sensitivity)
-		rotate_x(-event.relative.y * mouse_sensitivity)
-		rotation.x = clamp(rotation.x, -PI/2, PI/2)
-		# rodar a cabeca
-		#var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
-		#pivot_olhando.rotation.x = cabeca_rot
-
+		_rotacionar_camera(event.relative, 1)
 
 func _process(delta):
 	# Get vector from the right analog stick
 	var look_input = Input.get_vector("olhar_esquerda", "olhar_direita", "olhar_cima", "olhar_baixo")
 
 	if look_input.length() > 0.1: # Small deadzone check
-		# Rotate horizontally (around Y axis)
-		jogador.rotate_y(-look_input.x * controller_sensitivity * delta)
-		# Rotate vertically (around local X axis)
-		rotate_x(-look_input.y * controller_sensitivity * delta)
-		rotation.x = clamp(rotation.x, -PI/2, PI/2)
-		# rodar a cabeca
-		#var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
-		#pivot_olhando.rotation.x = cabeca_rot
+		_rotacionar_camera(look_input, delta)
+
+func _rotacionar_camera(look_input: Vector2, delta: float) -> void:
+	var sensitivity : float = controller_sensitivity if has_controller else mouse_sensitivity
+	
+	# Rotate horizontally (around Y axis)
+	jogador.rotate_y(-look_input.x * sensitivity * delta)
+	# Rotate vertically (around local X axis)
+	camera.rotate_x(-look_input.y * sensitivity * delta)
+	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+	# rodar a cabeca
+	var cabeca_rot = remap(rotation.x, -PI/2, PI/2, -PI/4, PI/4)
+	pivot_olhando.rotation.x = cabeca_rot
+
 
 func set_sensibilidade(sensi: float) -> void:
 	# Controle

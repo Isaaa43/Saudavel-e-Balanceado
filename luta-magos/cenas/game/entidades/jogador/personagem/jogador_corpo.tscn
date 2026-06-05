@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://c8tx6c38tykag"]
+
+[ext_resource type="Script" uid="uid://bovowbww38f7m" path="res://scripts/game/entidades/jogador/personagem/jogador_corpo.gd" id="1_tbhp6"]
+[ext_resource type="AudioStream" uid="uid://cx77yj6ddh625" path="res://assets/audios/acertandoinimigo.mp3" id="2_dbt5w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_30vjq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5tbn"]
+albedo_color = Color(1, 0.65333337, 0.35000002, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_s5tbn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf517"]
+albedo_color = Color(0.9298859, 0.430138, 0, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5tbn"]
+properties/0/path = NodePath("JogadorCorpo:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("JogadorCorpo:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("JogadorCorpo/Corpo/Cabeca/CabecaPivot:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="JogadorCorpo" type="CharacterBody3D" unique_id=1543690626]
+script = ExtResource("1_tbhp6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=827753563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_jbwqc")
+
+[node name="Corpo" type="Node3D" parent="." unique_id=59201550]
+
+[node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=211919447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_30vjq")
+surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
+
+[node name="Cabeca" type="Node3D" parent="Corpo" unique_id=758590712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="RemoteTransformCabeca" type="RemoteTransform3D" parent="Corpo/Cabeca" unique_id=1263194128]
+
+[node name="CabecaPivot" type="Node3D" parent="Corpo/Cabeca" unique_id=941134249]
+transform = Transform3D(1, 0, 0, 0, 0.9999633, -0.008569461, 0, 0.008569461, 0.9999633, 0, 0, -0.15)
+
+[node name="MeshCabeca" type="MeshInstance3D" parent="Corpo/Cabeca/CabecaPivot" unique_id=51166379]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
+mesh = SubResource("SphereMesh_s5tbn")
+surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
+
+[node name="AudioPlayerDano" type="AudioStreamPlayer3D" parent="." unique_id=1671122780]
+stream = ExtResource("2_dbt5w")
+
+[node name="LabelNome" type="Label3D" parent="." unique_id=1612619769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7698882, 0)
+billboard = 2
+outline_modulate = Color(0, 0, 0.40784314, 1)
+text = "Nome"
+font_size = 40
+
+[node name="LabelDano" type="Label3D" parent="." unique_id=1095774123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4275663, 0)
+visible = false
+billboard = 2
+outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
+text = "Dano:
+"
+font_size = 50
+outline_size = 16
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=22801627]
+root_path = NodePath("../..")
+replication_config = SubResource("SceneReplicationConfig_s5tbn")

@@ -104,8 +104,8 @@ func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, node: Node3D) -> void:
 
 func _deve_aplicar_efeito(node: Node3D) -> bool:
 	# TODO: verificar mais tipos do que so o jogador
-	if not node is Jogador: return false
-	var jogador: Jogador = node
+	if not node is JogadorCorpo: return false
+	var jogador: Jogador = node.get_parent()
 	var jog_id : int = jogador.dados_jogador.peer_id
 	
 	match (afetados):
