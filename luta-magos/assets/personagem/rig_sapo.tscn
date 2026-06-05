@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dxrs17vw4ikxp"]
+
+[ext_resource type="PackedScene" uid="uid://bgxm6vels3fo2" path="res://assets/personagem/Rig_Sapo.glb" id="1_e0lca"]
+
+[node name="Rig_Sapo" unique_id=378789027 instance=ExtResource("1_e0lca")]
+transform = Transform3D(6.5, 0, 0, 0, 6.5, 0, 0, 0, 6.5, 0, 0, 0)
+
+[node name="Armature" parent="." index="0" unique_id=1697243448]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0" unique_id=1146640257]
+bones/0/position = Vector3(-4.5269806e-09, 2.5582958e-08, -8.14116)
+bones/0/rotation = Quaternion(0.5094454, 0.5199694, -0.48467854, 0.48495778)
+bones/1/position = Vector3(7.658263, 9.5041474e-07, 9.156065e-08)
+bones/1/rotation = Quaternion(-1.600706e-10, -9.404175e-10, 2.561137e-08, 1)
+bones/1/scale = Vector3(1, 1, 0.9999999)
+bones/2/rotation = Quaternion(0.73133963, 0.053733487, -0.04565676, 0.6783587)
+bones/2/scale = Vector3(0.9999999, 1.0000001, 1)
+bones/4/rotation = Quaternion(0.11239818, 0.05993531, -0.46669197, 0.8751989)
+bones/4/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
+bones/5/position = Vector3(3.3265235, 4.0978182e-07, 1.19209204e-07)
+bones/5/rotation = Quaternion(-3.72529e-09, -4.0512532e-08, 6.146729e-08, 1)
+bones/6/position = Vector3(1.8222237, -5.700532, 1.4788537)
+bones/6/rotation = Quaternion(-8.381901e-09, 1.8626438e-09, -5.4482367e-08, 1)
+bones/7/rotation = Quaternion(-0.037096817, -0.121858135, -0.28885794, 0.9488601)
+bones/9/rotation = Quaternion(-8.5809006e-08, -3.0704546e-09, 1.1346128e-07, 1)
+bones/14/rotation = Quaternion(-0.19483054, 0.06219637, -0.21919143, 0.9540062)
+bones/17/rotation = Quaternion(-2.5254849e-08, 1.0113581e-08, -4.6289642e-08, 1)
+bones/18/rotation = Quaternion(-0.19179109, 0.06046728, -0.3868321, 0.89995605)
+bones/20/rotation = Quaternion(0.8751941, 0.46670103, -0.059936393, 0.11239732)
+bones/20/scale = Vector3(1.0000001, 1.0000004, 1)
+bones/21/position = Vector3(3.3264778, 1.6391283e-06, -4.2632564e-14)
+bones/21/rotation = Quaternion(-9.313194e-10, 3.7252925e-09, -2.7473973e-08, 1)
+bones/22/position = Vector3(1.8223747, -5.7004123, -1.4788456)
+bones/22/rotation = Quaternion(-6.51926e-09, 1.4901161e-08, 5.54137e-08, 1)
+bones/23/position = Vector3(-0.95967716, -1.1086493, -8.170888)
+bones/23/rotation = Quaternion(0.12185935, -0.03709581, 0.948863, 0.28884804)
+bones/25/rotation = Quaternion(5.4878907e-08, -3.4400728e-07, 2.9103786e-10, 1)
+bones/27/rotation = Quaternion(2.1827329e-09, 8.240605e-07, -6.817571e-08, 1)
+bones/28/rotation = Quaternion(1.364242e-10, 4.5227356e-08, -4.0454324e-09, 1)
+bones/31/rotation = Quaternion(8.9406946e-08, -5.9138983e-07, -1.571607e-07, 1)
+bones/33/rotation = Quaternion(-0.25018823, 0.06457209, -0.3167027, 0.9126531)
+bones/34/rotation = Quaternion(0.13990672, -0.0031102493, -0.058138434, 0.98845154)
+bones/38/position = Vector3(-3.668377, -0.06453066, 0.2612257)
+bones/38/rotation = Quaternion(-1.3722458e-08, -2.7885108e-09, 3.8475264e-08, 1)
+bones/38/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/39/rotation = Quaternion(6.2573247e-10, 5.2568805e-10, -4.506728e-08, 1)
+bones/39/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
+bones/40/position = Vector3(-1.2493819, -0.28595293, 2.3602111)
+bones/40/rotation = Quaternion(2.1827881e-10, -7.046765e-09, -2.226443e-08, 1)
+bones/42/position = Vector3(-3.6683795, 0.06453892, 0.261226)
+bones/42/rotation = Quaternion(1.6007107e-10, 2.8558134e-10, 2.3283064e-10, 1)
+bones/42/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
+bones/43/rotation = Quaternion(-3.2014208e-10, 2.1445887e-09, 4.3655746e-10, 1)
+bones/43/scale = Vector3(1, 1.0000001, 0.99999994)
+bones/44/rotation = Quaternion(-4.3655732e-11, -7.0485844e-09, -2.2249878e-08, 1)
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=1914401165]
+autoplay = &"IDLE"
