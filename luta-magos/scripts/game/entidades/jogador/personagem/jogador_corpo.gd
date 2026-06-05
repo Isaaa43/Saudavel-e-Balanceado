@@ -7,6 +7,11 @@ var camera_jogador: CameraJogador
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca
 @onready var mesh_corpo: MeshInstance3D = $Corpo/MeshCorpo
 @onready var frogger_skinned: MeshInstance3D = $Corpo/Rig_Sapo/Armature/Skeleton3D/Frogger_Skinned
+@onready var skeleton_3d: Skeleton3D = $Corpo/Rig_Sapo/Armature/Skeleton3D
+@onready var rig_sapo: Node3D = $Corpo/Rig_Sapo
+
+var bone_head_idx: int
+var bone_head_base_rot : Quaternion
 
 @onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
 @onready var label_dano: Label3D = $LabelDano
@@ -15,6 +20,9 @@ func _ready() -> void:
 	mesh_instance_3d = frogger_skinned
 	_material_outline = mesh_instance_3d.material_overlay
 	toggle_shader_revelacao(false)
+	
+	bone_head_idx = skeleton_3d.find_bone("Head")
+	bone_head_base_rot = skeleton_3d.get_bone_pose_rotation(bone_head_idx)
 
 var _material_outline: ShaderMaterial
 var mesh_instance_3d: MeshInstance3D
@@ -26,6 +34,10 @@ func toggle_shader_revelacao(ligado: bool) -> void:
 		mesh_instance_3d.material_overlay = null
 
 
+func esconder_mesh() -> void:
+	mesh_instance_3d.hide()
+	rig_sapo.hide()
+
 func _process(delta: float) -> void:
 	_process_camera(delta)
 
@@ -35,6 +47,18 @@ func _process_camera(_delta: float) -> void:
 	# rodar a cabeca
 	var cabeca_rot = remap(camera.rotation.x, -PI/2, PI/2, -PI/3, PI/3)
 	cabeca_pivot.rotation.x = cabeca_rot 
+
+func _physics_process(_delta: float) -> void:
+	# Get the current bone rotation
+	var current_rot = skeleton_3d.get_bone_pose_rotation(bone_head_idx)
+
+	# Convert cabeca_pivot's rotation to quaternion and combine with base rotation
+	var pivot_rot = cabeca_pivot.quaternion
+	var target_rot = bone_head_base_rot * pivot_rot  # Apply base rotation first, then pivot
+
+	# Smoothly rotate towards it
+	var new_rot = current_rot.slerp(target_rot, 0.1)
+	skeleton_3d.set_bone_pose_rotation(bone_head_idx, new_rot)
 
 
 func conectar_camera(_camera_jogador: CameraJogador) -> void:

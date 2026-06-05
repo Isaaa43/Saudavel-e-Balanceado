@@ -41,6 +41,7 @@ func _ready() -> void:
 		_turn_off(jogador_corpo)
 		camera_jogador.queue_free()
 		sistema_movimento.queue_free()
+		jogador_corpo.set_physics_process(true) ##
 		return
 	
 	_ready_camera()
@@ -51,6 +52,8 @@ func _ready_camera() -> void:
 	camera_jogador.start()
 	# linka a cabeca com a camera
 	jogador_corpo.conectar_camera(camera_jogador)
+	# 
+	jogador_corpo.esconder_mesh()
 
 # TODO: arrumar
 func _display_nome() -> void:
