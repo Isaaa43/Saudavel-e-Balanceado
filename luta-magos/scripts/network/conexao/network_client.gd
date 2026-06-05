@@ -71,6 +71,9 @@ func receber_terminar_partida() -> void:
 	_terminar_partida()
 
 func _terminar_partida() -> void:
+	if multiplayer.is_server():
+		SaveData.encerrar_partida()
+	
 	#TODO: Network.server_disconnected ?
 	#TrocaCenaTemp.go_to_menu_inicial()
 	TrocaCenaTemp.go_to_menu_partida()

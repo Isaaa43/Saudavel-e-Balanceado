@@ -26,6 +26,18 @@ func _ready() -> void:
 	
 	bone_head_idx = skeleton_3d.find_bone("Head")
 	bone_head_base_rot = skeleton_3d.get_bone_pose_rotation(bone_head_idx)
+	
+	pai_id = int(get_parent().name)
+	if multiplayer.is_server():
+		SaveData.registrar_entidade(_gravar_posicao)
+
+func _exit_tree() -> void:
+	# remove quando o jogador sai da cena
+	SaveData.desregistrar_entidade(_gravar_posicao)
+
+var pai_id: int 
+func _gravar_posicao() -> void:
+	SaveData.registrar_posicao(pai_id, global_position, rotation.y, cabeca_rot)
 
 var _material_outline: ShaderMaterial
 var mesh_instance_3d: MeshInstance3D
@@ -44,11 +56,11 @@ func esconder_mesh() -> void:
 func _process(delta: float) -> void:
 	_process_camera(delta)
 
-
+var cabeca_rot: float = 0.0
 func _process_camera(_delta: float) -> void:
 	var camera : Camera3D = camera_jogador.camera
 	# rodar a cabeca
-	var cabeca_rot = remap(camera.rotation.x, -PI/2, PI/2, -PI/3, PI/3)
+	cabeca_rot = remap(camera.rotation.x, -PI/2, PI/2, -PI/3, PI/3)
 	## hack para rotacionar o bone de cabeca
 	#cabeca_pivot.rotation.x = cabeca_rot 
 	cabeca_pivot.rotation.z = -cabeca_rot 

@@ -6,11 +6,15 @@ signal recebido_dados_jog_authority(dados_jog: DadosJogador)
 
 @export var JOGADOR_REF : PackedScene
 
+@export var mapa: MapaAdm
+
 @onready var jogadores_node_pai: Node = $Jogadores
 
 var jogadores_por_peer_id: Dictionary[int, Jogador] = {}
 
 func _ready() -> void:
+	spawns = mapa.get_spawn()
+	
 	if multiplayer.is_server():
 		_server_ready()
 	else:
@@ -24,6 +28,7 @@ func _client_ready() -> void:
 	# client ajusta dados dos jogadores
 	Network.client.ajustar_dados_jogador.connect(_client_set_dados_jogador)
 
+var spawns : Array[Vector3]
 func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 	var peer_id : int = dados_jog.peer_id
 	print("spawnar_jogador dados: ", dados_jog, " id: ", peer_id)
@@ -32,14 +37,16 @@ func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 	jogador.name = str(peer_id)
 	jogador.dados_jogador = dados_jog
 	
+	jogador.spawnar(spawns.pop_back())
 	jogadores_node_pai.add_child(jogador, true)
+	
 	jogadores_por_peer_id[peer_id] = jogador
 	# se for o jogador desse PC, emitir jogador e dados
 	if _verificar_authority_jogador(peer_id):
 		recebido_jogador_authority.emit(jogador)
 		recebido_dados_jog_authority.emit(dados_jog)
 	
-	jogador.spawnar(Vector3.ONE * randi_range(2, 5))
+	SaveData.registrar_nome(peer_id, dados_jog.nome)
 
 func _client_set_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador) -> void:
 	if not jogadores_por_peer_id.has(jog_peer_id): return
@@ -63,6 +70,7 @@ func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	# se for o jogador desse PC, emitir jogador
 	if _verificar_authority_jogador(jog_peer_id):
 		recebido_jogador_authority.emit(jogador)
+		jogador.spawnar(spawns.pop_front())
 	# peca para o server os dados desse jogador
 	Network.client.pedir_dados_jogador_do_jogador(jog_peer_id)
 

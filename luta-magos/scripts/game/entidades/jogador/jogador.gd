@@ -48,6 +48,9 @@ func _ready() -> void:
 	_ready_camera()
 	# conectar os sinais
 	sistema_vida.morreu.connect(morrer)
+	
+	jogador_corpo.global_position = global_position_inicial
+	jogador_corpo.velocity = Vector3.ZERO
 
 func _ready_camera() -> void:
 	camera_jogador.start()
@@ -64,8 +67,13 @@ func _display_nome() -> void:
 # Movimentacao
 # -----------------------------------------------------------------------------
 
+var global_position_inicial := Vector3.ZERO
 func spawnar(global_pos: Vector3) -> void:
-	jogador_corpo.global_position = global_pos
+	global_position_inicial = global_pos
+	call_deferred("_spawnar")
+	
+func _spawnar() -> void:
+	jogador_corpo.global_position = global_position_inicial
 	jogador_corpo.velocity = Vector3.ZERO
 
 # -----------------------------------------------------------------------------

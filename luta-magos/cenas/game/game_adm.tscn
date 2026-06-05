@@ -42,8 +42,9 @@ timer_adm = NodePath("TimerAdm")
 estado_partida_adm = NodePath("EstadoPartidaAdm")
 efeito_fim_tempo = SubResource("Resource_26i0g")
 
-[node name="JogadoresAdm" parent="." unique_id=93310562 instance=ExtResource("2_j0w0j")]
+[node name="JogadoresAdm" parent="." unique_id=93310562 node_paths=PackedStringArray("mapa") instance=ExtResource("2_j0w0j")]
 JOGADOR_REF = ExtResource("4_e2ubu")
+mapa = NodePath("../MapaAdm")
 
 [node name="MapaAdm" parent="." unique_id=1637281649 instance=ExtResource("3_yfoi5")]
 
