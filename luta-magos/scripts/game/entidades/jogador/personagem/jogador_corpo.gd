@@ -7,7 +7,7 @@ var camera_jogador: CameraJogador
 
 @onready var cabeca_pivot: Node3D = $Corpo/Cabeca/CabecaPivot
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca
-@onready var mesh_corpo: MeshInstance3D = $Corpo/MeshCorpo
+
 @onready var frogger_skinned: MeshInstance3D = $Corpo/Rig_Sapo/Armature/Skeleton3D/Frogger_Skinned
 @onready var skeleton_3d: Skeleton3D = $Corpo/Rig_Sapo/Armature/Skeleton3D
 @onready var rig_sapo: Node3D = $Corpo/Rig_Sapo
