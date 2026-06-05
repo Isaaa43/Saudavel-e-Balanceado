@@ -82,6 +82,7 @@ func _populate_card_pool() -> void:
 func _update_deck_list() -> void:
 	# Limpa a lista visual do deck antes de redesenhá-la.
 	deck_list.clear()
+	
 
 	# Adiciona na interface todas as cartas que estão no array deck_cards.
 	for card in deck_cards:
@@ -93,6 +94,7 @@ func _update_deck_list() -> void:
 		deck_cards.size(),
 		max_deck_size
 	]
+	GlobalDeck.set_deck(deck_cards)
 
 
 func _show_card_info(card: CardData) -> void:
@@ -185,7 +187,8 @@ func _on_remove_button_pressed() -> void:
 # =============================================================================
 class CardData:
 	extends RefCounted
-
+	
+	var feitico_id: String
 	## Texto com o nome da carta
 	var nome: String
 	## Tipo da carta
@@ -200,6 +203,7 @@ class CardData:
 	var icone: Texture2D
 	
 	func _init(feitico_def: FeiticoDef) -> void:
+		feitico_id 	= feitico_def.feitico_id
 		nome 		= feitico_def.nome
 		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
 		espaco 		= _feitico_espaco_para_string(feitico_def.espaco)
@@ -250,3 +254,7 @@ class CardData:
 				return "Passiva"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Espaco_" + str(_espaco)
+
+
+func _on_button_pressed() -> void:
+	TrocaCenaTemp.go_to_menu_inicial()

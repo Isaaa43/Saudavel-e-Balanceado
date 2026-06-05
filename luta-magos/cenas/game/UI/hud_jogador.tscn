@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://7sj1rnw3v2sr" path="res://assets/UI/hud_jogador/mana/BARRA_MANA.png" id="11_jk3uq"]
 [ext_resource type="Texture2D" uid="uid://h58c0mtnjpxw" path="res://assets/UI/hud_jogador/mana/TEXTURA_MANA.png" id="12_gdimr"]
 [ext_resource type="PackedScene" uid="uid://e33rvm32gwqu" path="res://cenas/game/UI/hud_menu_pause.tscn" id="14_gdimr"]
+[ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="15_o10b8"]
 
 [node name="HUDjogador" type="Control" unique_id=31207200 node_paths=PackedStringArray("menu_pause")]
 layout_mode = 3
@@ -47,6 +48,65 @@ grow_vertical = 2
 
 [node name="SpriteCrosshair" type="Sprite2D" parent="HudAim/PivotCentro" unique_id=168685830]
 texture = ExtResource("2_jk3uq")
+
+[node name="SelecaoMagia" type="Control" parent="." unique_id=1614263482]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -503.0
+offset_top = -417.0
+offset_right = -190.44678
+offset_bottom = -131.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TexturePrev" type="TextureRect" parent="SelecaoMagia" unique_id=1112948203]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = 180.0
+offset_right = -226.55319
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_o10b8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureProx" type="TextureRect" parent="SelecaoMagia" unique_id=1910157444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 327.0
+offset_top = 180.0
+offset_right = 121.44681
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_o10b8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureAtual" type="TextureRect" parent="SelecaoMagia" unique_id=963437113]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 42.0
+offset_right = 46.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_o10b8")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="HBoxIcones" type="HBoxContainer" parent="." unique_id=1206569448]
 layout_mode = 1

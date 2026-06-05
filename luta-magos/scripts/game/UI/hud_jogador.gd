@@ -13,6 +13,10 @@ signal sair_partida
 @onready var texture_mana_prog: TextureRect = $Mana/TextureProg
 @onready var texture_mana_prog_atual: TextureRect = $Mana/TextureProgAtual
 
+@onready var texture_prev: TextureRect = $SelecaoMagia/TexturePrev
+@onready var texture_atual: TextureRect = $SelecaoMagia/TextureAtual
+@onready var texture_prox: TextureRect = $SelecaoMagia/TextureProx
+
 var custo_mana_porcent: float = 0.0
 
 func _input(event):
@@ -26,6 +30,7 @@ func _input(event):
 			if not menu_pause.visible: # menu pause nao esta visivel
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+
 func _ready() -> void:
 	menu_pause.hide()
 	menu_pause.voltar_partida.connect(_esconder_menu_pause)
@@ -33,17 +38,53 @@ func _ready() -> void:
 	
 	tela_fim.hide()
 	
+	var idx: int = 0
+	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
+		var feitico_def = Registros.reg_feiticos.feiticos[feitico_id]
+		add_icon(feitico_id, feitico_def.icone_hud)
+		idx_to_feitico_id[idx] = feitico_id
+		idx += 1
+	
+	
 	selecionar_magia(0)
 	# inicia os mostradores
 	mostrar_vida(1.0)
 	mostrar_mana(1.0)
 
-func selecionar_magia(id: int) -> void:
-	# deixa todos os icones no padrao
-	for icon in icons:
-		icon.modulate = Color(1.0, 1.0, 1.0, 1.0)
-	# magia escolhida
-	icons[id].modulate = Color(2.454, 2.454, 2.454)
+
+var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
+var idx_to_feitico_id : Dictionary[int, String] = {}
+var idx_atual := 1
+func add_icon(feitico_id: String, icon) -> void:
+	feitico_id_to_icon[feitico_id] = icon
+
+func selecionar_magia(idx: int) -> void:
+	if idx < 0 or idx > feitico_id_to_icon.size(): return
+	
+	# prev
+	if idx > 0:
+		texture_prev.show()
+		texture_prev.texture = feitico_id_to_icon[idx_to_feitico_id[idx-1]]
+	else:
+		texture_prev.hide()
+	
+	# prov
+	if idx < feitico_id_to_icon.size()-1:
+		texture_prox.show()
+		texture_prox.texture = feitico_id_to_icon[idx_to_feitico_id[idx+1]]
+	else:
+		texture_prox.hide()
+	
+	texture_atual.texture = feitico_id_to_icon[idx_to_feitico_id[idx]]
+
+func get_feitico_id_from_idx() -> String:
+	return idx_to_feitico_id[idx_atual]
+
+func add_idx(qnt: int ) -> void:
+	idx_atual = idx_atual + qnt
+	idx_atual = min(idx_atual, idx_to_feitico_id.size()-1)
+	idx_atual = max(idx_atual, 0)
+	selecionar_magia(idx_atual)
 
 func mostrar_vida(porcent_vida: float) -> void:
 	# limita minimo em 0.0

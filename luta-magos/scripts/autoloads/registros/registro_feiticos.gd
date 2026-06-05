@@ -18,6 +18,8 @@ func _ready() -> void:
 # --------------------------------------------------------------------------------------------------
 # Temp - Resources
 
+
+
 const FD_BOLA_FOGO = "uid://c4ct5q6ves50i"
 const FD_FURA_SAPATO = "uid://c71eh6rcojqh0"
 const FD_PULO_IMPULSIONADO = "uid://skatmcv3uduk"

@@ -22,35 +22,15 @@ var selecao_feitico_id: int = 0
 
 func _ready() -> void:
 	audio_stream_player.stream = audio_cast
+	print(GlobalDeck.feiticos_id_escolhidos)
 
 func _input(_event: InputEvent) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
 	
-	if _event is InputEventKey and _event.pressed:
-		match (_event.keycode):
-			KEY_1:
-				_selecionar(0)
-			KEY_2:
-				_selecionar(1)
-			KEY_3:
-				_selecionar(2)
-			KEY_4:
-				_selecionar(3)
-			KEY_5:
-				_selecionar(4)
-			KEY_6:
-				_selecionar(5)
-	
 	if Input.is_action_just_pressed("acao"):
 		_escolher_feitico()
 
-func _selecionar(id: int) -> void:
-	selecao_feitico_id = id
-	hud_jogador.selecionar_magia(id)
-	_mostrar_custo_mana(id)
-
-func _mostrar_custo_mana(id: int) -> void:
-	var feitico_id := _get_feitico_id_from_id(id)
+func _mostrar_custo_mana(feitico_id: String) -> void:
 	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
 	var custo_mana : float = feitico_def.custo
 	if sistema_mana.tem_mana_suficiente(custo_mana):
@@ -76,13 +56,22 @@ func _get_feitico_id_from_id(id: int) -> String:
 	return ""
 
 func _escolher_feitico() -> void:
-	var feitico_id := _get_feitico_id_from_id(selecao_feitico_id)
+	
+	var feitico_id : String = hud_jogador.get_feitico_id_from_idx()
 	if feitico_id != "":
 		lancar_feitico_escolhido(feitico_id)
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
+	
+	
+	if Input.is_action_just_pressed("feitico_prox"):
+		hud_jogador.add_idx(1)
+		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx())
+	if Input.is_action_just_pressed("feitico_prev"):
+		hud_jogador.add_idx(-1)
+		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx())
 
 ## Retorna a direcao normalizada que o lancador de feiticos esta mirando
 func get_direcao_mirando() -> Vector3:
