@@ -2,6 +2,7 @@ class_name NetworkClient
 extends Node
 
 signal ajustar_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador)
+signal morreu_jogador(jog_peer_id: int)
 
 @onready var dados_jogador : DadosJogador = criar_dados_jogador()
 
@@ -88,3 +89,11 @@ func lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 func spawn_feitico(feitico_contexto_net : Dictionary) -> void:
 	var feitico_contexto := FeiticoContexto.from_dict(feitico_contexto_net)
 	spawnar_feitico.emit(feitico_contexto)
+
+func avisar_jogador_morreu() -> void:
+	Network.server.avisar_jogador_morreu.rpc_id(Network.SERVER_ID)
+
+@rpc("authority", "call_local", "reliable")
+func matar_jogador(jogador_peer_id: int) -> void:
+	print("matar_jogador ", jogador_peer_id, " meu id ", multiplayer.get_unique_id())
+	morreu_jogador.emit(jogador_peer_id)

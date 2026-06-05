@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/entidades/jogador/jogador.gd" id="1_u87cw"]
 [ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="2_8wcc5"]
+[ext_resource type="PackedScene" uid="uid://dxhpwft7uxn38" path="res://cenas/game/entidades/jogador/fantasma/FantasmaJogador.tscn" id="2_u87cw"]
 [ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="3_vbea3"]
 [ext_resource type="Script" uid="uid://c2t8eacmbwf2u" path="res://scripts/game/characters/sistemas/sistema_mana.gd" id="4_p4iun"]
 [ext_resource type="Script" uid="uid://dd6jn1dqna1hv" path="res://scripts/game/feiticos/definicoes/efeitos_def/modificadores/feitico_modificador_efeito_duradouro_def.gd" id="5_bvp8i"]
@@ -28,6 +29,7 @@ metadata/_custom_type_script = "uid://cqm03tg7qe4ca"
 script = ExtResource("1_u87cw")
 sistema_vida = NodePath("ReceptorEfeitos/SistemaVida")
 sistema_mana = NodePath("ReceptorEfeitos/SistemaMana")
+fantasma_ref = ExtResource("2_u87cw")
 receptor_efeitos = NodePath("ReceptorEfeitos")
 corpo = NodePath("JogadorCorpo")
 

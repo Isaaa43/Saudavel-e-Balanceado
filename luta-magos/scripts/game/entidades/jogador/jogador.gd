@@ -4,6 +4,9 @@ extends Entidade
 @export var sistema_vida : SistemaVida
 @export var sistema_mana : SistemaMana
 
+@export var fantasma_ref: PackedScene
+var fantasma: Node3D
+
 @onready var sistema_movimento: SistemaMovimento = $SistemaMovimento
 
 @onready var camera_jogador: CameraJogador = $CameraJogador
@@ -30,6 +33,7 @@ func _ready() -> void:
 	
 	jogador_corpo = corpo
 	sistema_vida.levou_dano.connect(jogador_corpo.mostrar_levar_dano)
+	fantasma = fantasma_ref.instantiate()
 	
 	# se nao for este computador controlando esse nodo, desligue esse nodo
 	if not is_multiplayer_authority():
@@ -65,5 +69,19 @@ func spawnar(global_pos: Vector3) -> void:
 # -----------------------------------------------------------------------------
 
 func morrer() -> void:
-	await get_tree().create_timer(0.5).timeout
-	Network.client.pedir_terminar_partida()
+	Network.client.avisar_jogador_morreu()
+	_virar_fantasma()
+
+## Local desse jogador
+func _virar_fantasma() -> void:
+	camera_jogador.corpo_rotacao = fantasma
+	sistema_movimento.process_mode = Node.PROCESS_MODE_DISABLED
+
+## Troca o visual do corpo por fantasma
+func virar_fantasma() -> void:
+	add_child(fantasma)
+	fantasma.transform = jogador_corpo.transform
+	#
+	jogador_corpo.hide()
+	jogador_corpo.process_mode = Node.PROCESS_MODE_DISABLED
+	remove_child(jogador_corpo)

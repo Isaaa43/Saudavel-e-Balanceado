@@ -15,6 +15,8 @@ func _ready() -> void:
 		_server_ready()
 	else:
 		_client_ready()
+	# ambos
+	Network.client.morreu_jogador.connect(_matar_jogador)
 
 func _server_ready() -> void:
 	# server spawna os jogadores
@@ -84,3 +86,9 @@ func dimiuir_vida_jogadores(efeito_def: FeiticoEfeitoDef) -> void:
 		jogador.receptor_efeitos.desativar_cura()
 		var efeito_dano : FeiticoEfeito = efeito_def.criar()
 		jogador.receptor_efeitos.receber_efeito(efeito_dano)
+
+func _matar_jogador(jog_peer_id: int) -> void:
+	print("_matar_jogador", jog_peer_id)
+	var jog: Jogador = get_jogador_peer_id(jog_peer_id)
+	jog.virar_fantasma()
+	

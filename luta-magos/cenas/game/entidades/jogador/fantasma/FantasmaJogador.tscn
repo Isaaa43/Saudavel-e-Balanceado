@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dxhpwft7uxn38"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oeaas"]
+angle_min = -360.0
+angle_max = 360.00003
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhvjt"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.53, 0.6553332, 1, 0.7647059)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_mvo28"]
+material = SubResource("StandardMaterial3D_uhvjt")
+radius = 0.05
+height = 0.1
+radial_segments = 6
+rings = 4
+
+[node name="FantasmaJogador" type="Node3D" unique_id=1939585183]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=887978573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+amount = 4
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_oeaas")
+draw_pass_1 = SubResource("SphereMesh_mvo28")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=998643920]
+light_color = Color(0.39169294, 0.7318449, 0.94377613, 1)
+light_energy = 10.0
+light_size = 0.1
+omni_range = 1.9295975

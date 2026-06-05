@@ -109,3 +109,11 @@ func jogador_lancar_feitico(feitico_contexto_net: Dictionary) -> void:
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		Network.client.spawn_feitico.rpc_id(peer_id, feitico_contexto_net)
+
+@rpc("any_peer", "call_local", "reliable")
+func avisar_jogador_morreu() -> void:
+	if not multiplayer.is_server(): return
+	var peer_id_req = multiplayer.get_remote_sender_id()
+	
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		Network.client.matar_jogador.rpc_id(peer_id, peer_id_req)
