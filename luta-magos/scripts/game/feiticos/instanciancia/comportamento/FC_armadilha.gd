@@ -1,3 +1,4 @@
+# TODO: repensar esse comportamento
 class_name FeiticoComportamentoArmadilha
 extends FeiticoComportamento
 
@@ -52,9 +53,3 @@ func _reativacao_pronta() -> void:
 
 func physics_process(_delta: float) -> void:
 	pass
-
-func aplicar_efeitos(jogador: Jogador) -> void:
-	_ativar_armadilha()
-	
-	for efeito : FeiticoEfeito in efeitos_ativacao:
-		efeito.aplicar(jogador)

@@ -16,13 +16,9 @@ func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	if (not feitico_id) or (not feitico_def): return
 	
 	var feitico: Feitico = feitico_def.criar_feitico(feitico_contexto)
-	#feitico.criador = _get_jogador_peer_id(feitico_contexto.criador)
 	
 	feitico.name = feitico_id + "_1"
 	feiticos.add_child(feitico, true)
 	
 	feitico.criar()
 	feitico.lancar()
-
-func _get_jogador_peer_id(peer_id: int) -> Jogador:
-	return jogadores_adm.get_jogador_peer_id(peer_id)

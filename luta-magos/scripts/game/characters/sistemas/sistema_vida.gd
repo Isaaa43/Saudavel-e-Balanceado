@@ -17,8 +17,6 @@ func _ready() -> void:
 # Mudar vida
 # -----------------------------------------------------------------------------
 func receber_dano(_dano: float) -> void:
-	print('receber_dano %d' % _dano)
-	
 	# tirar o dano do jogador, ate minimo de 0
 	vida = max(0, vida - _dano)
 	# emite sinal para atualizar a porcentagem de vida
@@ -30,8 +28,6 @@ func receber_dano(_dano: float) -> void:
 	_verificar_morte()
 
 func receber_vida(_vida: float) -> void:
-	print('receber_vida %d' % _vida)
-	
 	# adicionar vida do jogador, ate maximo de vida_max
 	vida = min(vida_max, vida + _vida)
 	# emite sinal para atualizar a porcentagem de vida
