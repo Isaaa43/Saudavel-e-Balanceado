@@ -46,7 +46,9 @@ func _process_camera(_delta: float) -> void:
 	var camera : Camera3D = camera_jogador.camera
 	# rodar a cabeca
 	var cabeca_rot = remap(camera.rotation.x, -PI/2, PI/2, -PI/3, PI/3)
-	cabeca_pivot.rotation.x = cabeca_rot 
+	## hack para rotacionar o bone de cabeca
+	#cabeca_pivot.rotation.x = cabeca_rot 
+	cabeca_pivot.rotation.z = -cabeca_rot 
 
 func _physics_process(_delta: float) -> void:
 	# Get the current bone rotation
