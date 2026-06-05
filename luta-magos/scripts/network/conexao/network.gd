@@ -17,17 +17,19 @@ var client : NetworkClient
 var logs   : NetworkLogs
 
 func _ready() -> void:
-	set_process(false)
-	#
-	server = _criar_network_server()
-	client = _criar_network_client()
-	logs = _criar_network_logs()
+	start_network()
 	#
 	multiplayer.peer_connected.connect(_server_peer_connected)
 	multiplayer.peer_disconnected.connect(_server_peer_disconnected)
 	multiplayer.connected_to_server.connect(_client_connection_ok)
 	multiplayer.connection_failed.connect(_client_connection_failed)
 	multiplayer.server_disconnected.connect(_client_server_disconnected)
+
+func start_network() -> void:
+	set_process(false)
+	server = _criar_network_server()
+	client = _criar_network_client()
+	logs = _criar_network_logs()
 
 # ------------------------------------------------------------------------------
 # Iniciar Conexao
@@ -88,6 +90,7 @@ func end() -> void:
 	print("END SERVER")
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	
+	start_network()
 	# disconnect everything
 	#for signal_info in multiplayer.get_signal_list():
 		#var connections = multiplayer.get_signal_connection_list(signal_info.name)
