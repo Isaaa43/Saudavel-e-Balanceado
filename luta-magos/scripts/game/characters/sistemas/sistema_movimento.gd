@@ -6,6 +6,11 @@ const JUMP_VELOCITY = 4.5
 
 @export var jogador: JogadorCorpo
 
+func congelar(duracao_seg: float) -> void:
+	set_process(false)
+	await get_tree().create_timer(duracao_seg).timeout
+	set_process(true)
+
 func _process(delta: float) -> void:
 	# Add the gravity.
 	if not jogador.is_on_floor():

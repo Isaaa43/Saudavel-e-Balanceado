@@ -38,6 +38,8 @@ func _input(_event: InputEvent) -> void:
 				_selecionar(3)
 			KEY_5:
 				_selecionar(4)
+			KEY_6:
+				_selecionar(5)
 	
 	if Input.is_action_just_pressed("acao"):
 		_escolher_feitico()
@@ -69,6 +71,8 @@ func _get_feitico_id_from_id(id: int) -> String:
 			return "Ozempagic"
 		4:
 			return "ToTeVendo"
+		5:
+			return "Geladinho"
 	return ""
 
 func _escolher_feitico() -> void:

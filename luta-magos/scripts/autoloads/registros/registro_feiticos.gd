@@ -23,6 +23,7 @@ const FD_FURA_SAPATO = "uid://c71eh6rcojqh0"
 const FD_PULO_IMPULSIONADO = "uid://skatmcv3uduk"
 const FD_OZEMPAGIC = "uid://cy0n07ui1fty2"
 const FD_TO_TE_VENDO = "uid://c5nanmgoej3wa"
+const FD_GELADINHO = "uid://d2quugw6e5igw"
 
 const feiticos_definicoes_res := [
 	FD_BOLA_FOGO,
@@ -30,4 +31,5 @@ const feiticos_definicoes_res := [
 	FD_PULO_IMPULSIONADO,
 	FD_OZEMPAGIC,
 	FD_TO_TE_VENDO,
+	FD_GELADINHO,
 ]
