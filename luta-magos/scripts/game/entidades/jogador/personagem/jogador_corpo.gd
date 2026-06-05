@@ -1,18 +1,30 @@
 class_name JogadorCorpo
 extends CharacterBody3D
 
+var camera_jogador: CameraJogador
+
 @onready var cabeca_pivot: Node3D = $Corpo/Cabeca/CabecaPivot
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca
 
 @onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
 @onready var label_dano: Label3D = $LabelDano
 
-func conectar_camera(camera_jogador: CameraJogador) -> void:
-	var camera_path := camera_jogador.get_path()
-	remote_transform_cabeca.remote_path = camera_path
+func _process(delta: float) -> void:
+	_process_camera(delta)
+
+
+func _process_camera(_delta: float) -> void:
+	var camera : Camera3D = camera_jogador.camera
+	# rodar a cabeca
+	var cabeca_rot = remap(camera.rotation.x, -PI/2, PI/2, -PI/3, PI/3)
+	cabeca_pivot.rotation.x = cabeca_rot 
+
+
+func conectar_camera(_camera_jogador: CameraJogador) -> void:
+	camera_jogador = _camera_jogador
+	#
+	remote_transform_cabeca.remote_path = camera_jogador.get_path()
 	remote_transform_cabeca.force_update_cache()
-	
-	camera_jogador.set_target_remote_transform_cabeca(cabeca_pivot.get_path())
 
 func mostrar_levar_dano(dano: float) -> void:
 	audio_player_dano.play()

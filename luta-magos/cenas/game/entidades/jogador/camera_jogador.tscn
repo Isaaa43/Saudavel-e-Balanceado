@@ -9,12 +9,3 @@ script = ExtResource("1_c1hgm")
 
 [node name="RemoteTransformMira" type="RemoteTransform3D" parent="Camera" unique_id=1175613351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="SepararCamera" type="Node" parent="Camera" unique_id=2051765678]
-
-[node name="PivotOlhando" type="Node3D" parent="Camera" unique_id=1106763065]
-
-[node name="RemoteTransformCabeca" type="RemoteTransform3D" parent="Camera/PivotOlhando" unique_id=382681538]
-rotation_edit_mode = 1
-update_position = false
-update_scale = false
