@@ -54,7 +54,7 @@ jogadores_adm = NodePath("../JogadoresAdm")
 
 [node name="TimerAdm" type="Node" parent="." unique_id=1760318578]
 script = ExtResource("7_ewmxn")
-duracao_seg = 10.0
+duracao_seg = 250.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="TimerAdm" unique_id=1764339154]
 replication_config = SubResource("SceneReplicationConfig_p8iwo")
