@@ -158,11 +158,11 @@ outline_size = 16
 root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
 
-[node name="CSGSphereVisaoLimitada" type="CSGSphere3D" parent="." unique_id=381715409]
+[node name="CSGVisaoLimitada" type="CSGCylinder3D" parent="." unique_id=1313372676]
 flip_faces = true
 radius = 12.0
-radial_segments = 100
-rings = 32
+height = 50.0
+sides = 64
 material = SubResource("StandardMaterial3D_mxy06")
 
 [editable path="Corpo/Rig_Sapo"]
