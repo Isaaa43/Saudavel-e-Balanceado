@@ -16,14 +16,14 @@ shader_parameter/depth_threshold = 9.999999747e-05
 [sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
 top_radius = 1.2
 bottom_radius = 1.2
-height = 0.2
+height = 0.15
 radial_segments = 32
 rings = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7d02w"]
-albedo_color = Color(0.14, 0.14, 0.14, 1)
+albedo_color = Color(0.1055698, 0.10259976, 0.058383837, 1)
 metallic_specular = 0.0
-roughness = 0.78
+roughness = 0.72
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_krbqj"]
 height = 0.19372559
@@ -32,7 +32,7 @@ radius = 1.1850586
 [node name="FS_FuraSapato" type="Node3D" unique_id=2102016733]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1390037, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018716335, 0)
 material_overlay = SubResource("ShaderMaterial_7d02w")
 mesh = SubResource("CylinderMesh_xe436")
 surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
