@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
 [ext_resource type="Texture2D" uid="uid://bpmjjpxemo56r" path="res://assets/UI/hud_jogador/crosshair/crosshair004.png" id="2_jk3uq"]
+[ext_resource type="Texture2D" uid="uid://c52p4y2dpy41p" path="res://assets/icones/jump.png" id="4_mtgw6"]
 [ext_resource type="Texture2D" uid="uid://ccie6v4ygel0c" path="res://assets/UI/hud_jogador/vida/BASE_VIDA.png" id="7_18wio"]
 [ext_resource type="Texture2D" uid="uid://dnxpghv5mgca5" path="res://assets/UI/hud_jogador/vida/BARRA_VIDA.png" id="8_wsdra"]
 [ext_resource type="Texture2D" uid="uid://15t5lbcmifo5" path="res://assets/UI/hud_jogador/vida/TEXTURA_VIDA.png" id="9_mtgw6"]
@@ -63,30 +64,30 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -21.0
+offset_left = -51.0
 offset_top = 180.0
-offset_right = -226.55319
+offset_right = -256.5532
 offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_o10b8")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="TextureProx" type="TextureRect" parent="SelecaoMagia" unique_id=1910157444]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 327.0
-offset_top = 180.0
-offset_right = 121.44681
-offset_bottom = -13.0
+offset_left = 325.0
+offset_top = 179.0
+offset_right = 119.44681
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_o10b8")
+texture = ExtResource("4_mtgw6")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="TextureAtual" type="TextureRect" parent="SelecaoMagia" unique_id=963437113]
 layout_mode = 1
@@ -101,7 +102,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_o10b8")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
+
+[node name="LabelPrev" type="Label" parent="SelecaoMagia" unique_id=276286880]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 131.0
+offset_right = 46.0
+offset_bottom = 173.0
+theme_override_font_sizes/font_size = 30
+text = "Q (Lb)"
+
+[node name="LabelProx" type="Label" parent="SelecaoMagia" unique_id=1313697991]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 138.0
+offset_right = 429.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 30
+text = "E (Rb)"
+
+[node name="LabelAtual" type="Label" parent="SelecaoMagia" unique_id=1955331800]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 25.0
+offset_right = 295.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 30
+text = "Mouse 1 (Rt)"
 
 [node name="Vida" type="Control" parent="." unique_id=125310063]
 layout_mode = 1

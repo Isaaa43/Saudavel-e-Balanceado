@@ -13,6 +13,8 @@ class_name MenuPartida
 
 @onready var label_log: Label = $VBoxContainer/LabelLog
 
+@onready var label_deck: Label = $Control/LabelDeck
+
 var buttons_selecionados_list : Array[Button] = []
 var passiva_selecionada : Button = null
 
@@ -27,6 +29,10 @@ func _ready() -> void:
 	
 	# TODO: mudar isso
 	Network.logs.update_conexao_texto.connect(add_log)
+	
+	label_deck.text = "Deck:\n"
+	for card: MenuDeck.CardData in GlobalDeck.cards_escolhidos:
+		label_deck.text += card.nome +'\n'
 	
 	# pego os botoes da grid
 	for button : Button in grid_container.get_children().filter(func(a): return a is Button):

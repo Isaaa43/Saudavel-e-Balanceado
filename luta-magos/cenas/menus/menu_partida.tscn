@@ -195,5 +195,16 @@ offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
 
+[node name="LabelDeck" type="Label" parent="Control" unique_id=1869241179]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -185.0
+offset_right = 144.0
+offset_bottom = -32.0
+theme_override_font_sizes/font_size = 35
+text = "AAAA
+AAA
+AAAA"
+
 [connection signal="pressed" from="VBoxPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
 [connection signal="pressed" from="VBoxPartida/ButtonSair" to="." method="_on_button_sair_pressed"]
