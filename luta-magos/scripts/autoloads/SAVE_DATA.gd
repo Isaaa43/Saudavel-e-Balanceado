@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 # --- public recording API ---
 
 func registrar_nome(entidade_id: int, nome: String) -> void:
-	_nomes.append("n,%d,%d,%s" % [entidade_id, nome])
+	_nomes.append("n,%d,%s" % [entidade_id, nome])
 
 func registrar_posicao(entidade_id: int, posicao: Vector3, rotacao_y: float, cabeca_rot: float) -> void:
 	if not _gravando: return
@@ -102,6 +102,7 @@ func _salvar_tudo() -> void:
 	_escrever_csv(base + "posicoes.csv",  _posicoes)
 	_escrever_csv(base + "feiticos.csv",  _feiticos)
 	_escrever_csv(base + "mortes.csv",    _mortes)
+	_escrever_csv(base + "nomes.csv",    _nomes)
 	print("[MatchRecorder] salvo em: ", PASTA, _partida_id)
 
 func _escrever_csv(caminho: String, linhas: PackedStringArray) -> void:

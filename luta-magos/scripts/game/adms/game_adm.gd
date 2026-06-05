@@ -45,18 +45,18 @@ func _process(_delta: float) -> void:
 
 # TODO: verificar se essa eh a melhor maneira
 func _matar_jogador(peer_id_jog: int) -> void:
-
+	var jog_morto: Jogador = jogadores_adm.get_jogador_peer_id(peer_id_jog)
+	
+	if multiplayer.is_server():
+		SaveData.registrar_morte(peer_id_jog, jog_morto.jogador_corpo.global_position)
 	
 	# transforma o jog em fantasma
 	jogadores_adm.matar_jogador(peer_id_jog)
 	# para as funcionalidades locais do jog (castar feiticos)
-	var jog_morto: Jogador = jogadores_adm.get_jogador_peer_id(peer_id_jog)
 	local_adm.matar_jogador(jog_morto)
 	# para o timer
 	timer_adm.parar()
 	
-	if multiplayer.is_server():
-		SaveData.registrar_morte(peer_id_jog, jog_morto.jogador_corpo.global_position)
 	
 	# exibe a tela de fim com o nome do jogador ganhador
 	var jog_ganhador: Jogador
