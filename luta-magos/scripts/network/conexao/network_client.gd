@@ -65,14 +65,15 @@ func pedir_terminar_partida() -> void:
 ## Cada peer termina sua partida
 @rpc("authority", "call_local", "reliable")
 func receber_terminar_partida() -> void:
-	if multiplayer.is_server():
+	if not multiplayer.is_server():
 		# TODO: solucao melhor que essa do timer
 		await get_tree().create_timer(0.2).timeout
 	_terminar_partida()
 
 func _terminar_partida() -> void:
 	#TODO: Network.server_disconnected ?
-	TrocaCenaTemp.go_to_menu_inicial()
+	#TrocaCenaTemp.go_to_menu_inicial()
+	TrocaCenaTemp.go_to_menu_partida()
 
 func pedir_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
 	Network.server.get_dados_jogador_do_jogador.rpc_id(Network.SERVER_ID, jogador_peer_id)
