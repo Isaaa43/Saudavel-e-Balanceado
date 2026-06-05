@@ -43,7 +43,9 @@ func _rotacionar_camera(look_input: Vector2, delta: float) -> void:
 	var sensitivity : float = controller_sensitivity if has_controller else mouse_sensitivity
 	
 	# Rotate horizontally (around Y axis)
-	corpo_rotacao.rotate_y(-look_input.x * sensitivity * delta)
+	var rot_y : float = -look_input.x * sensitivity * delta
+	rotate_y(rot_y)
+	corpo_rotacao.rotate_y(rot_y)
 	# Rotate vertically (around local X axis)
 	camera.rotate_x(-look_input.y * sensitivity * delta)
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)

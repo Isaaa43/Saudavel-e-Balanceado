@@ -44,6 +44,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="RemoteTransformCabeca" type="RemoteTransform3D" parent="Corpo/Cabeca" unique_id=1263194128]
+update_rotation = false
+update_scale = false
 
 [node name="CabecaPivot" type="Node3D" parent="Corpo/Cabeca" unique_id=941134249]
 transform = Transform3D(1, 0, 0, 0, 0.9999633, -0.008569461, 0, 0.008569461, 0.9999633, 0, 0, -0.15)
