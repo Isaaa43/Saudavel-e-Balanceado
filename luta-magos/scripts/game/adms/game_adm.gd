@@ -25,6 +25,8 @@ func _conectar_sinais() -> void:
 	estado_partida_adm.estado_atualizado.connect(_atualizar_estado_partida)
 	# 
 	local_adm.pediu_sair_partida.connect(_pedir_sair_partida)
+	# 
+	Network.client.morreu_jogador.connect(_matar_jogador)
 
 func fim_tempo() -> void:
 	estado_partida_adm.set_fim_tempo()
@@ -38,6 +40,22 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
 		_pedir_sair_partida()
 
+# TODO: verificar se essa eh a melhor maneira
+func _matar_jogador(peer_id_jog: int) -> void:
+	#
+	jogadores_adm.matar_jogador(peer_id_jog)
+	#
+	var jog_morto: Jogador = jogadores_adm.get_jogador_peer_id(peer_id_jog)
+	local_adm.matar_jogador(jog_morto)
+	
+	var jog_ganhador: Jogador
+	for jog: Jogador in jogadores_adm.jogadores_por_peer_id.values():
+		if jog != jog_morto:
+			jog_ganhador = jog
+			break
+	await get_tree().create_timer(2.5).timeout
+	local_adm.tela_fim(jog_ganhador)
+	
 # Estado da Partida
 # -----------------------------------------------------------------------------
 func _atualizar_estado_partida(estado_partida: EstadoPartidaAdm.EstadoPartida) -> void:

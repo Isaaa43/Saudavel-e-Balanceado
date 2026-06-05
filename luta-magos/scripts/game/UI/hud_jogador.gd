@@ -1,6 +1,8 @@
 class_name HUDJogador
 extends Control
 
+signal sair_partida
+
 @export var menu_pause: HudMenuPause
 
 @onready var icons: Array[Node] = $HBoxIcones.get_children()
@@ -27,6 +29,9 @@ func _input(event):
 func _ready() -> void:
 	menu_pause.hide()
 	menu_pause.voltar_partida.connect(_esconder_menu_pause)
+	menu_pause.sair_partida.connect(func(): sair_partida.emit())
+	
+	tela_fim.hide()
 	
 	selecionar_magia(0)
 	# inicia os mostradores
@@ -68,3 +73,17 @@ func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 func _esconder_menu_pause() -> void:
 	menu_pause.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+# TODO: arrumar isso
+@onready var tela_fim: Control = $TelaFim
+@onready var label_vitoria: Label = $TelaFim/LabelVitoria
+func mostrar_tela_fim(ganhou: bool, nome_ganhador: String) -> void:
+	var condicao := "Vitória" if ganhou else "Derrota"
+	label_vitoria.text = label_vitoria.text.format({"condicao": condicao, "nome": nome_ganhador})
+	tela_fim.show()
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	menu_pause.modulate.a = 0.0
+
+func _on_button_voltar_menu_pressed() -> void:
+	sair_partida.emit()

@@ -15,7 +15,7 @@ func _ready() -> void:
 	lancador_feiticos.lancar_feitico.connect(_enviar_lancar_feitico)
 	#
 	hud.menu_pause.sensibilidade_mira_atualizada.connect(_atualizar_sensibilidade_mira)
-	hud.menu_pause.sair_partida.connect(_pedir_sair_partida)
+	hud.sair_partida.connect(_pedir_sair_partida)
 
 func ajusta_para_jogador(_jogador: Jogador) -> void:
 	jogador = _jogador
@@ -48,3 +48,12 @@ func _atualizar_sensibilidade_mira(sensi: float) -> void:
 
 func _pedir_sair_partida() -> void:
 	pediu_sair_partida.emit()
+
+func matar_jogador(_jogador: Jogador) -> void:
+	if _jogador == jogador:
+		lancador_feiticos.process_mode = Node.PROCESS_MODE_DISABLED
+
+func tela_fim(jogador_ganhador: Jogador) -> void:
+	var nome_ganhador: String = jogador_ganhador.dados_jogador.nome
+	hud.mostrar_tela_fim(jogador == jogador_ganhador, nome_ganhador)
+	 

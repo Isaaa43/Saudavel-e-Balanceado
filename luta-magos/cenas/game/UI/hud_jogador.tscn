@@ -299,4 +299,62 @@ theme_override_font_sizes/font_size = 50
 text = "20:30"
 
 [node name="MenuPause" parent="." unique_id=1536525716 instance=ExtResource("14_gdimr")]
+visible = false
 layout_mode = 1
+
+[node name="TelaFim" type="Control" parent="." unique_id=878863195]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="TelaFim" unique_id=188224989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.11, 0.11, 0.11, 0.23921569)
+
+[node name="LabelVitoria" type="Label" parent="TelaFim" unique_id=21574175]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -131.0
+offset_right = 20.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9173975, 0.6399905, 1.540184e-06, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 80
+text = "{condicao}!
+{nome} ganhou a partida"
+horizontal_alignment = 1
+
+[node name="ButtonVoltarMenu" type="Button" parent="TelaFim" unique_id=124774268]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -159.0
+offset_right = 4.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Voltar ao Menu"
+
+[connection signal="pressed" from="TelaFim/ButtonVoltarMenu" to="." method="_on_button_voltar_menu_pressed"]
