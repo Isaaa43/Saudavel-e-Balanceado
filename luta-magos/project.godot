@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 TrocaCenaTemp="*uid://6ynnwdsloeup"
 Network="*uid://dejkuahbr2ht4"
 Registros="*uid://1pr6jv1uhsxi"
+SaveData="*uid://c81ha2mm42j44"
 
 [display]
 

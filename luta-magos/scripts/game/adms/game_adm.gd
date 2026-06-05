@@ -13,6 +13,10 @@ func _ready() -> void:
 	_conectar_sinais()
 	#TODO: hmm lugar melhot
 	timer_adm.iniciar()
+	
+	if multiplayer.is_server():
+		SaveData.set_players(jogadores_adm.jogadores_por_peer_id.values())
+		SaveData.start_recording()
 
 func _conectar_sinais() -> void:
 	# jogadores
