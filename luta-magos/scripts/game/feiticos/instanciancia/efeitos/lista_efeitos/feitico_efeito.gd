@@ -10,10 +10,10 @@ var valor: float
 var modificador: FeiticoModificadorEfeito
 
 @abstract
-func _aplicar(jogador: Jogador) -> void
+func _aplicar(entidade: Entidade) -> void
 
-func aplicar(jogador: Jogador) -> void:
-	_aplicar(jogador)
+func aplicar(entidade: Entidade) -> void:
+	_aplicar(entidade)
 
 
 func has_modificador() -> bool:

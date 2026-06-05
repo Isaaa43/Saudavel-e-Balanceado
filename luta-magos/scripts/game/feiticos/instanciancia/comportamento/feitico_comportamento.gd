@@ -31,7 +31,8 @@ var mask_afetados : int :
  
 var efeitos : Array[FeiticoEfeito] = []
 
-var lista_receberam_efeitos : Array[Node3D] = []
+## Lista dos Nodos3D que sabemos que ja entraram e foram processados na area de efeito
+var lista_sei_entraram_area_efeito : Array[Node3D] = []
 
 # Corpo Feitico
 # -----------------------------------------------------------------------------
@@ -75,7 +76,7 @@ func _ready_sub_sistemas() -> void:
 	# AreaAtivacao
 	area_ativacao.name = "AreaAtivacao"
 	add_child(area_ativacao, true)
-	area_ativacao.body_entered.connect(_aplicar_efeitos)
+	area_ativacao.body_entered.connect(_entrou_area_aplicar_efeitos)
 	# Corpo
 	corpo.name = "Corpo"
 	add_child(corpo, true)
@@ -90,52 +91,61 @@ func criar_efeitos(lista_efeito_def: Array[FeiticoEfeitoDef]) -> void:
 	for efeito_def : FeiticoEfeitoDef in lista_efeito_def:
 		efeitos.append(efeito_def.criar())
 
-func _aplicar_efeitos(node: Node3D) -> void:
-	if lista_receberam_efeitos.has(node): return
-	lista_receberam_efeitos.append(node)
+func _entrou_area_aplicar_efeitos(_corpo_entrou: Node3D) -> void:
+	if lista_sei_entraram_area_efeito.has(_corpo_entrou): return
+	lista_sei_entraram_area_efeito.append(_corpo_entrou)
 	
-	var receptor := ReceptorEfeitos.encontrar_receptor_efeitos(node)
+	var entidade: Entidade = Entidade.get_entidade_from_corpo(_corpo_entrou)
+	var receptor: ReceptorEfeitos = entidade.receptor_efeitos
+	# ReceptorEfeitos.encontrar_receptor_efeitos(node)
 	if receptor != null:
-		_aplicar_efeitos_receptor(receptor, node)
+		_aplicar_efeitos_receptor(receptor, entidade)
 
-func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, node: Node3D) -> void:
-	if _deve_aplicar_efeito(node):
+func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, entidade: Entidade) -> void:
+	print("_aplicar_efeitos_receptor")
+	if _deve_aplicar_efeito(entidade):
+		print("_deve_aplicar_efeito")
 		receptor.receber_lista_efeitos(efeitos)
 
-func _deve_aplicar_efeito(node: Node3D) -> bool:
-	# TODO: verificar mais tipos do que so o jogador
-	if not node is JogadorCorpo: return false
-	var jogador: Jogador = node.get_parent()
-	var jog_id : int = jogador.dados_jogador.peer_id
+func _deve_aplicar_efeito(entidade: Entidade) -> bool:
+	# TODO melhorar isso
+	# ------------------
+	# se nao conseguiu pegar, pare
+	#if not entidade.corpo: return false
+	if not entidade is Jogador: return false
+	
+	var jog: Jogador = entidade
+	var entidade_id : int = jog.dados_jogador.peer_id
+	# ------------------
 	
 	match (afetados):
 		Afetados.TODOS:
 			return true
 		Afetados.CRIADOR:
 			# somente criador do feitico
-			if jog_id == contexto.criador_id:
+			if entidade_id == contexto.criador_id:
 				return true
 		Afetados.ALVO:
 			# somente alvo do feitico
-			if jog_id == contexto.alvo_id:
+			if entidade_id == contexto.alvo_id:
 				return true
 		Afetados.ALIADOS:
 			# TODO:
 			# somente criador e (aliados do criador)
-			if jog_id != contexto.criador_id:
+			if entidade_id != contexto.criador_id:
 				return true
 		Afetados.INIMIGOS:
 			# TODO:
 			# somente inimigos
-			if jog_id != contexto.criador_id:
+			if entidade_id != contexto.criador_id:
 				return true
 		Afetados.TODOS_EXCETO_CRIADOR:
 			# todos, exceto somente o criador do feitico
-			if jog_id != contexto.criador_id:
+			if entidade_id != contexto.criador_id:
 				return true
 		Afetados.TODOS_EXCETO_ALVO:
 			# todos, exceto somente o alvo do feitico
-			if jog_id != contexto.alvo_id:
+			if entidade_id != contexto.alvo_id:
 				return true
 	# se nao cair em nenhum, false
 	return false

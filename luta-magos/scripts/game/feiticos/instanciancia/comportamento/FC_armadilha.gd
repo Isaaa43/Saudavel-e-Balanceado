@@ -18,11 +18,14 @@ var pronto_ativar: bool = true
 func iniciar_comportamento() -> void:
 	# TODO: achar solucao melhor q esse hack
 	if comportamento_ativacao_def:
-		area_ativacao.body_entered.disconnect(_aplicar_efeitos)
+		area_ativacao.body_entered.disconnect(_entrou_area_aplicar_efeitos)
 		area_ativacao.body_entered.connect(_verificar_ativar_armadilha)
 
-func _verificar_ativar_armadilha(node: Node3D) -> void:
-	if _deve_aplicar_efeito(node):
+func _verificar_ativar_armadilha(_corpo_entrou: Node3D) -> void:
+	var entidade: Entidade = Entidade.get_entidade_from_corpo(_corpo_entrou)
+	var receptor: ReceptorEfeitos = entidade.receptor_efeitos
+	
+	if _deve_aplicar_efeito(entidade):
 		_ativar_armadilha()
 
 func _ativar_armadilha() -> void:
@@ -45,7 +48,7 @@ func _ativar_armadilha() -> void:
 
 func _reativacao_pronta() -> void:
 	pronto_ativar = true
-	lista_receberam_efeitos.clear()
+	lista_sei_entraram_area_efeito.clear()
 
 func physics_process(_delta: float) -> void:
 	pass
