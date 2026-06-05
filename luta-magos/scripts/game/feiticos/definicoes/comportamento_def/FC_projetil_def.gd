@@ -5,6 +5,8 @@ extends FeiticoComportamentoDef
 @export var velocidade: float 	= 10.0
 @export var perfurar: bool		= false
 
+@export var tamanho_raio: float = 0.5
+
 ## TODO: Direcao inicial
 ## direcao mundo, direcao jogador olhando, direcao alvo proximo
 
@@ -15,5 +17,6 @@ func _criar() -> FeiticoComportamentoProjetil:
 	
 	comportamento.velocidade = velocidade
 	comportamento.perfurar = perfurar
+	comportamento.tamanho_raio = tamanho_raio
 	
 	return comportamento

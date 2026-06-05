@@ -11,8 +11,9 @@ func iniciar() -> void:
 	for child : Node in visual_3d.get_children():
 		if child is MeshInstance3D:
 			mesh_instance_3d = child
+			_material_outline = mesh_instance_3d.material_overlay
 			break
-	_material_outline = mesh_instance_3d.material_overlay
+	
 
 var particulas: GPUParticles3D
 

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://co5stxa6rftbb"]
+
+[ext_resource type="Texture2D" uid="uid://dj1umbc3xes6p" path="res://assets/vfx/quadrado.png" id="1_77m6d"]
+[ext_resource type="Texture2D" uid="uid://dg4dujitpfubo" path="res://assets/vfx/particulaFumaça.png" id="2_3h5sp"]
+[ext_resource type="Texture2D" uid="uid://qljdpaows0ca" path="res://assets/vfx/bola.png" id="3_5tlsb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsdai"]
+shading_mode = 0
+diffuse_mode = 3
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("1_77m6d")
+
+[sub_resource type="Gradient" id="Gradient_hrw5k"]
+offsets = PackedFloat32Array(0, 0.996732)
+colors = PackedColorArray(1, 0.5058824, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hsdai"]
+gradient = SubResource("Gradient_hrw5k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7oy6e"]
+emission_shape = 1
+emission_sphere_radius = 0.7
+angle_min = -89.99999
+angle_max = 90.000015
+inherit_velocity_ratio = 1.0
+spread = 180.0
+angular_velocity_min = -37.080017
+angular_velocity_max = 36.999985
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.68333334, 0, 1)
+color_ramp = SubResource("GradientTexture1D_hsdai")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrw5k"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_3h5sp")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_hsdai"]
+material = SubResource("StandardMaterial3D_hrw5k")
+
+[sub_resource type="Skin" id="Skin_hnj6e"]
+
+[sub_resource type="Curve" id="Curve_hnj6e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4v37n"]
+curve = SubResource("Curve_hnj6e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j6t3s"]
+gravity = Vector3(0, 0, 0)
+scale_min = 1.1
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_4v37n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqmpk"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.57254905, 0, 1)
+albedo_texture = ExtResource("3_5tlsb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j0itr"]
+material = SubResource("StandardMaterial3D_nqmpk")
+
+[node name="FV_bola_fogo" type="Node3D" unique_id=1476543120]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1622199508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00881815, -0.021761239, 0.00042651594)
+material = SubResource("StandardMaterial3D_hsdai")
+
+[node name="fumaca" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1459065616]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+cast_shadow = 0
+amount_ratio = 0.6167
+sub_emitter = NodePath(".")
+lifetime = 0.88
+preprocess = 0.13
+speed_scale = 0.75
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_7oy6e")
+draw_pass_1 = SubResource("QuadMesh_hsdai")
+draw_skin = SubResource("Skin_hnj6e")
+
+[node name="fogo" type="GPUParticles3D" parent="CSGSphere3D" unique_id=180700413]
+amount = 20
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_j6t3s")
+draw_pass_1 = SubResource("QuadMesh_j0itr")

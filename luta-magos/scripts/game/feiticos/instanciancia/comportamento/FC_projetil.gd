@@ -4,6 +4,8 @@ extends FeiticoComportamento
 var velocidade: float
 var perfurar: bool
 
+var tamanho_raio: float
+
 var efeitos_impacto : Array[FeiticoEfeito] = []
 
 var direcao := Vector3.ZERO

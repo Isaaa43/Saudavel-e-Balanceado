@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cp3y7evqi2bsj"]
+
+[ext_resource type="Texture2D" uid="uid://dg4dujitpfubo" path="res://assets/vfx/particulaFumaça.png" id="1_4aw3i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8log"]
+albedo_color = Color(0.43397218, 0.74212956, 0.99262697, 1)
+
+[sub_resource type="Gradient" id="Gradient_52fn0"]
+offsets = PackedFloat32Array(0, 0.2777778, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nanxt"]
+gradient = SubResource("Gradient_52fn0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cmyh0"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -17.350016
+angular_velocity_max = 17.349983
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_nanxt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbues"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.46080002, 0.74368, 0.96, 1)
+albedo_texture = ExtResource("1_4aw3i")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_j7sbn"]
+material = SubResource("StandardMaterial3D_bbues")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5opgo"]
+angular_velocity_min = -250.00002
+angular_velocity_max = 249.99998
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7y4d"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.17000002, 0.9308332, 1, 1)
+albedo_texture = ExtResource("1_4aw3i")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_fm45i"]
+material = SubResource("StandardMaterial3D_n7y4d")
+size = Vector2(1.7, 1.7)
+
+[node name="FV_gelo" type="Node3D" unique_id=660249113]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=720598196]
+material = SubResource("StandardMaterial3D_t8log")
+
+[node name="GPUParticles_trail" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1059262984]
+transform = Transform3D(0.5199999, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+process_material = SubResource("ParticleProcessMaterial_cmyh0")
+draw_pass_1 = SubResource("QuadMesh_j7sbn")
+
+[node name="GPUParticles_smoke" type="GPUParticles3D" parent="CSGSphere3D" unique_id=490860278]
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5opgo")
+draw_pass_1 = SubResource("QuadMesh_fm45i")
