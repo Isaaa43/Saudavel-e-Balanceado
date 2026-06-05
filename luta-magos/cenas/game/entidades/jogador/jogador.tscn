@@ -53,9 +53,9 @@ entidade = NodePath("../..")
 script = ExtResource("8_rmtya")
 jogador = NodePath("../JogadorCorpo")
 
-[node name="CameraJogador" parent="." unique_id=840626129 node_paths=PackedStringArray("jogador") instance=ExtResource("9_f3n6j")]
+[node name="CameraJogador" parent="." unique_id=840626129 node_paths=PackedStringArray("jogador_corpo") instance=ExtResource("9_f3n6j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-jogador = NodePath("../JogadorCorpo")
+jogador_corpo = NodePath("../JogadorCorpo")
 
 [node name="JogadorCorpo" parent="." unique_id=1543690626 instance=ExtResource("10_bup1v")]
 collision_layer = 257

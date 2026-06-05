@@ -1,7 +1,8 @@
 class_name CameraJogador
 extends Node3D
 
-@export var jogador : JogadorCorpo
+# TODO: trocar essa referencia de corpo por outra coisa
+@export var jogador_corpo : JogadorCorpo
 
 @onready var camera: Camera3D = $Camera
 
@@ -44,7 +45,7 @@ func _rotacionar_camera(look_input: Vector2, delta: float) -> void:
 	var sensitivity : float = controller_sensitivity if has_controller else mouse_sensitivity
 	
 	# Rotate horizontally (around Y axis)
-	jogador.rotate_y(-look_input.x * sensitivity * delta)
+	jogador_corpo.rotate_y(-look_input.x * sensitivity * delta)
 	# Rotate vertically (around local X axis)
 	camera.rotate_x(-look_input.y * sensitivity * delta)
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
