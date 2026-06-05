@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dbe4px883cphk" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_somente_efeito_def.gd" id="2_n61t3"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_n61t3"]
 [ext_resource type="PackedScene" uid="uid://r3y6a1yivdx4" path="res://feiticos/visuais/FV_pulo.tscn" id="4_nxn4u"]
-[ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="6_nxn4u"]
+[ext_resource type="Texture2D" uid="uid://c52p4y2dpy41p" path="res://assets/icones/jump.png" id="6_nxn4u"]
 
 [sub_resource type="Resource" id="Resource_f5loy"]
 script = ExtResource("2_c7pro")

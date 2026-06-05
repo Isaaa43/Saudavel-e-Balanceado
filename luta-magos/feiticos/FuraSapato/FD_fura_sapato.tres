@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_h3qb0"]
 [ext_resource type="Resource" uid="uid://1ejd6l4gci0m" path="res://feiticos/FuraSapato/FC_fura_sapato.tres" id="1_pn68f"]
-[ext_resource type="Texture2D" uid="uid://bkxhv1pvvvptu" path="res://assets/temp/feiticosIcones/Ice Spells13.png" id="2_73ckh"]
+[ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="2_73ckh"]
 
 [resource]
 script = ExtResource("1_h3qb0")

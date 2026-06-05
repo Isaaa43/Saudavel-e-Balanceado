@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ckyjj62ph5wvh" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_revelar_def.gd" id="2_sdo8q"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="3_ckelo"]
 [ext_resource type="PackedScene" uid="uid://c0x4sfg4cudyb" path="res://feiticos/visuais/FV_revelacao.tscn" id="4_sdo8q"]
-[ext_resource type="Texture2D" uid="uid://ddfd0yq7hjjn0" path="res://assets/temp/feiticosIcones/2YellowAbility_10.png" id="6_sdo8q"]
+[ext_resource type="Texture2D" uid="uid://dinmf8dpfftke" path="res://assets/icones/revelação .PNG" id="6_sdo8q"]
 
 [sub_resource type="Resource" id="Resource_viorh"]
 script = ExtResource("2_sdo8q")

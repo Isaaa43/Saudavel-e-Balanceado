@@ -16,6 +16,7 @@ func _ready() -> void:
 	
 	if multiplayer.is_server():
 		SaveData.iniciar_partida()
+	SaveData.registrar_deck(multiplayer.get_unique_id(), GlobalDeck.feiticos_id_escolhidos)
 
 func _conectar_sinais() -> void:
 	# jogadores

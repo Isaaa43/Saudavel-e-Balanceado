@@ -25,6 +25,7 @@ grow_vertical = 2
 color = Color(0.19076231, 0.19076234, 0.19076231, 1)
 
 [node name="VBoxMagias" type="VBoxContainer" parent="." unique_id=1065529489]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -170,8 +171,29 @@ grow_horizontal = 0
 
 [node name="LabelLog" type="Label" parent="VBoxContainer" unique_id=942424218]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Log:"
 horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="." unique_id=2117227738]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control" unique_id=1370136417]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
 
 [connection signal="pressed" from="VBoxPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
 [connection signal="pressed" from="VBoxPartida/ButtonSair" to="." method="_on_button_sair_pressed"]

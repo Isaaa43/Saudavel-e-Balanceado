@@ -124,6 +124,8 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
+expand_mode = 2
+stretch_mode = 6
 
 [node name="CardTypeCost" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=702212210]
 unique_name_in_owner = true

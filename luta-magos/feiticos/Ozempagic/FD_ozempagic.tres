@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://y7sfo5fwt5aw" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_cura_def.gd" id="2_pgmsf"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_8a4q1"]
 [ext_resource type="PackedScene" uid="uid://d048ftta6dxcj" path="res://feiticos/visuais/FV_cura.tscn" id="4_pgmsf"]
-[ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="6_pgmsf"]
+[ext_resource type="Texture2D" uid="uid://b4y3nk65f3tao" path="res://assets/icones/cura.PNG" id="6_pgmsf"]
 
 [sub_resource type="Resource" id="Resource_pgmsf"]
 script = ExtResource("2_pgmsf")
