@@ -1,18 +1,30 @@
 [gd_scene format=3 uid="uid://bxbxjx3vghjp8"]
 
+[ext_resource type="Shader" uid="uid://ur5ywwx8nxte" path="res://scripts/shaders/outline.gdshader" id="1_7d02w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7d02w"]
+render_priority = 1
+shader = ExtResource("1_7d02w")
+shader_parameter/outline_color = Color(0.93333334, 0.4862745, 0, 1)
+shader_parameter/outline_width = 10.0
+shader_parameter/depth_threshold = 9.999999747e-05
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
+top_radius = 1.5
+bottom_radius = 1.5
 height = 0.2
 radial_segments = 32
 rings = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7d02w"]
-albedo_color = Color(0.46466672, 0, 0.68, 1)
-metallic = 1.0
-metallic_specular = 0.48
-roughness = 0.46
+albedo_color = Color(0.14, 0.14, 0.14, 1)
+metallic_specular = 0.0
+roughness = 0.78
 
 [node name="FS_FuraSapato" type="Node3D" unique_id=2102016733]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1390037, 0)
+material_overlay = SubResource("ShaderMaterial_7d02w")
 mesh = SubResource("CylinderMesh_xe436")
 surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
