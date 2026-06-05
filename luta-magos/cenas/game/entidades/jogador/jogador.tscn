@@ -45,9 +45,9 @@ script = ExtResource("4_p4iun")
 sistema_efeitos_feiticos = NodePath("../SistemaEfeitosFeiticos")
 efeito_regen_mana_def = SubResource("Resource_ytj1x")
 
-[node name="SistemaEfeitosFeiticos" type="Node" parent="ReceptorEfeitos" unique_id=1018972706 node_paths=PackedStringArray("jogador")]
+[node name="SistemaEfeitosFeiticos" type="Node" parent="ReceptorEfeitos" unique_id=1018972706 node_paths=PackedStringArray("entidade")]
 script = ExtResource("7_vt3i3")
-jogador = NodePath("../..")
+entidade = NodePath("../..")
 
 [node name="SistemaMovimento" type="Node" parent="." unique_id=3784261 node_paths=PackedStringArray("jogador")]
 script = ExtResource("8_rmtya")
@@ -55,7 +55,8 @@ jogador = NodePath("../JogadorCorpo")
 
 [node name="CameraJogador" parent="." unique_id=840626129 node_paths=PackedStringArray("jogador") instance=ExtResource("9_f3n6j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-current = true
 jogador = NodePath("../JogadorCorpo")
 
 [node name="JogadorCorpo" parent="." unique_id=1543690626 instance=ExtResource("10_bup1v")]
+collision_layer = 257
+collision_mask = 286
