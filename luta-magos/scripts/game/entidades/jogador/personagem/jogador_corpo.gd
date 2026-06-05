@@ -7,7 +7,6 @@ extends CharacterBody3D
 @onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
 @onready var label_dano: Label3D = $LabelDano
 
-
 func conectar_camera(camera_jogador: CameraJogador) -> void:
 	var camera_path := camera_jogador.get_path()
 	remote_transform_cabeca.remote_path = camera_path

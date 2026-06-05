@@ -26,6 +26,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
+	super()
+	
 	jogador_corpo = corpo
 	sistema_vida.levou_dano.connect(jogador_corpo.mostrar_levar_dano)
 	
