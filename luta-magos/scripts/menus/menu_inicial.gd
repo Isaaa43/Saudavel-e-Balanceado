@@ -22,6 +22,7 @@ func _debug_auto_multiplas_inst() -> void:
 		print("args:")
 		print(args)		
 		for arg in args:
+			await get_tree().physics_frame
 			if arg.begins_with("-host") or arg.begins_with("-server"):
 				await get_tree().create_timer(0.1).timeout
 				Network.client.dados_jogador.nome = "Hosterson"

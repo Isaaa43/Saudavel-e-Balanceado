@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cjhkug18kcf4c"]
+
+[ext_resource type="PackedScene" uid="uid://dqhjphfb7wcn7" path="res://assets/mapa/mapa_up.glb" id="1_5367g"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiid2"]
+sky_top_color = Color(0.08706657, 0.11346652, 0.1486308, 1)
+sky_horizon_color = Color(0.17940724, 0.18385431, 0.19275871, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_nmuvo"]
+sky_material = SubResource("ProceduralSkyMaterial_eiid2")
+
+[sub_resource type="Environment" id="Environment_duqwf"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_nmuvo")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_energy = 0.3
+fog_density = 0.0
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0311
+volumetric_fog_albedo = Color(0.9006736, 0.86545295, 0.9410652, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_sky_affect = 0.296
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym645"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k52vg"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dr2bo"]
+albedo_color = Color(0.097979955, 0.071787946, 0.040661238, 1)
+metallic_specular = 0.27
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5367g"]
+size = Vector3(10.2752075, 74.77173, 87.8064)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31cc0"]
+size = Vector3(10.2752075, 74.77173, 87.8064)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mltr3"]
+size = Vector3(10.2752075, 74.77173, 87.8064)
+
+[node name="MapaTestNight" type="Node3D" unique_id=869804376]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1523844572]
+environment = SubResource("Environment_duqwf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=913807643]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="mapa_up" parent="." unique_id=1635566741 instance=ExtResource("1_5367g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.072407246, 0)
+
+[node name="StaticChao" type="StaticBody3D" parent="." unique_id=1968995545]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticChao" unique_id=698518893]
+shape = SubResource("WorldBoundaryShape3D_ym645")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticChao" unique_id=620712868]
+mesh = SubResource("PlaneMesh_k52vg")
+surface_material_override/0 = SubResource("StandardMaterial3D_dr2bo")
+
+[node name="StaticLimite" type="StaticBody3D" parent="." unique_id=390270338]
+collision_layer = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticLimite" unique_id=684770093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.996136, 0, 0)
+shape = SubResource("BoxShape3D_5367g")
+debug_color = Color(0.7845117, 0.11516548, 0.99999994, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticLimite" unique_id=380567138]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.035812, 0, 0)
+shape = SubResource("BoxShape3D_31cc0")
+debug_color = Color(0.7845117, 0.11516548, 0.99999994, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticLimite" unique_id=154592110]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.026809692, 0, 23.793179)
+shape = SubResource("BoxShape3D_mltr3")
+debug_color = Color(0.7845117, 0.11516548, 0.99999994, 0.41960785)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticLimite" unique_id=1273652971]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.026809692, 0, -23.041079)
+shape = SubResource("BoxShape3D_mltr3")
+debug_color = Color(0.7845117, 0.11516548, 0.99999994, 0.41960785)

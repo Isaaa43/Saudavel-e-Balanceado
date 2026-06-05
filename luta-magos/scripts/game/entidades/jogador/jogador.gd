@@ -42,6 +42,7 @@ func _ready() -> void:
 		camera_jogador.queue_free()
 		sistema_movimento.queue_free()
 		jogador_corpo.set_physics_process(true) ##
+		jogador_corpo.sphere_visao_limitada.queue_free()
 		return
 	
 	_ready_camera()

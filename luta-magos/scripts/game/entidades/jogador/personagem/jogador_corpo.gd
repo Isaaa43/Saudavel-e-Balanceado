@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 var camera_jogador: CameraJogador
 
+@onready var sphere_visao_limitada: CSGSphere3D = $CSGSphereVisaoLimitada
 @onready var sistema_animacao: SistemaAnimacao = $SistemaAnimacao
 
 @onready var cabeca_pivot: Node3D = $Corpo/Cabeca/CabecaPivot

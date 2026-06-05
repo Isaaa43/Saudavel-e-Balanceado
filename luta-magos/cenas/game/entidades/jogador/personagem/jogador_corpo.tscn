@@ -46,6 +46,9 @@ properties/3/path = NodePath("JogadorCorpo/SistemaAnimacao:synced_animacao")
 properties/3/spawn = true
 properties/3/replication_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxy06"]
+albedo_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
 [node name="JogadorCorpo" type="CharacterBody3D" unique_id=1543690626]
 script = ExtResource("1_tbhp6")
 
@@ -154,5 +157,12 @@ outline_size = 16
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=22801627]
 root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
+
+[node name="CSGSphereVisaoLimitada" type="CSGSphere3D" parent="." unique_id=381715409]
+flip_faces = true
+radius = 12.0
+radial_segments = 100
+rings = 32
+material = SubResource("StandardMaterial3D_mxy06")
 
 [editable path="Corpo/Rig_Sapo"]
