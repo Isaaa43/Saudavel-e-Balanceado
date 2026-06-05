@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://c4x1fiwa5kwuq"]
 
 [ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
-[ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="1_bqy3s"]
 [ext_resource type="Texture2D" uid="uid://bpmjjpxemo56r" path="res://assets/UI/hud_jogador/crosshair/crosshair004.png" id="2_jk3uq"]
-[ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="3_c7tbw"]
-[ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="4_tpt5k"]
-[ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="5_5ifs1"]
-[ext_resource type="Texture2D" uid="uid://ddfd0yq7hjjn0" path="res://assets/temp/feiticosIcones/2YellowAbility_10.png" id="6_x222b"]
 [ext_resource type="Texture2D" uid="uid://ccie6v4ygel0c" path="res://assets/UI/hud_jogador/vida/BASE_VIDA.png" id="7_18wio"]
 [ext_resource type="Texture2D" uid="uid://dnxpghv5mgca5" path="res://assets/UI/hud_jogador/vida/BARRA_VIDA.png" id="8_wsdra"]
 [ext_resource type="Texture2D" uid="uid://15t5lbcmifo5" path="res://assets/UI/hud_jogador/vida/TEXTURA_VIDA.png" id="9_mtgw6"]
@@ -107,131 +102,6 @@ grow_vertical = 2
 texture = ExtResource("15_o10b8")
 expand_mode = 1
 stretch_mode = 4
-
-[node name="HBoxIcones" type="HBoxContainer" parent="." unique_id=1206569448]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -52.0
-offset_top = -52.0
-offset_right = 52.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(52, 32)
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="HBoxIcones" unique_id=2012555246]
-layout_mode = 2
-texture = ExtResource("1_bqy3s")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect" unique_id=1251329543]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "1"
-horizontal_alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxIcones" unique_id=514923322]
-layout_mode = 2
-texture = ExtResource("3_c7tbw")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect2" unique_id=1963435590]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "2"
-horizontal_alignment = 1
-
-[node name="TextureRect3" type="TextureRect" parent="HBoxIcones" unique_id=439134738]
-layout_mode = 2
-texture = ExtResource("4_tpt5k")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect3" unique_id=1823001661]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "3"
-horizontal_alignment = 1
-
-[node name="TextureRect4" type="TextureRect" parent="HBoxIcones" unique_id=1597423839]
-layout_mode = 2
-texture = ExtResource("5_5ifs1")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect4" unique_id=507907181]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "4"
-horizontal_alignment = 1
-
-[node name="TextureRect5" type="TextureRect" parent="HBoxIcones" unique_id=2081183827]
-layout_mode = 2
-texture = ExtResource("6_x222b")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect5" unique_id=279097920]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "5"
-horizontal_alignment = 1
-
-[node name="TextureRect6" type="TextureRect" parent="HBoxIcones" unique_id=529324202]
-layout_mode = 2
-texture = ExtResource("6_x222b")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect6" unique_id=1249728798]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "6"
-horizontal_alignment = 1
 
 [node name="Vida" type="Control" parent="." unique_id=125310063]
 layout_mode = 1

@@ -5,8 +5,6 @@ signal sair_partida
 
 @export var menu_pause: HudMenuPause
 
-@onready var icons: Array[Node] = $HBoxIcones.get_children()
-
 @onready var label_relogio: Label = $Relogio/LabelRelogio
 
 @onready var texture_vida_prog: TextureRect = $Vida/TextureProg
@@ -45,8 +43,7 @@ func _ready() -> void:
 		idx_to_feitico_id[idx] = feitico_id
 		idx += 1
 	
-	
-	selecionar_magia(0)
+	selecionar_magia(idx_atual)
 	# inicia os mostradores
 	mostrar_vida(1.0)
 	mostrar_mana(1.0)
