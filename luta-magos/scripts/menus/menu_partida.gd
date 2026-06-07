@@ -109,4 +109,8 @@ func _on_button_deck_pressed() -> void:
 	add_child(menu_deck)
 	menu_deck.move_to_front()
 	menu_deck.buttonVoltar.disconnect("pressed", menu_deck._on_button_pressed)
-	menu_deck.buttonVoltar.pressed.connect(func(): menu_deck.queue_free())
+	menu_deck.buttonVoltar.pressed.connect(_fechar_menu_deck.bind(menu_deck) )
+
+func _fechar_menu_deck(menu_deck: Node) -> void:
+	menu_deck.queue_free()
+	_mostrar_deck()
