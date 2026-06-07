@@ -169,6 +169,12 @@ func _add_card_to_deck(card: CardData) -> void:
 		print("Grimório cheio!")
 		return
 
+	# verifica se n foi adicionada ja (nao pode repetir)
+	for _card: CardData in deck_cards:
+		if _card.feitico_id == card.feitico_id:
+			print("Carta já adicionada")
+			return
+
 	# Adiciona a carta ao array do deck.
 	deck_cards.append(card)
 
