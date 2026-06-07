@@ -48,9 +48,18 @@ func _ready() -> void:
 	
 	_create_cards_from_spells()
 	
+	# carrega o deck
+	_load_deck()
+	
 	_populate_card_pool()
 	_update_deck_list()
 	_clear_card_info()
+	
+
+func _load_deck() -> void:
+	for card: CardData in GlobalDeck.get_deck():
+		# Adiciona a carta ao array do deck.
+		deck_cards.append(card)
 
 func _create_cards_from_spells() -> void:
 	var qtd_feiticos := lista_feiticos.size()
@@ -83,7 +92,6 @@ func _update_deck_list() -> void:
 	# Limpa a lista visual do deck antes de redesenhá-la.
 	deck_list.clear()
 	
-
 	# Adiciona na interface todas as cartas que estão no array deck_cards.
 	for card in deck_cards:
 		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]

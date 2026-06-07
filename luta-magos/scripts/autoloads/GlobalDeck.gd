@@ -10,3 +10,6 @@ func set_deck(deck_cards: Array[MenuDeck.CardData]) -> void:
 	for card: MenuDeck.CardData in deck_cards:
 		feiticos_id_escolhidos.append(card.feitico_id)
 		cards_escolhidos.append(card)
+
+func get_deck() -> Array[MenuDeck.CardData]:
+	return cards_escolhidos
