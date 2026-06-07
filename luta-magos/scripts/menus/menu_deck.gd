@@ -39,6 +39,7 @@ var selected_deck_index: int = -1
 @onready var remove_button: Button = %RemoveButton
 @onready var deck_count_label: Label = %DeckCountLabel
 
+@onready var buttonVoltar: Button = $Button
 
 func _ready() -> void:
 	deck_list.item_selected.connect(_on_deck_list_item_selected)
