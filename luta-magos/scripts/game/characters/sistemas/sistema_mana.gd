@@ -24,6 +24,10 @@ func _ready() -> void:
 
 func _criar_efeito_mana_regen() -> void:
 	var efeito_regen := efeito_regen_mana_def.criar()
+	
+	# TODO: melhorar
+	efeito_regen.valor = GlobalDeck.mana_regen
+	
 	sistema_efeitos_feiticos.receber_feitico_efeito(efeito_regen)
 
 # -----------------------------------------------------------------------------

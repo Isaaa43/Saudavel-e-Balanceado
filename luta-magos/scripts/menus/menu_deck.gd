@@ -42,6 +42,9 @@ var selected_deck_index: int = -1
 @onready var buttonVoltar: Button = $Button
 
 func _ready() -> void:
+	# TODO: melhorar
+	max_deck_size = GlobalDeck.deck_size
+	
 	deck_list.item_selected.connect(_on_deck_list_item_selected)
 
 	add_button.pressed.connect(_on_add_button_pressed)

@@ -156,6 +156,7 @@ theme_override_font_sizes/font_size = 30
 text = "Continuar"
 
 [node name="PanelJogar" type="Panel" parent="." unique_id=222910812]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -273,6 +274,64 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Cancelar"
 
+[node name="ControlHacks" type="Control" parent="." unique_id=740999134]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="ControlHacks" unique_id=1734730920]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="LabelMana" type="Label" parent="ControlHacks/GridContainer" unique_id=1270854271]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Mana regen"
+
+[node name="SpinBoxMana" type="SpinBox" parent="ControlHacks/GridContainer" unique_id=719338559]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+step = 0.5
+value = 1.0
+
+[node name="LabelCartasDeck" type="Label" parent="ControlHacks/GridContainer" unique_id=1547081391]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Max cartas deck"
+
+[node name="SpinBoxCartasDeck" type="SpinBox" parent="ControlHacks/GridContainer" unique_id=977631214]
+layout_mode = 2
+min_value = 3.0
+max_value = 6.0
+value = 3.0
+rounded = true
+allow_greater = true
+
+[node name="Label" type="Label" parent="ControlHacks" unique_id=156408980]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.5
+offset_top = -53.0
+offset_right = 55.5
+offset_bottom = -11.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "DEBUG HACKS:"
+
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
@@ -281,3 +340,5 @@ text = "Cancelar"
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/ButtonCancelar" to="." method="_on_button_cancelar_pressed"]
+[connection signal="value_changed" from="ControlHacks/GridContainer/SpinBoxMana" to="." method="_on_spin_box_mana_value_changed"]
+[connection signal="value_changed" from="ControlHacks/GridContainer/SpinBoxCartasDeck" to="." method="_on_spin_box_cartas_deck_value_changed"]

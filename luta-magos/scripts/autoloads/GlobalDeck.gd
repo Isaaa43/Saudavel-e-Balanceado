@@ -1,5 +1,8 @@
 extends Node
 
+@export var mana_regen: float = 1.5
+@export var deck_size: int = 3
+
 @export var feiticos_id_escolhidos: Array[String]
 var cards_escolhidos: Array[MenuDeck.CardData]
 
