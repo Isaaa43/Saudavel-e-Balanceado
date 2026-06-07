@@ -59,28 +59,33 @@ func selecionar_magia(idx: int) -> void:
 	if idx < 0 or idx > feitico_id_to_icon.size(): return
 	
 	# prev
-	if idx > 0:
-		texture_prev.show()
-		texture_prev.texture = feitico_id_to_icon[idx_to_feitico_id[idx-1]]
-	else:
-		texture_prev.hide()
+	texture_prev.texture = _idx_to_icon(_calc_add_idx(idx, -1) )
+	# prox
+	texture_prox.texture = _idx_to_icon(_calc_add_idx(idx, +1) )
 	
-	# prov
-	if idx < feitico_id_to_icon.size()-1:
-		texture_prox.show()
-		texture_prox.texture = feitico_id_to_icon[idx_to_feitico_id[idx+1]]
-	else:
-		texture_prox.hide()
-	
-	texture_atual.texture = feitico_id_to_icon[idx_to_feitico_id[idx]]
+	texture_atual.texture = _idx_to_icon(idx)
+
+func _idx_to_icon(idx: int) -> Texture2D:
+	return feitico_id_to_icon[idx_to_feitico_id[idx]]
 
 func get_feitico_id_from_idx() -> String:
 	return idx_to_feitico_id[idx_atual]
 
+func _calc_add_idx(idx: int, qnt: int) -> int:
+	idx = idx + qnt
+	
+	# ciclico
+	if idx > idx_to_feitico_id.size()-1: 
+		idx = 0
+	if idx < 0:
+		idx = idx_to_feitico_id.size()-1
+	
+	idx = min(idx, idx_to_feitico_id.size()-1)
+	idx = max(idx, 0)
+	return idx
+
 func add_idx(qnt: int ) -> void:
-	idx_atual = idx_atual + qnt
-	idx_atual = min(idx_atual, idx_to_feitico_id.size()-1)
-	idx_atual = max(idx_atual, 0)
+	idx_atual = _calc_add_idx(idx_atual, qnt)
 	selecionar_magia(idx_atual)
 
 func mostrar_vida(porcent_vida: float) -> void:

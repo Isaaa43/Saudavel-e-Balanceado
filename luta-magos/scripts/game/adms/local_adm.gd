@@ -57,6 +57,7 @@ func matar_jogador(_jogador: Jogador) -> void:
 		lancador_feiticos.process_mode = Node.PROCESS_MODE_DISABLED
 
 func tela_fim(jogador_ganhador: Jogador) -> void:
+	if not jogador_ganhador: return
 	var nome_ganhador: String = jogador_ganhador.dados_jogador.nome
 	hud.mostrar_tela_fim(jogador == jogador_ganhador, nome_ganhador)
 	 
