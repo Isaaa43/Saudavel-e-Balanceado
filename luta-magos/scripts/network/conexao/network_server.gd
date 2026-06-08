@@ -117,3 +117,19 @@ func avisar_jogador_morreu() -> void:
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		Network.client.matar_jogador.rpc_id(peer_id, peer_id_req)
+
+
+# -----------------------------------------------------------------------------
+# Salvar dados
+# -----------------------------------------------------------------------------
+
+func salvar_decks() -> void:
+	if not multiplayer.is_server(): return
+	
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		Network.client.pedir_deck.rpc_id(peer_id)
+
+@rpc("any_peer", "call_local", "reliable")
+func receber_deck(lista_feiticos_id: String) -> void:
+	var peer_id_req = multiplayer.get_remote_sender_id()
+	SaveData.registrar_deck_batch(peer_id_req, lista_feiticos_id)

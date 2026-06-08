@@ -16,7 +16,8 @@ func _ready() -> void:
 	
 	if multiplayer.is_server():
 		SaveData.iniciar_partida()
-	SaveData.registrar_deck(multiplayer.get_unique_id(), GlobalDeck.feiticos_id_escolhidos)
+		# salva os decks dos jogadores
+		Network.server.salvar_decks()
 
 func _conectar_sinais() -> void:
 	# jogadores

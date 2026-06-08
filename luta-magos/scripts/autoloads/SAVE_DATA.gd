@@ -55,8 +55,12 @@ func registrar_nome(entidade_id: int, nome: String) -> void:
 func registrar_deck(entidade_id: int, lista_feiticos_id: Array[String]) -> void:
 	var linha = "c,%d," % [entidade_id]
 	for feitico_id : String in lista_feiticos_id:
-		linha += "%s" % feitico_id
+		linha += "%s," % feitico_id
 	
+	_nomes.append(linha)
+
+func registrar_deck_batch(entidade_id: int, lista_feiticos_id: String) -> void:
+	var linha = "c,%d,%s" % [entidade_id, lista_feiticos_id]
 	_nomes.append(linha)
 
 func registrar_posicao(entidade_id: int, posicao: Vector3, rotacao_y: float, cabeca_rot: float) -> void:

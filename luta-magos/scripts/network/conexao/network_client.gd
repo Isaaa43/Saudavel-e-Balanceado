@@ -101,3 +101,15 @@ func avisar_jogador_morreu() -> void:
 func matar_jogador(jogador_peer_id: int) -> void:
 	print("matar_jogador ", jogador_peer_id, " meu id ", multiplayer.get_unique_id())
 	morreu_jogador.emit(jogador_peer_id)
+
+
+# -----------------------------------------------------------------------------
+# Salvar dados
+# -----------------------------------------------------------------------------
+
+@rpc("authority", "call_local", "reliable")
+func pedir_deck() -> void:
+	var linha : String = ""
+	for feitico_id : String in GlobalDeck.feiticos_id_escolhidos:
+		linha += "%s," % feitico_id
+	Network.server.receber_deck.rpc_id(Network.SERVER_ID, linha)
