@@ -15,13 +15,13 @@ var _timer_posicao: float = 0.0
 var _posicoes:  PackedStringArray = PackedStringArray()
 var _feiticos:  PackedStringArray = PackedStringArray()
 var _mortes:    PackedStringArray = PackedStringArray()
-var _nomes: PackedStringArray = PackedStringArray()
+var _nomes:     PackedStringArray = PackedStringArray()
 
 # --- headers ---
-const HEADER_POSICAO  := "tempo,entidade_id,x,y,z"
-const HEADER_FEITICO  := "tempo,criador_id,feitico_id,alvo_id,pos_x,pos_y,pos_z"
-const HEADER_MORTE    := "tempo,entidade_id,causa,atacante_id"
-const HEADER_NOMES := "entidade_id,peer_id,nome"
+const HEADER_POSICAO  := "tipo,tempo,entidade_id,pos_x,pos_y,pos_z,rot_y,head_rot"
+const HEADER_FEITICO  := "tipo,tempo,criador_id,feitico_id,pos_x,pos_y,pos_z,dir_x,dir_y,dir_z"
+const HEADER_MORTE    := "tipo,tempo,entidade_id,pos_x,pos_y,pos_z"
+const HEADER_NOMES    := "tipo,entidade_id,nome"
 
 # --- lifecycle ---
 
