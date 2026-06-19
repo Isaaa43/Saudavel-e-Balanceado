@@ -1,17 +1,11 @@
 [gd_scene format=3 uid="uid://bxbxjx3vghjp8"]
 
-[ext_resource type="Shader" uid="uid://cp0bx4eechkhk" path="res://scripts/shaders/outline_revelar.gdshader" id="1_7d02w"]
-[ext_resource type="Script" uid="uid://d02tjgthl5ds4" path="res://scripts/game/entidades/entidade.gd" id="2_xokil"]
+[ext_resource type="Script" uid="uid://dicba2bqunx6r" path="res://scripts/game/entidades/entidade_feitico.gd" id="1_edxt4"]
 [ext_resource type="Script" uid="uid://b55gy4hmxuw8g" path="res://feiticos/FuraSapato/static_body_armadilha.gd" id="3_edd6a"]
 [ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="4_edd6a"]
+[ext_resource type="Material" uid="uid://c25lrwh5o1e6r" path="res://assets/feiticos/revelacao/reveldo_mat.tres" id="4_edxt4"]
 [ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="4_krbqj"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7d02w"]
-render_priority = 1
-shader = ExtResource("1_7d02w")
-shader_parameter/outline_color = Color(0.93333334, 0.4862745, 0, 1)
-shader_parameter/outline_width = 10.0
-shader_parameter/depth_threshold = 9.999999747e-05
+[ext_resource type="PackedScene" uid="uid://c2odiqhoahjl0" path="res://assets/feiticos/armadilha/Armadilha.blend" id="6_edxt4"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
 top_radius = 1.2
@@ -31,34 +25,45 @@ radius = 1.1850586
 
 [node name="FS_FuraSapato" type="Node3D" unique_id=2102016733]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018716335, 0)
-material_overlay = SubResource("ShaderMaterial_7d02w")
-mesh = SubResource("CylinderMesh_xe436")
-surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
-
-[node name="Entidade" type="Node" parent="MeshInstance3D" unique_id=89584569 node_paths=PackedStringArray("receptor_efeitos", "corpo")]
-script = ExtResource("2_xokil")
+[node name="Entidade" type="Node" parent="." unique_id=89584569 node_paths=PackedStringArray("receptor_efeitos", "corpo")]
+script = ExtResource("1_edxt4")
 receptor_efeitos = NodePath("ReceptorEfeitos")
-corpo = NodePath("../../StaticBody3D")
-is_especial = true
+corpo = NodePath("../StaticBody3D")
 metadata/_custom_type_script = "uid://d02tjgthl5ds4"
 
-[node name="ReceptorEfeitos" type="Node" parent="MeshInstance3D/Entidade" unique_id=1149353616 node_paths=PackedStringArray("sistema_efeitos")]
+[node name="ReceptorEfeitos" type="Node" parent="Entidade" unique_id=1149353616 node_paths=PackedStringArray("sistema_efeitos")]
 script = ExtResource("4_edd6a")
 sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
 metadata/_custom_type_script = "uid://dc2tlxsdy1hq0"
 
-[node name="SistemaEfeitosFeiticos" type="Node" parent="MeshInstance3D/Entidade/ReceptorEfeitos" unique_id=1075681397 node_paths=PackedStringArray("entidade")]
+[node name="SistemaEfeitosFeiticos" type="Node" parent="Entidade/ReceptorEfeitos" unique_id=1075681397 node_paths=PackedStringArray("entidade")]
 script = ExtResource("4_krbqj")
 entidade = NodePath("../..")
 metadata/_custom_type_script = "uid://rm63or2vve4e"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1579397504]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018716335, 0)
+visible = false
+material_overlay = ExtResource("4_edxt4")
+mesh = SubResource("CylinderMesh_xe436")
+surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1579397504 node_paths=PackedStringArray("mesh_instance_3d")]
 collision_layer = 327680
 collision_mask = 0
 script = ExtResource("3_edd6a")
+mesh_instance_3d = NodePath("../Armadilha/Armature/Skeleton3D/beartrap2low")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2029491153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1428833, 0)
 shape = SubResource("CylinderShape3D_krbqj")
+
+[node name="Armadilha" parent="." unique_id=1406988848 instance=ExtResource("6_edxt4")]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1.6, -0.20773304, 0, 0)
+
+[node name="Skeleton3D" parent="Armadilha/Armature" parent_id_path=PackedInt32Array(1406988848, 1880278043) index="0" unique_id=1291378380]
+bones/1/rotation = Quaternion(-8.036911e-08, -2.347634e-08, 0.6741851, 0.7385624)
+bones/3/rotation = Quaternion(-0.6820983, 0.7312605, -5.1497008e-08, 5.5208638e-08)
+bones/4/rotation = Quaternion(-0.6820984, 0.7312604, -5.1497008e-08, -5.520863e-08)
+
+[editable path="Armadilha"]

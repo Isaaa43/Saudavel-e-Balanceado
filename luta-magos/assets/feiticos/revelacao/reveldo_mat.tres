@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c25lrwh5o1e6r"]
+
+[ext_resource type="Shader" uid="uid://cp0bx4eechkhk" path="res://scripts/shaders/outline_revelar.gdshader" id="1_dfvlu"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_dfvlu")
+shader_parameter/outline_color = Color(0.93333334, 0.4862745, 0, 1)
+shader_parameter/outline_width = 10.0
+shader_parameter/depth_threshold = 9.999999747e-05

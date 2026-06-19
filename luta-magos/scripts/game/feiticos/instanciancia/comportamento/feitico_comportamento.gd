@@ -98,7 +98,7 @@ func _entrou_area_aplicar_efeitos(_corpo_entrou: Node3D) -> void:
 	var entidade: Entidade = Entidade.get_entidade_from_corpo(_corpo_entrou)
 	var receptor: ReceptorEfeitos = entidade.receptor_efeitos
 	# ReceptorEfeitos.encontrar_receptor_efeitos(node)
-	if receptor != null:
+	if receptor != null and entidade != null:
 		_aplicar_efeitos_receptor(receptor, entidade)
 
 func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, entidade: Entidade) -> void:
@@ -106,14 +106,14 @@ func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, entidade: Entidade) ->
 		receptor.receber_lista_efeitos(efeitos)
 
 func _deve_aplicar_efeito(entidade: Entidade) -> bool:
-	# TODO melhorar isso
-	# ------------------
-	# se nao conseguiu pegar, pare
-	#if not entidade.corpo: return false
-	if not entidade is Jogador: return false
+	var entidade_id : int
 	
-	var jog: Jogador = entidade
-	var entidade_id : int = jog.dados_jogador.peer_id
+	if entidade is Jogador:
+		var jog: Jogador = entidade
+		entidade_id = jog.dados_jogador.peer_id
+	elif entidade is EntidadeFeitico:
+		entidade_id = entidade.criador_id
+	
 	# ------------------
 	
 	match (afetados):

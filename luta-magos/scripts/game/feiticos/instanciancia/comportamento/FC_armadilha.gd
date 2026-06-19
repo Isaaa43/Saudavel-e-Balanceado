@@ -21,6 +21,11 @@ func iniciar_comportamento() -> void:
 	if comportamento_ativacao_def:
 		area_ativacao.body_entered.disconnect(_entrou_area_aplicar_efeitos)
 		area_ativacao.body_entered.connect(_verificar_ativar_armadilha)
+	# pega o componente da entidade
+	var feitico_scene := visual.get_child(0)
+	for c in feitico_scene.get_children():
+		if c is EntidadeFeitico:
+			c.criador_id = contexto.criador_id
 
 func _verificar_ativar_armadilha(_corpo_entrou: Node3D) -> void:
 	var entidade: Entidade = Entidade.get_entidade_from_corpo(_corpo_entrou)
