@@ -102,7 +102,7 @@ func _entrou_area_aplicar_efeitos(_corpo_entrou: Node3D) -> void:
 		_aplicar_efeitos_receptor(receptor, entidade)
 
 func _aplicar_efeitos_receptor(receptor: ReceptorEfeitos, entidade: Entidade) -> void:
-	if _deve_aplicar_efeito(entidade) or entidade.is_especial:
+	if _deve_aplicar_efeito(entidade):
 		receptor.receber_lista_efeitos(efeitos)
 
 func _deve_aplicar_efeito(entidade: Entidade) -> bool:

@@ -5,9 +5,6 @@ extends Node
 @export var receptor_efeitos: ReceptorEfeitos
 @export var corpo: PhysicsBody3D
 
-## sobrescreve a verificao de 'deve_aplicar_efeito'
-@export var is_especial : bool = false
-
 func revelar(duracao_seg: float) -> void:
 	if corpo is JogadorCorpo:
 		var jog: JogadorCorpo = corpo
