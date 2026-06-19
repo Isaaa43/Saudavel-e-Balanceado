@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
-lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("6_i2h36"), ExtResource("7_wfhn1"), ExtResource("8_devs0")])
+lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("5_6eq1e"), ExtResource("4_k0n5w"), ExtResource("8_devs0"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
 card_button_scene = ExtResource("7_gr7sa")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
@@ -124,6 +124,8 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
+expand_mode = 2
+stretch_mode = 6
 
 [node name="CardTypeCost" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=702212210]
 unique_name_in_owner = true
@@ -145,3 +147,19 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Adicionar feitiço"
+
+[node name="Button" type="Button" parent="." unique_id=1939406467]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "VOLTAR"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

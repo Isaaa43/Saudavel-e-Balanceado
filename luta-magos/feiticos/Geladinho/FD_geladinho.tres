@@ -1,7 +1,31 @@
 [gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://d2quugw6e5igw"]
 
-[ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="1_h375f"]
+[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_34e25"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_ugo83"]
+[ext_resource type="Script" uid="uid://lx21fdb2gntr" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_congelar_def.gd" id="2_mexeb"]
+[ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="3_j8xii"]
+[ext_resource type="PackedScene" uid="uid://cp3y7evqi2bsj" path="res://feiticos/visuais/FV_gelo.tscn" id="4_rojgp"]
+[ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="5_3g1nk"]
+[ext_resource type="Texture2D" uid="uid://c4oy0udpwsk5g" path="res://assets/icones/projetil.png" id="6_34e25"]
+
+[sub_resource type="Resource" id="Resource_5qclt"]
+script = ExtResource("2_mexeb")
+valor = 2.0
+metadata/_custom_type_script = "uid://lx21fdb2gntr"
+
+[sub_resource type="Resource" id="Resource_omd85"]
+script = ExtResource("5_3g1nk")
+cena = ExtResource("4_rojgp")
+metadata/_custom_type_script = "uid://d2ynerodv584f"
+
+[sub_resource type="Resource" id="Resource_ex0k1"]
+script = ExtResource("3_j8xii")
+mascara_impacto = 256
+duracao_seg = 6.0
+afetados = 4
+lista_efeitos = Array[ExtResource("1_34e25")]([SubResource("Resource_5qclt")])
+visual_def = SubResource("Resource_omd85")
+metadata/_custom_type_script = "uid://cf63pij16plhl"
 
 [resource]
 script = ExtResource("1_ugo83")
@@ -10,5 +34,6 @@ nome = "Geladinho"
 descricao = "Gelo gelado que gela gente, congelando por {valor} segundos."
 cooldown = 3.0
 custo = 20.0
-icone_hud = ExtResource("1_h375f")
+icone_hud = ExtResource("6_34e25")
+comportamento_def = SubResource("Resource_ex0k1")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"

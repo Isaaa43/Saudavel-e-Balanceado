@@ -4,10 +4,12 @@ extends Node3D
 signal lancar_feitico(feitico_contexto: FeiticoContexto)
 
 @export var sistema_mana : SistemaMana
+@export var audio_cast : AudioStream
 
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
+@onready var audio_stream_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 ## Hud do jogador desse PC
 var hud_jogador: HUDJogador
@@ -18,45 +20,58 @@ var _cooldowns: Dictionary = {}
 
 var selecao_feitico_id: int = 0
 
+func _ready() -> void:
+	audio_stream_player.stream = audio_cast
+	print(GlobalDeck.feiticos_id_escolhidos)
+
 func _input(_event: InputEvent) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
-	
-	if _event is InputEventKey and _event.pressed:
-		match (_event.keycode):
-			KEY_1:
-				_selecionar(0)
-			KEY_2:
-				_selecionar(1)
-			KEY_3:
-				_selecionar(2)
-			KEY_4:
-				_selecionar(3)
-			KEY_5:
-				_selecionar(4)
 	
 	if Input.is_action_just_pressed("acao"):
 		_escolher_feitico()
 
-func _selecionar(id: int) -> void:
-	selecao_feitico_id = id
-	hud_jogador.selecionar_magia(id)
+func _mostrar_custo_mana(feitico_id: String) -> void:
+	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
+	var custo_mana : float = feitico_def.custo
+	if sistema_mana.tem_mana_suficiente(custo_mana):
+		var custo_porcent : float = sistema_mana.calc_porcentegem_mana(custo_mana)
+		hud_jogador.atualizar_custo_mana_previsto(custo_porcent)
+	else:
+		hud_jogador.atualizar_custo_mana_previsto(0.0)
+
+func _get_feitico_id_from_id(id: int) -> String:
+	match id:
+		0:
+			return "BolaFogo"
+		1:
+			return "FuraSapato"
+		2:
+			return "PuloImpulsionado"
+		3:
+			return "Ozempagic"
+		4:
+			return "ToTeVendo"
+		5:
+			return "Geladinho"
+	return ""
 
 func _escolher_feitico() -> void:
-	match selecao_feitico_id:
-		0:
-			lancar_feitico_escolhido("BolaFogo")
-		1:
-			lancar_feitico_escolhido("FuraSapato")
-		2:
-			lancar_feitico_escolhido("PuloImpulsionado")
-		3:
-			lancar_feitico_escolhido("Ozempagic")
-		4:
-			lancar_feitico_escolhido("ToTeVendo")
+	
+	var feitico_id : String = hud_jogador.get_feitico_id_from_idx()
+	if feitico_id != "":
+		lancar_feitico_escolhido(feitico_id)
 
 func _process(delta: float) -> void:
 	for id in _cooldowns:
 		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
+	
+	
+	if Input.is_action_just_pressed("feitico_prox"):
+		hud_jogador.add_idx(1)
+		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx())
+	if Input.is_action_just_pressed("feitico_prev"):
+		hud_jogador.add_idx(-1)
+		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx())
 
 ## Retorna a direcao normalizada que o lancador de feiticos esta mirando
 func get_direcao_mirando() -> Vector3:
@@ -111,3 +126,5 @@ func _criar_feitico_contexto(feitico_def : FeiticoDef) -> FeiticoContexto:
 # emite que esta lancando um feitico
 func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	lancar_feitico.emit(feitico_contexto)
+	# emite o audio
+	audio_stream_player.play()

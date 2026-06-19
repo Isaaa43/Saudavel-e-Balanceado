@@ -21,11 +21,13 @@ extends Resource
 # -----------------------------------------------------------------------------
 @export_group("Visual")
 @export var visual_def: FeiticoVisualDef
+@export var audio_stream: AudioStream
 
 func criar(contexto: FeiticoContexto) -> FeiticoComportamento:
 	# --- cria o comportamento especifico
 	var comportamento : FeiticoComportamento = _criar()
 	_criar_sub_sistemas(comportamento)
+	comportamento.audio_stream = audio_stream
 	
 	comportamento.contexto = contexto
 	# --- efeitos
@@ -40,5 +42,9 @@ func _criar() -> FeiticoComportamento
 
 func _criar_sub_sistemas(comportamento: FeiticoComportamento) -> void:
 	comportamento.visual = visual_def.criar()
-	comportamento.area_ativacao = FeiticoAreaAtivacao.new()
 	comportamento.corpo = FeiticoCorpo.criar()
+	
+	var raio := 0.5
+	if comportamento is FeiticoComportamentoProjetil:
+		raio = comportamento.tamanho_raio
+	comportamento.area_ativacao = FeiticoAreaAtivacao.new(raio)

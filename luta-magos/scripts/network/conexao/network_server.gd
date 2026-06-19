@@ -21,6 +21,8 @@ func criar_lobby() -> void:
 	
 	TrocaCenaTemp.go_to_menu_partida()
 	Network.logs.add_conexao_texto("Lobby criado")
+	Network.logs.add_conexao_texto("IP: " + Network.IP_ADDR)
+	Network.logs.add_conexao_texto("Port: %d" % Network.PORT)
 	# salva o peer_id do server nos dados do jog
 	Network.client.dados_jogador.peer_id = Network.SERVER_ID
 	# cria os dados do jogador que criou o lobby
@@ -107,3 +109,27 @@ func jogador_lancar_feitico(feitico_contexto_net: Dictionary) -> void:
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		Network.client.spawn_feitico.rpc_id(peer_id, feitico_contexto_net)
+
+@rpc("any_peer", "call_local", "reliable")
+func avisar_jogador_morreu() -> void:
+	if not multiplayer.is_server(): return
+	var peer_id_req = multiplayer.get_remote_sender_id()
+	
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		Network.client.matar_jogador.rpc_id(peer_id, peer_id_req)
+
+
+# -----------------------------------------------------------------------------
+# Salvar dados
+# -----------------------------------------------------------------------------
+
+func salvar_decks() -> void:
+	if not multiplayer.is_server(): return
+	
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		Network.client.pedir_deck.rpc_id(peer_id)
+
+@rpc("any_peer", "call_local", "reliable")
+func receber_deck(lista_feiticos_id: String) -> void:
+	var peer_id_req = multiplayer.get_remote_sender_id()
+	SaveData.registrar_deck_batch(peer_id_req, lista_feiticos_id)

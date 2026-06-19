@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://c0x4sfg4cudyb"]
+
+[ext_resource type="Texture2D" uid="uid://dj1umbc3xes6p" path="res://assets/vfx/quadrado.png" id="1_a3tav"]
+[ext_resource type="Texture2D" uid="uid://qljdpaows0ca" path="res://assets/vfx/bola.png" id="2_a5r5n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2ivu"]
+shading_mode = 0
+albedo_color = Color(0.56075037, 0.5332315, 0.26380876, 1)
+albedo_texture = ExtResource("1_a3tav")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ogi0"]
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5qfc"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9575601, 0.88782847, 0.57999384, 0.18039216)
+albedo_texture = ExtResource("2_a5r5n")
+
+[sub_resource type="QuadMesh" id="QuadMesh_858ci"]
+material = SubResource("StandardMaterial3D_f5qfc")
+size = Vector2(4, 4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ggbr4"]
+emission_shape = 2
+emission_sphere_radius = 2.0
+direction = Vector3(1, 1, 1)
+angular_velocity_min = -90.000015
+angular_velocity_max = 89.999985
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 99.99999
+radial_accel_max = 99.99999
+tangential_accel_min = -10.000002
+tangential_accel_max = 9.999997
+scale_min = 0.099999994
+scale_max = 0.099999994
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nerpu"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.93634605, 0.88839686, 0.58554894, 1)
+albedo_texture = ExtResource("2_a5r5n")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_t2ivu"]
+material = SubResource("StandardMaterial3D_nerpu")
+size = Vector2(0.04, 0.08)
+
+[node name="FV_revelacao" type="Node3D" unique_id=1918478431]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1786168888]
+transparency = 0.9
+radius = 2.0
+radial_segments = 32
+rings = 16
+material = SubResource("StandardMaterial3D_t2ivu")
+
+[node name="GPUParticles_aura" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1587715005]
+transparency = 0.9
+lifetime = 0.1
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_7ogi0")
+draw_pass_1 = SubResource("QuadMesh_858ci")
+
+[node name="GPUParticles_particulas" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1217517718]
+lod_bias = 0.001
+amount = 2
+lifetime = 0.09
+process_material = SubResource("ParticleProcessMaterial_ggbr4")
+draw_pass_1 = SubResource("QuadMesh_t2ivu")

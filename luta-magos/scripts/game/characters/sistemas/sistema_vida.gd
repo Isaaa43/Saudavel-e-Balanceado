@@ -3,11 +3,8 @@ extends Node
 
 ## Quando ocorre mudanca na vida, com porcentagem total da vida maxima [0.0, 1.0] 
 signal mudanca_vida(vida_porcentagem: float)
+signal levou_dano(dano: float)
 signal morreu
-
-# TODO: somente teste, remover
-@export var label_dano: Label3D
-
 
 var vida : float
 @export var vida_max : float = 150
@@ -20,22 +17,17 @@ func _ready() -> void:
 # Mudar vida
 # -----------------------------------------------------------------------------
 func receber_dano(_dano: float) -> void:
-	print('receber_dano %d' % _dano)
-	
-	label_dano.text = "Dano:\n%d" % _dano
-	label_dano.show()
-	get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )
-	
 	# tirar o dano do jogador, ate minimo de 0
 	vida = max(0, vida - _dano)
 	# emite sinal para atualizar a porcentagem de vida
 	_emitir_vida_porcentagem()
+	# emite que levou dano
+	levou_dano.emit(_dano)
+	
 	# verificar se morreu
 	_verificar_morte()
 
 func receber_vida(_vida: float) -> void:
-	print('receber_vida %d' % _vida)
-	
 	# adicionar vida do jogador, ate maximo de vida_max
 	vida = min(vida_max, vida + _vida)
 	# emite sinal para atualizar a porcentagem de vida

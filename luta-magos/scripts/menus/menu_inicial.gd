@@ -1,11 +1,17 @@
 extends Control
 
 @export var focus_inicial: Control
+@export var panel_nome: Panel 
+@export var panel_jogar: Panel 
 
 @onready var ui: PanelContainer = $UI
-@onready var panel_jogar: Panel = $PanelJogar
-@onready var line_edit_nome_jogador: LineEdit = $UI/VBoxContainer/LineEditNomeJogador
+
+@onready var line_edit_nome_jogador: LineEdit = $PanelNome/Control/VBoxContainer/LineEditNomeJogador
+@onready var button_nome: Button = $PanelNome/Control/VBoxContainer/ButtonNome
+
 @onready var button_join: Button = $PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonJoin
+@onready var line_edit_ip: LineEdit = $PanelJogar/Control/Margin/VBoxContainer/HBoxIP/LineEditIp
+@onready var line_edit_port: LineEdit = $PanelJogar/Control/Margin/VBoxContainer/HBoxPort/LineEditPort
 
 func _on_button_sair_jogo_pressed() -> void:
 	get_tree().quit()
@@ -16,6 +22,7 @@ func _debug_auto_multiplas_inst() -> void:
 		print("args:")
 		print(args)		
 		for arg in args:
+			await get_tree().physics_frame
 			if arg.begins_with("-host") or arg.begins_with("-server"):
 				await get_tree().create_timer(0.1).timeout
 				Network.client.dados_jogador.nome = "Hosterson"
@@ -29,6 +36,10 @@ func  _ready() -> void:
 	# TODO: REMOVER
 	_debug_auto_multiplas_inst()
 	
+	_load_hacks()
+	
+	ui.show()
+	panel_nome.hide()
 	panel_jogar.hide()
 	# TODO: criar loading
 	Network.client_connection_failed.connect(_habilitar_button_join.bind(true))
@@ -37,25 +48,20 @@ func  _ready() -> void:
 
 
 func _on_button_jogar_pressed() -> void:
-	panel_jogar.show()
+	panel_nome.show()
 	ui.hide()
-	# TODO:
-	button_join.grab_focus()
-	# pegar nome
-	var nome_jog := line_edit_nome_jogador.text
-	if nome_jog.length() < 2:
-		nome_jog = "Jog_" + str(randi_range(1000, 9999))
-	print("nome_jog ", nome_jog)
-	Network.client.dados_jogador.nome = nome_jog
+	line_edit_nome_jogador.grab_focus()
+	button_nome.disabled = line_edit_nome_jogador.text.length() < 2
 
 func _on_button_cancelar_pressed() -> void:
-	panel_jogar.hide()
-	ui.show()
+	TrocaCenaTemp.go_to_menu_inicial()
 
 func _on_button_host_pressed() -> void:
+	_pegar_dados_conexao()
 	Network.server.criar_lobby()
 
 func _on_button_join_pressed() -> void:
+	_pegar_dados_conexao()
 	Network.client.entrar_lobby()
 	# TODO: criar loading
 	_habilitar_button_join(false)
@@ -72,3 +78,44 @@ func _habilitar_button_join(habilitar: bool) -> void:
 func _on_button_deck_pressed() -> void:
 	TrocaCenaTemp.menu_deck()
 	pass # Replace with function body.
+
+func _show_conectar() -> void:
+	panel_jogar.show()
+	panel_nome.hide()
+	ui.hide()
+	#
+	button_join.grab_focus()
+	# 
+	line_edit_ip.text = Network.get_ip()
+	line_edit_port.text = str(Network.PORT)
+
+func _pegar_dados_conexao() -> void:
+	var ip : String = line_edit_ip.text
+	var port : int = int(line_edit_port.text)
+	Network.IP_ADDR = ip
+	Network.PORT = port
+
+func _on_button_nome_pressed() -> void:
+	# pegar nome
+	var nome_jog := line_edit_nome_jogador.text
+	if nome_jog.length() < 2:
+		nome_jog = "Jog_" + str(randi_range(1000, 9999))
+	print("nome_jog ", nome_jog)
+	Network.client.dados_jogador.nome = nome_jog
+	# 
+	_show_conectar()
+
+func _on_line_edit_nome_jogador_text_changed(_new_text: String) -> void:
+	button_nome.disabled = _new_text.length() < 2
+
+@onready var spin_box_mana: SpinBox = $ControlHacks/GridContainer/SpinBoxMana
+@onready var spin_box_cartas_deck: SpinBox = $ControlHacks/GridContainer/SpinBoxCartasDeck
+func _load_hacks() -> void:
+	spin_box_mana.value = GlobalDeck.mana_regen
+	spin_box_cartas_deck.value = GlobalDeck.deck_size
+
+func _on_spin_box_mana_value_changed(value: float) -> void:
+	GlobalDeck.mana_regen = value
+
+func _on_spin_box_cartas_deck_value_changed(value: float) -> void:
+	GlobalDeck.deck_size = int(value)

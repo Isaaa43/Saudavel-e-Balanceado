@@ -39,8 +39,12 @@ var selected_deck_index: int = -1
 @onready var remove_button: Button = %RemoveButton
 @onready var deck_count_label: Label = %DeckCountLabel
 
+@onready var buttonVoltar: Button = $Button
 
 func _ready() -> void:
+	# TODO: melhorar
+	max_deck_size = GlobalDeck.deck_size
+	
 	deck_list.item_selected.connect(_on_deck_list_item_selected)
 
 	add_button.pressed.connect(_on_add_button_pressed)
@@ -48,9 +52,18 @@ func _ready() -> void:
 	
 	_create_cards_from_spells()
 	
+	# carrega o deck
+	_load_deck()
+	
 	_populate_card_pool()
 	_update_deck_list()
 	_clear_card_info()
+	
+
+func _load_deck() -> void:
+	for card: CardData in GlobalDeck.get_deck():
+		# Adiciona a carta ao array do deck.
+		deck_cards.append(card)
 
 func _create_cards_from_spells() -> void:
 	var qtd_feiticos := lista_feiticos.size()
@@ -82,7 +95,7 @@ func _populate_card_pool() -> void:
 func _update_deck_list() -> void:
 	# Limpa a lista visual do deck antes de redesenhá-la.
 	deck_list.clear()
-
+	
 	# Adiciona na interface todas as cartas que estão no array deck_cards.
 	for card in deck_cards:
 		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]
@@ -93,6 +106,7 @@ func _update_deck_list() -> void:
 		deck_cards.size(),
 		max_deck_size
 	]
+	GlobalDeck.set_deck(deck_cards)
 
 
 func _show_card_info(card: CardData) -> void:
@@ -155,6 +169,12 @@ func _add_card_to_deck(card: CardData) -> void:
 		print("Grimório cheio!")
 		return
 
+	# verifica se n foi adicionada ja (nao pode repetir)
+	for _card: CardData in deck_cards:
+		if _card.feitico_id == card.feitico_id:
+			print("Carta já adicionada")
+			return
+
 	# Adiciona a carta ao array do deck.
 	deck_cards.append(card)
 
@@ -185,7 +205,8 @@ func _on_remove_button_pressed() -> void:
 # =============================================================================
 class CardData:
 	extends RefCounted
-
+	
+	var feitico_id: String
 	## Texto com o nome da carta
 	var nome: String
 	## Tipo da carta
@@ -200,6 +221,7 @@ class CardData:
 	var icone: Texture2D
 	
 	func _init(feitico_def: FeiticoDef) -> void:
+		feitico_id 	= feitico_def.feitico_id
 		nome 		= feitico_def.nome
 		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
 		espaco 		= _feitico_espaco_para_string(feitico_def.espaco)
@@ -250,3 +272,7 @@ class CardData:
 				return "Passiva"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Espaco_" + str(_espaco)
+
+
+func _on_button_pressed() -> void:
+	TrocaCenaTemp.go_to_menu_inicial()

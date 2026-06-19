@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://c8tx6c38tykag"]
+
+[ext_resource type="Script" uid="uid://bovowbww38f7m" path="res://scripts/game/entidades/jogador/personagem/jogador_corpo.gd" id="1_tbhp6"]
+[ext_resource type="AudioStream" uid="uid://cx77yj6ddh625" path="res://assets/audios/acertandoinimigo.mp3" id="2_dbt5w"]
+[ext_resource type="Shader" uid="uid://cp0bx4eechkhk" path="res://scripts/shaders/outline_revelar.gdshader" id="2_jxg5t"]
+[ext_resource type="Script" uid="uid://t1neyfaggex2" path="res://scripts/game/characters/sistemas/sistema_animacao.gd" id="2_mxy06"]
+[ext_resource type="PackedScene" uid="uid://dxrs17vw4ikxp" path="res://assets/personagem/rig_sapo.tscn" id="3_mxy06"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxy06"]
+render_priority = 0
+shader = ExtResource("2_jxg5t")
+shader_parameter/outline_color = Color(1, 0.64705884, 0, 1)
+shader_parameter/outline_width = 20.0
+shader_parameter/depth_threshold = 9.999999747e-05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpww1"]
+render_priority = 1
+shader = ExtResource("2_jxg5t")
+shader_parameter/outline_color = Color(1, 0.69803923, 0, 1)
+shader_parameter/outline_width = 20.0
+shader_parameter/depth_threshold = 9.999999747e-05
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_30vjq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5tbn"]
+albedo_color = Color(1, 0.65333337, 0.35000002, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_s5tbn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf517"]
+albedo_color = Color(0.9298859, 0.430138, 0, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5tbn"]
+properties/0/path = NodePath("JogadorCorpo:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("JogadorCorpo:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("JogadorCorpo/Corpo/Cabeca/CabecaPivot:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("JogadorCorpo/SistemaAnimacao:synced_animacao")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxy06"]
+albedo_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
+[node name="JogadorCorpo" type="CharacterBody3D" unique_id=1543690626]
+script = ExtResource("1_tbhp6")
+
+[node name="SistemaAnimacao" type="Node" parent="." unique_id=1315448621 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("2_mxy06")
+animation_player = NodePath("../Corpo/Rig_Sapo/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=827753563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_jbwqc")
+
+[node name="Corpo" type="Node3D" parent="." unique_id=59201550]
+
+[node name="Rig_Sapo" parent="Corpo" unique_id=378789027 instance=ExtResource("3_mxy06")]
+transform = Transform3D(-6.5, 0, -5.68248e-07, 0, 6.5, 0, 5.68248e-07, 0, -6.5, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Corpo/Rig_Sapo/Armature" parent_id_path=PackedInt32Array(378789027, 1697243448) index="0" unique_id=1146640257]
+bones/0/position = Vector3(-4.5270285e-09, 2.5582958e-08, -8.14116)
+bones/1/position = Vector3(7.658263, 9.61125e-07, 9.3714334e-08)
+bones/1/rotation = Quaternion(-0.0024607452, -0.00045774883, 0.04114601, 0.99915004)
+bones/1/scale = Vector3(1, 0.99999994, 0.9999999)
+bones/4/rotation = Quaternion(0.11239818, 0.05993532, -0.46669197, 0.8751989)
+bones/4/scale = Vector3(1.0000001, 1.0000001, 1.0000001)
+bones/5/position = Vector3(3.7080917, 0.36025494, -0.13284335)
+bones/5/rotation = Quaternion(-8.381903e-09, -4.4237822e-08, 6.845221e-08, 1)
+bones/6/position = Vector3(0.55862224, -4.6191554, 1.0789878)
+bones/6/rotation = Quaternion(-0.031179227, -0.00065370416, -0.16290854, 0.9861482)
+bones/7/rotation = Quaternion(-0.1749777, -0.12648632, -0.36205915, 0.9068061)
+bones/9/rotation = Quaternion(0.067385234, -0.042692553, 0.020653589, 0.9965992)
+bones/14/rotation = Quaternion(-0.20952614, 0.04917644, -0.24779275, 0.9446054)
+bones/17/rotation = Quaternion(-0.39493278, 0.08608594, -0.44665158, 0.7981978)
+bones/18/rotation = Quaternion(0.045662556, 0.08727907, 0.17039414, 0.98044026)
+bones/20/scale = Vector3(1.0000004, 1.0000005, 1.0000001)
+bones/21/position = Vector3(3.3264802, 1.1622906e-06, -3.5762787e-07)
+bones/21/rotation = Quaternion(9.313254e-10, 6.519262e-09, -5.0291384e-08, 1)
+bones/22/position = Vector3(0.27797925, -4.5109506, -0.9555402)
+bones/22/rotation = Quaternion(0.078614876, -0.02823199, -0.033619553, 0.995938)
+bones/23/position = Vector3(-0.9596775, -1.1086485, -8.170888)
+bones/23/rotation = Quaternion(0.12185934, -0.037095807, 0.948863, 0.288848)
+bones/25/rotation = Quaternion(0.114697054, 0.3349666, 0.109401636, 0.928802)
+bones/27/rotation = Quaternion(-0.00031639062, -0.087120555, -0.024721947, 0.9958909)
+bones/28/rotation = Quaternion(0.048106495, -0.37515065, 0.07130059, 0.9229648)
+bones/31/rotation = Quaternion(0.19161397, -0.13351133, -0.25963345, 0.93704283)
+bones/33/rotation = Quaternion(-0.14434129, -0.1984486, -0.56944555, 0.784548)
+bones/34/rotation = Quaternion(0.17277439, -0.03775042, -0.12074552, 0.97680324)
+bones/38/position = Vector3(-3.4197078, -0.09320517, 3.2442222)
+bones/38/rotation = Quaternion(-0.015485451, 0.19158626, 0.0038147962, 0.9813462)
+bones/38/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
+bones/39/rotation = Quaternion(-0.03567087, -0.04753074, -0.0056754984, 0.9982165)
+bones/39/scale = Vector3(1, 1.0000001, 1)
+bones/40/position = Vector3(-1.2493821, -0.285953, 2.360211)
+bones/40/rotation = Quaternion(-0.12663396, -0.19583876, -0.056534767, 0.97078055)
+bones/42/position = Vector3(-3.3039768, 0.083619885, -1.1903121)
+bones/42/rotation = Quaternion(-0.022306472, -0.00022161569, -0.0013365055, 0.99975026)
+bones/42/scale = Vector3(0.9999998, 0.99999994, 0.99999994)
+bones/43/rotation = Quaternion(0.06784415, -0.017312173, 0.004282277, 0.99753654)
+bones/43/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/44/rotation = Quaternion(5.7516445e-09, -6.0736056e-09, -2.1696906e-08, 1)
+
+[node name="Frogger_Skinned" parent="Corpo/Rig_Sapo/Armature/Skeleton3D" index="0" unique_id=1289572742]
+material_overlay = SubResource("ShaderMaterial_mxy06")
+
+[node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=211919447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+material_overlay = SubResource("ShaderMaterial_jpww1")
+mesh = SubResource("CapsuleMesh_30vjq")
+surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
+
+[node name="Cabeca" type="Node3D" parent="Corpo" unique_id=758590712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="RemoteTransformCabeca" type="RemoteTransform3D" parent="Corpo/Cabeca" unique_id=1263194128]
+update_rotation = false
+update_scale = false
+
+[node name="CabecaPivot" type="Node3D" parent="Corpo/Cabeca" unique_id=941134249]
+transform = Transform3D(1, 0, 0, 0, 0.9999633, -0.008569461, 0, 0.008569461, 0.9999633, 0, 0, -0.15)
+
+[node name="MeshCabeca" type="MeshInstance3D" parent="Corpo/Cabeca/CabecaPivot" unique_id=51166379]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
+visible = false
+mesh = SubResource("SphereMesh_s5tbn")
+surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
+
+[node name="AudioPlayerDano" type="AudioStreamPlayer3D" parent="." unique_id=1671122780]
+stream = ExtResource("2_dbt5w")
+
+[node name="LabelNome" type="Label3D" parent="." unique_id=1612619769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7698882, 0)
+visible = false
+billboard = 2
+outline_modulate = Color(0, 0, 0.40784314, 1)
+font_size = 40
+
+[node name="LabelDano" type="Label3D" parent="." unique_id=1095774123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4275663, 0)
+visible = false
+billboard = 2
+outline_modulate = Color(0.8328558, 0, 0.121190645, 1)
+text = "Dano:
+"
+font_size = 50
+outline_size = 16
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=22801627]
+root_path = NodePath("../..")
+replication_config = SubResource("SceneReplicationConfig_s5tbn")
+
+[node name="CSGVisaoLimitada" type="CSGCylinder3D" parent="." unique_id=1313372676]
+flip_faces = true
+radius = 12.0
+height = 50.0
+sides = 64
+material = SubResource("StandardMaterial3D_mxy06")
+
+[editable path="Corpo/Rig_Sapo"]

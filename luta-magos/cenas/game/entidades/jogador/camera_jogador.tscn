@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dfpsqfdgmimqo"]
+
+[ext_resource type="Script" uid="uid://cedl4qy6fkjy3" path="res://scripts/game/characters/camera_jogador.gd" id="1_c1hgm"]
+
+[node name="CameraJogador" type="Node3D" unique_id=92969849]
+script = ExtResource("1_c1hgm")
+
+[node name="Camera" type="Camera3D" parent="." unique_id=840626129]
+
+[node name="RemoteTransformMira" type="RemoteTransform3D" parent="Camera" unique_id=1175613351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

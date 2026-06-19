@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://c4x1fiwa5kwuq"]
 
 [ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
-[ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="1_bqy3s"]
-[ext_resource type="Texture2D" uid="uid://bkhthrifwtg0q" path="res://assets/temp/feiticosIcones/Ice Spells2.png" id="3_c7tbw"]
-[ext_resource type="Texture2D" uid="uid://biooeneitqj7a" path="res://assets/temp/feiticosIcones/wind spell23.png" id="4_tpt5k"]
-[ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="5_5ifs1"]
-[ext_resource type="Texture2D" uid="uid://ddfd0yq7hjjn0" path="res://assets/temp/feiticosIcones/2YellowAbility_10.png" id="6_x222b"]
+[ext_resource type="Texture2D" uid="uid://bpmjjpxemo56r" path="res://assets/UI/hud_jogador/crosshair/crosshair004.png" id="2_jk3uq"]
+[ext_resource type="Texture2D" uid="uid://c52p4y2dpy41p" path="res://assets/icones/jump.png" id="4_mtgw6"]
+[ext_resource type="Texture2D" uid="uid://ccie6v4ygel0c" path="res://assets/UI/hud_jogador/vida/BASE_VIDA.png" id="7_18wio"]
+[ext_resource type="Texture2D" uid="uid://dnxpghv5mgca5" path="res://assets/UI/hud_jogador/vida/BARRA_VIDA.png" id="8_wsdra"]
+[ext_resource type="Texture2D" uid="uid://15t5lbcmifo5" path="res://assets/UI/hud_jogador/vida/TEXTURA_VIDA.png" id="9_mtgw6"]
+[ext_resource type="Texture2D" uid="uid://bh0be6wyusnda" path="res://assets/UI/hud_jogador/mana/BASE_MANA.png" id="10_c48wk"]
+[ext_resource type="Texture2D" uid="uid://7sj1rnw3v2sr" path="res://assets/UI/hud_jogador/mana/BARRA_MANA.png" id="11_jk3uq"]
+[ext_resource type="Texture2D" uid="uid://h58c0mtnjpxw" path="res://assets/UI/hud_jogador/mana/TEXTURA_MANA.png" id="12_gdimr"]
+[ext_resource type="PackedScene" uid="uid://e33rvm32gwqu" path="res://cenas/game/UI/hud_menu_pause.tscn" id="14_gdimr"]
+[ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="15_o10b8"]
 
-[node name="HUDjogador" type="Control" unique_id=31207200]
+[node name="HUDjogador" type="Control" unique_id=31207200 node_paths=PackedStringArray("menu_pause")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_a8gqf")
+menu_pause = NodePath("MenuPause")
 
 [node name="HudAim" type="Control" parent="." unique_id=1384346477]
 layout_mode = 1
@@ -26,164 +32,150 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="HudAim" unique_id=599068103]
+[node name="PivotCentro" type="Control" parent="HudAim" unique_id=1625364563]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
-[node name="HBoxIcones" type="HBoxContainer" parent="." unique_id=1206569448]
+[node name="SpriteCrosshair" type="Sprite2D" parent="HudAim/PivotCentro" unique_id=168685830]
+texture = ExtResource("2_jk3uq")
+
+[node name="SelecaoMagia" type="Control" parent="." unique_id=1614263482]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -52.0
-offset_top = -52.0
-offset_right = 52.0
-offset_bottom = -20.0
-grow_horizontal = 2
+offset_left = -503.0
+offset_top = -417.0
+offset_right = -190.44678
+offset_bottom = -131.0
+grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(52, 32)
-alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxIcones" unique_id=2012555246]
-layout_mode = 2
-texture = ExtResource("1_bqy3s")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect" unique_id=1251329543]
+[node name="TexturePrev" type="TextureRect" parent="SelecaoMagia" unique_id=1112948203]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = 180.0
+offset_right = -256.5532
+offset_bottom = -13.0
 grow_horizontal = 2
-text = "1"
-horizontal_alignment = 1
+grow_vertical = 2
+texture = ExtResource("15_o10b8")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxIcones" unique_id=514923322]
-layout_mode = 2
-texture = ExtResource("3_c7tbw")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect2" unique_id=1963435590]
+[node name="TextureProx" type="TextureRect" parent="SelecaoMagia" unique_id=1910157444]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 325.0
+offset_top = 179.0
+offset_right = 119.44681
+offset_bottom = -14.0
 grow_horizontal = 2
-text = "2"
-horizontal_alignment = 1
+grow_vertical = 2
+texture = ExtResource("4_mtgw6")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="HBoxIcones" unique_id=439134738]
-layout_mode = 2
-texture = ExtResource("4_tpt5k")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect3" unique_id=1823001661]
+[node name="TextureAtual" type="TextureRect" parent="SelecaoMagia" unique_id=963437113]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 42.0
+offset_right = 46.0
+offset_bottom = 42.0
 grow_horizontal = 2
-text = "3"
-horizontal_alignment = 1
+grow_vertical = 2
+texture = ExtResource("15_o10b8")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="HBoxIcones" unique_id=1597423839]
-layout_mode = 2
-texture = ExtResource("5_5ifs1")
-stretch_mode = 2
+[node name="LabelPrev" type="Label" parent="SelecaoMagia" unique_id=276286880]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 131.0
+offset_right = 46.0
+offset_bottom = 173.0
+theme_override_font_sizes/font_size = 30
+text = "Q (Lb)"
 
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect4" unique_id=507907181]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "4"
-horizontal_alignment = 1
+[node name="LabelProx" type="Label" parent="SelecaoMagia" unique_id=1313697991]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 138.0
+offset_right = 429.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 30
+text = "E (Rb)"
 
-[node name="TextureRect5" type="TextureRect" parent="HBoxIcones" unique_id=2081183827]
-layout_mode = 2
-texture = ExtResource("6_x222b")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="HBoxIcones/TextureRect5" unique_id=279097920]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 1.0
-grow_horizontal = 2
-text = "5"
-horizontal_alignment = 1
+[node name="LabelAtual" type="Label" parent="SelecaoMagia" unique_id=1955331800]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 25.0
+offset_right = 295.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 30
+text = "Mouse 1 (Rt)"
 
 [node name="Vida" type="Control" parent="." unique_id=125310063]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = -79.0
-offset_right = 590.0
-offset_bottom = -23.0
+offset_top = -202.0
+offset_right = 466.0
 grow_vertical = 0
 
-[node name="LabelVida" type="Label" parent="Vida" unique_id=1499339849]
-self_modulate = Color(0.627451, 0, 0, 1)
-layout_mode = 0
-offset_left = 23.0
-offset_top = -80.0
-offset_right = 124.0
-offset_bottom = -13.0
-theme_override_font_sizes/font_size = 48
-text = "Vida:"
-
-[node name="ColorRectVidaBaixo" type="ColorRect" parent="Vida" unique_id=180130073]
+[node name="TextureBase" type="TextureRect" parent="Vida" unique_id=690882061]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 650.8148
+offset_bottom = 230.0
 grow_vertical = 2
-color = Color(0, 0, 0, 0.22745098)
+texture = ExtResource("7_18wio")
+expand_mode = 1
 
-[node name="ColorRectVida" type="ColorRect" parent="Vida" unique_id=1074161473]
+[node name="TextureProg" type="TextureRect" parent="Vida" unique_id=1044707268]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 651.0
+offset_bottom = 230.0
 grow_vertical = 2
-color = Color(0.627451, 0, 0, 1)
+pivot_offset = Vector2(85.655, 250)
+texture = ExtResource("8_wsdra")
+expand_mode = 1
+
+[node name="TextureTop" type="TextureRect" parent="Vida" unique_id=237041291]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 650.8148
+offset_bottom = 230.0
+grow_vertical = 2
+texture = ExtResource("9_mtgw6")
+expand_mode = 1
 
 [node name="Mana" type="Control" parent="." unique_id=2089352273]
 layout_mode = 1
@@ -192,45 +184,153 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -591.0
-offset_top = -80.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_left = -466.0
+offset_top = -202.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="LabelMana" type="Label" parent="Mana" unique_id=1797175320]
-self_modulate = Color(0, 0.63, 0.5985, 1)
-layout_mode = 0
-offset_left = 23.0
-offset_top = -80.0
-offset_right = 124.0
-offset_bottom = -13.0
-theme_override_font_sizes/font_size = 48
-text = "Mana:"
+[node name="TextureBase" type="TextureRect" parent="Mana" unique_id=288052114]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -650.8148
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("10_c48wk")
+expand_mode = 1
 
-[node name="LabelManaValor" type="Label" parent="Mana" unique_id=904015265]
-self_modulate = Color(0, 0.63, 0.5985, 1)
-layout_mode = 0
-offset_left = 190.0
-offset_top = -80.0
-offset_right = 334.0
-offset_bottom = -13.0
-theme_override_font_sizes/font_size = 48
-text = "100"
+[node name="TextureProgAtual" type="TextureRect" parent="Mana" unique_id=628228282]
+self_modulate = Color(0.58, 0.58, 0.58, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(546.785, 250)
+texture = ExtResource("11_jk3uq")
+expand_mode = 1
 
-[node name="ColorRectManaBaixo" type="ColorRect" parent="Mana" unique_id=1391977775]
+[node name="TextureProg" type="TextureRect" parent="Mana" unique_id=626341032]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(546.785, 250)
+texture = ExtResource("11_jk3uq")
+expand_mode = 1
+
+[node name="TextureTop" type="TextureRect" parent="Mana" unique_id=1129916370]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -650.8148
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("12_gdimr")
+expand_mode = 1
+
+[node name="Relogio" type="Control" parent="." unique_id=1493878235]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="LabelRelogio" type="Label" parent="Relogio" unique_id=1743959866]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.5
+offset_right = 38.5
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "20:30"
+
+[node name="MenuPause" parent="." unique_id=1536525716 instance=ExtResource("14_gdimr")]
+visible = false
+layout_mode = 1
+
+[node name="TelaFim" type="Control" parent="." unique_id=878863195]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.22745098)
 
-[node name="ColorRectMana" type="ColorRect" parent="Mana" unique_id=1809627594]
+[node name="ColorRect" type="ColorRect" parent="TelaFim" unique_id=188224989]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.6313726, 0.6, 1)
+mouse_filter = 2
+color = Color(0.11, 0.11, 0.11, 0.23921569)
+
+[node name="LabelVitoria" type="Label" parent="TelaFim" unique_id=21574175]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -131.0
+offset_right = 20.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9173975, 0.6399905, 1.540184e-06, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 80
+text = "{condicao}!
+{nome} ganhou a partida"
+horizontal_alignment = 1
+
+[node name="ButtonVoltarMenu" type="Button" parent="TelaFim" unique_id=124774268]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -159.0
+offset_right = 4.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Voltar ao Menu"
+
+[connection signal="pressed" from="TelaFim/ButtonVoltarMenu" to="." method="_on_button_voltar_menu_pressed"]

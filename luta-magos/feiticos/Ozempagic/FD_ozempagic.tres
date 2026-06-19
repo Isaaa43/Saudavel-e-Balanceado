@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dbe4px883cphk" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_somente_efeito_def.gd" id="1_1bgnk"]
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_2wky8"]
-[ext_resource type="PackedScene" uid="uid://bqh26u1rb6wm5" path="res://feiticos/Ozempagic/FS_ozempagic.tscn" id="1_7q7bd"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_4ih6y"]
 [ext_resource type="Script" uid="uid://y7sfo5fwt5aw" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_cura_def.gd" id="2_pgmsf"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_8a4q1"]
-[ext_resource type="Texture2D" uid="uid://d3c4owqd0is8o" path="res://assets/temp/feiticosIcones/Heal Spell12.png" id="6_pgmsf"]
+[ext_resource type="PackedScene" uid="uid://d048ftta6dxcj" path="res://feiticos/visuais/FV_cura.tscn" id="4_pgmsf"]
+[ext_resource type="Texture2D" uid="uid://b4y3nk65f3tao" path="res://assets/icones/cura.PNG" id="6_pgmsf"]
 
 [sub_resource type="Resource" id="Resource_pgmsf"]
 script = ExtResource("2_pgmsf")
@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://y7sfo5fwt5aw"
 
 [sub_resource type="Resource" id="Resource_2wky8"]
 script = ExtResource("4_8a4q1")
-cena = ExtResource("1_7q7bd")
+cena = ExtResource("4_pgmsf")
 metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_1bgnk"]
@@ -29,9 +29,10 @@ metadata/_custom_type_script = "uid://dbe4px883cphk"
 [resource]
 script = ExtResource("2_4ih6y")
 feitico_id = "Ozempagic"
-nome = "Ozempagic"
+nome = "Sara-Mago"
 tipo = 2
-descricao = "\"Se o nome é cura deve curar né\" - Algum Mago
+descricao = "\"Se o nome é cura, deve curar né\"
+- Um leitor ávido
 (Cura {valor} de vida)"
 cooldown = 3.0
 custo = 30.0

@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://c4ct5q6ves50i"]
 
+[ext_resource type="AudioStream" uid="uid://dw268mfdfoabm" path="res://assets/audios/feiticos/boladefogo.mp3" id="1_2f3yf"]
 [ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="1_ax7ax"]
-[ext_resource type="PackedScene" uid="uid://bkkbtsjf58c46" path="res://feiticos/BolaFogo/FS_bola_fogo.tscn" id="1_p0m5y"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_toj36"]
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_u0jac"]
 [ext_resource type="Script" uid="uid://b4tn3wkf7ejho" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_dano_def.gd" id="2_hg8pb"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="4_ax7ax"]
-[ext_resource type="Texture2D" uid="uid://c04e3r2l566yl" path="res://assets/temp/feiticosIcones/Fire Spell Pack57.png" id="6_p4nti"]
+[ext_resource type="PackedScene" uid="uid://co5stxa6rftbb" path="res://feiticos/visuais/FV_bola_fogo.tscn" id="5_2f3yf"]
+[ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="7_2f3yf"]
 
 [sub_resource type="Resource" id="Resource_p4nti"]
 script = ExtResource("2_hg8pb")
@@ -15,7 +16,7 @@ metadata/_custom_type_script = "uid://b4tn3wkf7ejho"
 
 [sub_resource type="Resource" id="Resource_hg8pb"]
 script = ExtResource("4_ax7ax")
-cena = ExtResource("1_p0m5y")
+cena = ExtResource("5_2f3yf")
 metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_2f3yf"]
@@ -25,6 +26,7 @@ duracao_seg = 4.0
 afetados = 4
 lista_efeitos = Array[ExtResource("1_u0jac")]([SubResource("Resource_p4nti")])
 visual_def = SubResource("Resource_hg8pb")
+audio_stream = ExtResource("1_2f3yf")
 metadata/_custom_type_script = "uid://cf63pij16plhl"
 
 [resource]
@@ -32,6 +34,6 @@ script = ExtResource("1_toj36")
 feitico_id = "BolaFogo"
 nome = "Bola de Fogo"
 descricao = "Lança uma bola de fogo que causa {valor} de dano se acertar outro jogador."
-icone_hud = ExtResource("6_p4nti")
+icone_hud = ExtResource("7_2f3yf")
 comportamento_def = SubResource("Resource_2f3yf")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"

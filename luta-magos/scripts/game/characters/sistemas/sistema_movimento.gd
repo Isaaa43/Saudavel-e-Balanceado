@@ -4,7 +4,12 @@ extends Node
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@export var jogador: Jogador
+@export var jogador: JogadorCorpo
+
+func congelar(duracao_seg: float) -> void:
+	set_process(false)
+	await get_tree().create_timer(duracao_seg).timeout
+	set_process(true)
 
 func _process(delta: float) -> void:
 	# Add the gravity.
@@ -14,6 +19,7 @@ func _process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("pular") and jogador.is_on_floor():
 		jogador.velocity.y = JUMP_VELOCITY
+		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.PULAR)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -22,8 +28,10 @@ func _process(delta: float) -> void:
 	if direction:
 		jogador.velocity.x = direction.x * SPEED
 		jogador.velocity.z = direction.z * SPEED
+		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.ANDAR)
 	else:
 		jogador.velocity.x = move_toward(jogador.velocity.x, 0, SPEED)
 		jogador.velocity.z = move_toward(jogador.velocity.z, 0, SPEED)
+		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.IDLE)
 
 	jogador.move_and_slide()

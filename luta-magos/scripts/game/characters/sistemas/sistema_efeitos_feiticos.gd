@@ -1,7 +1,7 @@
 class_name SistemaEfeitosFeiticos
 extends Node
 
-@export var jogador: Jogador
+@export var entidade: Entidade
 
 var efeitos_mantidos: Array[DadosEfeito]
 
@@ -16,7 +16,7 @@ func _criar_dados_efeito(efeito: FeiticoEfeito) -> void:
 	
 	match (efeito.tipo):
 		FeiticoEfeito.Tipo.INSTANTANEO:
-			efeito.aplicar(jogador)
+			efeito.aplicar(entidade)
 		FeiticoEfeito.Tipo.DURACAO:
 			_criar_dados_efeito_duradouros(efeito, false)
 		FeiticoEfeito.Tipo.PERSISTENTE:
@@ -52,7 +52,7 @@ func _remover_efeito_mantido(dados_efeito: DadosEfeitoMantido) -> void:
 func _physics_process(delta: float) -> void:
 	for dados_efeito : DadosEfeitoMantido in efeitos_mantidos:
 		dados_efeito.passar_cooldown(delta)
-		dados_efeito.tentar_executar_efeito(jogador)
+		dados_efeito.tentar_executar_efeito(entidade)
 
 
 # =============================================================================
@@ -96,12 +96,12 @@ class DadosEfeitoMantido:
 		cooldown_seg = _cooldown_seg
 		usos = _usos
 	
-	func tentar_executar_efeito(jogador: Jogador) -> void:
+	func tentar_executar_efeito(entidade: Entidade) -> void:
 		# se terminou o cooldown, aplique o efeito
 		if curr_cooldown_seg <= 0.0:
-			executar_efeito(jogador)
+			executar_efeito(entidade)
 	
-	func executar_efeito(jogador: Jogador) -> void:
+	func executar_efeito(entidade: Entidade) -> void:
 		# se ainda esta no cooldown, pare
 		if curr_cooldown_seg > 0.01: return
 		# se nao tiver mais usos, acabe
@@ -110,7 +110,7 @@ class DadosEfeitoMantido:
 			return
 		
 		# aplica o efeito
-		efeito.aplicar(jogador)
+		efeito.aplicar(entidade)
 		# renova o cooldown
 		curr_cooldown_seg = cooldown_seg
 		# gasta um uso, se for

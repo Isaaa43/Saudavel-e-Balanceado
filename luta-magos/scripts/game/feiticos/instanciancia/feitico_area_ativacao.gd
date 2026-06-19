@@ -1,11 +1,16 @@
 class_name FeiticoAreaAtivacao
 extends Area3D
 
+var raio : float = 0.5
+
 ## Camadas de fisica 3d que sao afetadas
 var mask_afetados: int : 
 	set(_mask_afetados):
 		mask_afetados = _mask_afetados
 		_update_mask()
+
+func _init(_raio: float = 0.5) -> void:
+	raio = _raio
 
 func _ready() -> void:
 	_criar_area()
@@ -13,7 +18,7 @@ func _ready() -> void:
 func _criar_area() -> void:
 	var col := CollisionShape3D.new()
 	var sphere_shape := SphereShape3D.new()
-	sphere_shape.radius = 0.6
+	sphere_shape.radius = raio
 	col.shape = sphere_shape
 	add_child(col)
 	

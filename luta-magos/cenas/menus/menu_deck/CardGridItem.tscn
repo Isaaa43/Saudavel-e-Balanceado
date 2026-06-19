@@ -11,6 +11,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1_xsg6e")
+cor_projetil = Color(0.23, 0.1495, 0.15084165, 1)
+cor_posicionado = Color(0.1472, 0.17342001, 0.23, 1)
+cor_efeito = Color(0.23, 0.21482001, 0.1472, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=722200261]
 layout_mode = 1
@@ -19,6 +22,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorBackground" type="ColorRect" parent="MarginContainer" unique_id=1954384888]
+layout_mode = 2
+color = Color(0.16189644, 0.10963992, 0.15664423, 1)
 
 [node name="Control" type="Control" parent="MarginContainer" unique_id=1364824778]
 layout_mode = 2
@@ -44,6 +51,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 250)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 

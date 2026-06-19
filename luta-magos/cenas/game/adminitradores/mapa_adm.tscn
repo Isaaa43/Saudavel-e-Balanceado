@@ -1,7 +1,42 @@
 [gd_scene format=3 uid="uid://d4j7w61agrxhk"]
 
-[ext_resource type="PackedScene" uid="uid://cydaaeay0mfes" path="res://cenas/game/mapas/mapa_teste.tscn" id="1_hg65k"]
+[ext_resource type="Script" uid="uid://cphl7wdc5lrwv" path="res://cenas/game/adminitradores/mapa_adm.gd" id="1_6efv2"]
+[ext_resource type="PackedScene" uid="uid://cjhkug18kcf4c" path="res://cenas/game/mapas/mapa_teste_night.tscn" id="1_hg65k"]
 
-[node name="MapaAdm" type="Node" unique_id=1637281649]
+[node name="MapaAdm" type="Node" unique_id=1637281649 node_paths=PackedStringArray("spawns")]
+script = ExtResource("1_6efv2")
+spawns = [NodePath("Spawns"), NodePath("Spawns2"), NodePath("Spawns3"), NodePath("Spawns4")]
 
-[node name="MapaTeste" parent="." unique_id=13285931 instance=ExtResource("1_hg65k")]
+[node name="MapaTestNight" parent="." unique_id=869804376 instance=ExtResource("1_hg65k")]
+
+[node name="Spawns" type="Node3D" parent="." unique_id=460263447]
+
+[node name="Node3D" type="Node3D" parent="Spawns" unique_id=911524125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.087555, 1.9073486e-06, -1.1620605)
+
+[node name="Node3D3" type="Node3D" parent="Spawns" unique_id=1430900928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4553585, 0, 5.645305)
+
+[node name="Spawns2" type="Node3D" parent="." unique_id=365748553]
+
+[node name="Node3D2" type="Node3D" parent="Spawns2" unique_id=1641367122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9816446, 1.9073486e-06, 15.400609)
+
+[node name="Node3D4" type="Node3D" parent="Spawns2" unique_id=1570187048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.998527, 1.9073486e-06, -18.482126)
+
+[node name="Spawns3" type="Node3D" parent="." unique_id=614895639]
+
+[node name="Node3D2" type="Node3D" parent="Spawns3" unique_id=1273568703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.031743, 1.9073486e-06, 15.400609)
+
+[node name="Node3D4" type="Node3D" parent="Spawns3" unique_id=1696591537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9268675, 1.9073486e-06, -18.482126)
+
+[node name="Spawns4" type="Node3D" parent="." unique_id=976473869]
+
+[node name="Node3D2" type="Node3D" parent="Spawns4" unique_id=99899160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.495327, 1.9073486e-06, 9.225639)
+
+[node name="Node3D4" type="Node3D" parent="Spawns4" unique_id=623291949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.364443, 1.9073486e-06, -4.683073)

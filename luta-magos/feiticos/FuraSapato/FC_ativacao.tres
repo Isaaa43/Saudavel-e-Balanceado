@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="FeiticoComportamentoArmadilhaDef" format=3 uid="uid://cntchr3fclpy1"]
 
+[ext_resource type="AudioStream" uid="uid://bin8u8byr5cpq" path="res://assets/audios/feiticos/armadilha.mp3" id="1_rxrhi"]
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_vr3lw"]
 [ext_resource type="Script" uid="uid://b4tn3wkf7ejho" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_dano_def.gd" id="2_rxrhi"]
 [ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_armadilha_def.gd" id="3_unnob"]
@@ -22,4 +23,5 @@ duracao_seg = 2.0
 afetados = 4
 lista_efeitos = Array[ExtResource("1_vr3lw")]([SubResource("Resource_71k2u")])
 visual_def = SubResource("Resource_i55dk")
+audio_stream = ExtResource("1_rxrhi")
 metadata/_custom_type_script = "uid://dohcgiora0lml"

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cqojyxy8t78mg"]
+
+[ext_resource type="Script" uid="uid://3oy0uv3417rj" path="res://scripts/game/entidades/jogador/jogador.gd" id="1_u87cw"]
+[ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="2_8wcc5"]
+[ext_resource type="PackedScene" uid="uid://dxhpwft7uxn38" path="res://cenas/game/entidades/jogador/fantasma/FantasmaJogador.tscn" id="2_u87cw"]
+[ext_resource type="Script" uid="uid://beg85r41g1366" path="res://scripts/game/characters/sistemas/sistema_vida.gd" id="3_vbea3"]
+[ext_resource type="Script" uid="uid://c2t8eacmbwf2u" path="res://scripts/game/characters/sistemas/sistema_mana.gd" id="4_p4iun"]
+[ext_resource type="Script" uid="uid://dd6jn1dqna1hv" path="res://scripts/game/feiticos/definicoes/efeitos_def/modificadores/feitico_modificador_efeito_duradouro_def.gd" id="5_bvp8i"]
+[ext_resource type="Script" uid="uid://cqm03tg7qe4ca" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_ganhar_mana_def.gd" id="6_csvww"]
+[ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="7_vt3i3"]
+[ext_resource type="Script" uid="uid://gk6kcpugdbb" path="res://scripts/game/characters/sistemas/sistema_movimento.gd" id="8_rmtya"]
+[ext_resource type="PackedScene" uid="uid://dfpsqfdgmimqo" path="res://cenas/game/entidades/jogador/camera_jogador.tscn" id="9_f3n6j"]
+[ext_resource type="PackedScene" uid="uid://c8tx6c38tykag" path="res://cenas/game/entidades/jogador/personagem/jogador_corpo.tscn" id="10_bup1v"]
+
+[sub_resource type="Resource" id="Resource_1hr55"]
+script = ExtResource("5_bvp8i")
+alterar_tipo_efeito = true
+novo_tipo_efeito = 2
+cooldown_seg = 1.0
+metadata/_custom_type_script = "uid://dd6jn1dqna1hv"
+
+[sub_resource type="Resource" id="Resource_ytj1x"]
+script = ExtResource("6_csvww")
+valor = 1.5
+modificador_def = SubResource("Resource_1hr55")
+metadata/_custom_type_script = "uid://cqm03tg7qe4ca"
+
+[node name="Jogador" type="Node" unique_id=304092553 node_paths=PackedStringArray("sistema_vida", "sistema_mana", "receptor_efeitos", "corpo")]
+script = ExtResource("1_u87cw")
+sistema_vida = NodePath("ReceptorEfeitos/SistemaVida")
+sistema_mana = NodePath("ReceptorEfeitos/SistemaMana")
+fantasma_ref = ExtResource("2_u87cw")
+receptor_efeitos = NodePath("ReceptorEfeitos")
+corpo = NodePath("JogadorCorpo")
+
+[node name="ReceptorEfeitos" type="Node" parent="." unique_id=1904251997 node_paths=PackedStringArray("sistema_vida", "sistema_mana", "sistema_efeitos")]
+script = ExtResource("2_8wcc5")
+sistema_vida = NodePath("SistemaVida")
+sistema_mana = NodePath("SistemaMana")
+sistema_efeitos = NodePath("SistemaEfeitosFeiticos")
+
+[node name="SistemaVida" type="Node" parent="ReceptorEfeitos" unique_id=1401696473]
+script = ExtResource("3_vbea3")
+
+[node name="SistemaMana" type="Node" parent="ReceptorEfeitos" unique_id=958811563 node_paths=PackedStringArray("sistema_efeitos_feiticos")]
+script = ExtResource("4_p4iun")
+sistema_efeitos_feiticos = NodePath("../SistemaEfeitosFeiticos")
+efeito_regen_mana_def = SubResource("Resource_ytj1x")
+
+[node name="SistemaEfeitosFeiticos" type="Node" parent="ReceptorEfeitos" unique_id=1018972706 node_paths=PackedStringArray("entidade")]
+script = ExtResource("7_vt3i3")
+entidade = NodePath("../..")
+
+[node name="SistemaMovimento" type="Node" parent="." unique_id=3784261 node_paths=PackedStringArray("jogador")]
+script = ExtResource("8_rmtya")
+jogador = NodePath("../JogadorCorpo")
+
+[node name="CameraJogador" parent="." unique_id=840626129 node_paths=PackedStringArray("corpo_rotacao") instance=ExtResource("9_f3n6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+corpo_rotacao = NodePath("../JogadorCorpo")
+
+[node name="JogadorCorpo" parent="." unique_id=1543690626 instance=ExtResource("10_bup1v")]
+collision_layer = 257
+collision_mask = 286

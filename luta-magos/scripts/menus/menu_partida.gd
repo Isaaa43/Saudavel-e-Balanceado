@@ -13,6 +13,10 @@ class_name MenuPartida
 
 @onready var label_log: Label = $VBoxContainer/LabelLog
 
+@onready var grid_deck: GridContainer = $Deck/ScrollContainer/GridDeck
+@onready var img_card_ref: TextureRect = $Deck/ScrollContainer/ImgCardRef
+
+
 var buttons_selecionados_list : Array[Button] = []
 var passiva_selecionada : Button = null
 
@@ -28,6 +32,8 @@ func _ready() -> void:
 	# TODO: mudar isso
 	Network.logs.update_conexao_texto.connect(add_log)
 	
+	_mostrar_deck()
+	
 	# pego os botoes da grid
 	for button : Button in grid_container.get_children().filter(func(a): return a is Button):
 		button.pressed.connect(clicado.bind(button))
@@ -36,6 +42,18 @@ func _ready() -> void:
 		button.pressed.connect(passiva_select.bind(button))
 	# 
 	verificar_partida_comecar()
+
+
+func _mostrar_deck() -> void:
+	for c in grid_deck.get_children():
+		c.queue_free()
+	
+	# adiciona as imagens das cartas
+	for card: MenuDeck.CardData in GlobalDeck.cards_escolhidos:
+		var img := img_card_ref.duplicate()
+		img.texture = card.icone
+		grid_deck.add_child(img)
+		img.show()
 
 func verificar_partida_comecar() -> void:
 	# TODO: Por enquato vai isso, mas no futuro fazer um sistema de voto, tipo ready DBD
@@ -84,3 +102,15 @@ func _on_button_comecar_pressed() -> void:
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
+
+const MENU_DECK = preload("uid://djncp32jv7ppr")
+func _on_button_deck_pressed() -> void:
+	var menu_deck : MenuDeck = MENU_DECK.instantiate()
+	add_child(menu_deck)
+	menu_deck.move_to_front()
+	menu_deck.buttonVoltar.disconnect("pressed", menu_deck._on_button_pressed)
+	menu_deck.buttonVoltar.pressed.connect(_fechar_menu_deck.bind(menu_deck) )
+
+func _fechar_menu_deck(menu_deck: Node) -> void:
+	menu_deck.queue_free()
+	_mostrar_deck()
