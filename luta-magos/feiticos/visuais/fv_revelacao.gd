@@ -11,6 +11,16 @@ func resize(raio: float) -> void:
 	# aura
 	var mesh: Mesh = gpu_particles_aura.draw_pass_1
 	mesh.size = Vector2(raio*2, raio*2) # diametro
+	# esconde se for grande
+	if raio > 10:
+		gpu_particles_aura.hide()
 	# particulas
 	var proc_mat: ParticleProcessMaterial = gpu_particles_particulas.process_material
 	proc_mat.emission_sphere_radius = raio
+
+# TODO: ver isso, (aparecer o circulo para quem esta dentro
+var rodar: bool = false
+func _process(delta: float) -> void:
+	if rodar:
+		csg_sphere_3d.flip_faces = !csg_sphere_3d.flip_faces
+	rodar = not rodar

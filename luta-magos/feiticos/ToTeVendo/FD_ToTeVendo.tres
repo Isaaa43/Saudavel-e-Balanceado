@@ -16,13 +16,13 @@ metadata/_custom_type_script = "uid://ckyjj62ph5wvh"
 [sub_resource type="Resource" id="Resource_bfg0o"]
 script = ExtResource("3_ckelo")
 cena = ExtResource("4_sdo8q")
-tamanho_raio = 2.0
+tamanho_raio = 5.0
 metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_8wl8k"]
 script = ExtResource("1_8wl8k")
-velocidade = 5.0
-tamanho_raio = 2.0
+velocidade = 9.0
+tamanho_raio = 5.0
 duracao_seg = 10.0
 afetados = 5
 mascara_afetados = 327936
