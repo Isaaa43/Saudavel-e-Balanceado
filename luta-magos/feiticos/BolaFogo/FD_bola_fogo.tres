@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_2f3yf"]
 script = ExtResource("1_ax7ax")
+velocidade = 8.0
 perfurar = true
 duracao_seg = 4.0
 afetados = 4
