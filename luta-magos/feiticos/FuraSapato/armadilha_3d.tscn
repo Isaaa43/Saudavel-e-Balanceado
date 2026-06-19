@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b2stfejm340pq"]
+
+[ext_resource type="PackedScene" uid="uid://c2odiqhoahjl0" path="res://assets/feiticos/armadilha/Armadilha.blend" id="1_65xya"]
+
+[node name="Armadilha3d" type="Node3D" unique_id=1938880104]
+
+[node name="Armadilha" parent="." unique_id=1406988848 instance=ExtResource("1_65xya")]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1.6, -0.20773304, 0, 0)
+
+[node name="Skeleton3D" parent="Armadilha/Armature" parent_id_path=PackedInt32Array(1406988848, 1880278043) index="0" unique_id=1291378380]
+bones/1/rotation = Quaternion(-8.036911e-08, -2.347634e-08, 0.6741851, 0.7385624)
+bones/3/rotation = Quaternion(-0.6820983, 0.7312605, -5.1497008e-08, 5.5208638e-08)
+bones/4/rotation = Quaternion(-0.6820984, 0.7312604, -5.1497008e-08, -5.520863e-08)
+
+[editable path="Armadilha"]
