@@ -111,6 +111,9 @@ func _on_button_deck_pressed() -> void:
 	menu_deck.buttonVoltar.disconnect("pressed", menu_deck._on_button_pressed)
 	menu_deck.buttonVoltar.pressed.connect(_fechar_menu_deck.bind(menu_deck) )
 
-func _fechar_menu_deck(menu_deck: Node) -> void:
-	menu_deck.queue_free()
-	_mostrar_deck()
+func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
+	if menu_deck._verificar_tem_dano():
+		menu_deck.queue_free()
+		_mostrar_deck()
+	else:
+		menu_deck.popup_feitico_dano()

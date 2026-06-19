@@ -282,6 +282,24 @@ class CardData:
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Espaco_" + str(_espaco)
 
+# TODO: arrumar um jeito melhor de fazer isso
+func _verificar_tem_dano() -> bool:
+	for card: CardData in deck_cards:
+		if card.feitico_id == "BolaFogo":
+			return true
+		if card.feitico_id == "FuraSapato":
+			return true
+	return false
+
+@onready var popup_panel_feitico_dano: PopupPanel = $PopupPanelFeiticoDano
+
+func popup_feitico_dano() -> void:
+	popup_panel_feitico_dano.popup_centered()
+	await get_tree().create_timer(4.0).timeout
+	popup_panel_feitico_dano.hide()
 
 func _on_button_pressed() -> void:
-	TrocaCenaTemp.go_to_menu_inicial()
+	if _verificar_tem_dano():
+		TrocaCenaTemp.go_to_menu_inicial()
+	else:
+		popup_feitico_dano() 
