@@ -22,6 +22,15 @@ script = ExtResource("1_glkbn")
 lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("5_6eq1e"), ExtResource("4_k0n5w"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
 card_button_scene = ExtResource("7_gr7sa")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=535928561]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24, 0.24, 0.24, 0.89411765)
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
 layout_mode = 1
 anchors_preset = 15
@@ -169,6 +178,18 @@ oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(500, 150)
 always_on_top = true
+
+[node name="ColorRect" type="ColorRect" parent="PopupPanelFeiticoDano" unique_id=1236719521]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.01, 0.01, 0.78431374)
 
 [node name="Label" type="Label" parent="PopupPanelFeiticoDano" unique_id=1523785436]
 custom_minimum_size = Vector2(300, 100)
