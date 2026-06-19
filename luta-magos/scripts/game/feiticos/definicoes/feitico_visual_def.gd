@@ -3,10 +3,18 @@ extends Resource
 
 @export var cena: PackedScene
 
+## tamanho do raio do feitico, somente para FeiticoVisualRevelacao
+@export var tamanho_raio: float = 0.0
+
 func criar() -> FeiticoVisual:
 	var visual := FeiticoVisual.new()
 	visual.visual_3d = cena.instantiate()
 	visual.add_child(visual.visual_3d)
+	
+	if tamanho_raio > 1:
+		if visual.visual_3d is FeiticoVisualRevelacao:
+			var revelacao : FeiticoVisualRevelacao = visual.visual_3d
+			revelacao.resize(tamanho_raio)
 	
 	return visual
 

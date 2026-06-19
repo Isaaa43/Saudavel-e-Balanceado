@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://ckyjj62ph5wvh"
 [sub_resource type="Resource" id="Resource_bfg0o"]
 script = ExtResource("3_ckelo")
 cena = ExtResource("4_sdo8q")
+tamanho_raio = 2.0
 metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_8wl8k"]

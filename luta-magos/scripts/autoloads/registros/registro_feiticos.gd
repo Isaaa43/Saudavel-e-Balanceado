@@ -24,6 +24,7 @@ const FD_BOLA_FOGO = "uid://c4ct5q6ves50i"
 const FD_FURA_SAPATO = "uid://c71eh6rcojqh0"
 const FD_PULO_IMPULSIONADO = "uid://skatmcv3uduk"
 const FD_OZEMPAGIC = "uid://cy0n07ui1fty2"
+const FD_REVELACAO_AREA = "uid://3e7y43qfnml8"
 const FD_TO_TE_VENDO = "uid://c5nanmgoej3wa"
 const FD_GELADINHO = "uid://d2quugw6e5igw"
 
@@ -32,6 +33,7 @@ const feiticos_definicoes_res := [
 	FD_FURA_SAPATO,
 	FD_PULO_IMPULSIONADO,
 	FD_OZEMPAGIC,
+	FD_REVELACAO_AREA,
 	FD_TO_TE_VENDO,
 	FD_GELADINHO,
 ]

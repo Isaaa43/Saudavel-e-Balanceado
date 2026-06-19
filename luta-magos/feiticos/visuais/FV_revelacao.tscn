@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0x4sfg4cudyb"]
 
 [ext_resource type="Texture2D" uid="uid://dj1umbc3xes6p" path="res://assets/vfx/quadrado.png" id="1_a3tav"]
+[ext_resource type="Script" uid="uid://fmliyrrd1ule" path="res://feiticos/visuais/fv_revelacao.gd" id="1_a5r5n"]
 [ext_resource type="Texture2D" uid="uid://qljdpaows0ca" path="res://assets/vfx/bola.png" id="2_a5r5n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2ivu"]
@@ -50,7 +51,11 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_nerpu")
 size = Vector2(0.04, 0.08)
 
-[node name="FV_revelacao" type="Node3D" unique_id=1918478431]
+[node name="FV_revelacao" type="Node3D" unique_id=1918478431 node_paths=PackedStringArray("csg_sphere_3d", "gpu_particles_aura", "gpu_particles_particulas")]
+script = ExtResource("1_a5r5n")
+csg_sphere_3d = NodePath("CSGSphere3D")
+gpu_particles_aura = NodePath("CSGSphere3D/GPUParticles_aura")
+gpu_particles_particulas = NodePath("CSGSphere3D/GPUParticles_particulas")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1786168888]
 transparency = 0.9
@@ -63,6 +68,7 @@ material = SubResource("StandardMaterial3D_t2ivu")
 transparency = 0.9
 lifetime = 0.1
 transform_align = 1
+transform_align_channel_filter = 1
 process_material = SubResource("ParticleProcessMaterial_7ogi0")
 draw_pass_1 = SubResource("QuadMesh_858ci")
 

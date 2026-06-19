@@ -238,6 +238,9 @@ class CardData:
 		if not feitico_def.comportamento_def: return descricao_raw
 		var comportamento_def : FeiticoComportamentoDef = feitico_def.comportamento_def
 		
+		# TODO: trocar isso para cada comportamento ter uma funcao de formatar o texto
+		
+		
 		# TODO : aaaaaaaaaa
 		if comportamento_def is FeiticoComportamentoArmadilhaDef:
 			comportamento_def = comportamento_def.comportamento_ativacao_def
@@ -250,6 +253,12 @@ class CardData:
 		var efeito_def : FeiticoEfeitoDef = lista_efeitos.get(0)
 		# obtem o valor
 		valor = efeito_def.valor
+		
+		# TODO: algo melhor do q isso para a revelacao em area
+		if comportamento_def is FeiticoComportamentoProjetilDef:
+			if comportamento_def.velocidade == 0.0:
+				valor =  comportamento_def.tamanho_raio
+		
 		# -- retorna o texto formatado
 		return descricao_raw.format({"valor": int(valor)})
 	
