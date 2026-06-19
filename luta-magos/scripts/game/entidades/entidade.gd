@@ -5,13 +5,7 @@ extends Node
 @export var receptor_efeitos: ReceptorEfeitos
 @export var corpo: PhysicsBody3D
 
-func revelar(duracao_seg: float) -> void:
-	if corpo is JogadorCorpo:
-		var jog: JogadorCorpo = corpo
-		jog.toggle_shader_revelacao(true)
-		get_tree().create_timer(duracao_seg).timeout.connect(
-			func(): jog.toggle_shader_revelacao(false)
-		)
+func revelar(duracao_seg: float) -> void: pass
 
 func _ready() -> void:
 	corpo.set_meta("entidade", self)

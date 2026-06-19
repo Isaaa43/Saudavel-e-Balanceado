@@ -63,6 +63,19 @@ func _ready_camera() -> void:
 func _display_nome() -> void:
 	jogador_corpo._display_nome(dados_jogador)
 
+
+# -----------------------------------------------------------------------------
+# Entidade
+# -----------------------------------------------------------------------------
+
+func revelar(duracao_seg: float) -> void:
+	if corpo is JogadorCorpo:
+		var jog: JogadorCorpo = corpo
+		jog.toggle_shader_revelacao(true)
+		get_tree().create_timer(duracao_seg).timeout.connect(
+			func(): jog.toggle_shader_revelacao(false)
+		)
+
 # -----------------------------------------------------------------------------
 # Movimentacao
 # -----------------------------------------------------------------------------
