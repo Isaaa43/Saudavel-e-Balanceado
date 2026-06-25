@@ -31,6 +31,10 @@ func start_network() -> void:
 	client = _criar_network_client()
 	logs = _criar_network_logs()
 
+func start_network_treino() -> void:
+	if client: client.queue_free()
+	client = _criar_network_client_treino()
+
 # ------------------------------------------------------------------------------
 # Iniciar Conexao
 # ------------------------------------------------------------------------------
@@ -130,6 +134,12 @@ func _criar_network_server() -> NetworkServer:
 
 func _criar_network_client() -> NetworkClient:
 	var nodo : NetworkClient = NetworkClient.new()
+	nodo.name = "NetworkClient"
+	add_child(nodo, true)
+	return nodo
+
+func _criar_network_client_treino() -> NetworkClientTreino:
+	var nodo : NetworkClientTreino = NetworkClientTreino.new()
 	nodo.name = "NetworkClient"
 	add_child(nodo, true)
 	return nodo

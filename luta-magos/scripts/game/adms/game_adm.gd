@@ -1,6 +1,8 @@
 class_name GameAdm
 extends Node
 
+signal game_loaded
+
 @export var jogadores_adm : JogadoresAdm
 @export var local_adm : LocalAdm
 @export var timer_adm: TimerAdm
@@ -14,6 +16,7 @@ func _ready() -> void:
 	#TODO: hmm lugar melhot
 	timer_adm.iniciar()
 	
+	game_loaded.emit()
 	if multiplayer.is_server():
 		SaveData.iniciar_partida()
 		# salva os decks dos jogadores

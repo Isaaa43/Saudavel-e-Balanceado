@@ -54,6 +54,16 @@ func go_to_menu_treino() -> void:
 	main_game.add_child(menu_treino)
 
 func go_to_treino() -> void:
+	Network.start_network_treino()
 	for c in main_game.get_children(): if c is Control: c.queue_free()
 	var game := GAME_ADM.instantiate()
+	
+	game.game_loaded.connect(_start_treino)
+	
 	main_game.add_child(game)
+
+func _start_treino() -> void:
+	# hack para spawnar jogador
+	var dados_jog: DadosJogador = Network.client.dados_jogador
+	dados_jog.peer_id = 1
+	Network.server.spawnar_jogador.emit(dados_jog)
