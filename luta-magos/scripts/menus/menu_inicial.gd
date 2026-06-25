@@ -47,6 +47,10 @@ func  _ready() -> void:
 	focus_inicial.grab_focus()
 
 
+
+# Jogar
+# -----------------------------------------------------------------------------
+
 func _on_button_jogar_pressed() -> void:
 	panel_nome.show()
 	ui.hide()
@@ -75,10 +79,23 @@ func _habilitar_button_join(habilitar: bool) -> void:
 		button_join.text = "Join"
 
 
+# Botoes
+# -----------------------------------------------------------------------------
+
+func _on_button_treino_pressed() -> void:
+	TrocaCenaTemp.go_to_menu_treino()
+
+
+func _on_button_creditos_pressed() -> void:
+	pass # Replace with function body.
+
+
 func _on_button_deck_pressed() -> void:
 	TrocaCenaTemp.menu_deck()
 	pass # Replace with function body.
 
+# Conexao
+# -----------------------------------------------------------------------------
 func _show_conectar() -> void:
 	panel_jogar.show()
 	panel_nome.hide()
@@ -113,6 +130,10 @@ func _on_line_edit_nome_jogador_text_changed(_new_text: String) -> void:
 func _load_hacks() -> void:
 	spin_box_mana.value = GlobalDeck.mana_regen
 	spin_box_cartas_deck.value = GlobalDeck.deck_size
+
+
+# TODO: Remover Hacks
+# -----------------------------------------------------------------------------
 
 func _on_spin_box_mana_value_changed(value: float) -> void:
 	GlobalDeck.mana_regen = value

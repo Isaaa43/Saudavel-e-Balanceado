@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://uls6035prre4"]
+
+[ext_resource type="Script" uid="uid://bqjikjc44tjek" path="res://scripts/menus/menu_treino.gd" id="1_70epw"]
+[ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_j7c31"]
+[ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="3_hb3p4"]
+
+[node name="MenuTreino" type="Control" unique_id=260516147]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_70epw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1274343443]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+
+[node name="VBoxPartida" type="VBoxContainer" parent="." unique_id=1130546787]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -203.0
+offset_right = 125.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="ButtonComecar" type="Button" parent="VBoxPartida" unique_id=1308500716]
+layout_mode = 2
+theme = ExtResource("2_j7c31")
+text = "Começar Partida"
+
+[node name="ButtonSair" type="Button" parent="VBoxPartida" unique_id=518067911]
+layout_mode = 2
+theme = ExtResource("2_j7c31")
+text = "Voltar"
+
+[node name="Deck" type="Control" parent="." unique_id=2117227738]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 386.0
+grow_vertical = 2
+
+[node name="LabelDeck" type="Label" parent="Deck" unique_id=1869241179]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.5
+offset_top = 11.0
+offset_right = 86.5
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Grimório"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Deck" unique_id=157032798]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 124.0
+offset_right = -60.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImgCardRef" type="TextureRect" parent="Deck/ScrollContainer" unique_id=216944288]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_hb3p4")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="GridDeck" type="GridContainer" parent="Deck/ScrollContainer" unique_id=1370136417]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonDeck" type="Button" parent="Deck" unique_id=1945425377]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.5
+offset_top = -89.0
+offset_right = 115.5
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Editar Grimório"
+
+[node name="ControlHacks" type="Control" parent="." unique_id=519118851]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="ControlHacks" unique_id=1748472712]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="LabelMana" type="Label" parent="ControlHacks/GridContainer" unique_id=644505402]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Mana regen"
+
+[node name="SpinBoxMana" type="SpinBox" parent="ControlHacks/GridContainer" unique_id=941204976]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+step = 0.5
+value = 1.0
+
+[node name="LabelCartasDeck" type="Label" parent="ControlHacks/GridContainer" unique_id=543797547]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Max cartas deck"
+
+[node name="SpinBoxCartasDeck" type="SpinBox" parent="ControlHacks/GridContainer" unique_id=1581144393]
+layout_mode = 2
+min_value = 3.0
+max_value = 6.0
+value = 3.0
+rounded = true
+allow_greater = true
+
+[node name="Label" type="Label" parent="ControlHacks" unique_id=91313447]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.5
+offset_top = -53.0
+offset_right = 55.5
+offset_bottom = -11.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "DEBUG HACKS:"
+
+[connection signal="pressed" from="VBoxPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
+[connection signal="pressed" from="VBoxPartida/ButtonSair" to="." method="_on_button_sair_pressed"]
+[connection signal="pressed" from="Deck/ButtonDeck" to="." method="_on_button_deck_pressed"]
+[connection signal="value_changed" from="ControlHacks/GridContainer/SpinBoxMana" to="." method="_on_spin_box_mana_value_changed"]
+[connection signal="value_changed" from="ControlHacks/GridContainer/SpinBoxCartasDeck" to="." method="_on_spin_box_cartas_deck_value_changed"]

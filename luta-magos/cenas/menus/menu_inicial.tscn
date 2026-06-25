@@ -67,16 +67,29 @@ layout_mode = 2
 theme = ExtResource("2_avi7h")
 text = "Jogar"
 
+[node name="ButtonTreino" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1370476357]
+layout_mode = 2
+theme = ExtResource("2_avi7h")
+text = "Campo Treino"
+
+[node name="Separador2" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=674546295]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+
 [node name="ButtonDeck" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1441490570]
 layout_mode = 2
 theme = ExtResource("2_avi7h")
 text = "Montar Grimório"
 
 [node name="ButtonConfig" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=16031350]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_avi7h")
 text = "Configurações"
+
+[node name="ButtonCreditos" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1492380501]
+layout_mode = 2
+theme = ExtResource("2_avi7h")
+text = "Créditos"
 
 [node name="Separador" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=1874725411]
 custom_minimum_size = Vector2(0, 50)
@@ -333,7 +346,9 @@ theme_override_font_sizes/font_size = 30
 text = "DEBUG HACKS:"
 
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
+[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
+[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
 [connection signal="text_changed" from="PanelNome/Control/VBoxContainer/LineEditNomeJogador" to="." method="_on_line_edit_nome_jogador_text_changed"]
 [connection signal="pressed" from="PanelNome/Control/VBoxContainer/ButtonNome" to="." method="_on_button_nome_pressed"]
