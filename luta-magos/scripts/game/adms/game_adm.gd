@@ -17,10 +17,14 @@ func _ready() -> void:
 	timer_adm.iniciar()
 	
 	game_loaded.emit()
+	if TrocaCenaTemp.is_treino:
+		_modo_treino()
+	
 	if multiplayer.is_server():
 		SaveData.iniciar_partida()
 		# salva os decks dos jogadores
 		Network.server.salvar_decks()
+		
 
 func _conectar_sinais() -> void:
 	# jogadores
@@ -98,8 +102,20 @@ func _fim_partida() -> void:
 	pass
 
 
-
-
 # ---------
 func aplicar_dano_jogadores() -> void:
 	jogadores_adm.dimiuir_vida_jogadores(efeito_fim_tempo)
+
+
+# Modo Treino ---------
+
+func _modo_treino() -> void:
+	# cria um jogador novo
+	var dados_jog_treino := DadosJogador.new()
+	dados_jog_treino.peer_id = -99
+	dados_jog_treino.nome = "Alvo"
+	jogadores_adm._server_spawnar_jogador(dados_jog_treino)
+	# pega o jogador criado
+	var jog_treino: Jogador = jogadores_adm.jogadores_por_peer_id[dados_jog_treino.peer_id]
+	# coloca no meio do mapa
+	jog_treino.global_position_inicial = Vector3.ZERO

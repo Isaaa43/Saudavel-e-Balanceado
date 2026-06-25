@@ -13,6 +13,10 @@ const GAME_ADM = preload("uid://cm7rbbwccvpap")
 
 var jogo_iniciado : bool = false
 
+# TODO: melhorar
+## Marca se eh treino
+var is_treino: bool = false
+
 func _ready() -> void:
 	main_game = get_node("/root/MainGame")
 	await get_tree().create_timer(0.1).timeout
@@ -27,6 +31,8 @@ func go_to_menu_inicial() -> void:
 	main_game.add_child(menu_inicial)
 	# TODO: encontrar lugar melhor para colocar isso
 	Network.end()
+	# desliga modo treino
+	is_treino = false
 
 func go_to_menu_partida() -> void:
 	for c in main_game.get_children(): c.queue_free()
@@ -55,6 +61,8 @@ func go_to_menu_treino() -> void:
 
 func go_to_treino() -> void:
 	Network.start_network_treino()
+	is_treino = true
+	
 	for c in main_game.get_children(): if c is Control: c.queue_free()
 	var game := GAME_ADM.instantiate()
 	

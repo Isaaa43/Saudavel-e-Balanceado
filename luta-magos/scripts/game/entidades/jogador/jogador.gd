@@ -45,6 +45,9 @@ func _ready() -> void:
 		jogador_corpo.sphere_visao_limitada.queue_free()
 		return
 	
+	if TrocaCenaTemp.is_treino:
+		jogador_corpo.sphere_visao_limitada.queue_free()
+	
 	_ready_camera()
 	# conectar os sinais
 	sistema_vida.morreu.connect(morrer)
