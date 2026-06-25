@@ -44,11 +44,3 @@ func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
 		_mostrar_deck()
 	else:
 		menu_deck.popup_feitico_dano()
-
-
-# HACKS ----------------------------------------------------
-func _on_spin_box_mana_value_changed(value: float) -> void:
-	GlobalDeck.mana_regen = value
-
-func _on_spin_box_cartas_deck_value_changed(value: float) -> void:
-	GlobalDeck.deck_size = int(value)

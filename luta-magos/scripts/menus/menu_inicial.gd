@@ -36,8 +36,6 @@ func  _ready() -> void:
 	# TODO: REMOVER
 	_debug_auto_multiplas_inst()
 	
-	_load_hacks()
-	
 	ui.show()
 	panel_nome.hide()
 	panel_jogar.hide()
@@ -124,19 +122,3 @@ func _on_button_nome_pressed() -> void:
 
 func _on_line_edit_nome_jogador_text_changed(_new_text: String) -> void:
 	button_nome.disabled = _new_text.length() < 2
-
-@onready var spin_box_mana: SpinBox = $ControlHacks/GridContainer/SpinBoxMana
-@onready var spin_box_cartas_deck: SpinBox = $ControlHacks/GridContainer/SpinBoxCartasDeck
-func _load_hacks() -> void:
-	spin_box_mana.value = GlobalDeck.mana_regen
-	spin_box_cartas_deck.value = GlobalDeck.deck_size
-
-
-# TODO: Remover Hacks
-# -----------------------------------------------------------------------------
-
-func _on_spin_box_mana_value_changed(value: float) -> void:
-	GlobalDeck.mana_regen = value
-
-func _on_spin_box_cartas_deck_value_changed(value: float) -> void:
-	GlobalDeck.deck_size = int(value)
