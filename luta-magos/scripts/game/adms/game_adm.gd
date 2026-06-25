@@ -109,6 +109,8 @@ func aplicar_dano_jogadores() -> void:
 
 # Modo Treino ---------
 
+const TREINO_EFEITO_VIDA_REGEN = preload("uid://brvm73b1lyaio")
+
 func _modo_treino() -> void:
 	# cria um jogador novo
 	var dados_jog_treino := DadosJogador.new()
@@ -121,3 +123,6 @@ func _modo_treino() -> void:
 	jog_treino.global_position_inicial = Vector3.ZERO
 	# mostra o dano levado
 	jog_treino.sistema_vida.levou_dano.connect(jog_treino.jogador_corpo.mostrar_levar_dano_numeros)
+	# adiciona um efeito de regen de vida
+	var efeito_vida_regen : FeiticoEfeito = TREINO_EFEITO_VIDA_REGEN.criar()
+	jog_treino.receptor_efeitos.receber_efeito(efeito_vida_regen)
