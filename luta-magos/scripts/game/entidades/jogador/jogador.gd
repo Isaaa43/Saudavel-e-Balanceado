@@ -84,11 +84,13 @@ func revelar(duracao_seg: float) -> void:
 # -----------------------------------------------------------------------------
 
 var global_position_inicial := Vector3.ZERO
-func spawnar(global_pos: Vector3) -> void:
+func spawnar(global_pos: Vector3) -> void:	
 	global_position_inicial = global_pos
 	call_deferred("_spawnar")
 	
 func _spawnar() -> void:
+	if not is_multiplayer_authority(): return
+	
 	jogador_corpo.global_position = global_position_inicial
 	jogador_corpo.velocity = Vector3.ZERO
 	
