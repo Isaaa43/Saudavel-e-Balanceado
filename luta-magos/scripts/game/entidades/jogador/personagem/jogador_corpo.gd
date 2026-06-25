@@ -86,11 +86,13 @@ func conectar_camera(_camera_jogador: CameraJogador) -> void:
 
 func mostrar_levar_dano(dano: float) -> void:
 	audio_player_dano.play()
-	# TODO: remover
+
+
+func mostrar_levar_dano_numeros(dano: float) -> void:
 	# mostra o dano em cima do jog
-	#label_dano.text = "Dano:\n%d" % dano
-	#label_dano.show()
-	#get_tree().create_timer(1.2).timeout.connect( func(): label_dano.hide() )
+	label_dano.text = "Dano:\n%d" % dano
+	label_dano.show()
+	get_tree().create_timer(1.5).timeout.connect( func(): label_dano.hide() )
 
 # TODO: arrumar
 @onready var label_nome: Label3D = $LabelNome

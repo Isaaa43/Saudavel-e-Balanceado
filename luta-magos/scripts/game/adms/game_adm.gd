@@ -119,3 +119,5 @@ func _modo_treino() -> void:
 	var jog_treino: Jogador = jogadores_adm.jogadores_por_peer_id[dados_jog_treino.peer_id]
 	# coloca no meio do mapa
 	jog_treino.global_position_inicial = Vector3.ZERO
+	# mostra o dano levado
+	jog_treino.sistema_vida.levou_dano.connect(jog_treino.jogador_corpo.mostrar_levar_dano_numeros)
