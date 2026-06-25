@@ -25,7 +25,7 @@ func _mostrar_deck() -> void:
 
 
 func _on_button_comecar_pressed() -> void:
-	pass
+	TrocaCenaTemp.go_to_treino()
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()

@@ -9,7 +9,6 @@ extends Node
 func _ready() -> void:
 	Network.client.spawnar_feitico.connect(_spawnar_feitico)
 
-
 func _spawnar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	var feitico_id : String = feitico_contexto.feitico_id
 	var feitico_def : FeiticoDef = spell_registry.get_feitico(feitico_id)
