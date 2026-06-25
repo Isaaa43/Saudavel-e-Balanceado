@@ -91,6 +91,15 @@ func spawnar(global_pos: Vector3) -> void:
 func _spawnar() -> void:
 	jogador_corpo.global_position = global_position_inicial
 	jogador_corpo.velocity = Vector3.ZERO
+	
+	if global_position_inicial.is_zero_approx(): return
+	# espera mover
+	await get_tree().physics_frame
+	# olha para o centro do mapa
+	var centro = Vector3.ZERO
+	centro.y = camera_jogador.global_position.y
+	jogador_corpo.look_at(centro, Vector3.UP, false)
+	camera_jogador.look_at(centro, Vector3.UP, false)
 
 # -----------------------------------------------------------------------------
 # Sistema Vida
