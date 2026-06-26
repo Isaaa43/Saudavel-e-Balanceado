@@ -1,7 +1,7 @@
 class_name StaticBodyArmadilha
 extends StaticBody3D
 
-const REVELDO_MAT = preload("uid://c25lrwh5o1e6r")
+const REVELADO_MAT = preload("uid://c25lrwh5o1e6r")
 
 @export var mesh_instance_3d: MeshInstance3D
 
@@ -12,7 +12,7 @@ var _material_revelado: Material
 func _ready() -> void:
 	await get_tree().process_frame
 	toggle_shader_revelacao(false)
-	_material_revelado = REVELDO_MAT
+	_material_revelado = REVELADO_MAT
 	# deixa invisivel depois de um tempo inicial
 	get_tree().create_timer(tempo_inicio_ate_invisivel).timeout.connect(deixar_invisivel)
 
