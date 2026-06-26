@@ -7,10 +7,36 @@
 [ext_resource type="Texture2D" uid="uid://dnxpghv5mgca5" path="res://assets/UI/hud_jogador/vida/BARRA_VIDA.png" id="8_wsdra"]
 [ext_resource type="Texture2D" uid="uid://15t5lbcmifo5" path="res://assets/UI/hud_jogador/vida/TEXTURA_VIDA.png" id="9_mtgw6"]
 [ext_resource type="Texture2D" uid="uid://bh0be6wyusnda" path="res://assets/UI/hud_jogador/mana/BASE_MANA.png" id="10_c48wk"]
+[ext_resource type="Shader" uid="uid://cnnjtw2s7p5x5" path="res://scripts/shaders/congelar_tela.gdshader" id="11_c48wk"]
 [ext_resource type="Texture2D" uid="uid://7sj1rnw3v2sr" path="res://assets/UI/hud_jogador/mana/BARRA_MANA.png" id="11_jk3uq"]
 [ext_resource type="Texture2D" uid="uid://h58c0mtnjpxw" path="res://assets/UI/hud_jogador/mana/TEXTURA_MANA.png" id="12_gdimr"]
 [ext_resource type="PackedScene" uid="uid://e33rvm32gwqu" path="res://cenas/game/UI/hud_menu_pause.tscn" id="14_gdimr"]
 [ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="15_o10b8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_soqfs"]
+frequency = 0.0153
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gdimr"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_soqfs")
+normalize = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk3uq"]
+shader = ExtResource("11_c48wk")
+shader_parameter/coverage_texture = SubResource("NoiseTexture2D_gdimr")
+shader_parameter/pointer = Vector2(1.33, 1)
+shader_parameter/coverage = 0.582000027645
+shader_parameter/distort = 0.01
+shader_parameter/bumpiness = 0.15600000741
+shader_parameter/crack_intensity = 0.5
+shader_parameter/diffusion = 0.6270000297825
+shader_parameter/tint_color = Color(0, 0.22215271, 0.60418785, 1)
+shader_parameter/tint_amount = 0.4
+
+[sub_resource type="Gradient" id="Gradient_gdimr"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jk3uq"]
+gradient = SubResource("Gradient_gdimr")
 
 [node name="HUDjogador" type="Control" unique_id=31207200 node_paths=PackedStringArray("menu_pause")]
 layout_mode = 3
@@ -273,6 +299,25 @@ offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "20:30"
+
+[node name="Efeitos" type="Control" parent="." unique_id=232349699]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Congelado" type="TextureRect" parent="Efeitos" unique_id=914945636]
+material = SubResource("ShaderMaterial_jk3uq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_jk3uq")
 
 [node name="MenuPause" parent="." unique_id=1536525716 instance=ExtResource("14_gdimr")]
 visible = false
