@@ -8,7 +8,6 @@ var camera_jogador: CameraJogador
 
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca
 
-@onready var frogger_skinned: MeshInstance3D = $Corpo/Rig_Sapo/Armature/Skeleton3D/Frogger_Skinned
 @onready var mesh_corpo: MeshCorpo = $Corpo
 @onready var rig_sapo: Node3D = $Corpo/Rig_Sapo
 
@@ -17,9 +16,6 @@ var camera_jogador: CameraJogador
 
 
 func _ready() -> void:
-	mesh_instance_3d = frogger_skinned
-	_material_outline = mesh_instance_3d.material_overlay
-	toggle_shader_revelacao(false)
 	pai_id = int(get_parent().name)
 	if multiplayer.is_server():
 		SaveData.registrar_entidade(_gravar_posicao)
@@ -32,14 +28,12 @@ var pai_id: int
 func _gravar_posicao() -> void:
 	SaveData.registrar_posicao(pai_id, global_position, rotation.y, mesh_corpo.cabeca_rot)
 
-var _material_outline: ShaderMaterial
-var mesh_instance_3d: MeshInstance3D
 
 func toggle_shader_revelacao(ligado: bool) -> void:
-	if ligado:
-		mesh_instance_3d.material_overlay = _material_outline
-	else:
-		mesh_instance_3d.material_overlay = null
+	mesh_corpo.shader_revelacao(ligado)
+
+func toggle_shader_congelar(ligado: bool) -> void:
+	mesh_corpo.shader_congelado(ligado)
 
 
 func esconder_mesh() -> void:

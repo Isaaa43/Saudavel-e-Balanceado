@@ -24,6 +24,8 @@ var bone_head_base_rot : Quaternion
 var _material_outline: ShaderMaterial
 var mesh_instance_3d: MeshInstance3D
 
+const REVELADO_MAT = preload("uid://c25lrwh5o1e6r")
+const CONGELADO_MAT = preload("uid://cpsyvawnev4gg")
 
 
 func _ready() -> void:
@@ -47,6 +49,42 @@ func esconder_mesh() -> void:
 # Shaders
 # -----------------------------------------------------------------------------
 
+enum ShadersTipo {NENHUM, REVELADO, CONGELADO}
+var curr_shader := ShadersTipo.NENHUM
+
+func shader_revelacao(ligado: bool) -> void:
+	if ligado:
+		mudar_shader(ShadersTipo.REVELADO)
+	else:
+		mudar_shader(ShadersTipo.NENHUM)
+
+func shader_congelado(ligado: bool) -> void:
+	if ligado:
+		mudar_shader(ShadersTipo.CONGELADO)
+	else:
+		mudar_shader(ShadersTipo.NENHUM)
+
+
+func mudar_shader(tipo: ShadersTipo) -> void:
+	# se estiver zerando, tem a preferencia
+	if tipo == ShadersTipo.NENHUM:
+		_aplicar_shader(ShadersTipo.NENHUM)
+		return
+	# se estiver revelado, nao aplique outro em cima
+	if curr_shader == ShadersTipo.REVELADO:
+		return
+	# se for outro tipo, mude para esse novo
+	_aplicar_shader(tipo)
+
+func _aplicar_shader(tipo: ShadersTipo) -> void:
+	match (tipo):
+		ShadersTipo.NENHUM:
+			mesh_instance_3d.material_overlay = null
+		ShadersTipo.REVELADO:
+			mesh_instance_3d.material_overlay = REVELADO_MAT
+		ShadersTipo.CONGELADO:
+			mesh_instance_3d.material_overlay = CONGELADO_MAT
+	curr_shader = tipo
 
 # Cabeca
 # -----------------------------------------------------------------------------
