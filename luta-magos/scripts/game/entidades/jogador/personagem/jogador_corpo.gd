@@ -34,6 +34,7 @@ func toggle_shader_revelacao(ligado: bool) -> void:
 
 func toggle_shader_congelar(ligado: bool) -> void:
 	mesh_corpo.shader_congelado(ligado)
+	sistema_animacao.toggle_pausar(ligado)
 
 
 func esconder_mesh() -> void:

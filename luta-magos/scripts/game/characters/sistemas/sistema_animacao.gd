@@ -16,6 +16,14 @@ enum Animacao {IDLE, ANDAR, ATACAR, PULAR}
 
 var curr_animacao: Animacao
 
+## Pausa e toca a animacao atual [br]
+## [code]True[/code] para pausar a animacao [br]
+## [code]False[/code] para voltar a tocar a animacao
+func toggle_pausar(pausar: bool) -> void:
+	if pausar:
+		animation_player.pause()
+	else:
+		_play_animacao(curr_animacao)
 
 func acao(animacao: Animacao) -> void:
 	_update_animacao(animacao)
