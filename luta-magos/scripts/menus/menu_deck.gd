@@ -40,7 +40,7 @@ var selected_deck_index: int = -1
 @onready var remove_button: Button = %RemoveButton
 @onready var clear_button: Button = %ClearButton
 
-@onready var buttonVoltar: Button = $ButtonVoltar
+@onready var buttonVoltar: Button = %ButtonVoltar
 
 func _ready() -> void:
 	# TODO: melhorar

@@ -35,7 +35,7 @@ func _on_button_deck_pressed() -> void:
 	var menu_deck : MenuDeck = MENU_DECK.instantiate()
 	add_child(menu_deck)
 	menu_deck.move_to_front()
-	menu_deck.buttonVoltar.disconnect("pressed", menu_deck._on_button_pressed)
+	menu_deck.buttonVoltar.disconnect("pressed", menu_deck._on_button_voltar_pressed)
 	menu_deck.buttonVoltar.pressed.connect(_fechar_menu_deck.bind(menu_deck) )
 
 func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
