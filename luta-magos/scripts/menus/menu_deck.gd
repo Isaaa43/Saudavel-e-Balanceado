@@ -50,6 +50,8 @@ var selected_deck_index: int = -1
 
 @onready var buttonVoltar: Button = %ButtonVoltar
 
+var sair_menu_deck : Callable = TrocaCenaTemp.go_to_menu_inicial
+
 func _ready() -> void:
 	# TODO: melhorar
 	max_deck_size = GlobalDeck.deck_size
@@ -386,7 +388,7 @@ func popup_feitico_dano() -> void:
 	popup_panel_feitico_dano.hide()
 
 func _on_button_voltar_pressed() -> void:
-	if _verificar_tem_dano():
-		TrocaCenaTemp.go_to_menu_inicial()
-	else:
+	if not _verificar_tem_dano():
 		popup_feitico_dano() 
+	else:
+		sair_menu_deck.call()
