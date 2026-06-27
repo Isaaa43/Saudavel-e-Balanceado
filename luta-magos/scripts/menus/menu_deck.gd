@@ -8,9 +8,15 @@ extends Control
 # Lista de cartas que aparecem na coluna do meio.
 var available_cards: Array[CardData] = []
 
-# Quantidade máxima de cartas permitida no deck do jogador.
+## Quantidade máxima de cartas permitida no deck do jogador.
 @export var max_deck_size: int = 3
+## Carta clicavel dos feiticos
 @export var card_button_scene: PackedScene
+
+#
+@export_group("Lista Grimorios Salvos")
+@export var lista_grimorios : Array[GrimorioPresetRes] = []
+
 
 # Lista de cartas que o jogador adicionou ao deck durante a montagem.
 # Essa lista existe apenas em tempo de execução.
@@ -40,6 +46,8 @@ var selected_deck_index: int = -1
 @onready var remove_button: Button = %RemoveButton
 @onready var clear_button: Button = %ClearButton
 
+@onready var grimorios_list: ItemList = %GrimoriosList
+
 @onready var buttonVoltar: Button = %ButtonVoltar
 
 func _ready() -> void:
@@ -56,6 +64,8 @@ func _ready() -> void:
 	
 	# carrega o deck
 	_load_deck()
+	# carrega os grimorios salvos
+	_load_grimorios_salvos()
 	
 	_populate_card_pool()
 	_update_deck_list()
@@ -209,7 +219,38 @@ func _on_clear_button_pressed() -> void:
 	selected_deck_index = -1
 	# Atualiza a lista visual do deck.
 	_update_deck_list()
-	
+
+# Grimorios
+# -----------------------------------------------------------------------------
+
+func _load_grimorios_salvos() -> void:
+	grimorios_list.clear()
+	## adiciona o personalizado
+	#grimorios_list.add_item("Personalizado")
+	# popula a lista
+	for grimorio_preset : GrimorioPresetRes in lista_grimorios:
+		grimorios_list.add_item(grimorio_preset.nome_grimorio)
+	# seleciona o personalizado
+	#grimorios_list.select(0)
+
+func _on_grimorios_list_item_selected(index: int) -> void:
+	var grimorio : GrimorioPresetRes = lista_grimorios.get(index)
+	_carregar_deck_salvo(grimorio)
+
+func _carregar_deck_salvo(grimorio : GrimorioPresetRes) -> void:
+	#
+	_on_clear_button_pressed()
+	#
+	for feitico_def : FeiticoDef in grimorio.feiticos:
+		var card: CardData = _find_card_from_feitico(feitico_def)
+		if card:
+			_add_card_to_deck(card)
+
+func _find_card_from_feitico(feitico_def: FeiticoDef) -> CardData:
+	for card : CardData in available_cards:
+		if card.feitico_id == feitico_def.feitico_id:
+			return card
+	return null
 
 # =============================================================================
 # Card Data
@@ -294,6 +335,9 @@ class CardData:
 				return "Revelacao"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Espaco_" + str(_espaco)
+
+# Sair da partida
+# =============================================================================
 
 # TODO: arrumar um jeito melhor de fazer isso
 func _verificar_tem_dano() -> bool:
