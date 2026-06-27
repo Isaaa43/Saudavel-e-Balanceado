@@ -11,6 +11,12 @@
 [ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="7_wfhn1"]
 [ext_resource type="Resource" uid="uid://c5nanmgoej3wa" path="res://feiticos/ToTeVendo/FD_ToTeVendo.tres" id="8_devs0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1wcd"]
+bg_color = Color(0.13229999, 0.21, 0.16597001, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv3pd"]
+bg_color = Color(0.252, 0.4, 0.3112, 1)
+
 [node name="MenuDeck" type="Control" unique_id=1395345366]
 layout_mode = 3
 anchors_preset = 15
@@ -113,7 +119,9 @@ size_flags_horizontal = 3
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/InfoPanel" unique_id=692050293]
 layout_mode = 2
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=811642422]
 layout_mode = 2
@@ -158,19 +166,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Adicionar feitiço"
 
-[node name="Button" type="Button" parent="." unique_id=1939406467]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -70.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="ButtonVoltar" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=1939406467]
+layout_mode = 2
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
-text = "VOLTAR"
+theme_override_styles/normal = SubResource("StyleBoxFlat_m1wcd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gv3pd")
+text = "Sair da Edição
+de Grimório"
 
 [node name="PopupPanelFeiticoDano" type="PopupPanel" parent="." unique_id=1040923461]
 disable_3d = true
@@ -211,4 +214,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/ButtonVoltar" to="." method="_on_button_voltar_pressed"]

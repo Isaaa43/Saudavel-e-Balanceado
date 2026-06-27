@@ -39,7 +39,7 @@ var selected_deck_index: int = -1
 @onready var remove_button: Button = %RemoveButton
 @onready var deck_count_label: Label = %DeckCountLabel
 
-@onready var buttonVoltar: Button = $Button
+@onready var buttonVoltar: Button = $ButtonVoltar
 
 func _ready() -> void:
 	# TODO: melhorar
@@ -298,7 +298,7 @@ func popup_feitico_dano() -> void:
 	await get_tree().create_timer(4.0).timeout
 	popup_panel_feitico_dano.hide()
 
-func _on_button_pressed() -> void:
+func _on_button_voltar_pressed() -> void:
 	if _verificar_tem_dano():
 		TrocaCenaTemp.go_to_menu_inicial()
 	else:
