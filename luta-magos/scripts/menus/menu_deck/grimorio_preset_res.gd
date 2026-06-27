@@ -5,4 +5,6 @@ extends Resource
 
 @export var feiticos : Array[FeiticoDef] 
 
-@export var editavel : bool = false
+@export var usar_card_data : bool = false
+
+var lista_cards : Array[MenuDeck.CardData]

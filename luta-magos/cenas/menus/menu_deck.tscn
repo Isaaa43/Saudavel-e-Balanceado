@@ -15,10 +15,10 @@
 [ext_resource type="Resource" uid="uid://rleu7k0fj605" path="res://cenas/menus/menu_deck/grimorio_balanceado.tres" id="12_wfhn1"]
 [ext_resource type="Resource" uid="uid://d1tciwx82agrt" path="res://cenas/menus/menu_deck/grimorio_armadilha.tres" id="14_devs0"]
 
-[sub_resource type="Resource" id="Resource_glkbn"]
+[sub_resource type="Resource" id="Resource_gv3pd"]
 script = ExtResource("11_k0n5w")
 nome_grimorio = "Personalizado"
-editavel = true
+usar_card_data = true
 metadata/_custom_type_script = "uid://6v8v2o714e64"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1wcd"]
@@ -38,7 +38,7 @@ script = ExtResource("1_glkbn")
 lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
 max_deck_size = 4
 card_button_scene = ExtResource("7_gr7sa")
-lista_grimorios = Array[ExtResource("11_k0n5w")]([SubResource("Resource_glkbn"), ExtResource("12_wfhn1"), ExtResource("12_6eq1e"), ExtResource("14_devs0")])
+lista_grimorios_salvos = Array[ExtResource("11_k0n5w")]([SubResource("Resource_gv3pd"), ExtResource("12_wfhn1"), ExtResource("12_6eq1e"), ExtResource("14_devs0")])
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=535928561]
 layout_mode = 1
