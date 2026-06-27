@@ -236,7 +236,7 @@ func _clear_deck() -> void:
 	# Atualiza a lista visual do deck.
 	_update_deck_list()
 
-# Grimorios
+# Grimorios Salvos
 # -----------------------------------------------------------------------------
 
 func _load_grimorios_salvos() -> void:
@@ -289,6 +289,40 @@ func _save_grimorio_atual(_deck_cards: Array[CardData]) -> void:
 	var grimorio_personalizado : GrimorioPresetRes = lista_grimorios_salvos[0]
 	# salva as cartas do _deck_cards
 	grimorio_personalizado.lista_cards = _deck_cards.duplicate()
+
+# Sair da partida
+# -----------------------------------------------------------------------------
+
+func _verificar_tem_dano() -> bool:
+	for card: CardData in deck_cards:
+		# verifica se eh Feitico.Espaco.DANO
+		if card.espaco == "Dano":
+			return true
+	return false
+
+## verificar se cartas no deck para preencher o grimorio, ou seja, sem espacos vazios
+## [br] Retorna [code]True[/code] caso tenha cartas no deck igual o tamanho max do deck
+## [br] Retorna [code]False[/code] caso [b]falte (ou passe)[/b] 
+## o numero de cartas do deck do tamanho max do deck
+func _verificar_grimorio_cheio() -> bool:
+	# quantidade de cartas necessarias
+	# minimo tamanho maximo do deck, e quantidade de cartas total disponiveis
+	# para caso o maximo do deck seja mil (para teste), ou tenha poucas cartas
+	var qtd_cartas_necessarias = min(max_deck_size, lista_feiticos.size())
+	return deck_cards.size() == qtd_cartas_necessarias
+
+func mostrar_popup(popup: PopupPanel) -> void:
+	popup.popup_centered()
+	await get_tree().create_timer(4.0).timeout
+	popup.hide()
+
+func _on_button_voltar_pressed() -> void:
+	if not _verificar_tem_dano():
+		mostrar_popup(popup_panel_feitico_dano)
+	elif not _verificar_grimorio_cheio():
+		mostrar_popup(popup_panel_poucos_feiticos)
+	else:
+		sair_menu_deck.call()
 
 # =============================================================================
 # Card Data
@@ -373,37 +407,3 @@ class CardData:
 				return "Revelacao"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Espaco_" + str(_espaco)
-
-# Sair da partida
-# =============================================================================
-
-func _verificar_tem_dano() -> bool:
-	for card: CardData in deck_cards:
-		# verifica se eh Feitico.Espaco.DANO
-		if card.espaco == "Dano":
-			return true
-	return false
-
-## verificar se cartas no deck para preencher o grimorio, ou seja, sem espacos vazios
-## [br] Retorna [code]True[/code] caso tenha cartas no deck igual o tamanho max do deck
-## [br] Retorna [code]False[/code] caso [b]falte (ou passe)[/b] 
-## o numero de cartas do deck do tamanho max do deck
-func _verificar_grimorio_cheio() -> bool:
-	# quantidade de cartas necessarias
-	# minimo tamanho maximo do deck, e quantidade de cartas total disponiveis
-	# para caso o maximo do deck seja mil (para teste), ou tenha poucas cartas
-	var qtd_cartas_necessarias = min(max_deck_size, lista_feiticos.size())
-	return deck_cards.size() == qtd_cartas_necessarias
-
-func mostrar_popup(popup: PopupPanel) -> void:
-	popup.popup_centered()
-	await get_tree().create_timer(4.0).timeout
-	popup.hide()
-
-func _on_button_voltar_pressed() -> void:
-	if not _verificar_tem_dano():
-		mostrar_popup(popup_panel_feitico_dano)
-	elif not _verificar_grimorio_cheio():
-		mostrar_popup(popup_panel_poucos_feiticos)
-	else:
-		sair_menu_deck.call()
