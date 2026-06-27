@@ -26,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
 lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
+max_deck_size = 4
 card_button_scene = ExtResource("7_gr7sa")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=535928561]
