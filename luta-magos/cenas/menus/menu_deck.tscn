@@ -25,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
-lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("5_6eq1e"), ExtResource("4_k0n5w"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
+lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
 card_button_scene = ExtResource("7_gr7sa")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=535928561]
@@ -77,6 +77,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.6
 theme_override_font_sizes/font_size = 25
+fixed_icon_size = Vector2i(80, 60)
 
 [node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1018711789]
 unique_name_in_owner = true

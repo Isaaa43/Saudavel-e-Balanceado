@@ -100,8 +100,8 @@ func _update_deck_list() -> void:
 	
 	# Adiciona na interface todas as cartas que estão no array deck_cards.
 	for card in deck_cards:
-		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]
-		deck_list.add_item(text)
+		var text := "%s  | %d mana" % [card.nome, card.custo]
+		deck_list.add_item(text, card.icone)
 
 	# Atualiza o contador de cartas do deck.
 	deck_count_label.text = "Feitiços no grimório: %d / %d" % [
