@@ -12,9 +12,9 @@ var card_data: MenuDeck.CardData = null
 
 @onready var color_background: ColorRect = $MarginContainer/ColorBackground
 
-@export var cor_projetil: Color
-@export var cor_posicionado: Color
-@export var cor_efeito: Color
+@export var cor_dano: Color
+@export var cor_suporte: Color
+@export var cor_revelacao: Color
 
 func _ready() -> void:
 	pressed.connect(_on_pressed)
@@ -29,7 +29,7 @@ func setup(card: MenuDeck.CardData) -> void:
 	
 	tooltip_text = "%s\n%s" % [card.nome, card.descricao]
 	
-	color_background.color = _decidir_cor(card.tipo)
+	color_background.color = _decidir_cor(card.espaco)
 
 func _on_pressed() -> void:
 	if card_data == null:
@@ -47,12 +47,12 @@ func _gui_input(event: InputEvent) -> void:
 			card_activated.emit(card_data)
 
 # TODO: melhorar isso
-func _decidir_cor(tipo_str: String) -> Color:
-	match (tipo_str):
-		"Projetil":
-			return cor_projetil
-		"Posicionado":
-			return cor_posicionado
-		"Efeito":
-			return cor_efeito
+func _decidir_cor(espaco_str: String) -> Color:
+	match (espaco_str):
+		"Dano":
+			return cor_dano
+		"Suporte":
+			return cor_suporte
+		"Revelacao":
+			return cor_revelacao
 	return Color.DIM_GRAY

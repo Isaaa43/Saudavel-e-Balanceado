@@ -4,7 +4,7 @@ extends Node
 var feitico_id : String = ""
 var nome: String = ""
 var tipo : Tipo = Tipo.PROJETIL
-var espaco : Espaco = Espaco.DECK
+var espaco : Espaco = Espaco.SUPORTE
 
 var comportamento: FeiticoComportamento
 
@@ -18,8 +18,9 @@ enum Tipo {
 }
 
 enum Espaco {
-	DECK,
-	PASSIVA
+	DANO,
+	SUPORTE,
+	REVELACAO
 }
 
 ## Cria a magia, antes de lancar

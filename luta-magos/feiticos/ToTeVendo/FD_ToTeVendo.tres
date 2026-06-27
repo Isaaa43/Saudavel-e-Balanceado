@@ -34,6 +34,7 @@ metadata/_custom_type_script = "uid://cf63pij16plhl"
 script = ExtResource("2_qq211")
 feitico_id = "ToTeVendo"
 nome = "Tô Te Vendo Hein"
+espaco = 2
 descricao = "Lança uma esfera a frente, revelando inimigos e armadilhas pelo caminho, por {valor} segundos."
 cooldown = 2.0
 custo = 5.0

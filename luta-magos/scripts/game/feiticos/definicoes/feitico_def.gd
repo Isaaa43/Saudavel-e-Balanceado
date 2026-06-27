@@ -12,7 +12,7 @@ extends Resource
 ## Tipo do feitico
 @export var tipo : Feitico.Tipo = Feitico.Tipo.PROJETIL
 ## Espaco que o feitico ocupa
-@export var espaco : Feitico.Espaco = Feitico.Espaco.DECK
+@export var espaco : Feitico.Espaco = Feitico.Espaco.SUPORTE
 ## Texto descritivo da carta
 @export_multiline() var descricao : String = ""
 

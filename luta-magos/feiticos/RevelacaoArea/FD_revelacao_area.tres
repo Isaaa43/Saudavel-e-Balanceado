@@ -34,6 +34,7 @@ metadata/_custom_type_script = "uid://cf63pij16plhl"
 script = ExtResource("7_lpfmm")
 feitico_id = "RevelacaoArea"
 nome = "Revele tudo perto"
+espaco = 2
 descricao = "Revele inimigos e armadilhas próximos ao jogador, em uma área de {valor}m de distância."
 cooldown = 8.0
 icone_hud = ExtResource("6_ihvph")

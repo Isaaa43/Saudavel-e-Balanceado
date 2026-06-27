@@ -222,7 +222,7 @@ class CardData:
 	var nome: String
 	## Tipo da carta
 	var tipo: String
-	## Espaco que a carta ocupa (Deck, Passiva)
+	## Espaco que a carta ocupa (Dano, Suporte, Revelacao)
 	var espaco: String
 	## Texto descritivo da carta.
 	var descricao: String
@@ -286,10 +286,12 @@ class CardData:
 	
 	func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
 		match (_espaco):
-			Feitico.Espaco.DECK:
-				return "Deck"
-			Feitico.Espaco.PASSIVA:
-				return "Passiva"
+			Feitico.Espaco.DANO:
+				return "Dano"
+			Feitico.Espaco.SUPORTE:
+				return "Suporte"
+			Feitico.Espaco.REVELACAO:
+				return "Revelacao"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Espaco_" + str(_espaco)
 
