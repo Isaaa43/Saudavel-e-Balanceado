@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://bwr5e2unjcuwg" path="res://cenas/menus/menu_deck/grimorio_ataque.tres" id="12_6eq1e"]
 [ext_resource type="Resource" uid="uid://rleu7k0fj605" path="res://cenas/menus/menu_deck/grimorio_balanceado.tres" id="12_wfhn1"]
 [ext_resource type="Resource" uid="uid://d1tciwx82agrt" path="res://cenas/menus/menu_deck/grimorio_armadilha.tres" id="14_devs0"]
+[ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="15_devs0"]
 
 [sub_resource type="Resource" id="Resource_gv3pd"]
 script = ExtResource("11_k0n5w")
@@ -96,7 +97,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.6
 theme_override_font_sizes/font_size = 25
+item_count = 1
 fixed_icon_size = Vector2i(80, 60)
+item_0/text = "Bola de fogo"
+item_0/icon = ExtResource("15_devs0")
 
 [node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimorio" unique_id=1018711789]
 unique_name_in_owner = true
