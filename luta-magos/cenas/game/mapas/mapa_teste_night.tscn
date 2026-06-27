@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjhkug18kcf4c"]
 
 [ext_resource type="PackedScene" uid="uid://dqhjphfb7wcn7" path="res://assets/mapa/mapa_up.glb" id="1_5367g"]
+[ext_resource type="PhysicsMaterial" uid="uid://c6dbixfsei78q" path="res://cenas/game/mapas/arvore_physics_mat.tres" id="2_31cc0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiid2"]
 sky_top_color = Color(0.08706657, 0.11346652, 0.1486308, 1)
@@ -59,8 +60,8 @@ radius = 0.98046875
 height = 5.944092
 radius = 0.98046875
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_sc0st"]
-height = 9.279724
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y3euu"]
+points = PackedVector3Array(0, 7.5, 0, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ry3dx"]
 radius = 1.0398583
@@ -190,91 +191,99 @@ debug_color = Color(2.117753e-06, 0.61242133, 0.6219592, 0.41960785)
 [node name="StaticBodyArvore" type="StaticBody3D" parent="Arvores" unique_id=2103311467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.909469, 0, 13.3845625)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore" unique_id=774270735]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5436707, 0)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore" unique_id=1187617612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08972359, 0, -0.0991106)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore2" type="StaticBody3D" parent="Arvores" unique_id=1739667370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.127316, 0, 16.981682)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.96363, 0, 16.981682)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore2" unique_id=1065861760]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore2" unique_id=439148551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24998474, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore5" type="StaticBody3D" parent="Arvores" unique_id=2081580107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.78826, 0, -0.09792259)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore5" unique_id=2114183767]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore5" unique_id=1693041575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020370483, 0, -0.12621224)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore6" type="StaticBody3D" parent="Arvores" unique_id=163332925]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.787434, 0, -12.369458)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore6" unique_id=614547089]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore6" unique_id=1410317363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17916489, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore7" type="StaticBody3D" parent="Arvores" unique_id=421071009]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7298846, 0, -13.8294325)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore7" unique_id=1551591751]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore7" unique_id=1892551738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0706377, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore8" type="StaticBody3D" parent="Arvores" unique_id=633654224]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.371329, -4.7683716e-07, -16.566086)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore8" unique_id=780533912]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore8" unique_id=1792297733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1473074, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore9" type="StaticBody3D" parent="Arvores" unique_id=1880849145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.501969, -4.7683716e-07, -9.441884)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore9" unique_id=1119239885]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore9" unique_id=365713207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10268974, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore10" type="StaticBody3D" parent="Arvores" unique_id=1852396527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.982859, -4.7683716e-07, 5.3479786)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore10" unique_id=1610935191]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10619736, 4.5436707, -0.008825302)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore10" unique_id=189189935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24998474, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore3" type="StaticBody3D" parent="Arvores" unique_id=1711875266]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42361975, -9.536743e-07, 13.313874)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Arvores/StaticBodyArvore3" unique_id=1009324493]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5436707, 0)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore3" unique_id=2065196534]
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="StaticBodyArvore4" type="StaticBody3D" parent="Arvores" unique_id=1223137363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42361975, -9.536743e-07, 13.313874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.491804, -9.536743e-07, 14.328474)
 collision_layer = 5
+physics_material_override = ExtResource("2_31cc0")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arvores/StaticBodyArvore4" unique_id=158121664]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.060873, 4.5436707, 1.0496435)
-shape = SubResource("CylinderShape3D_sc0st")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arvores/StaticBodyArvore4" unique_id=1140677306]
+shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="Pedras" type="Node3D" parent="." unique_id=1435286157]

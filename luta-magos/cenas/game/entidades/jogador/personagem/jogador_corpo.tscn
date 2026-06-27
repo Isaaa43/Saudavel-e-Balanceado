@@ -36,6 +36,7 @@ properties/3/replication_mode = 2
 albedo_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
 
 [node name="JogadorCorpo" type="CharacterBody3D" unique_id=1543690626]
+slide_on_ceiling = false
 script = ExtResource("1_tbhp6")
 
 [node name="SistemaAnimacao" type="Node" parent="." unique_id=1315448621 node_paths=PackedStringArray("animation_player")]
