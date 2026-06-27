@@ -50,11 +50,17 @@ var selected_deck_index: int = -1
 
 @onready var buttonVoltar: Button = %ButtonVoltar
 
+@onready var popup_panel_feitico_dano: PopupPanel = $PopupPanelFeiticoDano
+@onready var popup_panel_poucos_feiticos: PopupPanel = $PopupPanelPoucosFeiticos
+
 var sair_menu_deck : Callable = TrocaCenaTemp.go_to_menu_inicial
 
 func _ready() -> void:
 	# TODO: melhorar
 	max_deck_size = GlobalDeck.deck_size
+	
+	popup_panel_feitico_dano.hide()
+	popup_panel_poucos_feiticos.hide()
 	
 	deck_list.item_selected.connect(_on_deck_list_item_selected)
 
@@ -371,24 +377,33 @@ class CardData:
 # Sair da partida
 # =============================================================================
 
-# TODO: arrumar um jeito melhor de fazer isso
 func _verificar_tem_dano() -> bool:
 	for card: CardData in deck_cards:
-		if card.feitico_id == "BolaFogo":
-			return true
-		if card.feitico_id == "FuraSapato":
+		# verifica se eh Feitico.Espaco.DANO
+		if card.espaco == "Dano":
 			return true
 	return false
 
-@onready var popup_panel_feitico_dano: PopupPanel = $PopupPanelFeiticoDano
+## verificar se cartas no deck para preencher o grimorio, ou seja, sem espacos vazios
+## [br] Retorna [code]True[/code] caso tenha cartas no deck igual o tamanho max do deck
+## [br] Retorna [code]False[/code] caso [b]falte (ou passe)[/b] 
+## o numero de cartas do deck do tamanho max do deck
+func _verificar_grimorio_cheio() -> bool:
+	# quantidade de cartas necessarias
+	# minimo tamanho maximo do deck, e quantidade de cartas total disponiveis
+	# para caso o maximo do deck seja mil (para teste), ou tenha poucas cartas
+	var qtd_cartas_necessarias = min(max_deck_size, lista_feiticos.size())
+	return deck_cards.size() == qtd_cartas_necessarias
 
-func popup_feitico_dano() -> void:
-	popup_panel_feitico_dano.popup_centered()
+func mostrar_popup(popup: PopupPanel) -> void:
+	popup.popup_centered()
 	await get_tree().create_timer(4.0).timeout
-	popup_panel_feitico_dano.hide()
+	popup.hide()
 
 func _on_button_voltar_pressed() -> void:
 	if not _verificar_tem_dano():
-		popup_feitico_dano() 
+		mostrar_popup(popup_panel_feitico_dano)
+	elif not _verificar_grimorio_cheio():
+		mostrar_popup(popup_panel_poucos_feiticos)
 	else:
 		sair_menu_deck.call()

@@ -240,7 +240,7 @@ de Grimório"
 disable_3d = true
 oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(500, 150)
+size = Vector2i(550, 150)
 always_on_top = true
 
 [node name="ColorRect" type="ColorRect" parent="PopupPanelFeiticoDano" unique_id=1236719521]
@@ -249,31 +249,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 496.0
+offset_right = 546.0
 offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.01, 0.01, 0.01, 0.78431374)
+color = Color(0.06469653, 0.06469653, 0.06469653, 0.78431374)
 
-[node name="Label" type="Label" parent="PopupPanelFeiticoDano" unique_id=1523785436]
-custom_minimum_size = Vector2(300, 100)
-custom_maximum_size = Vector2(500, -1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="RichTextLabel" type="RichTextLabel" parent="PopupPanelFeiticoDano" unique_id=1365728459]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 496.0
+offset_right = 546.0
 offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 35
-text = "Você precisa ter pelo menos 1 feitiço de dano no deck"
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "Você precisa ter pelo menos 
+[color=firebrick]1 feitiço de dano[/color] no Grimório"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
+
+[node name="PopupPanelPoucosFeiticos" type="PopupPanel" parent="." unique_id=1996910969]
+disable_3d = true
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(500, 150)
+visible = true
+always_on_top = true
+
+[node name="ColorRect" type="ColorRect" parent="PopupPanelPoucosFeiticos" unique_id=1353685254]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06469653, 0.06469653, 0.06469653, 0.78431374)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PopupPanelPoucosFeiticos" unique_id=1721135365]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "Você ainda tem espaços [color=plum][shake rate=10 level=1]sobrando[/shake][/color] no Grimório"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos/ScrollContainer/GrimoriosList" to="." method="_on_grimorios_list_item_selected"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
