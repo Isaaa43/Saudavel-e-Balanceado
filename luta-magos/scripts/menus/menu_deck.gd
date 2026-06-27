@@ -35,9 +35,10 @@ var selected_deck_index: int = -1
 @onready var card_type_cost: Label = %CardTypeCost
 @onready var card_description: RichTextLabel = %CardDescription
 
+@onready var deck_count_label: Label = %DeckCountLabel
 @onready var add_button: Button = %AddButton
 @onready var remove_button: Button = %RemoveButton
-@onready var deck_count_label: Label = %DeckCountLabel
+@onready var clear_button: Button = %ClearButton
 
 @onready var buttonVoltar: Button = $ButtonVoltar
 
@@ -49,6 +50,7 @@ func _ready() -> void:
 
 	add_button.pressed.connect(_on_add_button_pressed)
 	remove_button.pressed.connect(_on_remove_button_pressed)
+	clear_button.pressed.connect(_on_clear_button_pressed)
 	
 	_create_cards_from_spells()
 	
@@ -199,6 +201,15 @@ func _on_remove_button_pressed() -> void:
 
 	# Atualiza a lista visual do deck.
 	_update_deck_list()
+
+func _on_clear_button_pressed() -> void:
+	# limpa a lista de cartas
+	deck_cards.clear()
+	# Reseta o índice selecionado
+	selected_deck_index = -1
+	# Atualiza a lista visual do deck.
+	_update_deck_list()
+	
 
 # =============================================================================
 # Card Data
