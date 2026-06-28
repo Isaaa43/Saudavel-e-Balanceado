@@ -9,18 +9,12 @@ class_name MenuPartida
 @onready var grid_deck: GridContainer = $Deck/ScrollContainer/GridDeck
 @onready var img_card_ref: TextureRect = $Deck/ScrollContainer/ImgCardRef
 
-# TODO: solucao melhor
-# TODO: Criar autoload para manter o log das acoes de rede
-func add_log(txt : String) -> void:
-	label_log.text += '\n' + txt 
-
 func _ready() -> void:
 	# TODO:
 	button_comecar.grab_focus()
-	
-	# TODO: mudar isso
-	Network.logs.update_conexao_texto.connect(add_log)
-	
+	# atualiza os logs da conexao visualmente
+	Network.logs.update_conexao.connect(_update_logs)
+	# mostra o grimório atual do jogador
 	_mostrar_deck()
 
 
@@ -67,3 +61,9 @@ func _on_button_deck_pressed() -> void:
 func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
 	menu_deck.queue_free()
 	_mostrar_deck()
+
+# Logs de Conexao
+# -----------------------------------------------------------------------------
+
+func _update_logs() -> void:
+	label_log.text = Network.logs.get_recent_logs_string()
