@@ -9,8 +9,6 @@ extends Node3D
 var camera : Camera3D :
 	set(_cam):
 		camera = _cam
-		set_process(true)
-		set_physics_process(true)
 
 var cabeca_rot: float = 0.0
 
@@ -34,13 +32,12 @@ func _ready() -> void:
 	
 	mesh_instance_3d = frogger_skinned
 	_material_outline = mesh_instance_3d.material_overlay
-	
-	set_process(false)
-	set_physics_process(false)
 
 
-func _process(delta: float) -> void:
-	_process_camera(delta)
+func _physics_process(delta: float) -> void:
+	_process_shader(delta)
+	if camera:
+		_process_camera(delta)
 
 func esconder_mesh() -> void:
 	mesh_instance_3d.hide()
@@ -52,41 +49,17 @@ func esconder_mesh() -> void:
 enum ShadersTipo {NENHUM, REVELADO, CONGELADO}
 var curr_shader := ShadersTipo.NENHUM
 
+var duracao_shader_seg : Dictionary[ShadersTipo, float] = {}
+
 func shader_revelacao(duracao_seg: float) -> void:
 	mudar_shader(ShadersTipo.REVELADO)
-	_marcar_desligar(duracao_seg)
+	duracao_shader_seg[ShadersTipo.REVELADO] = duracao_seg
 
 func shader_congelado(duracao_seg: float) -> void:
 	mudar_shader(ShadersTipo.CONGELADO)
-	_marcar_desligar(duracao_seg)
-
-var deligar_shader_time_ms : int = 1
-func _marcar_desligar(duracao_seg: float) -> void:
-	# salva o tempo que deve ser desligado o shader
-	@warning_ignore("narrowing_conversion")
-	deligar_shader_time_ms = Time.get_ticks_msec() + (duracao_seg * 1000)
-	# cria um timer para chamar a funcao de desligar
-	get_tree().create_timer(duracao_seg).timeout.connect(_desligar_shader)
-
-func _desligar_shader() -> void:
-	# se o deligar_shader_time_ms for maior entao quer dizer 
-	#	que outro shader foi aplicado depois, e deve ser desligado mais tarde
-	#	(-100 para caso o timer nao seja perfeito, 0.1s serve como margem de erro)
-	if Time.get_ticks_msec() >= deligar_shader_time_ms - 100:
-		mudar_shader(ShadersTipo.NENHUM)
+	duracao_shader_seg[ShadersTipo.CONGELADO] = duracao_seg
 
 func mudar_shader(tipo: ShadersTipo) -> void:
-	# se estiver zerando, tem a preferencia
-	if tipo == ShadersTipo.NENHUM:
-		_aplicar_shader(ShadersTipo.NENHUM)
-		return
-	# se estiver revelado, nao aplique outro em cima
-	if curr_shader == ShadersTipo.REVELADO:
-		return
-	# se for outro tipo, mude para esse novo
-	_aplicar_shader(tipo)
-
-func _aplicar_shader(tipo: ShadersTipo) -> void:
 	match (tipo):
 		ShadersTipo.NENHUM:
 			mesh_instance_3d.material_overlay = null
@@ -96,6 +69,25 @@ func _aplicar_shader(tipo: ShadersTipo) -> void:
 			mesh_instance_3d.material_overlay = CONGELADO_MAT
 	curr_shader = tipo
 
+func _desligar_shader(shader_tipo: ShadersTipo) -> void:
+	duracao_shader_seg.erase(shader_tipo)
+	# se nao tiver nenhum outro shader aplicado, apenas tire o shader
+	if duracao_shader_seg.is_empty():
+		mudar_shader(ShadersTipo.NENHUM)
+	# se tiver outro shader, mas o que foi desligado era o que estava sendo exibido
+	elif curr_shader == shader_tipo:
+		# troque para o outro shader
+		mudar_shader(duracao_shader_seg.keys()[0])
+	# se tiver outro shader, e o desligado nem estava sendo exibido, nao mude nada
+
+func _process_shader(delta) -> void:
+	# passa por todos os shaders ligados
+	for shader_tipo: ShadersTipo in duracao_shader_seg.keys():
+		duracao_shader_seg[shader_tipo] -= delta
+		# se tiver algum shader para desligar
+		if duracao_shader_seg[shader_tipo] <= 0.0:
+			_desligar_shader(shader_tipo)
+
 # Cabeca
 # -----------------------------------------------------------------------------
 func _process_camera(_delta: float) -> void:
@@ -104,8 +96,8 @@ func _process_camera(_delta: float) -> void:
 	## hack para rotacionar o bone de cabeca
 	#cabeca_pivot.rotation.x = cabeca_rot 
 	cabeca_pivot.rotation.z = -cabeca_rot 
-
-func _physics_process(_delta: float) -> void:
+	
+	
 	# Get the current bone rotation
 	var current_rot = skeleton_3d.get_bone_pose_rotation(bone_head_idx)
 
