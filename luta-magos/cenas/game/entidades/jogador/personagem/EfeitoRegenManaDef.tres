@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FeiticoEfeitoGanharManaDef" format=3 uid="uid://dxoy4qoe7htkl"]
+
+[ext_resource type="Script" uid="uid://dd6jn1dqna1hv" path="res://scripts/game/feiticos/definicoes/efeitos_def/modificadores/feitico_modificador_efeito_duradouro_def.gd" id="1_mmrll"]
+[ext_resource type="Script" uid="uid://cqm03tg7qe4ca" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_ganhar_mana_def.gd" id="2_2jxrx"]
+
+[sub_resource type="Resource" id="Resource_1hr55"]
+script = ExtResource("1_mmrll")
+alterar_tipo_efeito = true
+novo_tipo_efeito = 2
+cooldown_seg = 1.0
+metadata/_custom_type_script = "uid://dd6jn1dqna1hv"
+
+[resource]
+script = ExtResource("2_2jxrx")
+valor = 3.0
+modificador_def = SubResource("Resource_1hr55")
+metadata/_custom_type_script = "uid://cqm03tg7qe4ca"

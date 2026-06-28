@@ -1,6 +1,6 @@
 extends Node
 
-@export var mana_regen: float = 1.5
+@export var mana_regen: float = 3
 @export var deck_size: int = 4
 
 @export var feiticos_id_escolhidos: Array[String]
