@@ -109,7 +109,7 @@ offset_bottom = 61.5
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
-text = "Ajusta o Grimório antes de começar"
+text = "Ajuste o Grimório antes de começar"
 horizontal_alignment = 1
 
 [node name="LabelJogProntos" type="Label" parent="PivotPartida" unique_id=415949462]
