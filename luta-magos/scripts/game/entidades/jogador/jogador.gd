@@ -76,7 +76,9 @@ func revelar(duracao_seg: float) -> void:
 		var jog: JogadorCorpo = corpo
 		jog.toggle_shader_revelacao(true)
 		get_tree().create_timer(duracao_seg).timeout.connect(
-			func(): jog.toggle_shader_revelacao(false)
+			func(): 
+				if not is_instance_valid(jog): return
+				jog.toggle_shader_revelacao(false)
 		)
 
 func congelar_visual(duracao_seg: float) -> void:
@@ -84,7 +86,9 @@ func congelar_visual(duracao_seg: float) -> void:
 		var jog: JogadorCorpo = corpo
 		jog.toggle_shader_congelar(true)
 		get_tree().create_timer(duracao_seg).timeout.connect(
-			func(): jog.toggle_shader_congelar(false)
+			func(): 
+				if not is_instance_valid(jog): return
+				jog.toggle_shader_congelar(false)
 		)
 
 # -----------------------------------------------------------------------------
