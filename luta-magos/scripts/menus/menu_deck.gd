@@ -1,9 +1,9 @@
 class_name MenuDeck
 extends Control
 
-# TODO: trocar para algo automatico dps
-## Essa lista é preenchida pelo Inspector da Godot, arrastando arquivos .tres dos Feiticos.
-@export var lista_feiticos: Array[FeiticoDef] = []
+@export var lista_feiticos_res: ListaFeiticosRes
+## Lista com os todos os feiticos
+var lista_feiticos: Array[FeiticoDef]
 
 # Lista de cartas que aparecem na coluna do meio.
 var available_cards: Array[CardData] = []
@@ -58,6 +58,7 @@ var sair_menu_deck : Callable = TrocaCenaTemp.go_to_menu_inicial
 func _ready() -> void:
 	# TODO: melhorar
 	max_deck_size = GlobalDeck.deck_size
+	lista_feiticos = lista_feiticos_res.lista_feiticos
 	
 	popup_panel_feitico_dano.hide()
 	popup_panel_poucos_feiticos.hide()
@@ -78,7 +79,6 @@ func _ready() -> void:
 	_populate_card_pool()
 	_update_deck_list()
 	_clear_card_info()
-	
 
 func _load_deck() -> void:
 	for card: CardData in GlobalDeck.get_deck():

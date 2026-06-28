@@ -1,15 +1,9 @@
 [gd_scene format=3 uid="uid://djncp32jv7ppr"]
 
 [ext_resource type="Script" uid="uid://cax3wk7gbmnc7" path="res://scripts/menus/menu_deck.gd" id="1_glkbn"]
+[ext_resource type="Resource" uid="uid://b0ks5dv5ssm2l" path="res://feiticos/lista_feiticos.tres" id="2_gv3pd"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_hcvlw"]
-[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="3_gv3pd"]
-[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="4_k0n5w"]
-[ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="5_6eq1e"]
-[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="6_i2h36"]
 [ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/menu_deck/CardGridItem.tscn" id="7_gr7sa"]
-[ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="7_gv3pd"]
-[ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="7_wfhn1"]
-[ext_resource type="Resource" uid="uid://c5nanmgoej3wa" path="res://feiticos/ToTeVendo/FD_ToTeVendo.tres" id="8_devs0"]
 [ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="11_k0n5w"]
 [ext_resource type="Resource" uid="uid://bwr5e2unjcuwg" path="res://cenas/menus/menu_deck/grimorio_ataque.tres" id="12_6eq1e"]
 [ext_resource type="Resource" uid="uid://rleu7k0fj605" path="res://cenas/menus/menu_deck/grimorio_balanceado.tres" id="12_wfhn1"]
@@ -36,7 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
-lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("4_k0n5w"), ExtResource("5_6eq1e"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
+lista_feiticos_res = ExtResource("2_gv3pd")
 max_deck_size = 4
 card_button_scene = ExtResource("7_gr7sa")
 lista_grimorios_salvos = Array[ExtResource("11_k0n5w")]([SubResource("Resource_gv3pd"), ExtResource("12_wfhn1"), ExtResource("12_6eq1e"), ExtResource("14_devs0")])
@@ -291,8 +285,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 496.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.06469653, 0.06469653, 0.06469653, 0.78431374)
@@ -303,8 +297,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 496.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 35

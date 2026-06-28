@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ListaFeiticosRes" format=3 uid="uid://b0ks5dv5ssm2l"]
+
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_akk5w"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="2_b8fma"]
+[ext_resource type="Script" uid="uid://ccp3chvposa14" path="res://scripts/game/feiticos/lista_feiticos_res.gd" id="2_o8eqi"]
+[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="3_sh1k8"]
+[ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="4_s0xt1"]
+[ext_resource type="Resource" uid="uid://c5nanmgoej3wa" path="res://feiticos/ToTeVendo/FD_ToTeVendo.tres" id="5_rlhgb"]
+[ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="6_ua3bj"]
+[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="7_wyv6m"]
+[ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="8_4ddvj"]
+
+[resource]
+script = ExtResource("2_o8eqi")
+lista_feiticos = Array[ExtResource("1_akk5w")]([ExtResource("2_b8fma"), ExtResource("3_sh1k8"), ExtResource("4_s0xt1"), ExtResource("5_rlhgb"), ExtResource("6_ua3bj"), ExtResource("7_wyv6m"), ExtResource("8_4ddvj")])
+metadata/_custom_type_script = "uid://ccp3chvposa14"
