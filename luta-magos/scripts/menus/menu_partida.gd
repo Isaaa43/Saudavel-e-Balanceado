@@ -6,10 +6,9 @@ class_name MenuPartida
 @onready var button_comecar: Button = $%ButtonComecar
 @onready var label_ajuste_grimorio: Label = %LabelAjusteGrimorio
 
-@onready var label_log: Label = $VBoxLogs/LabelLog
+@onready var display_grimorio: DisplayGrimorio = $DisplayGrimorio
 
-@onready var grid_deck: GridContainer = $Deck/ScrollContainer/GridDeck
-@onready var img_card_ref: TextureRect = $Deck/ScrollContainer/ImgCardRef
+@onready var label_log: Label = $VBoxLogs/LabelLog
 
 @onready var button_sair: Button = $%ButtonSair
 
@@ -19,14 +18,16 @@ func _ready() -> void:
 	# esconde labels
 	label_ajustando_inicio.hide()
 	label_ajuste_grimorio.hide()
-	
-	# TODO:
+	# 
 	button_comecar.grab_focus()
+	
+	# atualiza o botao comecar
+	atualizar_botao_comecar_partida()
+	display_grimorio.grimorio_atualizado.connect(atualizar_botao_comecar_partida)
+	
 	# atualiza os logs da conexao visualmente
 	Network.logs.update_conexao.connect(_update_logs)
 	_update_logs()
-	# mostra o grimorio atual do jogador
-	_mostrar_deck()
 	
 	# servidor contabilizar os votos
 	Network.server.jogador_votou_iniciar_partida.connect(_receber_voto)
@@ -101,35 +102,6 @@ func _tentar_iniciar_partida() -> void:
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
-
-# Menu Deck
-# -----------------------------------------------------------------------------
-
-func _mostrar_deck() -> void:
-	for c in grid_deck.get_children():
-		c.queue_free()
-	
-	# adiciona as imagens das cartas
-	for card: MenuDeck.CardData in GlobalDeck.cards_escolhidos:
-		var img := img_card_ref.duplicate()
-		img.texture = card.icone
-		grid_deck.add_child(img)
-		img.show()
-	
-	# atualiza o botao comecar
-	atualizar_botao_comecar_partida()
-
-
-const MENU_DECK = preload("uid://djncp32jv7ppr")
-func _on_button_deck_pressed() -> void:
-	var menu_deck : MenuDeck = MENU_DECK.instantiate()
-	add_child(menu_deck)
-	menu_deck.move_to_front()
-	menu_deck.sair_menu_deck = _fechar_menu_deck.bind(menu_deck)
-
-func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
-	menu_deck.queue_free()
-	_mostrar_deck()
 
 # Logs de Conexao
 # -----------------------------------------------------------------------------

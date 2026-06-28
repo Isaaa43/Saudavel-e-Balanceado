@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://cqcv03rhgirbi"]
+
+[ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="1_n5ww1"]
+[ext_resource type="Script" uid="uid://5or6m2uh4ptu" path="res://scripts/menus/sub_itens/display_grimorio.gd" id="1_q3yf3"]
+
+[node name="DisplayGrimorio" type="Control" unique_id=2088990354]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 386.0
+grow_vertical = 2
+script = ExtResource("1_q3yf3")
+
+[node name="LabelDeck" type="Label" parent="." unique_id=1456600935]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.5
+offset_top = 11.0
+offset_right = 86.5
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Grimório"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1769278919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 124.0
+offset_right = -60.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImgCardRef" type="TextureRect" parent="ScrollContainer" unique_id=2117501622]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_n5ww1")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="GridDeck" type="GridContainer" parent="ScrollContainer" unique_id=1092589106]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonDeck" type="Button" parent="." unique_id=1157791562]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.5
+offset_top = -89.0
+offset_right = 115.5
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Editar Grimório"
+
+[connection signal="pressed" from="ButtonDeck" to="." method="_on_button_deck_pressed"]
