@@ -14,9 +14,9 @@ func _ready() -> void:
 	button_comecar.grab_focus()
 	# atualiza os logs da conexao visualmente
 	Network.logs.update_conexao.connect(_update_logs)
-	# mostra o grimório atual do jogador
+	_update_logs()
+	# mostra o grimorio atual do jogador
 	_mostrar_deck()
-
 
 func _mostrar_deck() -> void:
 	for c in grid_deck.get_children():

@@ -49,9 +49,10 @@ func registrar_jogador(dados: Dictionary) -> void:
 		push_warning("Mismatched peer_id from sender %d" % sender_peer_id)
 		return
 
-	print("dados_jog ", dados)
 	var dados_jog := DadosJogador.from_dict(dados)
 	_registrar_jogador_peer_id(dados_jog, sender_peer_id)
+	# envia de volta ao jogador as infos do lobby
+	_enviar_info_lobby(sender_peer_id)
 
 func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void:
 	if dados_jog.peer_id != peer_id:
@@ -59,6 +60,9 @@ func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void
 	dados_jogador_por_peer_id[peer_id] = dados_jog
 	Network.logs.add_conexao_texto_peer("%s entrou" % [dados_jog.nome], peer_id)
 
+func _enviar_info_lobby(jog_peer_id: int) -> void:
+	var logs_server: Array[String] = Network.logs.get_recent_logs_list()
+	Network.client.receber_info_lobby.rpc_id(jog_peer_id, logs_server)
 # -----------------------------------------------------------------------------
 # Partida
 # -----------------------------------------------------------------------------

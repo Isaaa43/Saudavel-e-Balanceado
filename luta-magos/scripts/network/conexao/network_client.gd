@@ -21,6 +21,8 @@ func entrar_lobby() -> void:
 	# atualiza os dados do jogador
 	dados_jogador.peer_id = multiplayer.get_unique_id()
 	
+	Network.logs.add_conexao_texto("Tentado entrar no lobby")
+	
 	# TODO: tela de conexao
 	print("conectando ao servidor")
 
@@ -39,6 +41,10 @@ func criar_dados_jogador() -> DadosJogador:
 	dados.stats 	= {"level": 5, "xp": 1200}
 	return dados
 
+@rpc("authority", "call_local", "reliable")
+func receber_info_lobby(logs_server: Array[String]) -> void:
+	Network.logs.append_logs(logs_server)
+
 # -----------------------------------------------------------------------------
 # Partida
 # -----------------------------------------------------------------------------
@@ -48,6 +54,7 @@ signal spawnar_feitico(feitico_contexto : FeiticoContexto)
 # TODO: trocar para load map, ou load game
 @rpc("authority", "call_local", "reliable")
 func iniciar_partida() -> void:
+	Network.logs.add_conexao_texto("Partida Iniciada!")
 	TrocaCenaTemp.go_to_game()
 	await get_tree().process_frame
 	print("iniciar_partida id:", multiplayer.get_unique_id())
@@ -71,6 +78,8 @@ func receber_terminar_partida() -> void:
 	_terminar_partida()
 
 func _terminar_partida() -> void:
+	Network.logs.add_conexao_texto("Partida Finalizada")
+	
 	if multiplayer.is_server():
 		SaveData.encerrar_partida()
 	
@@ -99,6 +108,7 @@ func avisar_jogador_morreu() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func matar_jogador(jogador_peer_id: int) -> void:
+	Network.logs.add_conexao_texto("Jogador Morto (id: %d)" % jogador_peer_id)
 	print("matar_jogador ", jogador_peer_id, " meu id ", multiplayer.get_unique_id())
 	morreu_jogador.emit(jogador_peer_id)
 
