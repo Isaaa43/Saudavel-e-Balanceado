@@ -2,17 +2,24 @@ extends Control
 class_name MenuPartida
 
 @onready var label_jog_prontos: Label = %LabelJogProntos
+@onready var label_ajustando_inicio: Label = %LabelAjustandoInicio
 @onready var button_comecar: Button = $%ButtonComecar
-@onready var button_sair: Button = $%ButtonSair
+@onready var label_ajuste_grimorio: Label = %LabelAjusteGrimorio
 
 @onready var label_log: Label = $VBoxLogs/LabelLog
 
 @onready var grid_deck: GridContainer = $Deck/ScrollContainer/GridDeck
 @onready var img_card_ref: TextureRect = $Deck/ScrollContainer/ImgCardRef
 
+@onready var button_sair: Button = $%ButtonSair
+
 var votos_partida_por_peer_id : Dictionary[int, bool] = {}
 
 func _ready() -> void:
+	# esconde labels
+	label_ajustando_inicio.hide()
+	label_ajuste_grimorio.hide()
+	
 	# TODO:
 	button_comecar.grab_focus()
 	# atualiza os logs da conexao visualmente
@@ -20,6 +27,7 @@ func _ready() -> void:
 	_update_logs()
 	# mostra o grimorio atual do jogador
 	_mostrar_deck()
+	
 	# servidor contabilizar os votos
 	Network.server.jogador_votou_iniciar_partida.connect(_receber_voto)
 	# atualiza os votos para iniciar partida
@@ -31,14 +39,16 @@ func _ready() -> void:
 
 func atualizar_botao_comecar_partida() -> void:
 	# verifica se o jogador nao precisa de algo antes de comecar a partida
-	var valido: bool = GlobalDeck.deck_size == GlobalDeck.get_deck().size()
-	button_comecar.disabled = not valido
-
-func _update_votos(qtde_votos: int = 0) -> void:
-	label_jog_prontos.text = "Jogadores prontos:\n %d / %d" % [qtde_votos, 2]
+	var invalido: bool = GlobalDeck.deck_size != GlobalDeck.get_deck().size()
+	# libera o botao somente se valido
+	button_comecar.disabled = invalido
+	label_ajuste_grimorio.visible = invalido
 
 func _on_button_comecar_toggled(toggled_on: bool) -> void:
 	Network.client.votar_iniciar_partida(toggled_on)
+
+func _update_votos(qtde_votos: int = 0) -> void:
+	label_jog_prontos.text = "Jogadores prontos:\n %d / %d" % [qtde_votos, 2]
 
 # SERVIDOR: Lidar com os votos da Partida
 # -----------------------------------------------------------------------------
@@ -56,6 +66,7 @@ func _receber_voto(peer_id_jog: int, voto: bool) -> void:
 	# verifica se pode iniciar a partida
 	if _verificar_votos_necessarios():
 		get_tree().create_timer(2.0).timeout.connect(_tentar_iniciar_partida)
+		label_ajustando_inicio.show()
 	
 	# se estiver no cooldown, nao transmita 
 	if esta_cooldown_transmissao_voto: return
@@ -79,6 +90,8 @@ func _verificar_votos_necessarios() -> bool:
 
 func _tentar_iniciar_partida() -> void:
 	if not multiplayer.is_server(): return
+	
+	label_ajustando_inicio.hide()
 	
 	if _verificar_votos_necessarios():
 		Network.server.iniciar_partida()

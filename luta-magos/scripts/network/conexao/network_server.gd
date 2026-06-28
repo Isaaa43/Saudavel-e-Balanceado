@@ -96,7 +96,7 @@ func get_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
 	Network.client.receber_dados_jogador.rpc_id(peer_id_req, jogador_peer_id, dados_jog.to_dict())
 
 ## Cliente vota true (se sim), false (nao quer) iniciar a partida
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "unreliable")
 func jogador_votar_iniciar_partida(voto: bool) -> void:
 	var peer_id_jog = multiplayer.get_remote_sender_id()
 	jogador_votou_iniciar_partida.emit(peer_id_jog, voto)

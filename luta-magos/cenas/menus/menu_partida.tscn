@@ -153,6 +153,24 @@ theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "Pronto para Começar "
 
+[node name="LabelAjusteGrimorio" type="Label" parent="PivotPartida/ButtonComecar" unique_id=1978801488]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -259.0
+offset_top = 19.5
+offset_right = 259.0
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+text = "Ajusta o Grimório antes de começar"
+horizontal_alignment = 1
+
 [node name="LabelJogProntos" type="Label" parent="PivotPartida" unique_id=415949462]
 unique_name_in_owner = true
 layout_mode = 1
@@ -167,6 +185,25 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Jogadores prontos:
 1 / 2"
+horizontal_alignment = 1
+
+[node name="LabelAjustandoInicio" type="Label" parent="PivotPartida" unique_id=242373377]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -192.0
+offset_right = 261.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Validando início da partida"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Deck/ButtonDeck" to="." method="_on_button_deck_pressed"]
