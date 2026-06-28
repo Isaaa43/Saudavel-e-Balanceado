@@ -3,6 +3,7 @@ extends Node
 
 signal ajustar_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador)
 signal morreu_jogador(jog_peer_id: int)
+signal ajustar_votos_iniciar_partida(qtde_votos: int)
 
 @onready var dados_jogador : DadosJogador = criar_dados_jogador()
 
@@ -44,6 +45,16 @@ func criar_dados_jogador() -> DadosJogador:
 @rpc("authority", "call_local", "reliable")
 func receber_info_lobby(logs_server: Array[String]) -> void:
 	Network.logs.append_logs(logs_server)
+
+func votar_iniciar_partida(voto: bool = true) -> void:
+	if multiplayer.is_server():
+		Network.server.jogador_votar_iniciar_partida(voto)
+	else:
+		Network.server.jogador_votar_iniciar_partida.rpc_id(Network.SERVER_ID, voto)
+
+@rpc("authority", "call_local", "reliable")
+func receber_votos_partida(qtde_votos: int) -> void:
+	ajustar_votos_iniciar_partida.emit(qtde_votos)
 
 # -----------------------------------------------------------------------------
 # Partida

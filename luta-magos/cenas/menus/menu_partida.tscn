@@ -24,31 +24,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.19076231, 0.19076234, 0.19076231, 1)
 
-[node name="VBoxPartida" type="VBoxContainer" parent="." unique_id=1130546787]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -124.0
-offset_top = -203.0
-offset_right = 125.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 20
-
-[node name="ButtonComecar" type="Button" parent="VBoxPartida" unique_id=1308500716]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Começar Partida"
-
-[node name="ButtonSair" type="Button" parent="VBoxPartida" unique_id=518067911]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Voltar"
-
 [node name="VBoxLogs" type="VBoxContainer" parent="." unique_id=1154841703]
 layout_mode = 1
 anchors_preset = 1
@@ -128,6 +103,72 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Editar Grimório"
 
-[connection signal="pressed" from="VBoxPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
-[connection signal="pressed" from="VBoxPartida/ButtonSair" to="." method="_on_button_sair_pressed"]
+[node name="ButtonSair" type="Button" parent="." unique_id=518067911]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -133.0
+offset_right = 125.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_c11ds")
+text = "Voltar"
+
+[node name="PivotPartida" type="Control" parent="." unique_id=1975374552]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonComecar" type="Button" parent="PivotPartida" unique_id=1308500716]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.5
+offset_top = 82.0
+offset_right = 124.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_c11ds")
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "Pronto para Começar "
+
+[node name="LabelJogProntos" type="Label" parent="PivotPartida" unique_id=415949462]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = -53.0
+offset_right = 184.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Jogadores prontos:
+1 / 2"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Deck/ButtonDeck" to="." method="_on_button_deck_pressed"]
+[connection signal="pressed" from="ButtonSair" to="." method="_on_button_sair_pressed"]
+[connection signal="toggled" from="PivotPartida/ButtonComecar" to="." method="_on_button_comecar_toggled"]

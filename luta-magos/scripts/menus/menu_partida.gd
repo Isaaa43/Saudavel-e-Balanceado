@@ -1,13 +1,16 @@
 extends Control
 class_name MenuPartida
 
-@onready var button_comecar: Button = $VBoxPartida/ButtonComecar
-@onready var button_sair: Button = $VBoxPartida/ButtonSair
+@onready var label_jog_prontos: Label = %LabelJogProntos
+@onready var button_comecar: Button = $%ButtonComecar
+@onready var button_sair: Button = $%ButtonSair
 
 @onready var label_log: Label = $VBoxLogs/LabelLog
 
 @onready var grid_deck: GridContainer = $Deck/ScrollContainer/GridDeck
 @onready var img_card_ref: TextureRect = $Deck/ScrollContainer/ImgCardRef
+
+var votos_partida_por_peer_id : Dictionary[int, bool] = {}
 
 func _ready() -> void:
 	# TODO:
@@ -17,6 +20,77 @@ func _ready() -> void:
 	_update_logs()
 	# mostra o grimorio atual do jogador
 	_mostrar_deck()
+	# servidor contabilizar os votos
+	Network.server.jogador_votou_iniciar_partida.connect(_receber_voto)
+	# atualiza os votos para iniciar partida
+	Network.client.ajustar_votos_iniciar_partida.connect(_update_votos)
+	_update_votos()
+
+# Votar Comecar Partida
+# -----------------------------------------------------------------------------
+
+func atualizar_botao_comecar_partida() -> void:
+	# verifica se o jogador nao precisa de algo antes de comecar a partida
+	var valido: bool = GlobalDeck.deck_size == GlobalDeck.get_deck().size()
+	button_comecar.disabled = not valido
+
+func _update_votos(qtde_votos: int = 0) -> void:
+	label_jog_prontos.text = "Jogadores prontos:\n %d / %d" % [qtde_votos, 2]
+
+func _on_button_comecar_toggled(toggled_on: bool) -> void:
+	Network.client.votar_iniciar_partida(toggled_on)
+
+# SERVIDOR: Lidar com os votos da Partida
+# -----------------------------------------------------------------------------
+
+var esta_cooldown_transmissao_voto: bool = false
+
+func _receber_voto(peer_id_jog: int, voto: bool) -> void:
+	if not multiplayer.is_server(): return
+	
+	# atualiza o voto desse jogador
+	votos_partida_por_peer_id[peer_id_jog] = voto
+	# verifica se tem todos os votos
+	var qtde_votos: int = _contar_votos_iniciar_partida()
+	
+	# verifica se pode iniciar a partida
+	if _verificar_votos_necessarios():
+		get_tree().create_timer(2.0).timeout.connect(_tentar_iniciar_partida)
+	
+	# se estiver no cooldown, nao transmita 
+	if esta_cooldown_transmissao_voto: return
+	# transmita para todos os jogadores a quantidade de votos
+	Network.server.transmitir_votos_partida(qtde_votos)
+	# entre no cooldown
+	esta_cooldown_transmissao_voto = true
+	# sair do cooldown dps de um tempo
+	get_tree().create_timer(1.0).timeout.connect(
+		func(): esta_cooldown_transmissao_voto = false )
+
+func _contar_votos_iniciar_partida() -> int:
+	var qtde_votos: int = 0
+	for voto:bool in votos_partida_por_peer_id.values():
+		if voto: qtde_votos += 1
+	return qtde_votos
+
+func _verificar_votos_necessarios() -> bool:
+	var qtde_votos: int = _contar_votos_iniciar_partida()
+	return qtde_votos == 2
+
+func _tentar_iniciar_partida() -> void:
+	if not multiplayer.is_server(): return
+	
+	if _verificar_votos_necessarios():
+		Network.server.iniciar_partida()
+
+# Sair
+# -----------------------------------------------------------------------------
+
+func _on_button_sair_pressed() -> void:
+	TrocaCenaTemp.go_to_menu_inicial()
+
+# Menu Deck
+# -----------------------------------------------------------------------------
 
 func _mostrar_deck() -> void:
 	for c in grid_deck.get_children():
@@ -32,25 +106,7 @@ func _mostrar_deck() -> void:
 	# atualiza o botao comecar
 	atualizar_botao_comecar_partida()
 
-func atualizar_botao_comecar_partida() -> void:
-	
-	var valido: bool = GlobalDeck.deck_size == GlobalDeck.get_deck().size()
-	button_comecar.disabled = not valido
-	
-	# TODO: Por enquato vai isso, mas no futuro fazer um sistema de voto, tipo ready DBD
-	# somente o server pode iniciar a partida
-	#button_comecar.disabled = not multiplayer.is_server()
-	return
 
-func _on_button_comecar_pressed() -> void:
-	if not is_multiplayer_authority(): return
-	Network.server.iniciar_partida()
-
-func _on_button_sair_pressed() -> void:
-	TrocaCenaTemp.go_to_menu_inicial()
-
-
-# -- Menu Deck --
 const MENU_DECK = preload("uid://djncp32jv7ppr")
 func _on_button_deck_pressed() -> void:
 	var menu_deck : MenuDeck = MENU_DECK.instantiate()
