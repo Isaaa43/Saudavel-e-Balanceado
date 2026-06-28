@@ -29,12 +29,18 @@ func _gravar_posicao() -> void:
 	SaveData.registrar_posicao(pai_id, global_position, rotation.y, mesh_corpo.cabeca_rot)
 
 
-func toggle_shader_revelacao(ligado: bool) -> void:
-	mesh_corpo.shader_revelacao(ligado)
+func ligar_shader_revelacao(duracao_seg: float) -> void:
+	mesh_corpo.shader_revelacao(duracao_seg)
 
-func toggle_shader_congelar(ligado: bool) -> void:
-	mesh_corpo.shader_congelado(ligado)
-	sistema_animacao.toggle_pausar(ligado)
+func ligar_shader_congelar(duracao_seg: float) -> void:
+	mesh_corpo.shader_congelado(duracao_seg)
+	#
+	sistema_animacao.toggle_pausar(true)
+	get_tree().create_timer(duracao_seg).timeout.connect(
+		func(): 
+			if not is_instance_valid(sistema_animacao): return
+			sistema_animacao.toggle_pausar(false)
+	)
 
 
 func esconder_mesh() -> void:

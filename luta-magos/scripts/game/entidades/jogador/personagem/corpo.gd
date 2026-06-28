@@ -52,18 +52,28 @@ func esconder_mesh() -> void:
 enum ShadersTipo {NENHUM, REVELADO, CONGELADO}
 var curr_shader := ShadersTipo.NENHUM
 
-func shader_revelacao(ligado: bool) -> void:
-	if ligado:
-		mudar_shader(ShadersTipo.REVELADO)
-	else:
-		mudar_shader(ShadersTipo.NENHUM)
+func shader_revelacao(duracao_seg: float) -> void:
+	mudar_shader(ShadersTipo.REVELADO)
+	_marcar_desligar(duracao_seg)
 
-func shader_congelado(ligado: bool) -> void:
-	if ligado:
-		mudar_shader(ShadersTipo.CONGELADO)
-	else:
-		mudar_shader(ShadersTipo.NENHUM)
+func shader_congelado(duracao_seg: float) -> void:
+	mudar_shader(ShadersTipo.CONGELADO)
+	_marcar_desligar(duracao_seg)
 
+var deligar_shader_time_ms : int = 1
+func _marcar_desligar(duracao_seg: float) -> void:
+	# salva o tempo que deve ser desligado o shader
+	@warning_ignore("narrowing_conversion")
+	deligar_shader_time_ms = Time.get_ticks_msec() + (duracao_seg * 1000)
+	# cria um timer para chamar a funcao de desligar
+	get_tree().create_timer(duracao_seg).timeout.connect(_desligar_shader)
+
+func _desligar_shader() -> void:
+	# se o deligar_shader_time_ms for maior entao quer dizer 
+	#	que outro shader foi aplicado depois, e deve ser desligado mais tarde
+	#	(-100 para caso o timer nao seja perfeito, 0.1s serve como margem de erro)
+	if Time.get_ticks_msec() >= deligar_shader_time_ms - 100:
+		mudar_shader(ShadersTipo.NENHUM)
 
 func mudar_shader(tipo: ShadersTipo) -> void:
 	# se estiver zerando, tem a preferencia

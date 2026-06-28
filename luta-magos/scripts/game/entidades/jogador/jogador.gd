@@ -74,22 +74,12 @@ func _display_nome() -> void:
 func revelar(duracao_seg: float) -> void:
 	if corpo is JogadorCorpo:
 		var jog: JogadorCorpo = corpo
-		jog.toggle_shader_revelacao(true)
-		get_tree().create_timer(duracao_seg).timeout.connect(
-			func(): 
-				if not is_instance_valid(jog): return
-				jog.toggle_shader_revelacao(false)
-		)
+		jog.ligar_shader_revelacao(duracao_seg)
 
 func congelar_visual(duracao_seg: float) -> void:
 	if corpo is JogadorCorpo:
 		var jog: JogadorCorpo = corpo
-		jog.toggle_shader_congelar(true)
-		get_tree().create_timer(duracao_seg).timeout.connect(
-			func(): 
-				if not is_instance_valid(jog): return
-				jog.toggle_shader_congelar(false)
-		)
+		jog.ligar_shader_congelar(duracao_seg)
 
 # -----------------------------------------------------------------------------
 # Movimentacao
