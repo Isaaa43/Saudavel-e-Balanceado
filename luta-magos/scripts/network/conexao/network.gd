@@ -94,6 +94,12 @@ func end() -> void:
 	print("END SERVER")
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	
+	server.free()
+	client.free()
+	logs.free()
+	
+	await get_tree().process_frame
+	
 	start_network()
 	# disconnect everything
 	#for signal_info in multiplayer.get_signal_list():
