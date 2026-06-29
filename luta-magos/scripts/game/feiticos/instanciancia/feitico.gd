@@ -12,15 +12,20 @@ var contexto: FeiticoContexto
 
 
 enum Tipo {
-	PROJETIL,
-	POSICIONADO,
-	EFEITO
+	PROJETIL,		## Se move pelo cenario
+	POSICIONADO,	## Fica parado no mapa
+	EFEITO			## Apenas os efeitos, sem presenca fisica
+}
+
+enum Lancamento {
+	DISPARO,	## Clique
+	CANALIZAR	## Segurar
 }
 
 enum Espaco {
-	DANO,
-	SUPORTE,
-	REVELACAO
+	DANO,		## Retiram vida do jogador
+	SUPORTE,	## Ajudam o jogador
+	REVELACAO	## Revelam
 }
 
 ## Cria a magia, antes de lancar

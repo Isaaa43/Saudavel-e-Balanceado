@@ -31,6 +31,7 @@ script = ExtResource("2_4ih6y")
 feitico_id = "Ozempagic"
 nome = "Sara-Mago"
 tipo = 2
+lancamento = 1
 descricao = "\"Se o nome é cura, deve curar né\"
 - Um leitor ávido
 (Cura {valor} de vida)"
