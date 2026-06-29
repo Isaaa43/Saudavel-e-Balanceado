@@ -20,7 +20,8 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_nxn4u"]
 script = ExtResource("2_n61t3")
-duracao_seg = 0.5
+duracao_aplicacao_efeito_seg = 0.3
+duracao_seg = 2.0
 lista_efeitos = Array[ExtResource("1_c7pro")]([SubResource("Resource_f5loy")])
 visual_def = SubResource("Resource_c7pro")
 metadata/_custom_type_script = "uid://dbe4px883cphk"
