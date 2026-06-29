@@ -68,9 +68,10 @@ albedo_texture = ExtResource("3_5tlsb")
 [sub_resource type="QuadMesh" id="QuadMesh_j0itr"]
 material = SubResource("StandardMaterial3D_nqmpk")
 
-[node name="FV_bola_fogo" type="Node3D" unique_id=1476543120 node_paths=PackedStringArray("fogo", "csg_sphere_3d", "csg_sphere_3d_flip")]
+[node name="FV_bola_fogo" type="Node3D" unique_id=1476543120 node_paths=PackedStringArray("fogo", "fumaca", "csg_sphere_3d", "csg_sphere_3d_flip")]
 script = ExtResource("1_3h5sp")
 fogo = NodePath("fogo")
+fumaca = NodePath("fumaca")
 csg_sphere_3d = NodePath("CSGSphere3D")
 csg_sphere_3d_flip = NodePath("CSGSphere3DFlipFaces")
 

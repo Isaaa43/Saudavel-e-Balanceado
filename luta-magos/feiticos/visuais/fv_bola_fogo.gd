@@ -2,6 +2,7 @@ class_name FeiticoVisualBolaFogo
 extends Node3D
 
 @export var fogo: GPUParticles3D
+@export var fumaca: GPUParticles3D
 @export var csg_sphere_3d: CSGSphere3D
 @export var csg_sphere_3d_flip: CSGSphere3D
 
@@ -9,6 +10,7 @@ var resized : bool = false
 
 func _ready() -> void:
 	fogo.hide()
+	if resized: fumaca.hide()
 	await get_tree().create_timer(0.3).timeout
 	# TODO: melhorar
 	if resized:
