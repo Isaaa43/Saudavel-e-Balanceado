@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 		hud_jogador.add_idx(-1)
 		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx())
 
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_pressed("acao"):
+		_tentar_canalizar_feitico()
 
 # Lancar Feitico
 # -----------------------------------------------------------------------------
@@ -52,7 +55,17 @@ func _tentar_lancar_feitico() -> void:
 	var feitico_id : String = get_feitico_escolhido()
 	if feitico_id == "": return
 	
-	processar_lancar_feitico(feitico_id)
+	var feitico_def := Registros.reg_feiticos.get_feitico(feitico_id)
+	if feitico_def.lancamento == Feitico.Lancamento.DISPARO:
+		processar_lancar_feitico(feitico_id)
+
+func _tentar_canalizar_feitico() -> void:
+	var feitico_id : String = get_feitico_escolhido()
+	if feitico_id == "": return
+	
+	var feitico_def := Registros.reg_feiticos.get_feitico(feitico_id)
+	if feitico_def.lancamento == Feitico.Lancamento.CANALIZAR:
+		processar_lancar_feitico(feitico_id)
 
 ## Retorna o feitico que a hud tem como escolhido atualmente
 func get_feitico_escolhido() -> String:
@@ -62,7 +75,7 @@ func get_feitico_escolhido() -> String:
 func processar_lancar_feitico(feitico_id: String) -> void:
 	# --- Faz as verificacoes antes de lancar ---
 	# se estiver no cooldown, nao continue
-	if _cooldowns.get(feitico_id, 0) > 0.1: return
+	if _cooldowns.get(feitico_id, 0) > 0.01: return
 	
 	# pega as definicoes do feitico
 	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
