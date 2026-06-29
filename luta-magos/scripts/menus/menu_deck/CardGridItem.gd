@@ -46,13 +46,12 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and event.double_click:
 			card_activated.emit(card_data)
 
-# TODO: melhorar isso
-func _decidir_cor(espaco_str: String) -> Color:
-	match (espaco_str):
-		"Dano":
+func _decidir_cor(espaco: Feitico.Espaco) -> Color:
+	match (espaco):
+		Feitico.Espaco.DANO:
 			return cor_dano
-		"Suporte":
+		Feitico.Espaco.SUPORTE:
 			return cor_suporte
-		"Revelacao":
+		Feitico.Espaco.REVELACAO:
 			return cor_revelacao
 	return Color.DIM_GRAY

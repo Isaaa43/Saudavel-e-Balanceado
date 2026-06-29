@@ -295,8 +295,7 @@ func _save_grimorio_atual(_deck_cards: Array[CardData]) -> void:
 
 func _verificar_tem_dano() -> bool:
 	for card: CardData in deck_cards:
-		# verifica se eh Feitico.Espaco.DANO
-		if card.espaco == "Dano":
+		if card.espaco == Feitico.Espaco.DANO:
 			return true
 	return false
 
@@ -336,7 +335,7 @@ class CardData:
 	## Tipo da carta
 	var tipo: String
 	## Espaco que a carta ocupa (Dano, Suporte, Revelacao)
-	var espaco: String
+	var espaco: Feitico.Espaco
 	## Texto descritivo da carta.
 	var descricao: String
 	## Custo de mana para ativar a carta
@@ -348,7 +347,7 @@ class CardData:
 		feitico_id 	= feitico_def.feitico_id
 		nome 		= feitico_def.nome
 		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
-		espaco 		= _feitico_espaco_para_string(feitico_def.espaco)
+		espaco 		= feitico_def.espaco
 		descricao 	= _formatar_descricao(feitico_def)
 		custo 		= int(feitico_def.custo)
 		icone 		= feitico_def.icone_hud
@@ -396,14 +395,14 @@ class CardData:
 				return "Efeito"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Tipo_" + str(_tipo)
-	
-	func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
-		match (_espaco):
-			Feitico.Espaco.DANO:
-				return "Dano"
-			Feitico.Espaco.SUPORTE:
-				return "Suporte"
-			Feitico.Espaco.REVELACAO:
-				return "Revelacao"
-		# caso de erro, retorne essa opcao para podermos diagnosticar
-		return "Feitico.Espaco_" + str(_espaco)
+	#
+	#func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
+		#match (_espaco):
+			#Feitico.Espaco.DANO:
+				#return "Dano"
+			#Feitico.Espaco.SUPORTE:
+				#return "Suporte"
+			#Feitico.Espaco.REVELACAO:
+				#return "Revelacao"
+		## caso de erro, retorne essa opcao para podermos diagnosticar
+		#return "Feitico.Espaco_" + str(_espaco)
