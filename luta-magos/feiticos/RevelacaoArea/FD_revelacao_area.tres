@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_8wl8k"]
 script = ExtResource("3_hpii0")
-velocidade = 0.0
+velocidade = 0.01
 tamanho_raio = 15.0
 duracao_seg = 1.0
 afetados = 5

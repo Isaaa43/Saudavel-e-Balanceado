@@ -48,3 +48,8 @@ func criar_feitico(contexto: FeiticoContexto) -> Feitico:
 	feitico.comportamento.set_feitico_tipo(tipo)
 	
 	return feitico
+
+# TODO: fazer isso
+#func get_descricao_formatada() -> String:
+	##comportamento.get_descricao_formatada()
+	#return ''

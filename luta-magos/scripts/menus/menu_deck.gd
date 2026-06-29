@@ -367,6 +367,8 @@ class CardData:
 		# TODO : aaaaaaaaaa
 		if comportamento_def is FeiticoComportamentoArmadilhaDef:
 			comportamento_def = comportamento_def.comportamento_ativacao_def
+		if comportamento_def is FeiticoComportamentoBombaDef:
+			comportamento_def = comportamento_def.explosao_comportamento_def
 		
 		# obtem a lista de efeitos
 		if not comportamento_def.lista_efeitos: return descricao_raw
@@ -379,7 +381,7 @@ class CardData:
 		
 		# TODO: algo melhor do q isso para a revelacao em area
 		if comportamento_def is FeiticoComportamentoProjetilDef:
-			if comportamento_def.velocidade == 0.0:
+			if comportamento_def.velocidade == 0.01:
 				valor =  comportamento_def.tamanho_raio
 		
 		# -- retorna o texto formatado
