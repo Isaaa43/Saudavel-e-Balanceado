@@ -14,4 +14,4 @@ func iniciar_comportamento() -> void:
 	direcao = contexto.direcao
 
 func physics_process(delta: float) -> void:
-	corpo.global_position += direcao * velocidade * delta
+	corpo.corpo_movimento.global_position += direcao * velocidade * delta
