@@ -29,7 +29,9 @@ func ajusta_para_jogador(_jogador: Jogador) -> void:
 
 func ajusta_dados_jogador(_dados_jog: DadosJogador) -> void:
 	# passa o id do jogador para o lancador de feiticos
-	lancador_feiticos.jogador_id = jogador.dados_jogador.peer_id
+	var jogador_id : int = jogador.dados_jogador.peer_id
+	lancador_feiticos.jogador_id = jogador_id
+	Registros.jogador_id_local = jogador_id
 
 func ajusta_tempo_partida(_tempo_restante_seg: float) -> void:
 	hud.atualizar_tempo_restante_seg(_tempo_restante_seg)
