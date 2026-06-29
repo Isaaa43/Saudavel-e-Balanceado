@@ -128,8 +128,9 @@ func visivel_distancia(visivel: bool) -> void:
 	
 	await _set_visivel(visivel, true)
 
-const transparency_threshold := 0.75
-const duracao_fade := 0.2
+const transparency_threshold := 0.55
+const duracao_fade := 0.25
+var fade_em_andamento: bool = false
 
 ## Muda a visibilidade do jogador (online) para no jogador (PC)
 func _set_visivel(visivel: bool, fade_animation: bool = false) -> void:
@@ -139,26 +140,34 @@ func _set_visivel(visivel: bool, fade_animation: bool = false) -> void:
 	# se nao eh para ter animacao, so mude e pare
 	if not fade_animation:
 		visible = visivel
+		frogger_skinned.transparency = 0.0
 		return
 	
-	print("_set_visivel ", visivel)
-	
+	# se ja tem um fade em andamento, nao comece outro
+	if fade_em_andamento: return
+		
 	# deixa visivel para aparecer os efeitos
 	visible = true
+	fade_em_andamento = true
 	
 	# se esta invisivel, e eh para ficar visivel
 	if visivel:
 		var tween := create_tween()
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(frogger_skinned, "transparency", 
-								0.0, duracao_fade).from(transparency_threshold)
+							transparency_threshold, duracao_fade).from(1.0)
 		await tween.finished
 	# se esta visivel, e eh para ficar invisivel
 	else:
 		var tween := create_tween()
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(frogger_skinned, "transparency", 
-								transparency_threshold, duracao_fade).from(0.0)
+							1.0, duracao_fade).from(transparency_threshold)
 		await tween.finished
 	
 	# no fim, deixe opaco, e mude para visibilidade desejada
+	fade_em_andamento = false
 	frogger_skinned.transparency = 0.0
 	visible = visivel
