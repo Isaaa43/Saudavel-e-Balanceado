@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx())
 
 func _physics_process(_delta: float) -> void:
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
+	
 	if Input.is_action_pressed("acao"):
 		_tentar_canalizar_feitico()
 
