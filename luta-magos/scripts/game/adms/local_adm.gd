@@ -7,7 +7,12 @@ signal pediu_sair_partida
 
 @export var lancador_feiticos : LancadorFeiticos
 
+## Distancia maxima que os jogadores podem se ver
+@export var distancia_visao: float = 14.0
+@onready var dist_visao_sqrd := distancia_visao ** 2
+
 var jogador : Jogador
+var outros_jogadores: Array[Jogador]
 
 func _ready() -> void:
 	hud.show()
@@ -61,4 +66,14 @@ func tela_fim(jogador_ganhador: Jogador) -> void:
 	if not jogador_ganhador: return
 	var nome_ganhador: String = jogador_ganhador.dados_jogador.nome
 	hud.mostrar_tela_fim(jogador == jogador_ganhador, nome_ganhador)
-	 
+
+# Outros jogadores
+# -----------------------------------------------------------------------------
+func outro_jogador(_jogador: Jogador) -> void:
+	outros_jogadores.append(_jogador)
+
+func _physics_process(_delta: float) -> void:
+	for jog: Jogador in outros_jogadores:
+		var dist_sqrd := jog.jogador_corpo.global_position.distance_squared_to(jogador.jogador_corpo.global_position)
+		var visivel := dist_sqrd < dist_visao_sqrd
+		jog.jogador_corpo.mesh_corpo.visivel_distancia(visivel)

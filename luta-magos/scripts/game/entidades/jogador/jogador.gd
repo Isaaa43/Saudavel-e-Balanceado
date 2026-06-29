@@ -59,13 +59,12 @@ func _ready_camera() -> void:
 	camera_jogador.start()
 	# linka a cabeca com a camera
 	jogador_corpo.conectar_camera(camera_jogador)
-	# 
+	# esconde o corpo desse jogador (jogador nao ve o proprio corpo)
 	jogador_corpo.esconder_mesh()
 
 # TODO: arrumar
 func _display_nome() -> void:
 	jogador_corpo._display_nome(dados_jogador)
-
 
 # -----------------------------------------------------------------------------
 # Efeitos de Feiticos - Entidade
