@@ -31,30 +31,6 @@ layout_mode = 1
 [node name="ControlHacks" parent="." unique_id=2110335283 instance=ExtResource("4_j7c31")]
 layout_mode = 1
 
-[node name="ButtonSair" type="Button" parent="." unique_id=518067911]
-layout_mode = 0
-offset_left = 836.0
-offset_top = 947.0
-offset_right = 1085.0
-offset_bottom = 997.0
-theme = ExtResource("2_j7c31")
-text = "Voltar"
-
-[node name="VBoxPartida" type="VBoxContainer" parent="." unique_id=1130546787]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -124.0
-offset_top = -203.0
-offset_right = 125.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 20
-
 [node name="PivotPartida" type="Control" parent="." unique_id=1819340622]
 layout_mode = 1
 anchors_preset = 8
@@ -101,5 +77,21 @@ theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
 text = "Ajuste o Grimório antes de começar"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="ButtonSair" to="." method="_on_button_sair_pressed"]
+[node name="ButtonSair" type="Button" parent="." unique_id=518067911]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.5
+offset_top = -128.0
+offset_right = 124.5
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_j7c31")
+text = "Voltar"
+
 [connection signal="pressed" from="PivotPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
+[connection signal="pressed" from="ButtonSair" to="." method="_on_button_sair_pressed"]
