@@ -126,8 +126,39 @@ func visivel_distancia(visivel: bool) -> void:
 		_set_visivel(true)
 		return
 	
-	_set_visivel(visivel)
+	await _set_visivel(visivel, true)
+
+const transparency_threshold := 0.75
+const duracao_fade := 0.2
 
 ## Muda a visibilidade do jogador (online) para no jogador (PC)
-func _set_visivel(visivel: bool) -> void:
+func _set_visivel(visivel: bool, fade_animation: bool = false) -> void:
+	# se ja esta, nao mude nada, pare
+	if visible == visivel: return
+	
+	# se nao eh para ter animacao, so mude e pare
+	if not fade_animation:
+		visible = visivel
+		return
+	
+	print("_set_visivel ", visivel)
+	
+	# deixa visivel para aparecer os efeitos
+	visible = true
+	
+	# se esta invisivel, e eh para ficar visivel
+	if visivel:
+		var tween := create_tween()
+		tween.tween_property(frogger_skinned, "transparency", 
+								0.0, duracao_fade).from(transparency_threshold)
+		await tween.finished
+	# se esta visivel, e eh para ficar invisivel
+	else:
+		var tween := create_tween()
+		tween.tween_property(frogger_skinned, "transparency", 
+								transparency_threshold, duracao_fade).from(0.0)
+		await tween.finished
+	
+	# no fim, deixe opaco, e mude para visibilidade desejada
+	frogger_skinned.transparency = 0.0
 	visible = visivel
