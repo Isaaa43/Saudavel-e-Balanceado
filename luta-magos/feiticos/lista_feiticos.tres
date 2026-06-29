@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="4_s0xt1"]
 [ext_resource type="Resource" uid="uid://c5nanmgoej3wa" path="res://feiticos/ToTeVendo/FD_ToTeVendo.tres" id="5_rlhgb"]
 [ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="6_ua3bj"]
-[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="7_wyv6m"]
+[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Cura/FD_cura.tres" id="7_wyv6m"]
 [ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="8_4ddvj"]
 [ext_resource type="Resource" uid="uid://chducm3wshfg8" path="res://feiticos/Bombinha/FD_bombinha.tres" id="9_sh1k8"]
 
