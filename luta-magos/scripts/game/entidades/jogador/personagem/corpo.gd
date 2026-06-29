@@ -37,7 +37,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_process_shader(delta)
 	if camera:
-		_process_camera(delta)
+		# se for o jogador local, envia a posicao do pivot da cabeca 
+		_process_my_head_with_camera(delta)
+	else:
+		# se for o jogador online, rotacione a cabeca para ser igual ao pivot
+		_process_network_head(delta)
 
 func esconder_mesh() -> void:
 	mesh_instance_3d.hide()
@@ -90,21 +94,24 @@ func _process_shader(delta) -> void:
 
 # Cabeca
 # -----------------------------------------------------------------------------
-func _process_camera(_delta: float) -> void:
-	# rodar a cabeca
+func _process_my_head_with_camera(_delta: float) -> void:
+	# pega a rotacao da cabeca e diminui (para nao olhar 90 graus para cima)
 	cabeca_rot = remap(camera.rotation.x, -PI/2, PI/2, -PI/6, PI/6)
-	## hack para rotacionar o bone de cabeca
+	# rotaciono o pivo da cabeca, para enviar pelo network
 	#cabeca_pivot.rotation.x = cabeca_rot 
 	cabeca_pivot.rotation.z = -cabeca_rot 
-	
-	
-	# Get the current bone rotation
-	var current_rot = skeleton_3d.get_bone_pose_rotation(bone_head_idx)
 
-	# Convert cabeca_pivot's rotation to quaternion and combine with base rotation
-	var pivot_rot = cabeca_pivot.quaternion
-	var target_rot = bone_head_base_rot * pivot_rot  # Apply base rotation first, then pivot
+func _process_network_head(_delta: float) -> void:
+	# transforma a rotacao do pivot em quartenion
+	var pivot_rot := cabeca_pivot.quaternion
+	# combina a rotacao do pivot com a base da cabeca 
+	# para chegar na rotacao que a gente quer que o bone da cabeca esteja
+	var target_rot := bone_head_base_rot * pivot_rot  # Apply base rotation first, then pivot
 
-	# Smoothly rotate towards it
-	var new_rot = current_rot.slerp(target_rot, 0.1)
-	skeleton_3d.set_bone_pose_rotation(bone_head_idx, new_rot)
+	# pega a rotacao atual da cabeca
+	var current_rot := skeleton_3d.get_bone_pose_rotation(bone_head_idx)
+	# faz o slerp para deixar mais smooth
+	var smooth_rot := current_rot.slerp(target_rot, _delta)
+	
+	# rotaciona o bone da cabeca
+	skeleton_3d.set_bone_pose_rotation(bone_head_idx, smooth_rot)
