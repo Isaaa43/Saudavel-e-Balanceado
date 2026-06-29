@@ -2,8 +2,11 @@ class_name NetworkServer
 extends Node
 
 signal spawnar_jogador(dados_jogador : DadosJogador)
+signal jogador_votou_iniciar_partida(peer_id: int, voto: bool)
 
 var dados_jogador_por_peer_id : Dictionary[int, DadosJogador] = {}
+
+var partida_iniciada : bool = false
 
 func _ready() -> void:
 	_ready_lobby()
@@ -21,7 +24,7 @@ func criar_lobby() -> void:
 	
 	TrocaCenaTemp.go_to_menu_partida()
 	Network.logs.add_conexao_texto("Lobby criado")
-	Network.logs.add_conexao_texto("IP: " + Network.IP_ADDR)
+	Network.logs.add_conexao_texto("IP: %s" % Network.IP_ADDR)
 	Network.logs.add_conexao_texto("Port: %d" % Network.PORT)
 	# salva o peer_id do server nos dados do jog
 	Network.client.dados_jogador.peer_id = Network.SERVER_ID
@@ -49,9 +52,10 @@ func registrar_jogador(dados: Dictionary) -> void:
 		push_warning("Mismatched peer_id from sender %d" % sender_peer_id)
 		return
 
-	print("dados_jog ", dados)
 	var dados_jog := DadosJogador.from_dict(dados)
 	_registrar_jogador_peer_id(dados_jog, sender_peer_id)
+	# envia de volta ao jogador as infos do lobby
+	_enviar_info_lobby(sender_peer_id)
 
 func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void:
 	if dados_jog.peer_id != peer_id:
@@ -59,12 +63,18 @@ func _registrar_jogador_peer_id(dados_jog : DadosJogador, peer_id : int) -> void
 	dados_jogador_por_peer_id[peer_id] = dados_jog
 	Network.logs.add_conexao_texto_peer("%s entrou" % [dados_jog.nome], peer_id)
 
+func _enviar_info_lobby(jog_peer_id: int) -> void:
+	var logs_server: Array[String] = Network.logs.get_recent_logs_list()
+	Network.client.receber_info_lobby.rpc_id(jog_peer_id, logs_server)
 # -----------------------------------------------------------------------------
 # Partida
 # -----------------------------------------------------------------------------
 
 func iniciar_partida() -> void:
 	if not multiplayer.is_server(): return
+	
+	if partida_iniciada: return
+	partida_iniciada = true
 	
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		Network.client.iniciar_partida.rpc_id(peer_id)
@@ -85,6 +95,23 @@ func get_dados_jogador_do_jogador(jogador_peer_id: int) -> void:
 	var dados_jog = dados_jogador_por_peer_id[jogador_peer_id]
 	Network.client.receber_dados_jogador.rpc_id(peer_id_req, jogador_peer_id, dados_jog.to_dict())
 
+## Cliente vota true (se sim), false (nao quer) iniciar a partida
+@rpc("any_peer", "call_remote", "unreliable")
+func jogador_votar_iniciar_partida(voto: bool) -> void:
+	var peer_id_jog = multiplayer.get_remote_sender_id()
+	jogador_votou_iniciar_partida.emit(peer_id_jog, voto)
+
+## Transmite a quantidade de votos atuais para todos os jogadores conectados
+func transmitir_votos_partida(qtde_votos: int) -> void:
+	# somente para o server executar
+	if not multiplayer.is_server(): return
+	# envia os votos para cada peer
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		Network.client.receber_votos_partida.rpc_id(peer_id, qtde_votos)
+
+# Partida Rolando
+# -----------------------------------------------------------------------------
+
 ## Chama o server para terminar a partida
 @rpc("any_peer", "reliable")
 func pedir_terminar_partida() -> void:
@@ -95,6 +122,8 @@ func pedir_terminar_partida() -> void:
 
 ## Broadcast do server para todos os peers, de terminar a partida
 func _server_terminar_partida() -> void:
+	partida_iniciada = false
+	# transmite para todos os outros jogadores
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		# pular o servidor
 		if peer_id != Network.SERVER_ID:

@@ -1,15 +1,26 @@
 [gd_scene format=3 uid="uid://djncp32jv7ppr"]
 
 [ext_resource type="Script" uid="uid://cax3wk7gbmnc7" path="res://scripts/menus/menu_deck.gd" id="1_glkbn"]
+[ext_resource type="Resource" uid="uid://b0ks5dv5ssm2l" path="res://feiticos/lista_feiticos.tres" id="2_gv3pd"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_hcvlw"]
-[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="3_gv3pd"]
-[ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="4_k0n5w"]
-[ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="5_6eq1e"]
-[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="6_i2h36"]
 [ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/menu_deck/CardGridItem.tscn" id="7_gr7sa"]
-[ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="7_gv3pd"]
-[ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="7_wfhn1"]
-[ext_resource type="Resource" uid="uid://c5nanmgoej3wa" path="res://feiticos/ToTeVendo/FD_ToTeVendo.tres" id="8_devs0"]
+[ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="11_k0n5w"]
+[ext_resource type="Resource" uid="uid://bwr5e2unjcuwg" path="res://cenas/menus/menu_deck/grimorio_ataque.tres" id="12_6eq1e"]
+[ext_resource type="Resource" uid="uid://rleu7k0fj605" path="res://cenas/menus/menu_deck/grimorio_balanceado.tres" id="12_wfhn1"]
+[ext_resource type="Resource" uid="uid://d1tciwx82agrt" path="res://cenas/menus/menu_deck/grimorio_armadilha.tres" id="14_devs0"]
+[ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="15_devs0"]
+
+[sub_resource type="Resource" id="Resource_gv3pd"]
+script = ExtResource("11_k0n5w")
+nome_grimorio = "Personalizado"
+usar_card_data = true
+metadata/_custom_type_script = "uid://6v8v2o714e64"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1wcd"]
+bg_color = Color(0.13229999, 0.21, 0.16597001, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv3pd"]
+bg_color = Color(0.252, 0.4, 0.3112, 1)
 
 [node name="MenuDeck" type="Control" unique_id=1395345366]
 layout_mode = 3
@@ -19,8 +30,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_glkbn")
-lista_feiticos = Array[ExtResource("2_hcvlw")]([ExtResource("3_gv3pd"), ExtResource("5_6eq1e"), ExtResource("4_k0n5w"), ExtResource("8_devs0"), ExtResource("7_gv3pd"), ExtResource("6_i2h36"), ExtResource("7_wfhn1")])
+lista_feiticos_res = ExtResource("2_gv3pd")
+max_deck_size = 4
 card_button_scene = ExtResource("7_gr7sa")
+lista_grimorios_salvos = Array[ExtResource("11_k0n5w")]([SubResource("Resource_gv3pd"), ExtResource("12_wfhn1"), ExtResource("12_6eq1e"), ExtResource("14_devs0")])
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=535928561]
 layout_mode = 1
@@ -49,34 +62,85 @@ size_flags_horizontal = 3
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DeckPanel" unique_id=2105672495]
 layout_mode = 2
 theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer" unique_id=1461920499]
+[node name="VBoxDecks" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer" unique_id=799609081]
 layout_mode = 2
 
-[node name="DeckCountLabel" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1702935466]
+[node name="VBoxGrimorio" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks" unique_id=1461920499]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DeckCountLabel" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimorio" unique_id=1702935466]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 44
-text = "DeckCount"
+text = "Grimório
+"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="DeckList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=100819419]
+[node name="DeckList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimorio" unique_id=100819419]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.6
 theme_override_font_sizes/font_size = 25
+item_count = 1
+fixed_icon_size = Vector2i(80, 60)
+item_0/text = "Bola de fogo"
+item_0/icon = ExtResource("15_devs0")
 
-[node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxContainer" unique_id=1018711789]
+[node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimorio" unique_id=1018711789]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 25
 text = "Remover feitiço"
+
+[node name="Separador" type="Control" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimorio" unique_id=125428288]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ClearButton" type="Button" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimorio" unique_id=121972255]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Limpar Grimório"
+
+[node name="Separador" type="Control" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks" unique_id=2044904237]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxGrimoriosSalvos" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks" unique_id=906859131]
+layout_mode = 2
+
+[node name="LabelGrimoriosSalvos" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos" unique_id=159042149]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Grimórios Salvos"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos" unique_id=881988260]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="GrimoriosList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos/ScrollContainer" unique_id=463365094]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/line_separation = 5
+theme_override_font_sizes/font_size = 25
+allow_reselect = true
+allow_search = false
+item_count = 2
+item_0/text = "Ataque"
+item_1/text = "Defesa"
 
 [node name="CardPoolPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1630717518]
 unique_name_in_owner = true
@@ -113,7 +177,9 @@ size_flags_horizontal = 3
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/InfoPanel" unique_id=692050293]
 layout_mode = 2
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=811642422]
 layout_mode = 2
@@ -155,31 +221,65 @@ horizontal_alignment = 1
 [node name="AddButton" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=440370027]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 25
 text = "Adicionar feitiço"
 
-[node name="Button" type="Button" parent="." unique_id=1939406467]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -70.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="ButtonVoltar" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=1939406467]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
-text = "VOLTAR"
+theme_override_styles/normal = SubResource("StyleBoxFlat_m1wcd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gv3pd")
+text = "Sair da Edição
+de Grimório"
 
 [node name="PopupPanelFeiticoDano" type="PopupPanel" parent="." unique_id=1040923461]
+disable_3d = true
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(550, 150)
+always_on_top = true
+
+[node name="ColorRect" type="ColorRect" parent="PopupPanelFeiticoDano" unique_id=1236719521]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 546.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06469653, 0.06469653, 0.06469653, 0.78431374)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PopupPanelFeiticoDano" unique_id=1365728459]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 546.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "Você precisa ter pelo menos 
+[color=firebrick]1 feitiço de dano[/color] no Grimório"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopupPanelPoucosFeiticos" type="PopupPanel" parent="." unique_id=1996910969]
 disable_3d = true
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(500, 150)
 always_on_top = true
 
-[node name="ColorRect" type="ColorRect" parent="PopupPanelFeiticoDano" unique_id=1236719521]
+[node name="ColorRect" type="ColorRect" parent="PopupPanelPoucosFeiticos" unique_id=1353685254]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -189,26 +289,25 @@ offset_right = 496.0
 offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.01, 0.01, 0.01, 0.78431374)
+color = Color(0.06469653, 0.06469653, 0.06469653, 0.78431374)
 
-[node name="Label" type="Label" parent="PopupPanelFeiticoDano" unique_id=1523785436]
-custom_minimum_size = Vector2(300, 100)
-custom_maximum_size = Vector2(500, -1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="RichTextLabel" type="RichTextLabel" parent="PopupPanelPoucosFeiticos" unique_id=1721135365]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 496.0
 offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 35
-text = "Você precisa ter pelo menos 1 feitiço de dano no deck"
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "Você ainda tem espaços [color=plum][shake rate=10 level=1]sobrando[/shake][/color] no Grimório"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos/ScrollContainer/GrimoriosList" to="." method="_on_grimorios_list_item_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/ButtonVoltar" to="." method="_on_button_voltar_pressed"]

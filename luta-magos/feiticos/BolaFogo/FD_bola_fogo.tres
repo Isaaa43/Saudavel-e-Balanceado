@@ -34,6 +34,7 @@ metadata/_custom_type_script = "uid://cf63pij16plhl"
 script = ExtResource("1_toj36")
 feitico_id = "BolaFogo"
 nome = "Bola de Fogo"
+espaco = 0
 descricao = "Lança uma bola de fogo que causa {valor} de dano se acertar outro jogador."
 icone_hud = ExtResource("7_2f3yf")
 comportamento_def = SubResource("Resource_2f3yf")

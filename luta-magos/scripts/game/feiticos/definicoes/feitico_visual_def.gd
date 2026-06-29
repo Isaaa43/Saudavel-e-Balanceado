@@ -15,6 +15,9 @@ func criar() -> FeiticoVisual:
 		if visual.visual_3d is FeiticoVisualRevelacao:
 			var revelacao : FeiticoVisualRevelacao = visual.visual_3d
 			revelacao.resize(tamanho_raio)
+		if visual.visual_3d is FeiticoVisualBolaFogo:
+			var bola_fogo : FeiticoVisualBolaFogo = visual.visual_3d
+			bola_fogo.resize(tamanho_raio)
 	
 	return visual
 

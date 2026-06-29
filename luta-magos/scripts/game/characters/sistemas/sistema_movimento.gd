@@ -1,15 +1,21 @@
 class_name SistemaMovimento
 extends Node
 
+signal congelado(duracao_seg: bool)
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var jogador: JogadorCorpo
 
 func congelar(duracao_seg: float) -> void:
-	set_process(false)
+	# efeitos de congelamento
+	set_process(false) # para o processamento desse nodo
+	congelado.emit(duracao_seg)
+	# espera terminar a duracao o efeito
 	await get_tree().create_timer(duracao_seg).timeout
-	set_process(true)
+	# retira os efeitos do congelamento
+	set_process(true) # volta o processamento desse nodo
 
 func _process(delta: float) -> void:
 	# Add the gravity.

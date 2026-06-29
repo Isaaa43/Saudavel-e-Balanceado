@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbcuijvqx5043" path="res://scripts/menus/menu_partida.gd" id="1_atdnb"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_c11ds"]
-[ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="3_j53x0"]
+[ext_resource type="PackedScene" uid="uid://cqcv03rhgirbi" path="res://cenas/menus/sub_itens/display_grimorio.tscn" id="2_j53x0"]
 
 [node name="MenuPartida" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -14,7 +14,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_atdnb")
-qntd_magias_grimorio = 0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1274343443]
 layout_mode = 1
@@ -25,141 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.19076231, 0.19076234, 0.19076231, 1)
 
-[node name="VBoxMagias" type="VBoxContainer" parent="." unique_id=1065529489]
-visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -354.5
-offset_right = 599.0
-offset_bottom = 354.5
-grow_vertical = 2
-theme_override_constants/separation = 70
-
-[node name="LabelTit" type="Label" parent="VBoxMagias" unique_id=1611530765]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-theme_override_font_sizes/font_size = 50
-text = "Selecione suas Magias"
-horizontal_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="VBoxMagias" unique_id=2117898815]
-layout_mode = 2
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 30
-columns = 4
-
-[node name="Label" type="Label" parent="VBoxMagias/GridContainer" unique_id=1231563723]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Diretas"
-
-[node name="Button" type="Button" parent="VBoxMagias/GridContainer" unique_id=1147279031]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 1"
-
-[node name="Button2" type="Button" parent="VBoxMagias/GridContainer" unique_id=1175413290]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 2"
-
-[node name="Button3" type="Button" parent="VBoxMagias/GridContainer" unique_id=272571243]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 3"
-
-[node name="Label2" type="Label" parent="VBoxMagias/GridContainer" unique_id=608878012]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Reveladora"
-
-[node name="Button4" type="Button" parent="VBoxMagias/GridContainer" unique_id=439790440]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 1"
-
-[node name="Button5" type="Button" parent="VBoxMagias/GridContainer" unique_id=346718541]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 2"
-
-[node name="Button6" type="Button" parent="VBoxMagias/GridContainer" unique_id=299249392]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 3"
-
-[node name="Label3" type="Label" parent="VBoxMagias/GridContainer" unique_id=2010060563]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Armadilha"
-
-[node name="Button7" type="Button" parent="VBoxMagias/GridContainer" unique_id=1197040957]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 1"
-
-[node name="Button8" type="Button" parent="VBoxMagias/GridContainer" unique_id=467529199]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 2"
-
-[node name="Button9" type="Button" parent="VBoxMagias/GridContainer" unique_id=1911736074]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Magia 3"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxMagias" unique_id=456677014]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="Label4" type="Label" parent="VBoxMagias/HBoxContainer" unique_id=70929043]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Diretas"
-
-[node name="ButtonP" type="Button" parent="VBoxMagias/HBoxContainer" unique_id=518669409]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Passiva 1"
-
-[node name="ButtonP2" type="Button" parent="VBoxMagias/HBoxContainer" unique_id=277709361]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Passiva 2"
-
-[node name="ButtonP3" type="Button" parent="VBoxMagias/HBoxContainer" unique_id=1563861737]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Passiva 2"
-
-[node name="VBoxPartida" type="VBoxContainer" parent="." unique_id=1130546787]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -124.0
-offset_top = -203.0
-offset_right = 125.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 20
-
-[node name="ButtonComecar" type="Button" parent="VBoxPartida" unique_id=1308500716]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Começar Partida"
-
-[node name="ButtonSair" type="Button" parent="VBoxPartida" unique_id=518067911]
-layout_mode = 2
-theme = ExtResource("2_c11ds")
-text = "Voltar"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1154841703]
+[node name="VBoxLogs" type="VBoxContainer" parent="." unique_id=1154841703]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -170,74 +35,117 @@ offset_right = -53.0
 offset_bottom = 104.0
 grow_horizontal = 0
 
-[node name="LabelLog" type="Label" parent="VBoxContainer" unique_id=942424218]
+[node name="LabelLog" type="Label" parent="VBoxLogs" unique_id=942424218]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Log:"
 horizontal_alignment = 2
 
-[node name="Deck" type="Control" parent="." unique_id=2117227738]
+[node name="DisplayGrimorio" parent="." unique_id=2088990354 instance=ExtResource("2_j53x0")]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 386.0
-grow_vertical = 2
 
-[node name="LabelDeck" type="Label" parent="Deck" unique_id=1869241179]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -86.5
-offset_top = 11.0
-offset_right = 86.5
-offset_bottom = 66.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 40
-text = "Grimório"
-horizontal_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Deck" unique_id=157032798]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 67.0
-offset_top = 124.0
-offset_right = -60.0
-offset_bottom = -153.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ImgCardRef" type="TextureRect" parent="Deck/ScrollContainer" unique_id=216944288]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("3_j53x0")
-expand_mode = 5
-stretch_mode = 6
-
-[node name="GridDeck" type="GridContainer" parent="Deck/ScrollContainer" unique_id=1370136417]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ButtonDeck" type="Button" parent="Deck" unique_id=1945425377]
+[node name="ButtonSair" type="Button" parent="." unique_id=518067911]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -115.5
-offset_top = -89.0
-offset_right = 115.5
-offset_bottom = -39.0
+offset_left = -124.0
+offset_top = -133.0
+offset_right = 125.0
+offset_bottom = -83.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Editar Grimório"
+theme = ExtResource("2_c11ds")
+text = "Voltar"
 
-[connection signal="pressed" from="VBoxPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
-[connection signal="pressed" from="VBoxPartida/ButtonSair" to="." method="_on_button_sair_pressed"]
-[connection signal="pressed" from="Deck/ButtonDeck" to="." method="_on_button_deck_pressed"]
+[node name="PivotPartida" type="Control" parent="." unique_id=1975374552]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonComecar" type="Button" parent="PivotPartida" unique_id=1308500716]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.5
+offset_top = 82.0
+offset_right = 124.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_c11ds")
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "Pronto para Começar "
+
+[node name="LabelAjusteGrimorio" type="Label" parent="PivotPartida/ButtonComecar" unique_id=1978801488]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -259.0
+offset_top = 19.5
+offset_right = 259.0
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+text = "Ajuste o Grimório antes de começar"
+horizontal_alignment = 1
+
+[node name="LabelJogProntos" type="Label" parent="PivotPartida" unique_id=415949462]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = -53.0
+offset_right = 184.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Jogadores prontos:
+1 / 2"
+horizontal_alignment = 1
+
+[node name="LabelAjustandoInicio" type="Label" parent="PivotPartida" unique_id=242373377]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -192.0
+offset_right = 261.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Validando início da partida"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ButtonSair" to="." method="_on_button_sair_pressed"]
+[connection signal="toggled" from="PivotPartida/ButtonComecar" to="." method="_on_button_comecar_toggled"]

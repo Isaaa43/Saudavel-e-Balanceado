@@ -126,3 +126,7 @@ func _modo_treino() -> void:
 	# adiciona um efeito de regen de vida
 	var efeito_vida_regen : FeiticoEfeito = TREINO_EFEITO_VIDA_REGEN.criar()
 	jog_treino.receptor_efeitos.receber_efeito(efeito_vida_regen)
+	# adiciona sistema de movimento de treino
+	jog_treino.sistema_movimento = SistemaMovimentoTreino.new()
+	jog_treino.sistema_movimento.jogador = jog_treino.corpo
+	jog_treino.add_child(jog_treino.sistema_movimento)

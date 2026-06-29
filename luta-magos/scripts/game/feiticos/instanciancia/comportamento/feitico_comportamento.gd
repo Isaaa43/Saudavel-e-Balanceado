@@ -154,7 +154,7 @@ func _deve_aplicar_efeito(entidade: Entidade) -> bool:
 
 func iniciar() -> void:
 	# posiciona o corpo do feitico no local, e inicia o process da fisica
-	corpo.global_position = contexto.posicao_global_inicial
+	corpo.posicao_global(contexto.posicao_global_inicial)
 	set_physics_process(true)
 	# TODO melhorar: se tiver particulas, comece a emitr
 	if visual.particulas:

@@ -51,20 +51,29 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_nerpu")
 size = Vector2(0.04, 0.08)
 
-[node name="FV_revelacao" type="Node3D" unique_id=1918478431 node_paths=PackedStringArray("csg_sphere_3d", "gpu_particles_aura", "gpu_particles_particulas")]
+[node name="FV_revelacao" type="Node3D" unique_id=1918478431 node_paths=PackedStringArray("csg_sphere_3d", "csg_sphere_3d_flip_faces", "gpu_particles_aura", "gpu_particles_particulas")]
 script = ExtResource("1_a5r5n")
 csg_sphere_3d = NodePath("CSGSphere3D")
-gpu_particles_aura = NodePath("CSGSphere3D/GPUParticles_aura")
-gpu_particles_particulas = NodePath("CSGSphere3D/GPUParticles_particulas")
+csg_sphere_3d_flip_faces = NodePath("CSGSphere3DFlipFaces")
+gpu_particles_aura = NodePath("GPUParticles_aura")
+gpu_particles_particulas = NodePath("GPUParticles_particulas")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1786168888]
 transparency = 0.9
+radius = 2.0
+radial_segments = 20
+rings = 20
+material = SubResource("StandardMaterial3D_t2ivu")
+
+[node name="CSGSphere3DFlipFaces" type="CSGSphere3D" parent="." unique_id=83961711]
+transparency = 0.9
+flip_faces = true
 radius = 2.0
 radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_t2ivu")
 
-[node name="GPUParticles_aura" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1587715005]
+[node name="GPUParticles_aura" type="GPUParticles3D" parent="." unique_id=1587715005]
 transparency = 0.9
 lifetime = 0.1
 transform_align = 1
@@ -72,7 +81,7 @@ transform_align_channel_filter = 1
 process_material = SubResource("ParticleProcessMaterial_7ogi0")
 draw_pass_1 = SubResource("QuadMesh_858ci")
 
-[node name="GPUParticles_particulas" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1217517718]
+[node name="GPUParticles_particulas" type="GPUParticles3D" parent="." unique_id=1217517718]
 lod_bias = 0.001
 amount = 2
 lifetime = 0.09

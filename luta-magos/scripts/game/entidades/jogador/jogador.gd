@@ -68,16 +68,18 @@ func _display_nome() -> void:
 
 
 # -----------------------------------------------------------------------------
-# Entidade
+# Efeitos de Feiticos - Entidade
 # -----------------------------------------------------------------------------
 
 func revelar(duracao_seg: float) -> void:
 	if corpo is JogadorCorpo:
 		var jog: JogadorCorpo = corpo
-		jog.toggle_shader_revelacao(true)
-		get_tree().create_timer(duracao_seg).timeout.connect(
-			func(): jog.toggle_shader_revelacao(false)
-		)
+		jog.ligar_shader_revelacao(duracao_seg)
+
+func congelar_visual(duracao_seg: float) -> void:
+	if corpo is JogadorCorpo:
+		var jog: JogadorCorpo = corpo
+		jog.ligar_shader_congelar(duracao_seg)
 
 # -----------------------------------------------------------------------------
 # Movimentacao

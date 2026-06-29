@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GrimorioPresetRes" format=3 uid="uid://rleu7k0fj605"]
+
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_bpnsy"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="2_gbbh0"]
+[ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="3_pv2lp"]
+[ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="4_nh1bn"]
+[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="5_bpnsy"]
+[ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="6_q836u"]
+
+[resource]
+script = ExtResource("6_q836u")
+nome_grimorio = "Balanceado"
+feiticos = Array[ExtResource("1_bpnsy")]([ExtResource("2_gbbh0"), ExtResource("3_pv2lp"), ExtResource("4_nh1bn"), ExtResource("5_bpnsy")])
+metadata/_custom_type_script = "uid://6v8v2o714e64"

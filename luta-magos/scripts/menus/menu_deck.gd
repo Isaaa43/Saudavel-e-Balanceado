@@ -1,16 +1,22 @@
 class_name MenuDeck
 extends Control
 
-# TODO: trocar para algo automatico dps
-## Essa lista é preenchida pelo Inspector da Godot, arrastando arquivos .tres dos Feiticos.
-@export var lista_feiticos: Array[FeiticoDef] = []
+@export var lista_feiticos_res: ListaFeiticosRes
+## Lista com os todos os feiticos
+var lista_feiticos: Array[FeiticoDef]
 
 # Lista de cartas que aparecem na coluna do meio.
 var available_cards: Array[CardData] = []
 
-# Quantidade máxima de cartas permitida no deck do jogador.
+## Quantidade máxima de cartas permitida no deck do jogador.
 @export var max_deck_size: int = 3
+## Carta clicavel dos feiticos
 @export var card_button_scene: PackedScene
+
+#
+@export_group("Lista Grimorios Salvos")
+@export var lista_grimorios_salvos : Array[GrimorioPresetRes] = []
+
 
 # Lista de cartas que o jogador adicionou ao deck durante a montagem.
 # Essa lista existe apenas em tempo de execução.
@@ -35,30 +41,44 @@ var selected_deck_index: int = -1
 @onready var card_type_cost: Label = %CardTypeCost
 @onready var card_description: RichTextLabel = %CardDescription
 
+@onready var deck_count_label: Label = %DeckCountLabel
 @onready var add_button: Button = %AddButton
 @onready var remove_button: Button = %RemoveButton
-@onready var deck_count_label: Label = %DeckCountLabel
+@onready var clear_button: Button = %ClearButton
 
-@onready var buttonVoltar: Button = $Button
+@onready var grimorios_list: ItemList = %GrimoriosList
+
+@onready var buttonVoltar: Button = %ButtonVoltar
+
+@onready var popup_panel_feitico_dano: PopupPanel = $PopupPanelFeiticoDano
+@onready var popup_panel_poucos_feiticos: PopupPanel = $PopupPanelPoucosFeiticos
+
+var sair_menu_deck : Callable = TrocaCenaTemp.go_to_menu_inicial
 
 func _ready() -> void:
 	# TODO: melhorar
 	max_deck_size = GlobalDeck.deck_size
+	lista_feiticos = lista_feiticos_res.lista_feiticos
+	
+	popup_panel_feitico_dano.hide()
+	popup_panel_poucos_feiticos.hide()
 	
 	deck_list.item_selected.connect(_on_deck_list_item_selected)
 
 	add_button.pressed.connect(_on_add_button_pressed)
 	remove_button.pressed.connect(_on_remove_button_pressed)
+	clear_button.pressed.connect(_on_clear_button_pressed)
 	
 	_create_cards_from_spells()
 	
+	# carrega os grimorios salvos
+	_load_grimorios_salvos()
 	# carrega o deck
 	_load_deck()
 	
 	_populate_card_pool()
 	_update_deck_list()
 	_clear_card_info()
-	
 
 func _load_deck() -> void:
 	for card: CardData in GlobalDeck.get_deck():
@@ -98,8 +118,8 @@ func _update_deck_list() -> void:
 	
 	# Adiciona na interface todas as cartas que estão no array deck_cards.
 	for card in deck_cards:
-		var text := "%s  |  Custo de mana: %d" % [card.nome, card.custo]
-		deck_list.add_item(text)
+		var text := "%s  | %d mana" % [card.nome, card.custo]
+		deck_list.add_item(text, card.icone)
 
 	# Atualiza o contador de cartas do deck.
 	deck_count_label.text = "Feitiços no grimório: %d / %d" % [
@@ -107,7 +127,6 @@ func _update_deck_list() -> void:
 		max_deck_size
 	]
 	GlobalDeck.set_deck(deck_cards)
-
 
 func _show_card_info(card: CardData) -> void:
 	# Define a carta recebida como a carta atualmente selecionada.
@@ -199,6 +218,110 @@ func _on_remove_button_pressed() -> void:
 
 	# Atualiza a lista visual do deck.
 	_update_deck_list()
+	
+	# muda para o grimorio personalizado
+	_set_grimorio_atual()
+
+func _on_clear_button_pressed() -> void:
+	_clear_deck()
+	
+	# muda para o grimorio personalizado
+	_set_grimorio_atual()
+
+func _clear_deck() -> void:
+	# limpa a lista de cartas
+	deck_cards.clear()
+	# Reseta o índice selecionado
+	selected_deck_index = -1
+	# Atualiza a lista visual do deck.
+	_update_deck_list()
+
+# Grimorios Salvos
+# -----------------------------------------------------------------------------
+
+func _load_grimorios_salvos() -> void:
+	grimorios_list.clear()
+	# popula a lista
+	for grimorio_preset : GrimorioPresetRes in lista_grimorios_salvos:
+		grimorios_list.add_item(grimorio_preset.nome_grimorio)
+	# inicia com o personalizado selecionado
+	grimorios_list.select(0)
+
+var grimorio_index_last: int = 0
+
+func _on_grimorios_list_item_selected(index: int) -> void:
+	# se estava no personalizado antes
+	if grimorio_index_last == 0:
+		_save_grimorio_atual(deck_cards)
+	# muda para o grimorio selecionado
+	var grimorio : GrimorioPresetRes = lista_grimorios_salvos.get(index)
+	_carregar_deck_salvo(grimorio)
+	# atualiza para o selecionado atual
+	grimorio_index_last = index
+
+func _carregar_deck_salvo(grimorio : GrimorioPresetRes) -> void:
+	# limpa o deck
+	_clear_deck()
+	# usa as cartas (nao a lista de feiticos def)
+	if grimorio.usar_card_data:
+		for card : CardData in grimorio.lista_cards:
+			_add_card_to_deck(card)
+		return 
+	# pega as cartas referentes ao feiticos def do grimorio
+	for feitico_def : FeiticoDef in grimorio.feiticos:
+		var card: CardData = _find_card_from_feitico(feitico_def)
+		if card:
+			_add_card_to_deck(card)
+
+func _find_card_from_feitico(feitico_def: FeiticoDef) -> CardData:
+	for card : CardData in available_cards:
+		if card.feitico_id == feitico_def.feitico_id:
+			return card
+	return null
+
+func _set_grimorio_atual() -> void:
+	_save_grimorio_atual(deck_cards)
+	# seleciona o personalizado
+	grimorios_list.select(0)
+
+func _save_grimorio_atual(_deck_cards: Array[CardData]) -> void:
+	# pega o personalizado
+	var grimorio_personalizado : GrimorioPresetRes = lista_grimorios_salvos[0]
+	# salva as cartas do _deck_cards
+	grimorio_personalizado.lista_cards = _deck_cards.duplicate()
+
+# Sair da partida
+# -----------------------------------------------------------------------------
+
+func _verificar_tem_dano() -> bool:
+	for card: CardData in deck_cards:
+		if card.espaco == Feitico.Espaco.DANO:
+			return true
+	return false
+
+## verificar se cartas no deck para preencher o grimorio, ou seja, sem espacos vazios
+## [br] Retorna [code]True[/code] caso tenha cartas no deck igual o tamanho max do deck
+## [br] Retorna [code]False[/code] caso [b]falte (ou passe)[/b] 
+## o numero de cartas do deck do tamanho max do deck
+func _verificar_grimorio_cheio() -> bool:
+	# quantidade de cartas necessarias
+	# minimo tamanho maximo do deck, e quantidade de cartas total disponiveis
+	# para caso o maximo do deck seja mil (para teste), ou tenha poucas cartas
+	var qtd_cartas_necessarias = min(max_deck_size, lista_feiticos.size())
+	return deck_cards.size() == qtd_cartas_necessarias
+
+func mostrar_popup(popup: PopupPanel) -> void:
+	popup.popup_centered()
+	await get_tree().create_timer(4.0).timeout
+	popup.hide()
+
+func _on_button_voltar_pressed() -> void:
+	if not _verificar_tem_dano():
+		mostrar_popup(popup_panel_feitico_dano)
+	elif not _verificar_grimorio_cheio():
+		mostrar_popup(popup_panel_poucos_feiticos)
+	else:
+		sair_menu_deck.call()
 
 # =============================================================================
 # Card Data
@@ -211,8 +334,8 @@ class CardData:
 	var nome: String
 	## Tipo da carta
 	var tipo: String
-	## Espaco que a carta ocupa (Deck, Passiva)
-	var espaco: String
+	## Espaco que a carta ocupa (Dano, Suporte, Revelacao)
+	var espaco: Feitico.Espaco
 	## Texto descritivo da carta.
 	var descricao: String
 	## Custo de mana para ativar a carta
@@ -224,7 +347,7 @@ class CardData:
 		feitico_id 	= feitico_def.feitico_id
 		nome 		= feitico_def.nome
 		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
-		espaco 		= _feitico_espaco_para_string(feitico_def.espaco)
+		espaco 		= feitico_def.espaco
 		descricao 	= _formatar_descricao(feitico_def)
 		custo 		= int(feitico_def.custo)
 		icone 		= feitico_def.icone_hud
@@ -244,6 +367,8 @@ class CardData:
 		# TODO : aaaaaaaaaa
 		if comportamento_def is FeiticoComportamentoArmadilhaDef:
 			comportamento_def = comportamento_def.comportamento_ativacao_def
+		if comportamento_def is FeiticoComportamentoBombaDef:
+			comportamento_def = comportamento_def.explosao_comportamento_def
 		
 		# obtem a lista de efeitos
 		if not comportamento_def.lista_efeitos: return descricao_raw
@@ -256,7 +381,7 @@ class CardData:
 		
 		# TODO: algo melhor do q isso para a revelacao em area
 		if comportamento_def is FeiticoComportamentoProjetilDef:
-			if comportamento_def.velocidade == 0.0:
+			if comportamento_def.velocidade == 0.01:
 				valor =  comportamento_def.tamanho_raio
 		
 		# -- retorna o texto formatado
@@ -272,34 +397,14 @@ class CardData:
 				return "Efeito"
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Tipo_" + str(_tipo)
-	
-	func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
-		match (_espaco):
-			Feitico.Espaco.DECK:
-				return "Deck"
-			Feitico.Espaco.PASSIVA:
-				return "Passiva"
-		# caso de erro, retorne essa opcao para podermos diagnosticar
-		return "Feitico.Espaco_" + str(_espaco)
-
-# TODO: arrumar um jeito melhor de fazer isso
-func _verificar_tem_dano() -> bool:
-	for card: CardData in deck_cards:
-		if card.feitico_id == "BolaFogo":
-			return true
-		if card.feitico_id == "FuraSapato":
-			return true
-	return false
-
-@onready var popup_panel_feitico_dano: PopupPanel = $PopupPanelFeiticoDano
-
-func popup_feitico_dano() -> void:
-	popup_panel_feitico_dano.popup_centered()
-	await get_tree().create_timer(4.0).timeout
-	popup_panel_feitico_dano.hide()
-
-func _on_button_pressed() -> void:
-	if _verificar_tem_dano():
-		TrocaCenaTemp.go_to_menu_inicial()
-	else:
-		popup_feitico_dano() 
+	#
+	#func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
+		#match (_espaco):
+			#Feitico.Espaco.DANO:
+				#return "Dano"
+			#Feitico.Espaco.SUPORTE:
+				#return "Suporte"
+			#Feitico.Espaco.REVELACAO:
+				#return "Revelacao"
+		## caso de erro, retorne essa opcao para podermos diagnosticar
+		#return "Feitico.Espaco_" + str(_espaco)

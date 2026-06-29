@@ -68,15 +68,26 @@ albedo_texture = ExtResource("3_5tlsb")
 [sub_resource type="QuadMesh" id="QuadMesh_j0itr"]
 material = SubResource("StandardMaterial3D_nqmpk")
 
-[node name="FV_bola_fogo" type="Node3D" unique_id=1476543120]
+[node name="FV_bola_fogo" type="Node3D" unique_id=1476543120 node_paths=PackedStringArray("fogo", "fumaca", "csg_sphere_3d", "csg_sphere_3d_flip")]
 script = ExtResource("1_3h5sp")
+fogo = NodePath("fogo")
+fumaca = NodePath("fumaca")
+csg_sphere_3d = NodePath("CSGSphere3D")
+csg_sphere_3d_flip = NodePath("CSGSphere3DFlipFaces")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1622199508]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00881815, -0.021761239, 0.00042651594)
+rings = 12
 material = SubResource("StandardMaterial3D_hsdai")
 
-[node name="fumaca" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1459065616]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="CSGSphere3DFlipFaces" type="CSGSphere3D" parent="." unique_id=1974732216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00881815, -0.021761239, 0.00042651594)
+flip_faces = true
+rings = 12
+material = SubResource("StandardMaterial3D_hsdai")
+
+[node name="fumaca" type="GPUParticles3D" parent="." unique_id=1459065616]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00881815, -0.021761239, 0.00042651594)
 cast_shadow = 0
 amount_ratio = 0.6167
 sub_emitter = NodePath(".")
@@ -89,7 +100,8 @@ process_material = SubResource("ParticleProcessMaterial_7oy6e")
 draw_pass_1 = SubResource("QuadMesh_hsdai")
 draw_skin = SubResource("Skin_hnj6e")
 
-[node name="fogo" type="GPUParticles3D" parent="CSGSphere3D" unique_id=180700413]
+[node name="fogo" type="GPUParticles3D" parent="." unique_id=180700413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00881815, -0.021761239, 0.00042651594)
 amount = 20
 transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_j6t3s")

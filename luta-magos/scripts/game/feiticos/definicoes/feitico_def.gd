@@ -12,7 +12,7 @@ extends Resource
 ## Tipo do feitico
 @export var tipo : Feitico.Tipo = Feitico.Tipo.PROJETIL
 ## Espaco que o feitico ocupa
-@export var espaco : Feitico.Espaco = Feitico.Espaco.DECK
+@export var espaco : Feitico.Espaco = Feitico.Espaco.SUPORTE
 ## Texto descritivo da carta
 @export_multiline() var descricao : String = ""
 
@@ -48,3 +48,8 @@ func criar_feitico(contexto: FeiticoContexto) -> Feitico:
 	feitico.comportamento.set_feitico_tipo(tipo)
 	
 	return feitico
+
+# TODO: fazer isso
+#func get_descricao_formatada() -> String:
+	##comportamento.get_descricao_formatada()
+	#return ''

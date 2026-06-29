@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cpsyvawnev4gg"]
+
+[ext_resource type="Shader" uid="uid://fbxtl8ixohmo" path="res://scripts/shaders/congelar.gdshader" id="1_jt3ws"]
+
+[sub_resource type="Gradient" id="Gradient_ivwpu"]
+colors = PackedColorArray(0.51080465, 0.39055485, 0.9672628, 1, 0.6833935, 0.8535174, 0.841633, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u0vdn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3ed3w"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_u0vdn")
+color_ramp = SubResource("Gradient_ivwpu")
+normalize = false
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jt3ws")
+shader_parameter/FresnelPower = 3.0
+shader_parameter/FresnelColor = Color(0.9691369, 0.9691369, 0.9691368, 1)
+shader_parameter/Color = Color(0.18768308, 0.54627275, 0.90414274, 1)
+shader_parameter/Tiling = Vector3(1, 1, 0)
+shader_parameter/Offset = Vector3(0, 0, 0)
+shader_parameter/Ice_Texture = SubResource("NoiseTexture2D_3ed3w")
+shader_parameter/RefractionAmount = 0.3
+shader_parameter/Metallic = 0.134
+shader_parameter/Smoothness = 0.627
+shader_parameter/Normals = 0.77

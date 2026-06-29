@@ -33,6 +33,7 @@ func _ajustar_hud() -> void:
 	# conectar hud as mudanca de atributos do jogador
 	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)
 	jogador.sistema_mana.mudanca_mana.connect(hud.mostrar_mana)
+	jogador.sistema_movimento.congelado.connect(hud.efeito_congelado)
 
 func _ajustar_lancador_feiticos() -> void:
 	# conectar lancador de feiticos com o sistema de mana

@@ -15,6 +15,8 @@ signal sair_partida
 @onready var texture_atual: TextureRect = $SelecaoMagia/TextureAtual
 @onready var texture_prox: TextureRect = $SelecaoMagia/TextureProx
 
+@onready var congelado: TextureRect = $Efeitos/Congelado
+
 var custo_mana_porcent: float = 0.0
 
 func _input(event):
@@ -28,13 +30,14 @@ func _input(event):
 			if not menu_pause.visible: # menu pause nao esta visivel
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-
 func _ready() -> void:
 	menu_pause.hide()
 	menu_pause.voltar_partida.connect(_esconder_menu_pause)
 	menu_pause.sair_partida.connect(func(): sair_partida.emit())
 	
 	tela_fim.hide()
+	
+	congelado.hide()
 	
 	var idx: int = 0
 	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
@@ -107,6 +110,51 @@ func atualizar_custo_mana_previsto(porcent_custo_mana: float) -> void:
 	custo_mana_porcent = porcent_custo_mana
 	# mostra custo de mana
 	mostrar_mana(texture_mana_prog_atual.scale.x)
+
+func efeito_congelado(duracao_seg: float) -> void:
+	congelado.material.set_shader_parameter("coverage", 0.0)
+	congelado.show()
+	
+	# se o efeito durar muito pouco, nao faca o tween
+	if (duracao_seg < 1.5):
+		congelado.material.set_shader_parameter("coverage", 1.0)
+		get_tree().create_timer(duracao_seg).timeout.connect(
+			func(): 
+				congelado.material.set_shader_parameter("coverage", 0.0)
+				congelado.hide()
+		)
+		return
+	
+	# aplica o tween
+	
+	# tira 1.5 seg para o tween de colocar e tirar
+	duracao_seg -= 1.5
+	# tween de fade in
+	var tween_in := create_tween()
+	tween_in.set_ease(Tween.EASE_IN)
+	tween_in.set_trans(Tween.TRANS_QUAD)
+	tween_in.tween_property(
+		congelado.material,
+		"shader_parameter/coverage",
+		1.0,
+		0.6 # duracao
+	).from_current()
+	await tween_in.finished
+	# espera o tempo q sobrar
+	await get_tree().create_timer(duracao_seg).timeout
+	# tween de fade out
+	var tween_out := create_tween()
+	tween_out.set_ease(Tween.EASE_IN)
+	tween_out.set_trans(Tween.TRANS_CUBIC)
+	tween_out.tween_property(
+		congelado.material,
+		"shader_parameter/coverage",
+		0.25, # efeito para nesse nivel
+		1.0 # duracao (soma pode ser maior que 1.5)
+	).from_current()
+	await tween_out.finished
+	# acaba o efeito
+	congelado.hide()
 
 func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 	var tempo_seg: int = int(_tempo_restante_seg) % 60

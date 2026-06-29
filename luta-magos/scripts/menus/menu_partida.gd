@@ -1,119 +1,110 @@
 extends Control
 class_name MenuPartida
 
-# TODO: remover isso
-@export var debug_ignorar_checks := true
+@onready var label_jog_prontos: Label = %LabelJogProntos
+@onready var label_ajustando_inicio: Label = %LabelAjustandoInicio
+@onready var button_comecar: Button = $%ButtonComecar
+@onready var label_ajuste_grimorio: Label = %LabelAjusteGrimorio
 
-@export var qntd_magias_grimorio : int = 4
+@onready var display_grimorio: DisplayGrimorio = $DisplayGrimorio
 
-@onready var grid_container: GridContainer = $VBoxMagias/GridContainer
-@onready var h_box_container: HBoxContainer = $VBoxMagias/HBoxContainer
-@onready var button_comecar: Button = $VBoxPartida/ButtonComecar
-@onready var button_sair: Button = $VBoxPartida/ButtonSair
+@onready var label_log: Label = $VBoxLogs/LabelLog
 
-@onready var label_log: Label = $VBoxContainer/LabelLog
+@onready var button_sair: Button = $%ButtonSair
 
-@onready var grid_deck: GridContainer = $Deck/ScrollContainer/GridDeck
-@onready var img_card_ref: TextureRect = $Deck/ScrollContainer/ImgCardRef
-
-
-var buttons_selecionados_list : Array[Button] = []
-var passiva_selecionada : Button = null
-
-# TODO: solucao melhor
-# TODO: Criar autoload para manter o log das acoes de rede
-func add_log(txt : String) -> void:
-	label_log.text += '\n' + txt 
+var votos_partida_por_peer_id : Dictionary[int, bool] = {}
 
 func _ready() -> void:
-	# TODO:
+	# esconde labels
+	label_ajustando_inicio.hide()
+	label_ajuste_grimorio.hide()
+	# 
 	button_comecar.grab_focus()
 	
-	# TODO: mudar isso
-	Network.logs.update_conexao_texto.connect(add_log)
+	# atualiza o botao comecar
+	atualizar_botao_comecar_partida()
+	display_grimorio.grimorio_atualizado.connect(atualizar_botao_comecar_partida)
 	
-	_mostrar_deck()
+	# atualiza os logs da conexao visualmente
+	Network.logs.update_conexao.connect(_update_logs)
+	_update_logs()
 	
-	# pego os botoes da grid
-	for button : Button in grid_container.get_children().filter(func(a): return a is Button):
-		button.pressed.connect(clicado.bind(button))
-	#
-	for button : Button in h_box_container.get_children().filter(func(a): return a is Button):
-		button.pressed.connect(passiva_select.bind(button))
-	# 
-	verificar_partida_comecar()
+	# servidor contabilizar os votos
+	Network.server.jogador_votou_iniciar_partida.connect(_receber_voto)
+	# atualiza os votos para iniciar partida
+	Network.client.ajustar_votos_iniciar_partida.connect(_update_votos)
+	_update_votos()
 
+# Votar Comecar Partida
+# -----------------------------------------------------------------------------
 
-func _mostrar_deck() -> void:
-	for c in grid_deck.get_children():
-		c.queue_free()
-	
-	# adiciona as imagens das cartas
-	for card: MenuDeck.CardData in GlobalDeck.cards_escolhidos:
-		var img := img_card_ref.duplicate()
-		img.texture = card.icone
-		grid_deck.add_child(img)
-		img.show()
+func atualizar_botao_comecar_partida() -> void:
+	# verifica se o jogador nao precisa de algo antes de comecar a partida
+	var invalido: bool = GlobalDeck.deck_size != GlobalDeck.get_deck().size()
+	# libera o botao somente se valido
+	button_comecar.disabled = invalido
+	label_ajuste_grimorio.visible = invalido
 
-func verificar_partida_comecar() -> void:
-	# TODO: Por enquato vai isso, mas no futuro fazer um sistema de voto, tipo ready DBD
-	# somente o server pode iniciar a partida
-	button_comecar.disabled = not multiplayer.is_server()
-	return
-	
-	# TODO: remover
-	if debug_ignorar_checks: 
-		button_comecar.disabled = false 
-		return
-	
-	var condicao_comecar : bool = buttons_selecionados_list.size() == qntd_magias_grimorio
-	condicao_comecar = condicao_comecar and (passiva_selecionada != null)
-	button_comecar.disabled = not condicao_comecar
+func _on_button_comecar_toggled(toggled_on: bool) -> void:
+	Network.client.votar_iniciar_partida(toggled_on)
 
-func clicado(button : Button):
-	# ja tem -> tira da lista
-	if buttons_selecionados_list.has(button):
-		button.flat = false
-		buttons_selecionados_list.erase(button)
-		verificar_partida_comecar()
-		return
-	# add na lista
-	buttons_selecionados_list.append(button)
-	button.flat = true
-	# se tiver mts na lista -> tira o ultimo
-	if buttons_selecionados_list.size() > qntd_magias_grimorio:
-		clicado(buttons_selecionados_list[0])
-	
-	verificar_partida_comecar()
+func _update_votos(qtde_votos: int = 0) -> void:
+	label_jog_prontos.text = "Jogadores prontos:\n %d / %d" % [qtde_votos, 2]
 
-func passiva_select(button : Button) -> void:
-	# desativa o anterior, se tiver
-	if passiva_selecionada != null:
-		passiva_selecionada.flat = false
-	# seleciona o atual
-	passiva_selecionada = button
-	passiva_selecionada.flat = true
-	
-	verificar_partida_comecar()
+# SERVIDOR: Lidar com os votos da Partida
+# -----------------------------------------------------------------------------
 
-func _on_button_comecar_pressed() -> void:
-	if not is_multiplayer_authority(): return
-	Network.server.iniciar_partida()
+var esta_cooldown_transmissao_voto: bool = false
+
+func _receber_voto(peer_id_jog: int, voto: bool) -> void:
+	if not multiplayer.is_server(): return
+	
+	# atualiza o voto desse jogador
+	votos_partida_por_peer_id[peer_id_jog] = voto
+	# verifica se tem todos os votos
+	var qtde_votos: int = _contar_votos_iniciar_partida()
+	
+	# verifica se pode iniciar a partida
+	if _verificar_votos_necessarios():
+		get_tree().create_timer(2.0).timeout.connect(_tentar_iniciar_partida)
+		label_ajustando_inicio.show()
+	
+	# se estiver no cooldown, nao transmita 
+	if esta_cooldown_transmissao_voto: return
+	# transmita para todos os jogadores a quantidade de votos
+	Network.server.transmitir_votos_partida(qtde_votos)
+	# entre no cooldown
+	esta_cooldown_transmissao_voto = true
+	# sair do cooldown dps de um tempo
+	get_tree().create_timer(1.0).timeout.connect(
+		func(): esta_cooldown_transmissao_voto = false )
+
+func _contar_votos_iniciar_partida() -> int:
+	var qtde_votos: int = 0
+	for voto:bool in votos_partida_por_peer_id.values():
+		if voto: qtde_votos += 1
+	return qtde_votos
+
+func _verificar_votos_necessarios() -> bool:
+	var qtde_votos: int = _contar_votos_iniciar_partida()
+	return qtde_votos == 2
+
+func _tentar_iniciar_partida() -> void:
+	if not multiplayer.is_server(): return
+	
+	label_ajustando_inicio.hide()
+	
+	if _verificar_votos_necessarios():
+		Network.server.iniciar_partida()
+
+# Sair
+# -----------------------------------------------------------------------------
 
 func _on_button_sair_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
 
-const MENU_DECK = preload("uid://djncp32jv7ppr")
-func _on_button_deck_pressed() -> void:
-	var menu_deck : MenuDeck = MENU_DECK.instantiate()
-	add_child(menu_deck)
-	menu_deck.move_to_front()
-	menu_deck.buttonVoltar.disconnect("pressed", menu_deck._on_button_pressed)
-	menu_deck.buttonVoltar.pressed.connect(_fechar_menu_deck.bind(menu_deck) )
+# Logs de Conexao
+# -----------------------------------------------------------------------------
 
-func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
-	if menu_deck._verificar_tem_dano():
-		menu_deck.queue_free()
-		_mostrar_deck()
-	else:
-		menu_deck.popup_feitico_dano()
+func _update_logs() -> void:
+	label_log.text = Network.logs.get_recent_logs_string()

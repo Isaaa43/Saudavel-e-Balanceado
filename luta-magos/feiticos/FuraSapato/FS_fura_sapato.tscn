@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dicba2bqunx6r" path="res://scripts/game/entidades/entidade_feitico.gd" id="1_edxt4"]
 [ext_resource type="Script" uid="uid://b55gy4hmxuw8g" path="res://feiticos/FuraSapato/static_body_armadilha.gd" id="3_edd6a"]
 [ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="4_edd6a"]
-[ext_resource type="Material" uid="uid://c25lrwh5o1e6r" path="res://assets/feiticos/revelacao/reveldo_mat.tres" id="4_edxt4"]
+[ext_resource type="Material" uid="uid://c25lrwh5o1e6r" path="res://assets/feiticos/revelacao/revelado_mat.tres" id="4_edxt4"]
 [ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="4_krbqj"]
 [ext_resource type="PackedScene" uid="uid://b2stfejm340pq" path="res://feiticos/FuraSapato/armadilha_3d.tscn" id="6_edxt4"]
 
