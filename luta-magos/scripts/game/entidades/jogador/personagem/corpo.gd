@@ -112,7 +112,7 @@ func _process_network_head(_delta: float) -> void:
 	# pega a rotacao atual da cabeca
 	var current_rot := skeleton_3d.get_bone_pose_rotation(bone_head_idx)
 	# faz o slerp para deixar mais smooth
-	var smooth_rot := current_rot.slerp(target_rot, _delta)
+	var smooth_rot := current_rot.slerp(target_rot, _delta * 10)
 	
 	# rotaciona o bone da cabeca
 	skeleton_3d.set_bone_pose_rotation(bone_head_idx, smooth_rot)
