@@ -89,9 +89,10 @@ light_specular = 0.117
 shadow_enabled = true
 
 [node name="mapa_up" parent="." unique_id=1635566741 instance=ExtResource("1_5367g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.072407246, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2454834, 0)
 
 [node name="StaticChao" type="StaticBody3D" parent="." unique_id=1968995545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22, 0)
 visible = false
 collision_layer = 3
 
@@ -103,6 +104,7 @@ mesh = SubResource("PlaneMesh_k52vg")
 surface_material_override/0 = SubResource("StandardMaterial3D_dr2bo")
 
 [node name="StaticLimite" type="StaticBody3D" parent="." unique_id=390270338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31789064, 0)
 visible = false
 collision_layer = 17
 
@@ -127,6 +129,7 @@ shape = SubResource("BoxShape3D_mltr3")
 debug_color = Color(0.7845117, 0.11516548, 0.99999994, 0.41960785)
 
 [node name="Pilares" type="Node3D" parent="." unique_id=1137731203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31789064, 0)
 
 [node name="StaticBasePilar" type="StaticBody3D" parent="Pilares" unique_id=70249630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9712307, 0, 7.0867004)
@@ -192,6 +195,7 @@ shape = SubResource("BoxShape3D_sc0st")
 debug_color = Color(2.117753e-06, 0.61242133, 0.6219592, 0.41960785)
 
 [node name="Arvores" type="Node3D" parent="." unique_id=114214497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31789064, 0)
 
 [node name="StaticBodyArvore" type="StaticBody3D" parent="Arvores" unique_id=2103311467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.909469, 0, 13.3845625)
@@ -292,6 +296,7 @@ shape = SubResource("ConvexPolygonShape3D_y3euu")
 debug_color = Color(0, 0.6265949, 0.51266253, 0.41960785)
 
 [node name="Pedras" type="Node3D" parent="." unique_id=1435286157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31789064, 0)
 
 [node name="StaticBodyPedra" type="StaticBody3D" parent="Pedras" unique_id=1727876177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1614993, 0.4732716, -6.257209)
