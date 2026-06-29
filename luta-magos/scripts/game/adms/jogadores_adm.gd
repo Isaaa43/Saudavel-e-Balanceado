@@ -47,6 +47,7 @@ func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 		recebido_jogador_authority.emit(jogador)
 		recebido_dados_jog_authority.emit(dados_jog)
 	else:
+		# se for um jogador online, emita jogador outros
 		recebido_jogador_outros.emit(jogador)
 	
 	SaveData.registrar_nome(peer_id, dados_jog.nome)
@@ -74,6 +75,9 @@ func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	if _verificar_authority_jogador(jog_peer_id):
 		recebido_jogador_authority.emit(jogador)
 		jogador.spawnar(spawns.pop_front())
+	else:
+		# se for um jogador online, emita jogador outros
+		recebido_jogador_outros.emit(jogador)
 	# peca para o server os dados desse jogador
 	Network.client.pedir_dados_jogador_do_jogador(jog_peer_id)
 
