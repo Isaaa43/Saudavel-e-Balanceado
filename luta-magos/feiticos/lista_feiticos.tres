@@ -13,5 +13,5 @@
 
 [resource]
 script = ExtResource("2_o8eqi")
-lista_feiticos = Array[ExtResource("1_akk5w")]([ExtResource("2_b8fma"), ExtResource("3_sh1k8"), ExtResource("4_s0xt1"), ExtResource("5_rlhgb"), ExtResource("6_ua3bj"), ExtResource("7_wyv6m"), ExtResource("8_4ddvj"), ExtResource("9_sh1k8")])
+lista_feiticos = Array[ExtResource("1_akk5w")]([ExtResource("2_b8fma"), ExtResource("3_sh1k8"), ExtResource("9_sh1k8"), ExtResource("5_rlhgb"), ExtResource("6_ua3bj"), ExtResource("4_s0xt1"), ExtResource("7_wyv6m"), ExtResource("8_4ddvj")])
 metadata/_custom_type_script = "uid://ccp3chvposa14"
