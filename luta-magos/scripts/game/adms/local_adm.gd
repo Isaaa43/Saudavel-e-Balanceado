@@ -11,6 +11,9 @@ signal pediu_sair_partida
 @export var distancia_visao: float = 14.0
 @onready var dist_visao_sqrd := distancia_visao ** 2
 
+## Feitico Id de cura para ser bloqueado no final do jogo
+@export var feitico_id_cura_bloquear: String = "Cura"
+
 var jogador : Jogador
 var outros_jogadores: Array[Jogador]
 
@@ -79,6 +82,12 @@ func tela_fim(jogador_ganhador: Jogador) -> void:
 	if not jogador_ganhador: return
 	var nome_ganhador: String = jogador_ganhador.dados_jogador.nome
 	hud.mostrar_tela_fim(jogador == jogador_ganhador, nome_ganhador)
+
+# Bloquear Cura
+# -----------------------------------------------------------------------------
+
+func bloquear_cura() -> void:
+	lancador_feiticos.bloquear_feitico(feitico_id_cura_bloquear)
 
 # Outros jogadores
 # -----------------------------------------------------------------------------

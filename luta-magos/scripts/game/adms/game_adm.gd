@@ -106,6 +106,7 @@ func _fim_partida() -> void:
 # ---------
 func aplicar_dano_jogadores() -> void:
 	jogadores_adm.dimiuir_vida_jogadores(efeito_fim_tempo)
+	local_adm.bloquear_cura()
 
 
 # Modo Treino ---------
