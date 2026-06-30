@@ -36,7 +36,7 @@ metadata/_custom_type_script = "uid://dbe4px883cphk"
 
 [resource]
 script = ExtResource("8_warb5")
-feitico_id = "Ozempagic"
+feitico_id = "Cura"
 nome = "Sara-Mago"
 tipo = 2
 lancamento = 1
