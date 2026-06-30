@@ -48,6 +48,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_a8gqf")
 menu_pause = NodePath("MenuPause")
+cor_modulate_bloqueado = Color(0.53400004, 0.42000002, 0.6, 1)
 
 [node name="HudAim" type="Control" parent="." unique_id=1384346477]
 layout_mode = 1
