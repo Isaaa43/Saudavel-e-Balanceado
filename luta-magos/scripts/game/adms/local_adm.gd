@@ -22,6 +22,9 @@ func _ready() -> void:
 	hud.menu_pause.sensibilidade_mira_atualizada.connect(_atualizar_sensibilidade_mira)
 	hud.sair_partida.connect(_pedir_sair_partida)
 
+# Ajustar para jogador
+# -----------------------------------------------------------------------------
+
 func ajusta_para_jogador(_jogador: Jogador) -> void:
 	jogador = _jogador
 	_ajustar_hud()
@@ -47,6 +50,8 @@ func _ajustar_lancador_feiticos() -> void:
 	lancador_feiticos.sistema_mana = jogador.sistema_mana
 	# prende o lancador de feiticos na visao da camera
 	jogador.camera_jogador.set_target_remote_transform_mira(lancador_feiticos.get_path())
+# Lancar Feiticos
+# -----------------------------------------------------------------------------
 
 func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
 	Network.client.lancar_feitico(feitico_contexto)
@@ -54,8 +59,14 @@ func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
 	var anim := SistemaAnimacao.Animacao.ATACAR
 	jogador.jogador_corpo.sistema_animacao.acao(anim)
 
+# Configuracoes Jogador
+# -----------------------------------------------------------------------------
+
 func _atualizar_sensibilidade_mira(sensi: float) -> void:
 	jogador.camera_jogador.set_sensibilidade(sensi)
+
+# Fim partida
+# -----------------------------------------------------------------------------
 
 func _pedir_sair_partida() -> void:
 	pediu_sair_partida.emit()

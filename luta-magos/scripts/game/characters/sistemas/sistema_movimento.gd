@@ -39,7 +39,12 @@ func _process(delta: float) -> void:
 	# Add the gravity.
 	if not jogador.is_on_floor():
 		jogador.velocity += jogador.get_gravity() * delta
+	#
+	_process_movimentacao(delta)
 
+# Movimentacao
+# -----------------------------------------------------------------------------
+func _process_movimentacao(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("pular") and jogador.is_on_floor():
 		jogador.velocity.y = JUMP_VELOCITY

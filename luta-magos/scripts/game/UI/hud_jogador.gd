@@ -19,6 +19,10 @@ signal sair_partida
 
 var custo_mana_porcent: float = 0.0
 
+var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
+var idx_to_feitico_id : Dictionary[int, String] = {}
+var idx_atual := 1
+
 func _input(event):
 	# esc para sair do capture
 	if event.is_action_pressed("ui_cancel"):
@@ -52,9 +56,6 @@ func _ready() -> void:
 	mostrar_mana(1.0)
 
 
-var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
-var idx_to_feitico_id : Dictionary[int, String] = {}
-var idx_atual := 1
 func add_icon(feitico_id: String, icon) -> void:
 	feitico_id_to_icon[feitico_id] = icon
 
@@ -65,7 +66,7 @@ func selecionar_magia(idx: int) -> void:
 	texture_prev.texture = _idx_to_icon(_calc_add_idx(idx, -1) )
 	# prox
 	texture_prox.texture = _idx_to_icon(_calc_add_idx(idx, +1) )
-	
+	# atual
 	texture_atual.texture = _idx_to_icon(idx)
 
 func _idx_to_icon(idx: int) -> Texture2D:
