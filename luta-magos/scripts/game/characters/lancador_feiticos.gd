@@ -16,7 +16,11 @@ var hud_jogador: HUDJogador
 ## Peer id do jogador que eh dono desse lancador de feiticos
 var jogador_id : int
 
-var _cooldowns: Dictionary = {}
+## Segundos restantes de cooldown para um Feitico_id
+var _cooldowns: Dictionary[String, float] = {}
+
+## Lista de feitico_id de feiticos bloqueados
+var feiticos_bloqueados: Array[String]
 
 var selecao_feitico_id: int = 0
 
@@ -34,8 +38,7 @@ func _input(_event: InputEvent) -> void:
 		_tentar_lancar_feitico()
 
 func _process(delta: float) -> void:
-	for id in _cooldowns:
-		_cooldowns[id] = maxf(0.0, _cooldowns[id] - delta)
+	_process_cooldowns(delta)
 	
 	if Input.is_action_just_pressed("feitico_prox"):
 		hud_jogador.add_idx(1)
@@ -49,6 +52,13 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("acao"):
 		_tentar_canalizar_feitico()
+
+func _process_cooldowns(delta: float) -> void:
+	for feitico_id : String in _cooldowns:
+		# atualiza o cooldown
+		_cooldowns[feitico_id] = maxf(0.0, _cooldowns[feitico_id] - delta)
+		# atualiza na hud o valor de lancavel ou nao
+		hud_jogador.update_lancavel(feitico_id, _esta_lancavel(feitico_id))
 
 # Lancar Feitico
 # -----------------------------------------------------------------------------
@@ -73,11 +83,23 @@ func _tentar_canalizar_feitico() -> void:
 func get_feitico_escolhido() -> String:
 	return hud_jogador.get_feitico_id_from_idx()
 
+## Retorna True somente se dado feitico_id esta apto a ser lancado
+func _esta_lancavel(feitico_id: String) -> bool:
+	# verifica se esta no cooldown, (nao esta no cooldown, se o cooldown for 0.0)
+	var esta_cooldown: bool = _cooldowns.get(feitico_id, 0) > 0.01
+	# esta bloqueado
+	var bloqueado: bool = feiticos_bloqueados.has(feitico_id)
+	# pode ser lancado
+	#var lancavel: bool = (not esta_cooldown) and (not bloqueado)
+	var lancavel: bool = not (esta_cooldown or bloqueado)
+	return lancavel
+
 ## Processa cooldown, custo de mana, contexto para lancar o feitico 
 func processar_lancar_feitico(feitico_id: String) -> void:
 	# --- Faz as verificacoes antes de lancar ---
-	# se estiver no cooldown, nao continue
-	if _cooldowns.get(feitico_id, 0) > 0.01: return
+	
+	# se nao estiver lancavel, nao continue
+	if not _esta_lancavel(feitico_id): return
 	
 	# pega as definicoes do feitico
 	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
@@ -108,6 +130,18 @@ func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	lancar_feitico.emit(feitico_contexto)
 	# emite o audio
 	audio_stream_player.play()
+
+
+# Bloqueios de feitico
+# -----------------------------------------------------------------------------
+
+func bloquear_feitico(feitico_id: String, bloqueado: bool = true) -> void:
+	# bloqueia
+	if bloqueado:
+		feiticos_bloqueados.append(feitico_id)
+	# desbloqueia, se estiver bloqueado
+	elif feiticos_bloqueados.has(feitico_id):
+		feiticos_bloqueados.erase(feitico_id)
 
 # Diracao da Mira
 # -----------------------------------------------------------------------------
