@@ -53,6 +53,9 @@ func _ajustar_lancador_feiticos() -> void:
 	lancador_feiticos.sistema_mana = jogador.sistema_mana
 	# prende o lancador de feiticos na visao da camera
 	jogador.camera_jogador.set_target_remote_transform_mira(lancador_feiticos.get_path())
+	# conecta sinais do jogador ao lancador de feiticos
+	jogador.sistema_movimento.caiu_chao.connect(lancador_feiticos.jogador_caiu_chao)
+
 # Lancar Feiticos
 # -----------------------------------------------------------------------------
 

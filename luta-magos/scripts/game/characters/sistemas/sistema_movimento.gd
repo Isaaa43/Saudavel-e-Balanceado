@@ -2,6 +2,7 @@ class_name SistemaMovimento
 extends Node
 
 signal congelado(duracao_seg: bool)
+signal caiu_chao
 
 @export var velocidade = 5.0
 const JUMP_VELOCITY = 4.5
@@ -10,6 +11,13 @@ const JUMP_VELOCITY = 4.5
 var velocidade_mult := 1.0
 
 @export var jogador: JogadorCorpo
+
+var esta_chao: bool :
+	set(_esta_chao):
+		# nao estava no chao, mas agora esta
+		if (not esta_chao) and _esta_chao: 
+			caiu_chao.emit()
+		esta_chao = _esta_chao
 
 func congelar(duracao_seg: float) -> void:
 	# efeitos de congelamento
@@ -42,9 +50,12 @@ func _process(delta: float) -> void:
 	#
 	_process_movimentacao(delta)
 
+func _physics_process(_delta: float) -> void:
+	esta_chao = jogador.is_on_floor()
+
 # Movimentacao
 # -----------------------------------------------------------------------------
-func _process_movimentacao(delta: float) -> void:
+func _process_movimentacao(_delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("pular") and jogador.is_on_floor():
 		jogador.velocity.y = JUMP_VELOCITY
@@ -62,5 +73,6 @@ func _process_movimentacao(delta: float) -> void:
 		jogador.velocity.x = move_toward(jogador.velocity.x, 0, velocidade * velocidade_mult)
 		jogador.velocity.z = move_toward(jogador.velocity.z, 0, velocidade * velocidade_mult)
 		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.IDLE)
-
+	
+	# Move and Slide aplica o delta automaticamente
 	jogador.move_and_slide()

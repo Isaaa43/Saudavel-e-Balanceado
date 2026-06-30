@@ -7,3 +7,6 @@ func _process(delta: float) -> void:
 		jogador.velocity += jogador.get_gravity() * delta
 
 	jogador.move_and_slide()
+
+func _physics_process(_delta: float) -> void:
+	pass

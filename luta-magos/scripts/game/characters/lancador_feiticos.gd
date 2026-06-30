@@ -143,6 +143,8 @@ func bloquear_feitico(feitico_id: String, bloqueado: bool = true) -> void:
 	elif feiticos_bloqueados.has(feitico_id):
 		feiticos_bloqueados.erase(feitico_id)
 
+func jogador_caiu_chao() -> void:
+	print("jogador_caiu_chao")
 # Diracao da Mira
 # -----------------------------------------------------------------------------
 
