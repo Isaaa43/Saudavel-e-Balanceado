@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="2_a1wc5"]
 [ext_resource type="Resource" uid="uid://c71eh6rcojqh0" path="res://feiticos/FuraSapato/FD_fura_sapato.tres" id="3_k3scm"]
 [ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="4_gblex"]
-[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Ozempagic/FD_ozempagic.tres" id="5_a1wc5"]
+[ext_resource type="Resource" uid="uid://cy0n07ui1fty2" path="res://feiticos/Cura/FD_cura.tres" id="5_a1wc5"]
 [ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="6_axbdb"]
 
 [resource]

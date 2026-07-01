@@ -3,21 +3,8 @@
 [ext_resource type="Script" uid="uid://dicba2bqunx6r" path="res://scripts/game/entidades/entidade_feitico.gd" id="1_edxt4"]
 [ext_resource type="Script" uid="uid://b55gy4hmxuw8g" path="res://feiticos/FuraSapato/static_body_armadilha.gd" id="3_edd6a"]
 [ext_resource type="Script" uid="uid://dc2tlxsdy1hq0" path="res://scripts/game/characters/sistemas/receptor_efeitos.gd" id="4_edd6a"]
-[ext_resource type="Material" uid="uid://c25lrwh5o1e6r" path="res://assets/feiticos/revelacao/revelado_mat.tres" id="4_edxt4"]
 [ext_resource type="Script" uid="uid://rm63or2vve4e" path="res://scripts/game/characters/sistemas/sistema_efeitos_feiticos.gd" id="4_krbqj"]
 [ext_resource type="PackedScene" uid="uid://b2stfejm340pq" path="res://feiticos/FuraSapato/armadilha_3d.tscn" id="6_edxt4"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xe436"]
-top_radius = 1.2
-bottom_radius = 1.2
-height = 0.15
-radial_segments = 32
-rings = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7d02w"]
-albedo_color = Color(0.1055698, 0.10259976, 0.058383837, 1)
-metallic_specular = 0.0
-roughness = 0.72
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_krbqj"]
 height = 0.19372559
@@ -41,18 +28,13 @@ script = ExtResource("4_krbqj")
 entidade = NodePath("../..")
 metadata/_custom_type_script = "uid://rm63or2vve4e"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973333432]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018716335, 0)
-visible = false
-material_overlay = ExtResource("4_edxt4")
-mesh = SubResource("CylinderMesh_xe436")
-surface_material_override/0 = SubResource("StandardMaterial3D_7d02w")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1579397504 node_paths=PackedStringArray("mesh_instance_3d")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1579397504 node_paths=PackedStringArray("entidade", "mesh_instance_3d")]
 collision_layer = 327680
 collision_mask = 0
 script = ExtResource("3_edd6a")
+entidade = NodePath("../Entidade")
 mesh_instance_3d = NodePath("../Armadilha3d/Armadilha/Armature/Skeleton3D/beartrap2low")
+transparencia_revelado_criado = 0.65
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2029491153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1428833, 0)

@@ -69,6 +69,7 @@ func mudar_shader(tipo: ShadersTipo) -> void:
 			mesh_instance_3d.material_overlay = null
 		ShadersTipo.REVELADO:
 			mesh_instance_3d.material_overlay = REVELADO_MAT
+			_set_visivel(true)
 		ShadersTipo.CONGELADO:
 			mesh_instance_3d.material_overlay = CONGELADO_MAT
 	curr_shader = tipo
@@ -111,7 +112,62 @@ func _process_network_head(_delta: float) -> void:
 	# pega a rotacao atual da cabeca
 	var current_rot := skeleton_3d.get_bone_pose_rotation(bone_head_idx)
 	# faz o slerp para deixar mais smooth
-	var smooth_rot := current_rot.slerp(target_rot, _delta)
+	var smooth_rot := current_rot.slerp(target_rot, _delta * 10)
 	
 	# rotaciona o bone da cabeca
 	skeleton_3d.set_bone_pose_rotation(bone_head_idx, smooth_rot)
+
+# Outro jogador visivel 
+# -----------------------------------------------------------------------------
+
+## Chamado para dizer se o jogador (online) esta em uma distancia visivel do jogador (PC)
+func visivel_distancia(visivel: bool) -> void:
+	if curr_shader == ShadersTipo.REVELADO:
+		_set_visivel(true)
+		return
+	
+	await _set_visivel(visivel, true)
+
+const transparency_threshold := 0.55
+const duracao_fade := 0.25
+var fade_em_andamento: bool = false
+
+## Muda a visibilidade do jogador (online) para no jogador (PC)
+func _set_visivel(visivel: bool, fade_animation: bool = false) -> void:
+	# se ja esta, nao mude nada, pare
+	if visible == visivel: return
+	
+	# se nao eh para ter animacao, so mude e pare
+	if not fade_animation:
+		visible = visivel
+		frogger_skinned.transparency = 0.0
+		return
+	
+	# se ja tem um fade em andamento, nao comece outro
+	if fade_em_andamento: return
+		
+	# deixa visivel para aparecer os efeitos
+	visible = true
+	fade_em_andamento = true
+	
+	# se esta invisivel, e eh para ficar visivel
+	if visivel:
+		var tween := create_tween()
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(frogger_skinned, "transparency", 
+							transparency_threshold, duracao_fade).from(1.0)
+		await tween.finished
+	# se esta visivel, e eh para ficar invisivel
+	else:
+		var tween := create_tween()
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(frogger_skinned, "transparency", 
+							1.0, duracao_fade).from(transparency_threshold)
+		await tween.finished
+	
+	# no fim, deixe opaco, e mude para visibilidade desejada
+	fade_em_andamento = false
+	frogger_skinned.transparency = 0.0
+	visible = visivel

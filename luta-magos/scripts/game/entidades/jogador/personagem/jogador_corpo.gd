@@ -3,7 +3,6 @@ extends CharacterBody3D
 
 var camera_jogador: CameraJogador
 
-@onready var sphere_visao_limitada: CSGCylinder3D = $CSGVisaoLimitada
 @onready var sistema_animacao: SistemaAnimacao = $SistemaAnimacao
 
 @onready var remote_transform_cabeca: RemoteTransform3D = $Corpo/Cabeca/RemoteTransformCabeca

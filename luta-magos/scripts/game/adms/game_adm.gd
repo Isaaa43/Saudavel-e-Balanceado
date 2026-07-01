@@ -29,6 +29,7 @@ func _ready() -> void:
 func _conectar_sinais() -> void:
 	# jogadores
 	jogadores_adm.recebido_jogador_authority.connect(local_adm.ajusta_para_jogador)
+	jogadores_adm.recebido_jogador_outros.connect(local_adm.outro_jogador)
 	jogadores_adm.recebido_dados_jog_authority.connect(local_adm.ajusta_dados_jogador)
 	# timer
 	timer_adm.tempo_atualizado.connect(local_adm.ajusta_tempo_partida)
@@ -105,6 +106,7 @@ func _fim_partida() -> void:
 # ---------
 func aplicar_dano_jogadores() -> void:
 	jogadores_adm.dimiuir_vida_jogadores(efeito_fim_tempo)
+	local_adm.bloquear_cura()
 
 
 # Modo Treino ---------

@@ -8,16 +8,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_30vjq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5tbn"]
-albedo_color = Color(1, 0.65333337, 0.35000002, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_s5tbn"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf517"]
-albedo_color = Color(0.9298859, 0.430138, 0, 1)
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5tbn"]
 properties/0/path = NodePath("JogadorCorpo:position")
 properties/0/spawn = true
@@ -31,9 +21,6 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("JogadorCorpo/SistemaAnimacao:synced_animacao")
 properties/3/spawn = true
 properties/3/replication_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxy06"]
-albedo_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
 
 [node name="JogadorCorpo" type="CharacterBody3D" unique_id=1543690626]
 slide_on_ceiling = false
@@ -53,12 +40,6 @@ script = ExtResource("3_3ed3w")
 [node name="Rig_Sapo" parent="Corpo" unique_id=378789027 instance=ExtResource("3_mxy06")]
 transform = Transform3D(-6.5, 0, -5.68248e-07, 0, 6.5, 0, 5.68248e-07, 0, -6.5, 0, 0, 0)
 
-[node name="MeshCorpo" type="MeshInstance3D" parent="Corpo" unique_id=211919447]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_30vjq")
-surface_material_override/0 = SubResource("StandardMaterial3D_s5tbn")
-
 [node name="Cabeca" type="Node3D" parent="Corpo" unique_id=758590712]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
@@ -68,12 +49,6 @@ update_scale = false
 
 [node name="CabecaPivot" type="Node3D" parent="Corpo/Cabeca" unique_id=941134249]
 transform = Transform3D(1, 0, 0, 0, 0.9999633, -0.008569461, 0, 0.008569461, 0.9999633, 0, 0, -0.15)
-
-[node name="MeshCabeca" type="MeshInstance3D" parent="Corpo/Cabeca/CabecaPivot" unique_id=51166379]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.099999994)
-visible = false
-mesh = SubResource("SphereMesh_s5tbn")
-surface_material_override/0 = SubResource("StandardMaterial3D_qf517")
 
 [node name="AudioPlayerDano" type="AudioStreamPlayer3D" parent="." unique_id=1671122780]
 stream = ExtResource("2_dbt5w")
@@ -98,14 +73,5 @@ outline_size = 16
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=22801627]
 root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
-
-[node name="CSGVisaoLimitada" type="CSGCylinder3D" parent="." unique_id=1313372676]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013138771, -0.00962162, -0.02308309)
-visible = false
-flip_faces = true
-radius = 12.0
-height = 50.0
-sides = 64
-material = SubResource("StandardMaterial3D_mxy06")
 
 [editable path="Corpo/Rig_Sapo"]

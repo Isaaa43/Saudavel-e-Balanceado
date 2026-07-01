@@ -11,6 +11,8 @@ extends Resource
 @export var nome: String = ""
 ## Tipo do feitico
 @export var tipo : Feitico.Tipo = Feitico.Tipo.PROJETIL
+## Tipo de Lancamento do Feitico
+@export var lancamento : Feitico.Lancamento = Feitico.Lancamento.DISPARO
 ## Espaco que o feitico ocupa
 @export var espaco : Feitico.Espaco = Feitico.Espaco.SUPORTE
 ## Texto descritivo da carta

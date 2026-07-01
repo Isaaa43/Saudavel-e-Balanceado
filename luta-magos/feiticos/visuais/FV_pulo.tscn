@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://r3y6a1yivdx4"]
 
+[ext_resource type="Script" uid="uid://buxhtfr1kh8ar" path="res://feiticos/visuais/fv_pulo.gd" id="1_85n2b"]
 [ext_resource type="Texture2D" uid="uid://dg4dujitpfubo" path="res://assets/vfx/particulaFumaça.png" id="1_rtoca"]
 [ext_resource type="Texture2D" uid="uid://qljdpaows0ca" path="res://assets/vfx/bola.png" id="2_85n2b"]
 
@@ -45,17 +46,26 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_rjuuh")
 size = Vector2(0.1, 0.1)
 
-[node name="FV_pulo" type="Node3D" unique_id=2102210596]
+[node name="FV_pulo" type="Node3D" unique_id=2102210596 node_paths=PackedStringArray("gpu_particles_lentas", "gpu_particles_rapidas")]
+script = ExtResource("1_85n2b")
+gpu_particles_lentas = NodePath("CSGSphere3D/GPUParticles_lentas")
+gpu_particles_rapidas = NodePath("CSGSphere3D/GPUParticles_rapidas")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=784250052]
 transparency = 1.0
+radial_segments = 4
+rings = 2
 
 [node name="GPUParticles_lentas" type="GPUParticles3D" parent="CSGSphere3D" unique_id=1859184882]
 transform = Transform3D(1.7600001, 0, 0, 0, 0.0077250567, 0, 0, 0, 1.7600001, 0, 0, 0)
+emitting = false
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_skv48")
 draw_pass_1 = SubResource("QuadMesh_a3yn8")
 
 [node name="GPUParticles_rapidas" type="GPUParticles3D" parent="CSGSphere3D" unique_id=217846348]
 transform = Transform3D(1, 0, 0, 0, 0.011003491, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_suoef")
 draw_pass_1 = SubResource("QuadMesh_ujhqm")

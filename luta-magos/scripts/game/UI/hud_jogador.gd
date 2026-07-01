@@ -19,6 +19,15 @@ signal sair_partida
 
 var custo_mana_porcent: float = 0.0
 
+var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
+var idx_to_feitico_id : Dictionary[int, String] = {}
+var idx_atual := 1
+
+## Para dado Feitico_id marca se esse feitico esta no lancavel (e pode ser usado)
+var esta_lancavel_feitico_id: Dictionary[String, bool] = {}
+## Cor do modulate no icone que nao esta apto a ser lancado
+@export var cor_modulate_bloqueado := Color.WEB_GRAY
+
 func _input(event):
 	# esc para sair do capture
 	if event.is_action_pressed("ui_cancel"):
@@ -52,9 +61,6 @@ func _ready() -> void:
 	mostrar_mana(1.0)
 
 
-var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
-var idx_to_feitico_id : Dictionary[int, String] = {}
-var idx_atual := 1
 func add_icon(feitico_id: String, icon) -> void:
 	feitico_id_to_icon[feitico_id] = icon
 
@@ -65,8 +71,14 @@ func selecionar_magia(idx: int) -> void:
 	texture_prev.texture = _idx_to_icon(_calc_add_idx(idx, -1) )
 	# prox
 	texture_prox.texture = _idx_to_icon(_calc_add_idx(idx, +1) )
-	
+	# atual
 	texture_atual.texture = _idx_to_icon(idx)
+	# verifica se esta apto a ser lancado
+	var feitico_id: String = idx_to_feitico_id[idx]
+	if esta_lancavel_feitico_id.get(feitico_id, true):
+		texture_atual.modulate = Color.WHITE
+	else:
+		texture_atual.modulate = cor_modulate_bloqueado
 
 func _idx_to_icon(idx: int) -> Texture2D:
 	return feitico_id_to_icon[idx_to_feitico_id[idx]]
@@ -89,6 +101,17 @@ func _calc_add_idx(idx: int, qnt: int) -> int:
 
 func add_idx(qnt: int ) -> void:
 	idx_atual = _calc_add_idx(idx_atual, qnt)
+	selecionar_magia(idx_atual)
+
+func update_lancavel(feitico_id: String, esta_lancavel: bool) -> void:
+	# mudou a condeicao de um momento para o outro
+	var mudou : bool = esta_lancavel != esta_lancavel_feitico_id.get(feitico_id, true)
+	# -- se nao mudou, nao precisa fazer mais nada
+	if not mudou: return
+	# -- se mudou
+	# atualiza a condicao de lancar
+	esta_lancavel_feitico_id[feitico_id] = esta_lancavel
+	# chama de novo selecionar, para atualizar o icone
 	selecionar_magia(idx_atual)
 
 func mostrar_vida(porcent_vida: float) -> void:

@@ -42,11 +42,7 @@ func _ready() -> void:
 		camera_jogador.queue_free()
 		sistema_movimento.queue_free()
 		jogador_corpo.set_physics_process(true) ##
-		jogador_corpo.sphere_visao_limitada.queue_free()
 		return
-	
-	if TrocaCenaTemp.is_treino:
-		jogador_corpo.sphere_visao_limitada.queue_free()
 	
 	_ready_camera()
 	# conectar os sinais
@@ -59,13 +55,12 @@ func _ready_camera() -> void:
 	camera_jogador.start()
 	# linka a cabeca com a camera
 	jogador_corpo.conectar_camera(camera_jogador)
-	# 
+	# esconde o corpo desse jogador (jogador nao ve o proprio corpo)
 	jogador_corpo.esconder_mesh()
 
 # TODO: arrumar
 func _display_nome() -> void:
 	jogador_corpo._display_nome(dados_jogador)
-
 
 # -----------------------------------------------------------------------------
 # Efeitos de Feiticos - Entidade
