@@ -6,6 +6,13 @@ signal lancar_feitico(feitico_contexto: FeiticoContexto)
 @export var sistema_mana : SistemaMana
 @export var audio_cast : AudioStream
 
+@export_group("Lidar com feitico de Salto")
+## Feitico id do feitico a ser bloqueado ate o jogador cair no chao
+@export var feitico_id_bloqueado_ate_cair_chao: String = "PuloImpulsionado"
+## Quantidade de usos do feitico, ate o jogador cair no chao
+@export var qtde_usos_ate_chao: int = 2
+var qtde_usos_ate_chao_atual : int = 0
+
 @onready var registro_feiticos: RegistroFeiticos = Registros.reg_feiticos
 
 @onready var ray_cast_visao: RayCast3D = $RayCast3D
@@ -130,6 +137,9 @@ func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
 	lancar_feitico.emit(feitico_contexto)
 	# emite o audio
 	audio_stream_player.play()
+	# contar para o salto
+	if feitico_contexto.feitico_id == feitico_id_bloqueado_ate_cair_chao:
+		_usar_salto()
 
 
 # Bloqueios de feitico
@@ -144,7 +154,9 @@ func bloquear_feitico(feitico_id: String, bloqueado: bool = true) -> void:
 		feiticos_bloqueados.erase(feitico_id)
 
 func jogador_caiu_chao() -> void:
-	print("jogador_caiu_chao")
+	bloquear_feitico(feitico_id_bloqueado_ate_cair_chao, false)
+	qtde_usos_ate_chao_atual = 0
+
 # Diracao da Mira
 # -----------------------------------------------------------------------------
 
@@ -180,3 +192,12 @@ func _mostrar_custo_mana(feitico_id: String) -> void:
 		hud_jogador.atualizar_custo_mana_previsto(custo_porcent)
 	else:
 		hud_jogador.atualizar_custo_mana_previsto(0.0)
+
+# TODO: arranjar solucao melhor
+# Lidar com salto
+# -----------------------------------------------------------------------------
+
+func _usar_salto() -> void:
+	qtde_usos_ate_chao_atual += 1
+	if qtde_usos_ate_chao_atual >= qtde_usos_ate_chao:
+		bloquear_feitico(feitico_id_bloqueado_ate_cair_chao, true)
