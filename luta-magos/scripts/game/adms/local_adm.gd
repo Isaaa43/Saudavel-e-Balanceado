@@ -99,6 +99,12 @@ func outro_jogador(_jogador: Jogador) -> void:
 
 func _physics_process(_delta: float) -> void:
 	for jog: Jogador in outros_jogadores:
-		var dist_sqrd := jog.jogador_corpo.global_position.distance_squared_to(jogador.jogador_corpo.global_position)
+		var global_pos_jog_outro: Vector3 = jog.jogador_corpo.global_position
+		var global_pos_jog_local: Vector3 = jogador.jogador_corpo.global_position
+		# tira o componente de altura
+		global_pos_jog_outro.y = 0.0
+		global_pos_jog_local.y = 0.0
+		# calcula a distancia ao quadrado
+		var dist_sqrd := global_pos_jog_local.distance_squared_to(global_pos_jog_outro)
 		var visivel := dist_sqrd < dist_visao_sqrd
 		jog.jogador_corpo.mesh_corpo.visivel_distancia(visivel)
