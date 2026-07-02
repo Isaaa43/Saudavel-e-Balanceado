@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dd6ea2wcmjvt1" path="res://scripts/game/entidades/jogador/personagem/corpo.gd" id="3_3ed3w"]
 [ext_resource type="PackedScene" uid="uid://dxrs17vw4ikxp" path="res://assets/personagem/rig_sapo.tscn" id="3_mxy06"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://l3u3vj7ayk0s" path="res://cenas/game/entidades/jogador/personagem/movimento_anim_state_machine.tres" id="3_u0vdn"]
+[ext_resource type="AudioStream" uid="uid://b5ybif0fowt4p" path="res://assets/audios/feiticos/congelar.wav" id="6_u0vdn"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0vdn"]
 animation = &"Ataque"
@@ -101,6 +102,9 @@ update_scale = false
 
 [node name="CabecaPivot" type="Node3D" parent="Corpo/Cabeca" unique_id=941134249]
 transform = Transform3D(1, 0, 0, 0, 0.9999633, -0.008569461, 0, 0.008569461, 0.9999633, 0, 0, -0.15)
+
+[node name="AudioPlayerCongelado" type="AudioStreamPlayer3D" parent="." unique_id=1821965045]
+stream = ExtResource("6_u0vdn")
 
 [node name="AudioPlayerDano" type="AudioStreamPlayer3D" parent="." unique_id=1671122780]
 stream = ExtResource("2_dbt5w")
