@@ -31,16 +31,17 @@ func _ready() -> void:
 	animation_tree_movimento.anim_player = animation_player.get_path()
 	# so for o jogador online)
 	if not is_multiplayer_authority():
-		set_process(false)
+		set_physics_process(false)
 
 ## Pausa e toca a animacao atual [br]
 ## [code]True[/code] para pausar a animacao [br]
 ## [code]False[/code] para voltar a tocar a animacao
 func toggle_pausar(pausar: bool) -> void:
 	if pausar:
+		animation_tree_movimento.active = false
 		animation_player.pause()
 	else:
-		animation_player.play(animation_player.current_animation)
+		animation_tree_movimento.active = true
 
 
 func _physics_process(_delta: float) -> void:
