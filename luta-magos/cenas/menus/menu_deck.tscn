@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/menu_deck/CardGridItem.tscn" id="7_gr7sa"]
 [ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="9_k0n5w"]
 [ext_resource type="Texture2D" uid="uid://c1t4tortw1jtg" path="res://temas/menus/deck/LIVRO.png" id="10_6eq1e"]
+[ext_resource type="Texture2D" uid="uid://rc775mhxren1" path="res://temas/menus/deck/GRIMORIO_SELECT.png" id="11_i2h36"]
 [ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="11_k0n5w"]
 [ext_resource type="Resource" uid="uid://bwr5e2unjcuwg" path="res://cenas/menus/menu_deck/grimorio_ataque.tres" id="12_6eq1e"]
+[ext_resource type="Texture2D" uid="uid://dbig8170diba3" path="res://temas/menus/deck/BOTAO FECHAR LIVRO.png" id="12_i2h36"]
 [ext_resource type="Resource" uid="uid://rleu7k0fj605" path="res://cenas/menus/menu_deck/grimorio_balanceado.tres" id="12_wfhn1"]
 [ext_resource type="Resource" uid="uid://d1tciwx82agrt" path="res://cenas/menus/menu_deck/grimorio_armadilha.tres" id="14_devs0"]
 [ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="15_devs0"]
@@ -22,13 +24,13 @@ metadata/_custom_type_script = "uid://6v8v2o714e64"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gv3pd"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kl51j"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2h36"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0n5w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wfhn1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kl51j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1wcd"]
 bg_color = Color(0.13229999, 0.21, 0.16597001, 1)
@@ -70,6 +72,21 @@ grow_vertical = 2
 texture = ExtResource("10_6eq1e")
 expand_mode = 3
 
+[node name="Grimorio" type="TextureRect" parent="." unique_id=965214121]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 46.0
+offset_right = -841.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_i2h36")
+expand_mode = 2
+stretch_mode = 4
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=891563215]
 layout_mode = 1
 anchors_preset = 15
@@ -88,10 +105,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_hcvlw")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/DeckPanel" unique_id=2105672495]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 27
+theme_override_constants/margin_top = 139
+theme_override_constants/margin_right = 98
+theme_override_constants/margin_bottom = 97
 
 [node name="VBoxDecks" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer" unique_id=799609081]
 layout_mode = 2
@@ -140,38 +157,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Limpar Grimório"
 
-[node name="Separador" type="Control" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks" unique_id=2044904237]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="VBoxGrimoriosSalvos" type="VBoxContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks" unique_id=906859131]
-layout_mode = 2
-
-[node name="LabelGrimoriosSalvos" type="Label" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos" unique_id=159042149]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Grimórios Salvos"
-horizontal_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos" unique_id=881988260]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
-
-[node name="GrimoriosList" type="ItemList" parent="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos/ScrollContainer" unique_id=463365094]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.37791893, 0.37791887, 0.3779187, 1)
-theme_override_constants/line_separation = 5
-theme_override_font_sizes/font_size = 25
-theme_override_styles/panel = SubResource("StyleBoxEmpty_kl51j")
-allow_reselect = true
-allow_search = false
-item_count = 2
-item_0/text = "Ataque"
-item_1/text = "Defesa"
-
 [node name="CardPoolPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1630717518]
 unique_name_in_owner = true
 layout_mode = 2
@@ -217,38 +202,41 @@ layout_mode = 2
 theme_override_constants/margin_left = -42
 theme_override_constants/margin_top = 138
 theme_override_constants/margin_right = 93
-theme_override_constants/margin_bottom = 102
+theme_override_constants/margin_bottom = 122
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=811642422]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=985742741]
 layout_mode = 2
 
-[node name="CardName" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=1750823515]
+[node name="VBoxInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox" unique_id=811642422]
+layout_mode = 2
+
+[node name="CardName" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=1750823515]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "CardName"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=1047566520]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=1047566520]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CardArt" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=367272998]
+[node name="CardArt" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo/HBoxContainer" unique_id=367272998]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 6
 
-[node name="CardTypeCost" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=702212210]
+[node name="CardTypeCost" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=702212210]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 
-[node name="CardDescription" type="RichTextLabel" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=719554911]
+[node name="CardDescription" type="RichTextLabel" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=719554911]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -256,21 +244,68 @@ theme_override_font_sizes/normal_font_size = 22
 text = "Descrição do feitiço selecionado"
 horizontal_alignment = 1
 
-[node name="AddButton" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBoxContainer" unique_id=440370027]
+[node name="AddButton" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=440370027]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Adicionar feitiço"
 
-[node name="ButtonVoltar" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=1939406467]
+[node name="Separador" type="Control" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox" unique_id=2044904237]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxGrimoriosSalvos" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox" unique_id=906859131]
+layout_mode = 2
+
+[node name="LabelGrimoriosSalvos" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxGrimoriosSalvos" unique_id=159042149]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Grimórios Salvos"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxGrimoriosSalvos" unique_id=881988260]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="GrimoriosList" type="ItemList" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxGrimoriosSalvos/ScrollContainer" unique_id=463365094]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.37791893, 0.37791887, 0.3779187, 1)
+theme_override_constants/line_separation = 5
+theme_override_font_sizes/font_size = 25
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kl51j")
+allow_reselect = true
+allow_search = false
+item_count = 2
+item_0/text = "Ataque"
+item_1/text = "Defesa"
+
+[node name="ButtonVoltar" type="Button" parent="." unique_id=1939406467]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1406.0
+offset_top = 8.0
+offset_right = 1807.0
+offset_bottom = 99.0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_m1wcd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gv3pd")
-text = "Sair da Edição
-de Grimório"
+text = "Voltar ao menu"
+flat = true
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ButtonVoltar" unique_id=301771942]
+position = Vector2(358, 45)
+scale = Vector2(0.31617647, 0.31617647)
+texture = ExtResource("12_i2h36")
+region_enabled = true
+region_rect = Rect2(0, 0, 272, 280)
 
 [node name="PopupPanelFeiticoDano" type="PopupPanel" parent="." unique_id=1040923461]
 disable_3d = true
@@ -347,5 +382,5 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="item_selected" from="MarginContainer/HBoxContainer/DeckPanel/MarginContainer/VBoxDecks/VBoxGrimoriosSalvos/ScrollContainer/GrimoriosList" to="." method="_on_grimorios_list_item_selected"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxGrimoriosSalvos/ScrollContainer/GrimoriosList" to="." method="_on_grimorios_list_item_selected"]
+[connection signal="pressed" from="ButtonVoltar" to="." method="_on_button_voltar_pressed"]
