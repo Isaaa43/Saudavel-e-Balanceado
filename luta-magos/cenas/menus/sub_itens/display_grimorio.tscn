@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="1_n5ww1"]
 [ext_resource type="Script" uid="uid://5or6m2uh4ptu" path="res://scripts/menus/sub_itens/display_grimorio.gd" id="1_q3yf3"]
+[ext_resource type="Texture2D" uid="uid://rc775mhxren1" path="res://temas/menus/deck/GRIMORIO_SELECT.png" id="2_oe2yp"]
 
 [node name="DisplayGrimorio" type="Control" unique_id=2088990354]
 layout_mode = 3
@@ -11,7 +12,18 @@ offset_right = 386.0
 grow_vertical = 2
 script = ExtResource("1_q3yf3")
 
+[node name="Bg" type="TextureRect" parent="." unique_id=1686139767]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oe2yp")
+expand_mode = 5
+
 [node name="LabelDeck" type="Label" parent="." unique_id=1456600935]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -31,9 +43,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 67.0
-offset_top = 124.0
+offset_top = 118.0
 offset_right = -60.0
-offset_bottom = -153.0
+offset_bottom = -124.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -58,9 +70,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -115.5
-offset_top = -89.0
+offset_top = -114.0
 offset_right = 115.5
-offset_bottom = -39.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
