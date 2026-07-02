@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpxpiydybrmt4"]
 
 [ext_resource type="Script" uid="uid://cp3qqx07m1vfm" path="res://scripts/menus/sub_itens/control_hacks.gd" id="1_mywko"]
+[ext_resource type="Texture2D" uid="uid://bph52qcmudb6r" path="res://temas/menus/deck/ICONES LIVRO 1.png" id="2_uadgx"]
 
 [node name="ControlHacks" type="Control" unique_id=2110335283]
 layout_mode = 3
@@ -14,6 +15,28 @@ offset_top = -110.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_mywko")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=549160508]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -59.0
+offset_right = 325.0
+offset_bottom = 100.0
+texture = ExtResource("2_uadgx")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=918690857]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.5
+offset_top = 2.0
+offset_right = 55.5
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "HACKS:"
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=594113538]
 layout_mode = 0
@@ -47,19 +70,6 @@ max_value = 6.0
 value = 3.0
 rounded = true
 allow_greater = true
-
-[node name="Label" type="Label" parent="." unique_id=918690857]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -55.5
-offset_top = -53.0
-offset_right = 55.5
-offset_bottom = -11.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
-text = "HACKS:"
 
 [connection signal="value_changed" from="GridContainer/SpinBoxMana" to="." method="_on_spin_box_mana_value_changed"]
 [connection signal="value_changed" from="GridContainer/SpinBoxCartasDeck" to="." method="_on_spin_box_cartas_deck_value_changed"]
