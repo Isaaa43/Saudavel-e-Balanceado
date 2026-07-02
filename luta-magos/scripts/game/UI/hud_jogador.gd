@@ -15,6 +15,7 @@ signal sair_partida
 @onready var texture_atual: TextureRect = $SelecaoMagia/TextureAtual
 @onready var texture_prox: TextureRect = $SelecaoMagia/TextureProx
 
+@onready var efeitos: Control = $Efeitos
 @onready var congelado: TextureRect = $Efeitos/Congelado
 
 @onready var sprite_hit: Sprite2D = $HudAim/PivotCentro/SpriteHit
@@ -42,15 +43,18 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _ready() -> void:
+	# menu de pause
 	menu_pause.hide()
 	menu_pause.voltar_partida.connect(_esconder_menu_pause)
 	menu_pause.sair_partida.connect(func(): sair_partida.emit())
-	
+	# tela de fim de jogo
 	tela_fim.hide()
-	
+	# efeitos
+	efeitos.show()
 	congelado.hide()
+	# mira
 	sprite_hit.hide()
-	
+	# ajusta icones e feiticos por index
 	var idx: int = 0
 	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
 		var feitico_def = Registros.reg_feiticos.feiticos[feitico_id]
