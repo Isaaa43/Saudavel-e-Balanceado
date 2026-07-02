@@ -95,6 +95,7 @@ func bloquear_cura() -> void:
 # -----------------------------------------------------------------------------
 func outro_jogador(_jogador: Jogador) -> void:
 	outros_jogadores.append(_jogador)
+	_jogador.sistema_vida.levou_dano.connect(_mostrar_hit)
 
 func _physics_process(_delta: float) -> void:
 	for jog: Jogador in outros_jogadores:
@@ -107,3 +108,6 @@ func _physics_process(_delta: float) -> void:
 		var dist_sqrd := global_pos_jog_local.distance_squared_to(global_pos_jog_outro)
 		var visivel := dist_sqrd < dist_visao_sqrd
 		jog.jogador_corpo.mesh_corpo.visivel_distancia(visivel)
+
+func _mostrar_hit(_dano: float) -> void:
+	hud.mostrar_hit()

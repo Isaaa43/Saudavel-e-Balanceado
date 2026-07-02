@@ -17,6 +17,8 @@ signal sair_partida
 
 @onready var congelado: TextureRect = $Efeitos/Congelado
 
+@onready var sprite_hit: Sprite2D = $HudAim/PivotCentro/SpriteHit
+
 var custo_mana_porcent: float = 0.0
 
 var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
@@ -47,6 +49,7 @@ func _ready() -> void:
 	tela_fim.hide()
 	
 	congelado.hide()
+	sprite_hit.hide()
 	
 	var idx: int = 0
 	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
@@ -133,6 +136,11 @@ func atualizar_custo_mana_previsto(porcent_custo_mana: float) -> void:
 	custo_mana_porcent = porcent_custo_mana
 	# mostra custo de mana
 	mostrar_mana(texture_mana_prog_atual.scale.x)
+
+func mostrar_hit() -> void:
+	sprite_hit.show()
+	await get_tree().create_timer(0.4).timeout
+	sprite_hit.hide()
 
 func efeito_congelado(duracao_seg: float) -> void:
 	congelado.material.set_shader_parameter("coverage", 0.0)
