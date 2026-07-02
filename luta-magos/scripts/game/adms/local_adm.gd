@@ -99,9 +99,14 @@ func outro_jogador(_jogador: Jogador) -> void:
 
 func _physics_process(_delta: float) -> void:
 	# se ja estiver saindo do jogo
+	if not is_instance_valid(jogador): return
 	if not is_instance_valid(jogador.jogador_corpo): return
 	# calcule a distancia dos outros jogadores com o jogador local
 	for jog: Jogador in outros_jogadores:
+		# se nao estiver com o corpo, ignore
+		if not jog.jogador_corpo.is_inside_tree(): return
+		if not jogador.jogador_corpo.is_inside_tree(): return
+		# pega a posicao dos jogadores
 		var global_pos_jog_outro: Vector3 = jog.jogador_corpo.global_position
 		var global_pos_jog_local: Vector3 = jogador.jogador_corpo.global_position
 		# tira o componente de altura
