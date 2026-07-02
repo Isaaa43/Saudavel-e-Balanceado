@@ -181,11 +181,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_i2h36")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/CardPoolPanel" unique_id=469503401]
 layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 252
+theme_override_constants/margin_right = 55
+theme_override_constants/margin_bottom = 92
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CardPoolPanel/MarginContainer" unique_id=1560006840]
 layout_mode = 2
 
 [node name="CardPoolTitle" type="Label" parent="MarginContainer/HBoxContainer/CardPoolPanel/MarginContainer/VBoxContainer" unique_id=466778573]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "Feitiços"
@@ -209,10 +214,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_wfhn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/InfoPanel" unique_id=692050293]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = -42
+theme_override_constants/margin_top = 138
+theme_override_constants/margin_right = 93
+theme_override_constants/margin_bottom = 102
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=811642422]
 layout_mode = 2
