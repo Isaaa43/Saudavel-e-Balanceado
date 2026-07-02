@@ -5,6 +5,7 @@ signal lancar_feitico(feitico_contexto: FeiticoContexto)
 
 @export var sistema_mana : SistemaMana
 @export var audio_cast : AudioStream
+@export var audio_sem_mana : AudioStream
 
 @export_group("Lidar com feitico de Salto")
 ## Feitico id do feitico a ser bloqueado ate o jogador cair no chao
@@ -111,7 +112,9 @@ func processar_lancar_feitico(feitico_id: String) -> void:
 	# pega as definicoes do feitico
 	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
 	# verifica se tem mana o suficiente para criar o feitico
-	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): return
+	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): 
+		_som_sem_mana()
+		return
 	
 	# --- Tenta criar o Contexto do Feitico ---
 	# cria o contexto do feitico
@@ -143,11 +146,21 @@ func _lancar_feitico(feitico_contexto : FeiticoContexto, tocar_som_cast: bool = 
 	lancar_feitico.emit(feitico_contexto)
 	# audio de cast
 	if tocar_som_cast:
-		audio_stream_player.play()
+		_som_cast()
 	# contar para o salto
 	if feitico_contexto.feitico_id == feitico_id_bloqueado_ate_cair_chao:
 		_usar_salto()
 
+# Som
+# -----------------------------------------------------------------------------
+
+func _som_cast() -> void:
+	audio_stream_player.stream = audio_cast
+	audio_stream_player.play()
+
+func _som_sem_mana() -> void:
+	audio_stream_player.stream = audio_sem_mana
+	audio_stream_player.play()
 
 # Bloqueios de feitico
 # -----------------------------------------------------------------------------
