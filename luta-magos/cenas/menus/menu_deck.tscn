@@ -11,7 +11,10 @@
 [ext_resource type="Resource" uid="uid://bwr5e2unjcuwg" path="res://cenas/menus/menu_deck/grimorio_ataque.tres" id="12_6eq1e"]
 [ext_resource type="Texture2D" uid="uid://dbig8170diba3" path="res://temas/menus/deck/BOTAO FECHAR LIVRO.png" id="12_i2h36"]
 [ext_resource type="Resource" uid="uid://rleu7k0fj605" path="res://cenas/menus/menu_deck/grimorio_balanceado.tres" id="12_wfhn1"]
+[ext_resource type="Texture2D" uid="uid://bph52qcmudb6r" path="res://temas/menus/deck/ICONES LIVRO 1.png" id="13_devs0"]
 [ext_resource type="Resource" uid="uid://d1tciwx82agrt" path="res://cenas/menus/menu_deck/grimorio_armadilha.tres" id="14_devs0"]
+[ext_resource type="Theme" uid="uid://dhv7l0hdo84vx" path="res://temas/menu_deck_theme.tres" id="14_g164b"]
+[ext_resource type="Texture2D" uid="uid://dyx3ti01qt3rb" path="res://temas/menus/deck/BOTAO ADICIONAR LIVRO.png" id="14_kl51j"]
 [ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="15_devs0"]
 
 [sub_resource type="Resource" id="Resource_gv3pd"]
@@ -204,6 +207,13 @@ theme_override_constants/margin_top = 138
 theme_override_constants/margin_right = 93
 theme_override_constants/margin_bottom = 122
 
+[node name="IconeBG" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=717942907]
+visible = false
+self_modulate = Color(1, 1, 1, 0.92941177)
+layout_mode = 2
+texture = ExtResource("13_devs0")
+expand_mode = 4
+
 [node name="VBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer" unique_id=985742741]
 layout_mode = 2
 
@@ -213,6 +223,7 @@ layout_mode = 2
 [node name="CardName" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=1750823515]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("14_g164b")
 theme_override_font_sizes/font_size = 28
 text = "CardName"
 horizontal_alignment = 1
@@ -233,6 +244,7 @@ stretch_mode = 6
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("14_g164b")
 theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 
@@ -240,15 +252,20 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme = ExtResource("14_g164b")
 theme_override_font_sizes/normal_font_size = 22
 text = "Descrição do feitiço selecionado"
 horizontal_alignment = 1
 
 [node name="AddButton" type="Button" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxInfo" unique_id=440370027]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Adicionar feitiço"
+icon = ExtResource("14_kl51j")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Separador" type="Control" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox" unique_id=2044904237]
 custom_minimum_size = Vector2(0, 50)
@@ -260,6 +277,7 @@ layout_mode = 2
 
 [node name="LabelGrimoriosSalvos" type="Label" parent="MarginContainer/HBoxContainer/InfoPanel/MarginContainer/VBox/VBoxGrimoriosSalvos" unique_id=159042149]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.518, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Grimórios Salvos"
 horizontal_alignment = 1
@@ -273,7 +291,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.37791893, 0.37791887, 0.3779187, 1)
+theme = ExtResource("14_g164b")
 theme_override_constants/line_separation = 5
 theme_override_font_sizes/font_size = 25
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kl51j")
@@ -285,11 +303,15 @@ item_1/text = "Defesa"
 
 [node name="ButtonVoltar" type="Button" parent="." unique_id=1939406467]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1406.0
-offset_top = 8.0
-offset_right = 1807.0
-offset_bottom = 99.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -515.0
+offset_top = 7.0
+offset_right = -114.0
+offset_bottom = 98.0
+grow_horizontal = 0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_m1wcd")
