@@ -12,6 +12,7 @@ signal recebido_dados_jog_authority(dados_jog: DadosJogador)
 @onready var jogadores_node_pai: Node = $Jogadores
 
 var jogadores_por_peer_id: Dictionary[int, Jogador] = {}
+var jogadores_vivos_por_peer_id: Dictionary[int, Jogador] = {}
 
 func _ready() -> void:
 	spawns = mapa.get_spawn()
@@ -49,6 +50,8 @@ func _server_spawnar_jogador(dados_jog : DadosJogador) -> void:
 	else:
 		# se for um jogador online, emita jogador outros
 		recebido_jogador_outros.emit(jogador)
+	# guarda os jogadores
+	_pegar_jogadores_vivos()
 	
 	SaveData.registrar_nome(peer_id, dados_jog.nome)
 
@@ -78,6 +81,8 @@ func _on_multiplayer_spawner_jogadores_spawned(node: Node) -> void:
 	else:
 		# se for um jogador online, emita jogador outros
 		recebido_jogador_outros.emit(jogador)
+	# guarda os jogadores
+	_pegar_jogadores_vivos()
 	# peca para o server os dados desse jogador
 	Network.client.pedir_dados_jogador_do_jogador(jog_peer_id)
 
@@ -104,4 +109,11 @@ func matar_jogador(jog_peer_id: int) -> void:
 	print("_matar_jogador", jog_peer_id)
 	var jog: Jogador = get_jogador_peer_id(jog_peer_id)
 	jog.virar_fantasma()
-	
+	# retira dos jogadores vivos
+	jogadores_vivos_por_peer_id.erase(jog_peer_id)
+
+func _pegar_jogadores_vivos() -> void:
+	jogadores_vivos_por_peer_id = jogadores_por_peer_id.duplicate()
+
+func get_jogadores_vivos() -> Array[Jogador]:
+	return jogadores_vivos_por_peer_id.values()

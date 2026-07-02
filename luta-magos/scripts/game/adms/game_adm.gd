@@ -64,19 +64,9 @@ func _matar_jogador(peer_id_jog: int) -> void:
 	jogadores_adm.matar_jogador(peer_id_jog)
 	# para as funcionalidades locais do jog (castar feiticos)
 	local_adm.matar_jogador(jog_morto)
-	# para o timer
-	timer_adm.parar()
 	
-	
-	# exibe a tela de fim com o nome do jogador ganhador
-	var jog_ganhador: Jogador
-	for jog: Jogador in jogadores_adm.jogadores_por_peer_id.values():
-		if jog != jog_morto:
-			jog_ganhador = jog
-			break
-	await get_tree().create_timer(2.5).timeout
-	local_adm.tela_fim(jog_ganhador)
-	
+	estado_partida_adm.set_fim_partida()
+
 # Estado da Partida
 # -----------------------------------------------------------------------------
 func _atualizar_estado_partida(estado_partida: EstadoPartidaAdm.EstadoPartida) -> void:
@@ -100,7 +90,17 @@ func _fim_tempo() -> void:
 	aplicar_dano_jogadores()
 
 func _fim_partida() -> void:
-	pass
+	# para o timer
+	timer_adm.parar()
+	
+	# exibe a tela de fim com o nome do jogador ganhador
+	var jog_ganhador: Jogador = jogadores_adm.get_jogadores_vivos()[0]
+	#for jog: Jogador in jogadores_adm.jogadores_por_peer_id.values():
+		#if jog != jog_morto:
+			#jog_ganhador = jog
+			#break
+	await get_tree().create_timer(2.5).timeout
+	local_adm.tela_fim(jog_ganhador)
 
 
 # ---------
