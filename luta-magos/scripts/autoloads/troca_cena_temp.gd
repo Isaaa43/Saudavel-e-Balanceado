@@ -49,14 +49,15 @@ func go_to_game() -> void:
 
 func menu_deck() -> void:
 	for c in main_game.get_children(): c.queue_free()
-	var menu_deck := MENU_DECK.instantiate()
+	var _menu_deck := MENU_DECK.instantiate()
 	# TODO: criar soluacao melhor
-	main_game.add_child(menu_deck)
+	main_game.add_child(_menu_deck)
 
 func go_to_menu_treino() -> void:
 	for c in main_game.get_children(): c.queue_free()
 	var menu_treino := MENU_TREINO.instantiate()
 	# TODO: criar soluacao melhor
+	is_treino = true
 	main_game.add_child(menu_treino)
 
 func go_to_treino() -> void:

@@ -12,7 +12,8 @@ func _ready() -> void:
 	display_grimorio.grimorio_atualizado.connect(_verificar_comecar)
 
 func _verificar_comecar() -> void:
-	var invalido: bool = GlobalDeck.deck_size != GlobalDeck.get_deck().size()
+	var invalido: bool = GlobalDeck.treino_deck_size < GlobalDeck.get_deck().size()
+
 	# libera o botao somente se valido
 	button_comecar.disabled = invalido
 	label_ajuste_grimorio.visible = invalido

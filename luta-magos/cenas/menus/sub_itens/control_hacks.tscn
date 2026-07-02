@@ -59,7 +59,7 @@ offset_right = 55.5
 offset_bottom = -11.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
-text = "DEBUG HACKS:"
+text = "HACKS:"
 
 [connection signal="value_changed" from="GridContainer/SpinBoxMana" to="." method="_on_spin_box_mana_value_changed"]
 [connection signal="value_changed" from="GridContainer/SpinBoxCartasDeck" to="." method="_on_spin_box_cartas_deck_value_changed"]
