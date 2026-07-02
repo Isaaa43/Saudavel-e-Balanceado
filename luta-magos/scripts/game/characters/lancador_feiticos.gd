@@ -158,9 +158,18 @@ func _som_cast() -> void:
 	audio_stream_player.stream = audio_cast
 	audio_stream_player.play()
 
+var pode_tocar_som_sem_mana: bool = true
 func _som_sem_mana() -> void:
+	if not pode_tocar_som_sem_mana: return
+	# tocar o audio
 	audio_stream_player.stream = audio_sem_mana
 	audio_stream_player.play()
+	# cooldown do audio
+	pode_tocar_som_sem_mana = false
+	# espera um pouco antes de habilitar de novo para tocar o audio
+	get_tree().create_timer(0.8).timeout.connect(
+		func(): pode_tocar_som_sem_mana = true
+	)
 
 # Bloqueios de feitico
 # -----------------------------------------------------------------------------
