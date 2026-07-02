@@ -68,6 +68,8 @@ func _receber_voto(peer_id_jog: int, voto: bool) -> void:
 	if _verificar_votos_necessarios():
 		get_tree().create_timer(2.0).timeout.connect(_tentar_iniciar_partida)
 		label_ajustando_inicio.show()
+		# TODO: quick fix para nao ficar 1/2 votos e iniciar
+		_update_votos(2)
 	
 	# se estiver no cooldown, nao transmita 
 	if esta_cooldown_transmissao_voto: return
