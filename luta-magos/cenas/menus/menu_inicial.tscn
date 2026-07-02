@@ -113,7 +113,7 @@ text = "JOGAR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonTreino2" parent="UI/VBoxUI/VBoxContainer" unique_id=868387961 instance=ExtResource("4_caduv")]
+[node name="ButtonTreino" parent="UI/VBoxUI/VBoxContainer" unique_id=868387961 instance=ExtResource("4_caduv")]
 layout_mode = 2
 
 [node name="ButtonDeck2" parent="UI/VBoxUI/VBoxContainer" unique_id=1248481750 instance=ExtResource("4_caduv")]
@@ -335,6 +335,7 @@ theme_override_font_sizes/font_size = 25
 text = "Cancelar"
 
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
+[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
