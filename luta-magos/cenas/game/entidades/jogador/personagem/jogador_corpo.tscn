@@ -5,6 +5,32 @@
 [ext_resource type="Script" uid="uid://t1neyfaggex2" path="res://scripts/game/characters/sistemas/sistema_animacao.gd" id="2_mxy06"]
 [ext_resource type="Script" uid="uid://dd6ea2wcmjvt1" path="res://scripts/game/entidades/jogador/personagem/corpo.gd" id="3_3ed3w"]
 [ext_resource type="PackedScene" uid="uid://dxrs17vw4ikxp" path="res://assets/personagem/rig_sapo.tscn" id="3_mxy06"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://l3u3vj7ayk0s" path="res://cenas/game/entidades/jogador/personagem/movimento_anim_state_machine.tres" id="3_u0vdn"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0vdn"]
+animation = &"Ataque"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ed3w"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0vdn"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ivwpu"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k511d"]
+states/Ataque/node = SubResource("AnimationNodeAnimation_u0vdn")
+states/Ataque/position = Vector2(733, 100)
+states/Movimentacao/node = ExtResource("3_u0vdn")
+states/Movimentacao/position = Vector2(493, 100)
+states/Start/position = Vector2(240, 100)
+transitions = ["Start", "Movimentacao", SubResource("AnimationNodeStateMachineTransition_3ed3w"), "Movimentacao", "Ataque", SubResource("AnimationNodeStateMachineTransition_u0vdn"), "Ataque", "Movimentacao", SubResource("AnimationNodeStateMachineTransition_ivwpu")]
+graph_offset = Vector2(-21, -75)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 
@@ -30,6 +56,15 @@ script = ExtResource("1_tbhp6")
 script = ExtResource("2_mxy06")
 animation_player = NodePath("../Corpo/Rig_Sapo/AnimationPlayer")
 
+[node name="AnimationTreeMovimento" type="AnimationTree" parent="SistemaAnimacao" unique_id=1132116681]
+root_node = NodePath("../../Corpo/Rig_Sapo")
+tree_root = SubResource("AnimationNodeStateMachine_k511d")
+anim_player = NodePath("../../Corpo/Rig_Sapo/AnimationPlayer")
+parameters/conditions/atacando = false
+parameters/Movimentacao/conditions/andando = false
+parameters/Movimentacao/conditions/idle = false
+parameters/Movimentacao/conditions/pulando = false
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=827753563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_jbwqc")
@@ -39,6 +74,23 @@ script = ExtResource("3_3ed3w")
 
 [node name="Rig_Sapo" parent="Corpo" unique_id=378789027 instance=ExtResource("3_mxy06")]
 transform = Transform3D(-6.5, 0, -5.68248e-07, 0, 6.5, 0, 5.68248e-07, 0, -6.5, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Corpo/Rig_Sapo/Armature" parent_id_path=PackedInt32Array(378789027, 1697243448) index="0" unique_id=1146640257]
+bones/1/position = Vector3(7.656435, -1.7218394e-05, -0.00010946288)
+bones/1/scale = Vector3(1.0000001, 1.000975, 0.99999994)
+bones/4/scale = Vector3(0.9993722, 0.99971724, 0.9999378)
+bones/5/rotation = Quaternion(0.0001303867, -4.743795e-05, -0.0005401537, 0.9999999)
+bones/6/rotation = Quaternion(0.00025268874, -0.0001573049, 7.47387e-05, 1)
+bones/20/scale = Vector3(0.99937236, 0.9997177, 0.9999379)
+bones/21/rotation = Quaternion(-7.697182e-05, 2.965265e-05, -0.00029458257, 0.99999994)
+bones/22/rotation = Quaternion(-0.00032211162, 0.00019761437, 0.000104092214, 0.99999994)
+bones/38/scale = Vector3(1.0000037, 1.0014316, 1.0009263)
+bones/39/scale = Vector3(0.99999624, 0.9985728, 0.99907553)
+bones/42/scale = Vector3(1.0000055, 1.0009573, 1.00138)
+bones/43/scale = Vector3(0.9999944, 0.99904484, 0.998624)
+
+[node name="AnimationPlayer" parent="Corpo/Rig_Sapo" index="2" unique_id=1914401165]
+autoplay = &""
 
 [node name="Cabeca" type="Node3D" parent="Corpo" unique_id=758590712]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

@@ -49,6 +49,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	esta_chao = jogador.is_on_floor()
+	jogador.sistema_animacao.set_esta_chao(esta_chao)
 
 # Movimentacao
 # -----------------------------------------------------------------------------
@@ -56,7 +57,6 @@ func _process_movimentacao(_delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("pular") and jogador.is_on_floor():
 		jogador.velocity.y = JUMP_VELOCITY
-		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.PULAR)
 	
 	# limitar o minimo do multiplicador de velocidade em 0
 	var _velocidade_mult: float = max(0.0, velocidade_mult)
@@ -68,11 +68,11 @@ func _process_movimentacao(_delta: float) -> void:
 	if direction:
 		jogador.velocity.x = direction.x * velocidade * _velocidade_mult
 		jogador.velocity.z = direction.z * velocidade * _velocidade_mult
-		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.ANDAR)
+		jogador.sistema_animacao.set_esta_movendo(true)
 	else:
 		jogador.velocity.x = move_toward(jogador.velocity.x, 0, velocidade * _velocidade_mult)
 		jogador.velocity.z = move_toward(jogador.velocity.z, 0, velocidade * _velocidade_mult)
-		jogador.sistema_animacao.acao(SistemaAnimacao.Animacao.IDLE)
+		jogador.sistema_animacao.set_esta_movendo(false)
 	
 	# Move and Slide aplica o delta automaticamente
 	jogador.move_and_slide()

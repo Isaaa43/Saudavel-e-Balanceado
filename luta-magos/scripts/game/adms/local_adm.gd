@@ -62,8 +62,7 @@ func _ajustar_lancador_feiticos() -> void:
 func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
 	Network.client.lancar_feitico(feitico_contexto)
 	# animacao
-	var anim := SistemaAnimacao.Animacao.ATACAR
-	jogador.jogador_corpo.sistema_animacao.acao(anim)
+	jogador.jogador_corpo.sistema_animacao.atacar()
 
 # Configuracoes Jogador
 # -----------------------------------------------------------------------------

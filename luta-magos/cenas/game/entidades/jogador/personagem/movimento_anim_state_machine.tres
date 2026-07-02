@@ -1,0 +1,55 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://l3u3vj7ayk0s"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bxhg0"]
+animation = &"Andar"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hsjbx"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6l2ti"]
+animation = &"Pular"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fyk3"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"pulando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hp37e"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"andando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xw0au"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gmhox"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"pulando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dk4qy"]
+xfade_time = 0.4
+advance_mode = 2
+advance_condition = &"andando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ai7rn"]
+xfade_time = 0.4
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ach78"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[resource]
+states/Andar/node = SubResource("AnimationNodeAnimation_bxhg0")
+states/Andar/position = Vector2(539, 160)
+states/IDLE/node = SubResource("AnimationNodeAnimation_hsjbx")
+states/IDLE/position = Vector2(374, 100)
+states/Pular/node = SubResource("AnimationNodeAnimation_6l2ti")
+states/Pular/position = Vector2(539, 18)
+transitions = ["Andar", "Pular", SubResource("AnimationNodeStateMachineTransition_0fyk3"), "Pular", "Andar", SubResource("AnimationNodeStateMachineTransition_hp37e"), "Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_xw0au"), "IDLE", "Pular", SubResource("AnimationNodeStateMachineTransition_gmhox"), "IDLE", "Andar", SubResource("AnimationNodeStateMachineTransition_dk4qy"), "Andar", "IDLE", SubResource("AnimationNodeStateMachineTransition_ai7rn"), "Pular", "IDLE", SubResource("AnimationNodeStateMachineTransition_ach78")]
+graph_offset = Vector2(-21, -75)

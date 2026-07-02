@@ -3,18 +3,35 @@ extends Node
 
 @export var animation_player: AnimationPlayer
 
-enum Animacao {IDLE, ANDAR, ATACAR, PULAR}
+enum AnimacaoFlags {
+	IDLE = 1,       # 0001
+	ANDANDO = 2,    # 0010
+	PULANDO = 4,    # 0100
+	ATACANDO = 8,   # 1000
+}
+var esta_idle		: bool = true
+var esta_andando	: bool = false
+var esta_pulando	: bool = false
+var esta_atacando	: bool = false
 
 ## Somente para sync
-@export var synced_animacao: Animacao : 
+@export var synced_animacao: int : 
 	set(_animacao):
+		# se mudou
 		if synced_animacao != _animacao:
 			synced_animacao = _animacao
-			# so executa se n for o dono
+			# so executa se n for o dono (eh o jogador online)
 			if not is_multiplayer_authority():
 				_update_animacao(_animacao)
 
-var curr_animacao: Animacao
+@onready var animation_tree_movimento: AnimationTree = $AnimationTreeMovimento
+
+func _ready() -> void:
+	animation_tree_movimento.active = true
+	animation_tree_movimento.anim_player = animation_player.get_path()
+	# so for o jogador online)
+	if not is_multiplayer_authority():
+		set_process(false)
 
 ## Pausa e toca a animacao atual [br]
 ## [code]True[/code] para pausar a animacao [br]
@@ -23,38 +40,49 @@ func toggle_pausar(pausar: bool) -> void:
 	if pausar:
 		animation_player.pause()
 	else:
-		_play_animacao(curr_animacao)
+		animation_player.play(animation_player.current_animation)
 
-func acao(animacao: Animacao) -> void:
-	_update_animacao(animacao)
 
-func _update_animacao(nova_animacao: Animacao) -> void:	
-	# se eh a mesma, nao toque de novo
-	if curr_animacao == nova_animacao: return
-	# nao sobre escreve a anim de ataque
-	if curr_animacao == Animacao.ATACAR: return
-	if curr_animacao == Animacao.PULAR: return
-	
-	_play_animacao(nova_animacao)
+func _physics_process(_delta: float) -> void:
+	esta_idle = not (esta_andando or esta_pulando)
+	# atualiza
+	synced_animacao = _flags_to_int(esta_idle, esta_andando, esta_pulando, esta_atacando)
+	_update_animacao(synced_animacao)
 
-func _play_animacao(animacao: Animacao) -> void:
-	curr_animacao = animacao
+func _update_animacao(animacao_flags: int) -> void:
+	_int_to_flags(animacao_flags)
+	animation_tree_movimento.set("parameters/Movimentacao/conditions/idle", 	esta_idle)
+	animation_tree_movimento.set("parameters/Movimentacao/conditions/andando", 	esta_andando)
+	animation_tree_movimento.set("parameters/Movimentacao/conditions/pulando", 	esta_pulando)
+	animation_tree_movimento.set("parameters/conditions/atacando", 				esta_atacando)
+	esta_atacando = false
+
+
+func set_esta_chao(esta_chao: bool) -> void:
+	esta_pulando = not esta_chao
+
+func set_esta_movendo(esta_movendo: bool) -> void:
+	esta_andando = esta_movendo
+
+func atacar() -> void:
+	esta_atacando = true
+	synced_animacao = _flags_to_int(esta_idle, esta_andando, esta_pulando, esta_atacando)
+
+func _flags_to_int(idle: bool, andando: bool, pulando: bool, atacando: bool) -> int:
+	var flags : int = 0
+	if idle:
+		flags |= AnimacaoFlags.IDLE
+	if andando:
+		flags |= AnimacaoFlags.ANDANDO
+	if pulando:
+		flags |= AnimacaoFlags.PULANDO
+	if atacando:
+		flags |= AnimacaoFlags.ATACANDO
 	
-	# Se for o dono, atualiza a variavel de sync
-	if is_multiplayer_authority():
-		synced_animacao = animacao
-	
-	# play animacao
-	match (animacao):
-		Animacao.IDLE:
-			animation_player.play("IDLE")
-		Animacao.ANDAR:
-			animation_player.play("Andar")
-		Animacao.PULAR:
-			animation_player.play("Pular")
-			await animation_player.animation_finished
-			_play_animacao(Animacao.IDLE)
-		Animacao.ATACAR:
-			animation_player.play("Ataque")
-			await animation_player.animation_finished
-			_play_animacao(Animacao.IDLE)
+	return flags
+
+func _int_to_flags(flags: int) -> void:
+	esta_idle		= (flags & AnimacaoFlags.IDLE) 		!= 0
+	esta_andando	= (flags & AnimacaoFlags.ANDANDO) 	!= 0
+	esta_pulando	= (flags & AnimacaoFlags.PULANDO) 	!= 0
+	esta_atacando	= (flags & AnimacaoFlags.ATACANDO) 	!= 0
