@@ -10,15 +10,21 @@ signal game_loaded
 
 @export var efeito_fim_tempo: FeiticoEfeitoDef
 
+@export_group("Audios Partida")
+@export var audio_stream_player_partida: AudioStreamPlayer
+@export var som_comeco_partida: AudioStream
+@export var som_fim_partida: AudioStream
+
 func _ready() -> void:
 	# ajustar sinais
 	_conectar_sinais()
-	#TODO: hmm lugar melhot
-	timer_adm.iniciar()
-	
 	game_loaded.emit()
+	
 	if TrocaCenaTemp.is_treino:
 		_modo_treino()
+	
+	# Inicia a partida
+	estado_partida_adm.set_rolando()
 	
 	if multiplayer.is_server():
 		SaveData.iniciar_partida()
@@ -67,6 +73,19 @@ func _matar_jogador(peer_id_jog: int) -> void:
 	
 	estado_partida_adm.set_fim_partida()
 
+
+
+# Audios da partida
+# -----------------------------------------------------------------------------
+
+func _tocar_audio_comeco_partida() -> void:
+	audio_stream_player_partida.stream = som_comeco_partida
+	audio_stream_player_partida.play()
+
+func _tocar_audio_fim_partida() -> void:
+	audio_stream_player_partida.stream = som_fim_partida
+	audio_stream_player_partida.play()
+
 # Estado da Partida
 # -----------------------------------------------------------------------------
 func _atualizar_estado_partida(estado_partida: EstadoPartidaAdm.EstadoPartida) -> void:
@@ -84,7 +103,10 @@ func _nao_iniciada() -> void:
 	pass
 
 func _rolando() -> void:
-	pass
+	# iniciar partida
+	timer_adm.iniciar()
+	# tocar som de inicio
+	_tocar_audio_comeco_partida()
 
 func _fim_tempo() -> void:
 	aplicar_dano_jogadores()
@@ -92,14 +114,13 @@ func _fim_tempo() -> void:
 func _fim_partida() -> void:
 	# para o timer
 	timer_adm.parar()
-	
-	# exibe a tela de fim com o nome do jogador ganhador
-	var jog_ganhador: Jogador = jogadores_adm.get_jogadores_vivos()[0]
-	#for jog: Jogador in jogadores_adm.jogadores_por_peer_id.values():
-		#if jog != jog_morto:
-			#jog_ganhador = jog
-			#break
+	# toca o som de fim de partida
+	_tocar_audio_fim_partida()
+	# espera um pouco
 	await get_tree().create_timer(2.5).timeout
+	# pega o jogador ganhador
+	var jog_ganhador: Jogador = jogadores_adm.get_jogadores_vivos()[0]
+	# exibe a tela de fim com o nome do jogador ganhador
 	local_adm.tela_fim(jog_ganhador)
 
 
