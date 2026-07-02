@@ -98,6 +98,9 @@ func outro_jogador(_jogador: Jogador) -> void:
 	_jogador.sistema_vida.levou_dano.connect(_mostrar_hit)
 
 func _physics_process(_delta: float) -> void:
+	# se ja estiver saindo do jogo
+	if not is_instance_valid(jogador.jogador_corpo): return
+	# calcule a distancia dos outros jogadores com o jogador local
 	for jog: Jogador in outros_jogadores:
 		var global_pos_jog_outro: Vector3 = jog.jogador_corpo.global_position
 		var global_pos_jog_local: Vector3 = jogador.jogador_corpo.global_position

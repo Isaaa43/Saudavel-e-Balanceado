@@ -30,7 +30,7 @@ states/Movimentacao/node = ExtResource("3_u0vdn")
 states/Movimentacao/position = Vector2(493, 100)
 states/Start/position = Vector2(240, 100)
 transitions = ["Start", "Movimentacao", SubResource("AnimationNodeStateMachineTransition_3ed3w"), "Movimentacao", "Ataque", SubResource("AnimationNodeStateMachineTransition_u0vdn"), "Ataque", "Movimentacao", SubResource("AnimationNodeStateMachineTransition_ivwpu")]
-graph_offset = Vector2(-21, -75)
+graph_offset = Vector2(53, -34)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbwqc"]
 

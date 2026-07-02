@@ -59,15 +59,14 @@ func _physics_process(_delta: float) -> void:
 func _process_movimentacao(_delta: float) -> void:
 	if ignorar_input_movimento: return
 	
-	# Handle jump.
+	# pulo
 	if Input.is_action_just_pressed("pular") and jogador.is_on_floor():
 		jogador.velocity.y = JUMP_VELOCITY
 	
 	# limitar o minimo do multiplicador de velocidade em 0
 	var _velocidade_mult: float = max(0.0, velocidade_mult)
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# pega os inputs de  direcao e lida com o movimentar e o parar
 	var input_dir := Input.get_vector("esquerda", "direita", "frente", "tras")
 	var direction := (jogador.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
