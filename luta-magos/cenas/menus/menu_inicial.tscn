@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c402r24c354fa" path="res://scripts/menus/menu_inicial.gd" id="1_mswjp"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_avi7h"]
-[ext_resource type="PackedScene" uid="uid://cpxpiydybrmt4" path="res://cenas/menus/sub_itens/control_hacks.tscn" id="3_avi7h"]
+[ext_resource type="Texture2D" uid="uid://dnbn4gm5bbvf3" path="res://temas/menus/inicial/FUNDO TELA INICIAL.png" id="2_caduv"]
+[ext_resource type="PackedScene" uid="uid://bpldy0wvwb8d4" path="res://cenas/menus/botoes/button_metal.tscn" id="4_caduv"]
+[ext_resource type="Theme" uid="uid://bs0lcsespqe3j" path="res://temas/menu_inicial_theme.tres" id="4_mb26h"]
+[ext_resource type="Texture2D" uid="uid://b7astq4pf6rns" path="res://temas/menus/inicial/botao_frente.png" id="5_1ncn3"]
+[ext_resource type="Texture2D" uid="uid://bf7i03qy3t5nj" path="res://temas/menus/inicial/botao_fundo.png" id="6_yn5gb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
 
@@ -22,14 +26,16 @@ focus_inicial = NodePath("UI/VBoxUI/VBoxContainer/ButtonJogar")
 panel_nome = NodePath("PanelNome")
 panel_jogar = NodePath("PanelJogar")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2054214569]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1063333670]
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.20222998, 0.20223743, 0.23100188, 1)
+texture = ExtResource("2_caduv")
+expand_mode = 3
 
 [node name="UI" type="PanelContainer" parent="." unique_id=656276633]
 layout_mode = 1
@@ -59,19 +65,59 @@ text = "Batalha de Magos"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxUI" unique_id=1564714164]
+custom_minimum_size = Vector2(600, 0)
+custom_maximum_size = Vector2(900, -1)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 40
+alignment = 1
 
-[node name="ButtonJogar" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=982140214]
+[node name="ButtonJogar" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1906114435]
+custom_minimum_size = Vector2(300, 130)
 layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Jogar"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_mb26h")
+icon = ExtResource("5_1ncn3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="ButtonTreino" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1370476357]
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonJogar" unique_id=1723732680]
+self_modulate = Color(0.8833332, 0, 1, 1)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_yn5gb")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UI/VBoxUI/VBoxContainer/ButtonJogar" unique_id=1629072833]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 153.0
+offset_top = 42.0
+offset_right = -148.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_mb26h")
+text = "JOGAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonTreino2" parent="UI/VBoxUI/VBoxContainer" unique_id=868387961 instance=ExtResource("4_caduv")]
 layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Campo Treino"
+
+[node name="ButtonDeck2" parent="UI/VBoxUI/VBoxContainer" unique_id=1248481750 instance=ExtResource("4_caduv")]
+layout_mode = 2
 
 [node name="Separador2" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=674546295]
 custom_minimum_size = Vector2(0, 1)
@@ -288,11 +334,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Cancelar"
 
-[node name="ControlHacks" parent="." unique_id=2110335283 instance=ExtResource("3_avi7h")]
-layout_mode = 1
-
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
-[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
