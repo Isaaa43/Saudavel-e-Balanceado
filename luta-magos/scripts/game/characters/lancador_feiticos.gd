@@ -125,18 +125,25 @@ func processar_lancar_feitico(feitico_id: String) -> void:
 	# gasta a amana
 	sistema_mana.gastar_mana(feitico_def.custo)
 	
+	# --- Verifica se ja tem som, ou usar o de castar ---
+	var tocar_som_cast : bool = true
+	# se for armadilha, nao use o som de cast
+	if feitico_def.tipo == Feitico.Tipo.POSICIONADO:
+		tocar_som_cast = false
+	
 	# --- Lanca o feitico ---
-	_lancar_feitico(feitico_contexto)
+	_lancar_feitico(feitico_contexto, tocar_som_cast)
 
 func _criar_feitico_contexto(feitico_def : FeiticoDef) -> FeiticoContexto:
 	var feitico_contexto := FeiticoContexto.criar(feitico_def, self)
 	return feitico_contexto
 
 ## emite que esta lancando um feitico
-func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
+func _lancar_feitico(feitico_contexto : FeiticoContexto, tocar_som_cast: bool = true) -> void:
 	lancar_feitico.emit(feitico_contexto)
-	# emite o audio
-	audio_stream_player.play()
+	# audio de cast
+	if tocar_som_cast:
+		audio_stream_player.play()
 	# contar para o salto
 	if feitico_contexto.feitico_id == feitico_id_bloqueado_ate_cair_chao:
 		_usar_salto()
