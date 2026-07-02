@@ -4,13 +4,16 @@ extends Node
 signal congelado(duracao_seg: bool)
 signal caiu_chao
 
+@export var jogador: JogadorCorpo
+
 @export var velocidade = 5.0
 const JUMP_VELOCITY = 4.5
 
 ## Multiplicador de velocidade do jogador, usado por efeitos
 var velocidade_mult := 1.0
 
-@export var jogador: JogadorCorpo
+var ignorar_input_movimento: bool = false
+
 
 var esta_chao: bool :
 	set(_esta_chao):
@@ -21,12 +24,12 @@ var esta_chao: bool :
 
 func congelar(duracao_seg: float) -> void:
 	# efeitos de congelamento
-	set_process(false) # para o processamento desse nodo
+	ignorar_input_movimento = true
 	congelado.emit(duracao_seg)
 	# espera terminar a duracao o efeito
 	await get_tree().create_timer(duracao_seg).timeout
 	# retira os efeitos do congelamento
-	set_process(true) # volta o processamento desse nodo
+	ignorar_input_movimento = false
 
 ## Adiciona [code]mult[/code] ao [b]multiplador de velocidade[/b] por [code]duracao segundos[/code] 
 ## [br] Depois remove o valor [code]mult[/code] do [b]multiplador de velocidade[/b]
@@ -54,6 +57,8 @@ func _physics_process(_delta: float) -> void:
 # Movimentacao
 # -----------------------------------------------------------------------------
 func _process_movimentacao(_delta: float) -> void:
+	if ignorar_input_movimento: return
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("pular") and jogador.is_on_floor():
 		jogador.velocity.y = JUMP_VELOCITY
