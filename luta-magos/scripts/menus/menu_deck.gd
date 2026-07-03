@@ -320,6 +320,10 @@ func mostrar_popup(popup: PopupPanel) -> void:
 	popup.hide()
 
 func _on_button_voltar_pressed() -> void:
+	if deck_cards.size() == 0:
+		# sem nada pode sair
+		sair_menu_deck.call()
+	
 	if not _verificar_tem_dano():
 		mostrar_popup(popup_panel_feitico_dano)
 	elif not _verificar_grimorio_cheio():
