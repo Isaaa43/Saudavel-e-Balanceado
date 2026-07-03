@@ -83,7 +83,7 @@ func _on_button_treino_pressed() -> void:
 
 
 func _on_button_creditos_pressed() -> void:
-	pass # Replace with function body.
+	TrocaCenaTemp.go_to_creditos()
 
 
 func _on_button_deck_pressed() -> void:

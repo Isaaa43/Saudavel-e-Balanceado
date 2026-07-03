@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://0phryrpj3l04"]
+
+[ext_resource type="Script" uid="uid://6na0mtkprc6b" path="res://scripts/menus/menu_creditos.gd" id="1_xoxl3"]
+[ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="2_cucx0"]
+[ext_resource type="Texture2D" uid="uid://c1t4tortw1jtg" path="res://temas/menus/deck/LIVRO.png" id="3_cucx0"]
+[ext_resource type="Texture2D" uid="uid://dbig8170diba3" path="res://temas/menus/deck/BOTAO FECHAR LIVRO.png" id="4_uhmc2"]
+[ext_resource type="FontFile" uid="uid://bf70m21w0a762" path="res://temas/fontes/MagicSchoolTwo.ttf" id="5_xoxl3"]
+[ext_resource type="FontFile" uid="uid://d1dk4jbvuknjs" path="res://temas/fontes/Thunderbolt.ttf" id="6_cucx0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qibh3"]
+bg_color = Color(0.13229999, 0.21, 0.16597001, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgj8j"]
+bg_color = Color(0.252, 0.4, 0.3112, 1)
+
+[node name="MenuPartida" type="Control" unique_id=260516147]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_xoxl3")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1437111560]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 24.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cucx0")
+expand_mode = 2
+
+[node name="Livro" type="TextureRect" parent="BG" unique_id=299479870]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -181.0
+offset_right = -160.58984
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cucx0")
+expand_mode = 3
+
+[node name="ButtonVoltar" type="Button" parent="BG" unique_id=727134380]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -680.0
+offset_top = 7.0
+offset_right = -279.0
+offset_bottom = 98.0
+grow_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_qibh3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sgj8j")
+text = "Voltar ao menu"
+flat = true
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ButtonVoltar" unique_id=231963451]
+position = Vector2(358, 45)
+scale = Vector2(0.31617647, 0.31617647)
+texture = ExtResource("4_uhmc2")
+region_enabled = true
+region_rect = Rect2(0, 0, 272, 280)
+
+[node name="ColorRectPatch" type="ColorRect" parent="." unique_id=493560639]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 121.0
+offset_right = 531.0
+offset_bottom = 161.0
+scale = Vector2(9.513149, 3.0487123)
+color = Color(0.9411765, 0.9019608, 0.72156864, 1)
+
+[node name="LabelTitulo" type="Label" parent="." unique_id=1523460962]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 52.0
+offset_right = 890.0
+offset_bottom = 347.0
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -10)
+theme_override_colors/font_color = Color(0.96, 0.73807997, 0.25919998, 1)
+theme_override_colors/font_outline_color = Color(0.39, 0.19889998, 0.0077999923, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("5_xoxl3")
+theme_override_font_sizes/font_size = 200
+text = "Créditos"
+horizontal_alignment = 1
+
+[node name="LabelCreditos" type="Label" parent="." unique_id=1891696399]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 107.0
+offset_top = -344.0
+offset_right = 730.0
+offset_bottom = 485.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.43718606, 0.27751824, 0.110507466, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 30
+text = "PRODUÇÃO E GAME DESIGN
+Isadora Furlani Vignatti
+
+PROGRAMAÇÃO
+Paulo Barbato Fogaca de Almeida
+
+LEVEL DESIGN, ARTE3D e ANIMAÇÃO 3D
+Vitor Battistella Luna
+
+ARTE 2D
+Izadora Maria Vitoretti Augusto
+Maria Eduarda Nabarro Lima
+
+ÁUDIO E EFEITOS VISUAIS
+Gianluca Daunis Zanetti
+"
+
+[node name="LabelCreditosOutros" type="Label" parent="." unique_id=285547999]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -603.0
+offset_top = -141.0
+offset_right = -49.0
+offset_bottom = 331.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.49019608, 0.3137255, 0.12941177, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_cucx0")
+theme_override_font_sizes/font_size = 35
+text = "RECURSOS DE TERCEIROS
+The Greedy Frog Wizard – Frog
+Marcus Rain Skoog
+
+Lowpoly Dead Tree
+FLAREMEDIA
+
+Bear Trap Animation
+Lais Marques
+"
+
+[connection signal="pressed" from="BG/ButtonVoltar" to="." method="_on_button_voltar_pressed"]

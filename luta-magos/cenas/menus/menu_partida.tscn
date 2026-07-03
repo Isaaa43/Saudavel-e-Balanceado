@@ -18,6 +18,7 @@ size_flags_vertical = 4
 script = ExtResource("1_atdnb")
 
 [node name="BG" type="TextureRect" parent="." unique_id=1437111560]
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +33,7 @@ texture = ExtResource("2_ybtxc")
 expand_mode = 2
 
 [node name="VBoxLogs" type="Control" parent="." unique_id=31457984]
-z_index = 5
+z_index = -5
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

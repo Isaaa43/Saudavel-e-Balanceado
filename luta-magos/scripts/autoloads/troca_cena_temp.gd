@@ -8,6 +8,7 @@ const MENU_INICIAL = preload("uid://6als3mloubtk")
 const MENU_PARTIDA = preload("uid://c2ppdl2yqxf16")
 const MENU_DECK = preload("uid://djncp32jv7ppr")
 const MENU_TREINO = preload("uid://uls6035prre4")
+const MENU_CREDITOS = preload("uid://0phryrpj3l04")
 
 const GAME_ADM = preload("uid://cm7rbbwccvpap")
 
@@ -76,3 +77,10 @@ func _start_treino() -> void:
 	var dados_jog: DadosJogador = Network.client.dados_jogador
 	dados_jog.peer_id = 1
 	Network.server.spawnar_jogador.emit(dados_jog)
+
+func go_to_creditos() -> void:
+	for c in main_game.get_children(): c.queue_free()
+	var _menu := MENU_CREDITOS.instantiate()
+	# TODO: criar soluacao melhor
+	main_game.add_child(_menu)
+	
