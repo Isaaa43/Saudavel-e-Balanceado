@@ -10,8 +10,9 @@ var camera_jogador: CameraJogador
 @onready var mesh_corpo: MeshCorpo = $Corpo
 @onready var rig_sapo: Node3D = $Corpo/Rig_Sapo
 
-@onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
 @onready var label_dano: Label3D = $LabelDano
+@onready var audio_player_dano: AudioStreamPlayer3D = $AudioPlayerDano
+@onready var audio_player_congelado: AudioStreamPlayer3D = $AudioPlayerCongelado
 
 
 func _ready() -> void:
@@ -32,6 +33,9 @@ func ligar_shader_revelacao(duracao_seg: float) -> void:
 	mesh_corpo.shader_revelacao(duracao_seg)
 
 func ligar_shader_congelar(duracao_seg: float) -> void:
+	# audio congelar
+	audio_player_congelado.play()
+	# shader congelar
 	mesh_corpo.shader_congelado(duracao_seg)
 	#
 	sistema_animacao.toggle_pausar(true)

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="FeiticoComportamentoArmadilhaDef" format=3 uid="uid://1ejd6l4gci0m"]
 
+[ext_resource type="AudioStream" uid="uid://cnb85cbeh8eox" path="res://assets/audios/feiticos/posicionar_armadilha.wav" id="1_n0vt2"]
 [ext_resource type="Resource" uid="uid://cntchr3fclpy1" path="res://feiticos/FuraSapato/FC_ativacao.tres" id="1_n6tub"]
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="2_n0vt2"]
 [ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_armadilha_def.gd" id="3_ksthf"]
@@ -17,4 +18,5 @@ reativacao_seg = 20.0
 comportamento_ativacao_def = ExtResource("1_n6tub")
 afetados = 4
 visual_def = SubResource("Resource_ce6wc")
+audio_stream = ExtResource("1_n0vt2")
 metadata/_custom_type_script = "uid://dohcgiora0lml"

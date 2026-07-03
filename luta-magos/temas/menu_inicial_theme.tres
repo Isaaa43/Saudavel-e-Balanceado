@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://bs0lcsespqe3j"]
+
+[ext_resource type="FontFile" uid="uid://d1dk4jbvuknjs" path="res://temas/fontes/Thunderbolt.ttf" id="1_75xsr"]
+
+[resource]
+default_font = ExtResource("1_75xsr")
+default_font_size = 35
+Label/colors/font_color = Color(0.1473333, 0.1088, 0.34, 0.8352941)
+Label/colors/font_outline_color = Color(1.1551381e-06, 0.76479614, 0.8823163, 1)
+Label/constants/outline_size = 3

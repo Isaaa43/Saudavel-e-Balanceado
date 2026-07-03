@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://uls6035prre4"]
 
 [ext_resource type="Script" uid="uid://bqjikjc44tjek" path="res://scripts/menus/menu_treino.gd" id="1_70epw"]
+[ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="2_hb3p4"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_j7c31"]
 [ext_resource type="PackedScene" uid="uid://cqcv03rhgirbi" path="res://cenas/menus/sub_itens/display_grimorio.tscn" id="3_j7c31"]
 [ext_resource type="PackedScene" uid="uid://cpxpiydybrmt4" path="res://cenas/menus/sub_itens/control_hacks.tscn" id="4_j7c31"]
@@ -16,14 +17,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_70epw")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1274343443]
+[node name="BG" type="TextureRect" parent="." unique_id=1706683713]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 17.0
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+texture = ExtResource("2_hb3p4")
+expand_mode = 2
 
 [node name="DisplayGrimorio" parent="." unique_id=2088990354 instance=ExtResource("3_j7c31")]
 layout_mode = 1
@@ -68,9 +74,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -259.0
-offset_top = 19.5
+offset_top = 53.0
 offset_right = 259.0
-offset_bottom = 61.5
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)

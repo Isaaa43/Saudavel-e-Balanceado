@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_3bkti"]
 [ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="1_4tlfy"]
-[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="2_sgsjd"]
+[ext_resource type="Resource" uid="uid://chducm3wshfg8" path="res://feiticos/Bombinha/FD_bombinha.tres" id="2_3bkti"]
 [ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="3_jfipj"]
 [ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="4_nj7aj"]
 [ext_resource type="Resource" uid="uid://skatmcv3uduk" path="res://feiticos/PuloImpulsionado/FD_pulo_impulsionado.tres" id="5_d6011"]
@@ -10,5 +10,5 @@
 [resource]
 script = ExtResource("1_4tlfy")
 nome_grimorio = "Ataque de Cima"
-feiticos = Array[ExtResource("1_3bkti")]([ExtResource("2_sgsjd"), ExtResource("3_jfipj"), ExtResource("4_nj7aj"), ExtResource("5_d6011")])
+feiticos = Array[ExtResource("1_3bkti")]([ExtResource("2_3bkti"), ExtResource("3_jfipj"), ExtResource("4_nj7aj"), ExtResource("5_d6011")])
 metadata/_custom_type_script = "uid://6v8v2o714e64"

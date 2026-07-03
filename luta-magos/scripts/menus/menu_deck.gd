@@ -58,6 +58,10 @@ var sair_menu_deck : Callable = TrocaCenaTemp.go_to_menu_inicial
 func _ready() -> void:
 	# TODO: melhorar
 	max_deck_size = GlobalDeck.deck_size
+	if TrocaCenaTemp.is_treino:
+		max_deck_size = GlobalDeck.treino_deck_size
+		print("is treino")
+	
 	lista_feiticos = lista_feiticos_res.lista_feiticos
 	
 	popup_panel_feitico_dano.hide()
@@ -316,6 +320,10 @@ func mostrar_popup(popup: PopupPanel) -> void:
 	popup.hide()
 
 func _on_button_voltar_pressed() -> void:
+	if deck_cards.size() == 0:
+		# sem nada pode sair
+		sair_menu_deck.call()
+	
 	if not _verificar_tem_dano():
 		mostrar_popup(popup_panel_feitico_dano)
 	elif not _verificar_grimorio_cheio():

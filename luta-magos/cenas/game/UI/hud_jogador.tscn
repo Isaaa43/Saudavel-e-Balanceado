@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://durmiqjnxtqui" path="res://scripts/game/UI/hud_jogador.gd" id="1_a8gqf"]
 [ext_resource type="Texture2D" uid="uid://bpmjjpxemo56r" path="res://assets/UI/hud_jogador/crosshair/crosshair004.png" id="2_jk3uq"]
+[ext_resource type="Texture2D" uid="uid://bliq0hixbcvmc" path="res://assets/UI/hud_jogador/crosshair/crosshair021.png" id="3_jk3uq"]
 [ext_resource type="Texture2D" uid="uid://c52p4y2dpy41p" path="res://assets/icones/jump.png" id="4_mtgw6"]
 [ext_resource type="Texture2D" uid="uid://ccie6v4ygel0c" path="res://assets/UI/hud_jogador/vida/BASE_VIDA.png" id="7_18wio"]
 [ext_resource type="Texture2D" uid="uid://dnxpghv5mgca5" path="res://assets/UI/hud_jogador/vida/BARRA_VIDA.png" id="8_wsdra"]
@@ -71,6 +72,11 @@ grow_vertical = 2
 
 [node name="SpriteCrosshair" type="Sprite2D" parent="HudAim/PivotCentro" unique_id=168685830]
 texture = ExtResource("2_jk3uq")
+
+[node name="SpriteHit" type="Sprite2D" parent="HudAim/PivotCentro" unique_id=1282159256]
+visible = false
+scale = Vector2(1.29, 1.062)
+texture = ExtResource("3_jk3uq")
 
 [node name="SelecaoMagia" type="Control" parent="." unique_id=1614263482]
 layout_mode = 1
@@ -302,6 +308,7 @@ theme_override_font_sizes/font_size = 50
 text = "20:30"
 
 [node name="Efeitos" type="Control" parent="." unique_id=232349699]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

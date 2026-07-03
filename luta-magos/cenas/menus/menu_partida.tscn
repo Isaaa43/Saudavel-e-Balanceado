@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dbcuijvqx5043" path="res://scripts/menus/menu_partida.gd" id="1_atdnb"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_c11ds"]
 [ext_resource type="PackedScene" uid="uid://cqcv03rhgirbi" path="res://cenas/menus/sub_itens/display_grimorio.tscn" id="2_j53x0"]
+[ext_resource type="Texture2D" uid="uid://bph52qcmudb6r" path="res://temas/menus/deck/ICONES LIVRO 1.png" id="2_krbyp"]
+[ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="2_ybtxc"]
 
 [node name="MenuPartida" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -15,16 +17,23 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_atdnb")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1274343443]
+[node name="BG" type="TextureRect" parent="." unique_id=1437111560]
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 24.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+texture = ExtResource("2_ybtxc")
+expand_mode = 2
 
-[node name="VBoxLogs" type="VBoxContainer" parent="." unique_id=1154841703]
+[node name="VBoxLogs" type="Control" parent="." unique_id=31457984]
+z_index = -5
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -35,10 +44,37 @@ offset_right = -53.0
 offset_bottom = 104.0
 grow_horizontal = 0
 
+[node name="TextureRect" type="TextureRect" parent="VBoxLogs" unique_id=709398495]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 398.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_krbyp")
+expand_mode = 2
+
 [node name="LabelLog" type="Label" parent="VBoxLogs" unique_id=942424218]
-layout_mode = 2
+z_index = 1
+layout_mode = 0
+offset_right = 508.0
+offset_bottom = 35.0
 theme_override_font_sizes/font_size = 25
-text = "Log:"
+text = "Log:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0"
 horizontal_alignment = 2
 
 [node name="DisplayGrimorio" parent="." unique_id=2088990354 instance=ExtResource("2_j53x0")]
@@ -103,9 +139,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -259.0
-offset_top = 19.5
+offset_top = 53.0
 offset_right = 259.0
-offset_bottom = 61.5
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
@@ -119,9 +155,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -180.0
-offset_top = -53.0
+offset_top = -144.0
 offset_right = 184.0
-offset_bottom = 60.0
+offset_bottom = -31.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Jogadores prontos:

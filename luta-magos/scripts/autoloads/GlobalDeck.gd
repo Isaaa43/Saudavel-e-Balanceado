@@ -3,6 +3,9 @@ extends Node
 @export var mana_regen: float = 3
 @export var deck_size: int = 4
 
+@onready var treino_mana_regen: float = mana_regen
+@onready var treino_deck_size: int = deck_size
+
 @export var feiticos_id_escolhidos: Array[String]
 var cards_escolhidos: Array[MenuDeck.CardData]
 

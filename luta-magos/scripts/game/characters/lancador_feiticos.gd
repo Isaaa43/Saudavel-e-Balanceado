@@ -5,6 +5,7 @@ signal lancar_feitico(feitico_contexto: FeiticoContexto)
 
 @export var sistema_mana : SistemaMana
 @export var audio_cast : AudioStream
+@export var audio_sem_mana : AudioStream
 
 @export_group("Lidar com feitico de Salto")
 ## Feitico id do feitico a ser bloqueado ate o jogador cair no chao
@@ -111,7 +112,9 @@ func processar_lancar_feitico(feitico_id: String) -> void:
 	# pega as definicoes do feitico
 	var feitico_def : FeiticoDef = registro_feiticos.get_feitico(feitico_id)
 	# verifica se tem mana o suficiente para criar o feitico
-	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): return
+	if not sistema_mana.tem_mana_suficiente(feitico_def.custo): 
+		_som_sem_mana()
+		return
 	
 	# --- Tenta criar o Contexto do Feitico ---
 	# cria o contexto do feitico
@@ -125,22 +128,48 @@ func processar_lancar_feitico(feitico_id: String) -> void:
 	# gasta a amana
 	sistema_mana.gastar_mana(feitico_def.custo)
 	
+	# --- Verifica se ja tem som, ou usar o de castar ---
+	var tocar_som_cast : bool = true
+	# se for armadilha, nao use o som de cast
+	if feitico_def.tipo == Feitico.Tipo.POSICIONADO:
+		tocar_som_cast = false
+	
 	# --- Lanca o feitico ---
-	_lancar_feitico(feitico_contexto)
+	_lancar_feitico(feitico_contexto, tocar_som_cast)
 
 func _criar_feitico_contexto(feitico_def : FeiticoDef) -> FeiticoContexto:
 	var feitico_contexto := FeiticoContexto.criar(feitico_def, self)
 	return feitico_contexto
 
 ## emite que esta lancando um feitico
-func _lancar_feitico(feitico_contexto : FeiticoContexto) -> void:
+func _lancar_feitico(feitico_contexto : FeiticoContexto, tocar_som_cast: bool = true) -> void:
 	lancar_feitico.emit(feitico_contexto)
-	# emite o audio
-	audio_stream_player.play()
+	# audio de cast
+	if tocar_som_cast:
+		_som_cast()
 	# contar para o salto
 	if feitico_contexto.feitico_id == feitico_id_bloqueado_ate_cair_chao:
 		_usar_salto()
 
+# Som
+# -----------------------------------------------------------------------------
+
+func _som_cast() -> void:
+	audio_stream_player.stream = audio_cast
+	audio_stream_player.play()
+
+var pode_tocar_som_sem_mana: bool = true
+func _som_sem_mana() -> void:
+	if not pode_tocar_som_sem_mana: return
+	# tocar o audio
+	audio_stream_player.stream = audio_sem_mana
+	audio_stream_player.play()
+	# cooldown do audio
+	pode_tocar_som_sem_mana = false
+	# espera um pouco antes de habilitar de novo para tocar o audio
+	get_tree().create_timer(0.8).timeout.connect(
+		func(): pode_tocar_som_sem_mana = true
+	)
 
 # Bloqueios de feitico
 # -----------------------------------------------------------------------------

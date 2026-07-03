@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c402r24c354fa" path="res://scripts/menus/menu_inicial.gd" id="1_mswjp"]
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_avi7h"]
-[ext_resource type="PackedScene" uid="uid://cpxpiydybrmt4" path="res://cenas/menus/sub_itens/control_hacks.tscn" id="3_avi7h"]
+[ext_resource type="Texture2D" uid="uid://dnbn4gm5bbvf3" path="res://temas/menus/inicial/FUNDO TELA INICIAL.png" id="2_caduv"]
+[ext_resource type="FontFile" uid="uid://bf70m21w0a762" path="res://temas/fontes/MagicSchoolTwo.ttf" id="3_1ncn3"]
+[ext_resource type="PackedScene" uid="uid://bpldy0wvwb8d4" path="res://cenas/menus/botoes/button_metal.tscn" id="4_caduv"]
+[ext_resource type="Texture2D" uid="uid://c853f3vcikgmc" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 1.png" id="5_yn5gb"]
+[ext_resource type="Texture2D" uid="uid://gfuu3l72tve" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 2.png" id="6_sjf3n"]
+[ext_resource type="Texture2D" uid="uid://g5hehlwudmh0" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 3.png" id="8_u111g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
 
@@ -22,14 +27,16 @@ focus_inicial = NodePath("UI/VBoxUI/VBoxContainer/ButtonJogar")
 panel_nome = NodePath("PanelNome")
 panel_jogar = NodePath("PanelJogar")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2054214569]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1063333670]
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.20222998, 0.20223743, 0.23100188, 1)
+texture = ExtResource("2_caduv")
+expand_mode = 3
 
 [node name="UI" type="PanelContainer" parent="." unique_id=656276633]
 layout_mode = 1
@@ -38,68 +45,100 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.5
-offset_top = -81.5
-offset_right = 69.5
-offset_bottom = 81.5
+offset_left = -300.0
+offset_top = -419.0
+offset_right = 300.0
+offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mswjp")
 
 [node name="VBoxUI" type="VBoxContainer" parent="UI" unique_id=1200559368]
 layout_mode = 2
-theme_override_constants/separation = 80
 
 [node name="LabelTitulo" type="Label" parent="UI/VBoxUI" unique_id=1505035427]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("2_avi7h")
-theme_override_font_sizes/font_size = 50
-text = "Batalha de Magos"
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -10)
+theme_override_colors/font_color = Color(0.96, 0.73807997, 0.25919998, 1)
+theme_override_colors/font_outline_color = Color(0.39, 0.19889998, 0.0077999923, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_1ncn3")
+theme_override_font_sizes/font_size = 100
+text = "Frogspell Arena"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxUI" unique_id=1564714164]
+custom_minimum_size = Vector2(600, 0)
+custom_maximum_size = Vector2(900, -1)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 40
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="ButtonJogar" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=982140214]
+[node name="ButtonJogar" parent="UI/VBoxUI/VBoxContainer" unique_id=1906114435 instance=ExtResource("4_caduv")]
 layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Jogar"
+icon = ExtResource("5_yn5gb")
 
-[node name="ButtonTreino" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1370476357]
+[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonJogar" index="0" unique_id=1723732680]
+visible = false
+
+[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonJogar" index="1" unique_id=726138241]
+visible = false
+
+[node name="ButtonTreino" parent="UI/VBoxUI/VBoxContainer" unique_id=868387961 instance=ExtResource("4_caduv")]
 layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Campo Treino"
+
+[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonTreino" index="0" unique_id=1723732680]
+self_modulate = Color(0.35000002, 0.6099999, 1, 1)
+
+[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonTreino" index="1" unique_id=726138241]
+text = "TREINAR"
 
 [node name="Separador2" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=674546295]
-custom_minimum_size = Vector2(0, 1)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="ButtonDeck" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1441490570]
+[node name="ButtonDeck" parent="UI/VBoxUI/VBoxContainer" unique_id=1248481750 instance=ExtResource("4_caduv")]
 layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Montar Grimório"
+icon = ExtResource("6_sjf3n")
+
+[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonDeck" index="0" unique_id=1723732680]
+visible = false
+
+[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonDeck" index="1" unique_id=726138241]
+visible = false
+text = "GRIMÓRIO"
 
 [node name="ButtonConfig" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=16031350]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_avi7h")
 text = "Configurações"
 
-[node name="ButtonCreditos" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1492380501]
+[node name="ButtonCreditos" parent="UI/VBoxUI/VBoxContainer" unique_id=1505797492 instance=ExtResource("4_caduv")]
 layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Créditos"
+
+[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonCreditos" index="0" unique_id=1723732680]
+self_modulate = Color(0.35000002, 0.6099999, 1, 1)
+
+[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonCreditos" index="1" unique_id=726138241]
+text = "CRÉDITOS"
 
 [node name="Separador" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=1874725411]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="ButtonSairJogo" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1063477149]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("2_avi7h")
-text = "Sair"
+icon = ExtResource("8_u111g")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="PanelNome" type="Panel" parent="." unique_id=610391779]
 visible = false
@@ -288,9 +327,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Cancelar"
 
-[node name="ControlHacks" parent="." unique_id=2110335283 instance=ExtResource("3_avi7h")]
-layout_mode = 1
-
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
 [connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
@@ -301,3 +337,8 @@ layout_mode = 1
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/ButtonCancelar" to="." method="_on_button_cancelar_pressed"]
+
+[editable path="UI/VBoxUI/VBoxContainer/ButtonJogar"]
+[editable path="UI/VBoxUI/VBoxContainer/ButtonTreino"]
+[editable path="UI/VBoxUI/VBoxContainer/ButtonDeck"]
+[editable path="UI/VBoxUI/VBoxContainer/ButtonCreditos"]

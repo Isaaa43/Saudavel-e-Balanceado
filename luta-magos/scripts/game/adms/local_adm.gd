@@ -62,8 +62,7 @@ func _ajustar_lancador_feiticos() -> void:
 func _enviar_lancar_feitico(feitico_contexto: FeiticoContexto) -> void:
 	Network.client.lancar_feitico(feitico_contexto)
 	# animacao
-	var anim := SistemaAnimacao.Animacao.ATACAR
-	jogador.jogador_corpo.sistema_animacao.acao(anim)
+	jogador.jogador_corpo.sistema_animacao.atacar()
 
 # Configuracoes Jogador
 # -----------------------------------------------------------------------------
@@ -96,9 +95,18 @@ func bloquear_cura() -> void:
 # -----------------------------------------------------------------------------
 func outro_jogador(_jogador: Jogador) -> void:
 	outros_jogadores.append(_jogador)
+	_jogador.sistema_vida.levou_dano.connect(_mostrar_hit)
 
 func _physics_process(_delta: float) -> void:
+	# se ja estiver saindo do jogo
+	if not is_instance_valid(jogador): return
+	if not is_instance_valid(jogador.jogador_corpo): return
+	# calcule a distancia dos outros jogadores com o jogador local
 	for jog: Jogador in outros_jogadores:
+		# se nao estiver com o corpo, ignore
+		if not jog.jogador_corpo.is_inside_tree(): return
+		if not jogador.jogador_corpo.is_inside_tree(): return
+		# pega a posicao dos jogadores
 		var global_pos_jog_outro: Vector3 = jog.jogador_corpo.global_position
 		var global_pos_jog_local: Vector3 = jogador.jogador_corpo.global_position
 		# tira o componente de altura
@@ -108,3 +116,6 @@ func _physics_process(_delta: float) -> void:
 		var dist_sqrd := global_pos_jog_local.distance_squared_to(global_pos_jog_outro)
 		var visivel := dist_sqrd < dist_visao_sqrd
 		jog.jogador_corpo.mesh_corpo.visivel_distancia(visivel)
+
+func _mostrar_hit(_dano: float) -> void:
+	hud.mostrar_hit()

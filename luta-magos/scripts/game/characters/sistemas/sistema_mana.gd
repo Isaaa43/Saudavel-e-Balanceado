@@ -27,6 +27,7 @@ func _criar_efeito_mana_regen() -> void:
 	
 	# TODO: melhorar
 	efeito_regen.valor = GlobalDeck.mana_regen
+	if TrocaCenaTemp.is_treino: efeito_regen.valor = GlobalDeck.treino_mana_regen
 	
 	sistema_efeitos_feiticos.receber_feitico_efeito(efeito_regen)
 

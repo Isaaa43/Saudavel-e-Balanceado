@@ -10,7 +10,7 @@ var card_data: MenuDeck.CardData = null
 @onready var card_name_label: Label = %CardNameLabel
 @onready var card_cost_label: Label = %CardCostLabel
 
-@onready var color_background: ColorRect = $MarginContainer/ColorBackground
+@onready var color_background: ColorRect = $ColorBackground
 
 @export var cor_dano: Color
 @export var cor_suporte: Color
