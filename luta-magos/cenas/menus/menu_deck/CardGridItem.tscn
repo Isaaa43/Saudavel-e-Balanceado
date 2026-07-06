@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="2_hqrab"]
 
 [node name="CardGridItem" type="Button" unique_id=1492274143]
-custom_minimum_size = Vector2(280, 330)
-custom_maximum_size = Vector2(280, 330)
+custom_minimum_size = Vector2(190, 270)
+custom_maximum_size = Vector2(190, 270)
 anchors_preset = -1
 anchor_right = 0.156
 anchor_bottom = 0.30600002
-offset_right = 0.47998047
-offset_bottom = -0.480011
+offset_right = -69.52002
+offset_bottom = -30.480011
 size_flags_vertical = 3
 script = ExtResource("1_xsg6e")
 cor_dano = Color(0.2462615, 0.10430529, 0.1266459, 1)
@@ -47,18 +47,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -163.0
-offset_right = 140.0
-offset_bottom = 156.0
+offset_left = -100.0
+offset_top = -134.0
+offset_right = 100.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CardIcon" type="TextureRect" parent="Control/VBoxContainer" unique_id=351240241]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 180)
+custom_minimum_size = Vector2(200, 150)
+custom_maximum_size = Vector2(200, 150)
 layout_mode = 2
 size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(2.915, 3.225)
 mouse_filter = 2
 texture = ExtResource("2_hqrab")
 expand_mode = 5

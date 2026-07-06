@@ -198,7 +198,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_k0n5w")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-columns = 2
+columns = 3
 
 [node name="InfoPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1049318992]
 layout_mode = 2
