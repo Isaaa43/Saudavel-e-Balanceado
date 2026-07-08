@@ -11,7 +11,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -356.0
-offset_top = -110.0
+offset_top = -119.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_mywko")
@@ -19,7 +19,7 @@ script = ExtResource("1_mywko")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=549160508]
 layout_mode = 0
 offset_left = -14.0
-offset_top = -59.0
+offset_top = -114.0
 offset_right = 325.0
 offset_bottom = 100.0
 texture = ExtResource("2_uadgx")
@@ -40,8 +40,9 @@ text = "HACKS:"
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=594113538]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -62.0
+offset_right = 301.0
+offset_bottom = 30.0
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 15
 columns = 2
@@ -71,5 +72,19 @@ value = 3.0
 rounded = true
 allow_greater = true
 
+[node name="ButtonReset" type="Button" parent="." unique_id=890265315]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -75.0
+offset_right = 292.0
+offset_bottom = -39.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Voltar aos Padrões da Partida"
+
 [connection signal="value_changed" from="GridContainer/SpinBoxMana" to="." method="_on_spin_box_mana_value_changed"]
 [connection signal="value_changed" from="GridContainer/SpinBoxCartasDeck" to="." method="_on_spin_box_cartas_deck_value_changed"]
+[connection signal="pressed" from="ButtonReset" to="." method="_on_button_reset_pressed"]
