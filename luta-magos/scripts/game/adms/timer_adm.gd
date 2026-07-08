@@ -57,4 +57,3 @@ func _fim_timer() -> void:
 	
 	rodando = false
 	tempo_esgotado.emit()
-	

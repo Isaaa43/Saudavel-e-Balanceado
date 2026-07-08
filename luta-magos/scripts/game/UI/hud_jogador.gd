@@ -6,7 +6,7 @@ signal sair_partida
 @export var menu_pause: HudMenuPause
 
 @onready var label_relogio: Label = $Relogio/LabelRelogio
-@onready var label_min_final: Label = $Relogio/LabelRelogio/LabelMinFinal
+@onready var label_info_tempo: Label = %LabelInfoTempo
 
 @onready var texture_vida_prog: TextureRect = $Vida/TextureProg
 @onready var texture_mana_prog: TextureRect = $Mana/TextureProg
@@ -51,7 +51,7 @@ func _ready() -> void:
 	# tela de fim de jogo
 	tela_fim.hide()
 	# tempo
-	label_min_final.hide()
+	label_info_tempo.hide()
 	# efeitos
 	efeitos.show()
 	congelado.hide()
@@ -70,6 +70,9 @@ func _ready() -> void:
 	mostrar_vida(1.0)
 	mostrar_mana(1.0)
 
+
+# Icones Feiticos
+# -----------------------------------------------------------------------------
 
 func add_icon(feitico_id: String, icon) -> void:
 	feitico_id_to_icon[feitico_id] = icon
@@ -124,6 +127,9 @@ func update_lancavel(feitico_id: String, esta_lancavel: bool) -> void:
 	# chama de novo selecionar, para atualizar o icone
 	selecionar_magia(idx_atual)
 
+# Mostradores
+# -----------------------------------------------------------------------------
+
 func mostrar_vida(porcent_vida: float) -> void:
 	# limita minimo em 0.0
 	porcent_vida = max(porcent_vida, 0.0)
@@ -148,6 +154,9 @@ func mostrar_hit() -> void:
 	sprite_hit.show()
 	await get_tree().create_timer(0.4).timeout
 	sprite_hit.hide()
+
+# Efeitos
+# -----------------------------------------------------------------------------
 
 func efeito_congelado(duracao_seg: float) -> void:
 	congelado.material.set_shader_parameter("coverage", 0.0)
@@ -194,40 +203,72 @@ func efeito_congelado(duracao_seg: float) -> void:
 	# acaba o efeito
 	congelado.hide()
 
+# Tempo Partida
+# -----------------------------------------------------------------------------
+
 func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 	var tempo_seg: int = int(_tempo_restante_seg) % 60
 	var tempo_min: int = int((_tempo_restante_seg - tempo_seg) / 60)
 	label_relogio.text = "%d:%02d" % [tempo_min, tempo_seg]
 
 func mostrar_minuto_final() -> void:
-	label_min_final.modulate.a = 0
-	label_min_final.show()
+	label_info_tempo.text = "Minuto Final"
+	_mostrar_info_tempo()
+	# esconde depois de alguns segundos
+	get_tree().create_timer(5.0).timeout.connect(_esconder_info_tempo)
+
+func mostrar_final_tempo() -> void:
+	label_info_tempo.text = "Fim do Tempo"
+	_mostrar_info_tempo()
+	# esconde depois de alguns segundos
+	get_tree().create_timer(5.0).timeout.connect(_esconder_info_tempo)
+
+
+func _mostrar_info_tempo() -> void:
+	label_info_tempo.modulate.a = 0
+	label_info_tempo.show()
 	# anim mostrar
 	var tween_alpha := create_tween()
-	tween_alpha.tween_property(label_min_final, "modulate:a", 1.0, 1.0).from(0.0)
+	tween_alpha.tween_property(label_info_tempo, "modulate:a", 1.0, 1.0).from(0.0)
 	
 	var tween_pos := create_tween()
 	tween_pos.set_ease(Tween.EASE_OUT)
 	tween_pos.tween_property(
-		label_min_final, "position:y",
-		label_min_final.position.y,
+		label_info_tempo, "position:y",
+		label_info_tempo.position.y,
 		0.9
-	).from(label_min_final.position.y - 20)
+	).from(label_info_tempo.position.y - 20)
+
+func _esconder_info_tempo() -> void:
+	var tween_alpha := create_tween()
+	tween_alpha.set_ease(Tween.EASE_OUT)
+	tween_alpha.tween_property(label_info_tempo, "modulate:a", 0.0, 0.7).from(1.0)
 	
-	# esconde depois de alguns segundos
-	get_tree().create_timer(5.0).timeout.connect(
-		func(): 
-			var tween_alpha_out := create_tween()
-			tween_alpha_out.set_ease(Tween.EASE_OUT)
-			tween_alpha_out.tween_property(label_min_final, "modulate:a", 0.0, 0.7).from_current()
-			await tween_alpha_out.finished
-			label_min_final.hide()
-	)
+	# guarda a posicao atual, para manter essa sempre essa posicao
+	var end_pos_y := label_info_tempo.position.y
+	
+	var tween_pos := create_tween()
+	tween_pos.set_ease(Tween.EASE_OUT)
+	tween_pos.tween_property(
+		label_info_tempo, "position:y",
+		label_info_tempo.position.y - 15,
+		0.8
+	).from_current()
+	
+	# espera acabar o tween
+	await tween_alpha.finished
+	# reseta posicao e esconde
+	label_info_tempo.position.y = end_pos_y
+	label_info_tempo.hide()
 
-
+# Menu Pause
+# -----------------------------------------------------------------------------
 func _esconder_menu_pause() -> void:
 	menu_pause.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+# Tela Fim
+# -----------------------------------------------------------------------------
 
 # TODO: arrumar isso
 @onready var tela_fim: Control = $TelaFim

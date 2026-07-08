@@ -45,6 +45,10 @@ func ajusta_tempo_partida(_tempo_restante_seg: float) -> void:
 func tempo_minuto_final() -> void:
 	hud.mostrar_minuto_final()
 
+func tempo_final() -> void:
+	hud.mostrar_final_tempo()
+
+
 func _ajustar_hud() -> void:
 	# conectar hud as mudanca de atributos do jogador
 	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)

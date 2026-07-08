@@ -41,6 +41,7 @@ func _conectar_sinais() -> void:
 	timer_adm.tempo_atualizado.connect(local_adm.ajusta_tempo_partida)
 	timer_adm.tempo_minuto_final.connect(local_adm.tempo_minuto_final)
 	timer_adm.tempo_esgotado.connect(fim_tempo)
+	timer_adm.tempo_esgotado.connect(local_adm.tempo_final)
 	# estado da partida
 	estado_partida_adm.estado_atualizado.connect(_atualizar_estado_partida)
 	# 
@@ -73,7 +74,6 @@ func _matar_jogador(peer_id_jog: int) -> void:
 	local_adm.matar_jogador(jog_morto)
 	
 	estado_partida_adm.set_fim_partida()
-
 
 
 # Audios da partida
