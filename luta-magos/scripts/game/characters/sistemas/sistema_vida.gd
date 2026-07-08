@@ -6,6 +6,8 @@ signal mudanca_vida(vida_porcentagem: float)
 signal levou_dano(dano: float)
 signal morreu
 
+var esta_vivo: bool = true
+
 var vida : float
 @export var vida_max : float = 150
 @onready var vida_max_inverso : float = 1 / vida_max
@@ -49,4 +51,8 @@ func _verificar_morte() -> void:
 		morrer()
 
 func morrer() -> void:
+	# se ja estiver morto, pare
+	if not esta_vivo: return
+	esta_vivo = false
+	# emite que morreu
 	morreu.emit()

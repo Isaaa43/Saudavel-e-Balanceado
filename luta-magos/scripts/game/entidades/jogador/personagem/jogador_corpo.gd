@@ -59,8 +59,9 @@ func conectar_camera(_camera_jogador: CameraJogador) -> void:
 	remote_transform_cabeca.remote_path = camera_jogador.get_path()
 	remote_transform_cabeca.force_update_cache()
 
-func mostrar_levar_dano(dano: float) -> void:
-	audio_player_dano.play()
+func mostrar_levar_dano(_dano: float) -> void:
+	if audio_player_dano.is_inside_tree():
+		audio_player_dano.play()
 
 
 func mostrar_levar_dano_numeros(dano: float) -> void:
