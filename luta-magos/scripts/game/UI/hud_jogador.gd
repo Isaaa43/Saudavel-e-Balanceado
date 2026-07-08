@@ -214,14 +214,10 @@ func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 func mostrar_minuto_final() -> void:
 	label_info_tempo.text = "Minuto Final"
 	_mostrar_info_tempo()
-	# esconde depois de alguns segundos
-	get_tree().create_timer(5.0).timeout.connect(_esconder_info_tempo)
 
 func mostrar_final_tempo() -> void:
 	label_info_tempo.text = "Fim do Tempo"
 	_mostrar_info_tempo()
-	# esconde depois de alguns segundos
-	get_tree().create_timer(5.0).timeout.connect(_esconder_info_tempo)
 
 
 func _mostrar_info_tempo() -> void:
@@ -238,6 +234,8 @@ func _mostrar_info_tempo() -> void:
 		label_info_tempo.position.y,
 		0.9
 	).from(label_info_tempo.position.y - 20)
+	# esconde depois de alguns segundos
+	get_tree().create_timer(5.0).timeout.connect(_esconder_info_tempo)
 
 func _esconder_info_tempo() -> void:
 	var tween_alpha := create_tween()
@@ -258,8 +256,8 @@ func _esconder_info_tempo() -> void:
 	# espera acabar o tween
 	await tween_alpha.finished
 	# reseta posicao e esconde
-	label_info_tempo.position.y = end_pos_y
 	label_info_tempo.hide()
+	label_info_tempo.position.y = end_pos_y
 
 # Menu Pause
 # -----------------------------------------------------------------------------
