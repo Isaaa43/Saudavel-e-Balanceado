@@ -98,6 +98,9 @@ func get_jogador_peer_id(peer_id: int) -> Jogador:
 		return jogadores_por_peer_id[peer_id]
 	return null
 
+func get_jogadores_por_peer_id() -> Dictionary[int, Jogador]:
+	return jogadores_por_peer_id
+
 func dimiuir_vida_jogadores(efeito_def: FeiticoEfeitoDef) -> void:
 	print("aplicar ao ", multiplayer.get_unique_id())
 	for jogador: Jogador in jogadores_por_peer_id.values():

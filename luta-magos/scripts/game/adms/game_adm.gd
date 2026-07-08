@@ -46,10 +46,15 @@ func _conectar_sinais() -> void:
 	estado_partida_adm.estado_atualizado.connect(_atualizar_estado_partida)
 	# 
 	local_adm.pediu_sair_partida.connect(_pedir_sair_partida)
-	# 
+	# rede
 	Network.client.morreu_jogador.connect(_matar_jogador)
+	Network.client.morreu_jogador.connect(_marcar_ganhador)
+	Network.client.ganhador_jogador.connect(_exibir_ganhador)
+	
 
 func fim_tempo() -> void:
+	if not multiplayer.is_server(): return
+	
 	estado_partida_adm.set_fim_tempo()
 
 func _pedir_sair_partida() -> void:
@@ -60,6 +65,9 @@ func _pedir_sair_partida() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
 		_pedir_sair_partida()
+
+# Final de Jogo
+# -----------------------------------------------------------------------------
 
 # TODO: verificar se essa eh a melhor maneira
 func _matar_jogador(peer_id_jog: int) -> void:
@@ -72,9 +80,30 @@ func _matar_jogador(peer_id_jog: int) -> void:
 	jogadores_adm.matar_jogador(peer_id_jog)
 	# para as funcionalidades locais do jog (castar feiticos)
 	local_adm.matar_jogador(jog_morto)
+
+func _marcar_ganhador(peer_id_jog_morto: int) -> void:
+	if not multiplayer.is_server(): return
 	
+	# pega o peer_id do ganhador
+	var peer_id_ganhador : int = -1 
+	var jogadores_por_peer_id: Dictionary[int, Jogador] = jogadores_adm.get_jogadores_por_peer_id()
+	for peer_id: int in jogadores_por_peer_id.keys():
+		if peer_id != peer_id_jog_morto:
+			peer_id_ganhador = peer_id
+			break
+	# emite o ganhador
+	Network.server.anunciar_ganhador(peer_id_ganhador)
+	
+	# ajusta estado da partida para fim
 	estado_partida_adm.set_fim_partida()
 
+func _exibir_ganhador(peer_id_ganhador: int) -> void:
+	# espera um pouco
+	await get_tree().create_timer(2.5).timeout
+	# pega o jogador ganhador
+	var jog_ganhador: Jogador = jogadores_adm.get_jogador_peer_id(peer_id_ganhador)
+	# exibe a tela de fim com o nome do jogador ganhador
+	local_adm.tela_fim(jog_ganhador)
 
 # Audios da partida
 # -----------------------------------------------------------------------------
@@ -117,13 +146,6 @@ func _fim_partida() -> void:
 	timer_adm.parar()
 	# toca o som de fim de partida
 	_tocar_audio_fim_partida()
-	# espera um pouco
-	await get_tree().create_timer(2.5).timeout
-	# pega o jogador ganhador
-	var jog_ganhador: Jogador = jogadores_adm.get_jogadores_vivos()[0]
-	# exibe a tela de fim com o nome do jogador ganhador
-	local_adm.tela_fim(jog_ganhador)
-
 
 # ---------
 func aplicar_dano_jogadores() -> void:

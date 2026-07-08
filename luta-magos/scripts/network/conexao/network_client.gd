@@ -3,6 +3,7 @@ extends Node
 
 signal ajustar_dados_jogador(jog_peer_id: int, dados_jog: DadosJogador)
 signal morreu_jogador(jog_peer_id: int)
+signal ganhador_jogador(jog_peer_id: int)
 signal ajustar_votos_iniciar_partida(qtde_votos: int)
 
 @onready var dados_jogador : DadosJogador = criar_dados_jogador()
@@ -123,6 +124,9 @@ func matar_jogador(jogador_peer_id: int) -> void:
 	print("matar_jogador ", jogador_peer_id, " meu id ", multiplayer.get_unique_id())
 	morreu_jogador.emit(jogador_peer_id)
 
+@rpc("authority", "call_local", "reliable")
+func receber_ganhador(peer_id_ganhador: int) -> void:
+	ganhador_jogador.emit(peer_id_ganhador)
 
 # -----------------------------------------------------------------------------
 # Salvar dados

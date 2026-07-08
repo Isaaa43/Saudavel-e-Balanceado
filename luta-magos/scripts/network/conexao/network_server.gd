@@ -147,6 +147,9 @@ func avisar_jogador_morreu() -> void:
 	for peer_id : int in dados_jogador_por_peer_id.keys():
 		Network.client.matar_jogador.rpc_id(peer_id, peer_id_req)
 
+func anunciar_ganhador(peer_id_ganhador: int) -> void:
+	for peer_id : int in dados_jogador_por_peer_id.keys():
+		Network.client.receber_ganhador.rpc_id(peer_id, peer_id_ganhador)
 
 # -----------------------------------------------------------------------------
 # Salvar dados
