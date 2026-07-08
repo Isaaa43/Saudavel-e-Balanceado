@@ -2,6 +2,7 @@ class_name TimerAdm
 extends Node
 
 signal tempo_esgotado
+signal tempo_minuto_final
 signal tempo_atualizado(tempo_restante_seg: float)
 
 ## Duracao da partida
@@ -18,6 +19,8 @@ signal tempo_atualizado(tempo_restante_seg: float)
 		tempo_atualizado.emit(tempo_restante_seg)
 
 var rodando: bool = false
+
+var aconteceu_minuto_final : bool = false
 
 func _ready() -> void:
 	# so executa a fisica se for o server
@@ -43,6 +46,10 @@ func _physics_process(delta: float) -> void:
 	if tempo_restante_seg <= 0.0:
 		tempo_restante_seg = 0.0
 		_fim_timer()
+	# quando da o minuto final
+	if tempo_restante_seg <= 60.0 and (not aconteceu_minuto_final):
+		aconteceu_minuto_final = true
+		tempo_minuto_final.emit()
 
 # pare, e emita tempo_esgotado
 func _fim_timer() -> void:

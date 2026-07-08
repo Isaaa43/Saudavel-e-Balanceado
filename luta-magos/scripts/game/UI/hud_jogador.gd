@@ -6,6 +6,7 @@ signal sair_partida
 @export var menu_pause: HudMenuPause
 
 @onready var label_relogio: Label = $Relogio/LabelRelogio
+@onready var label_min_final: Label = $Relogio/LabelRelogio/LabelMinFinal
 
 @onready var texture_vida_prog: TextureRect = $Vida/TextureProg
 @onready var texture_mana_prog: TextureRect = $Mana/TextureProg
@@ -49,6 +50,8 @@ func _ready() -> void:
 	menu_pause.sair_partida.connect(func(): sair_partida.emit())
 	# tela de fim de jogo
 	tela_fim.hide()
+	# tempo
+	label_min_final.hide()
 	# efeitos
 	efeitos.show()
 	congelado.hide()
@@ -195,6 +198,32 @@ func atualizar_tempo_restante_seg(_tempo_restante_seg: float) -> void:
 	var tempo_seg: int = int(_tempo_restante_seg) % 60
 	var tempo_min: int = int((_tempo_restante_seg - tempo_seg) / 60)
 	label_relogio.text = "%d:%02d" % [tempo_min, tempo_seg]
+
+func mostrar_minuto_final() -> void:
+	label_min_final.modulate.a = 0
+	label_min_final.show()
+	# anim mostrar
+	var tween_alpha := create_tween()
+	tween_alpha.tween_property(label_min_final, "modulate:a", 1.0, 1.0).from(0.0)
+	
+	var tween_pos := create_tween()
+	tween_pos.set_ease(Tween.EASE_OUT)
+	tween_pos.tween_property(
+		label_min_final, "position:y",
+		label_min_final.position.y,
+		0.9
+	).from(label_min_final.position.y - 20)
+	
+	# esconde depois de alguns segundos
+	get_tree().create_timer(5.0).timeout.connect(
+		func(): 
+			var tween_alpha_out := create_tween()
+			tween_alpha_out.set_ease(Tween.EASE_OUT)
+			tween_alpha_out.tween_property(label_min_final, "modulate:a", 0.0, 0.7).from_current()
+			await tween_alpha_out.finished
+			label_min_final.hide()
+	)
+
 
 func _esconder_menu_pause() -> void:
 	menu_pause.hide()

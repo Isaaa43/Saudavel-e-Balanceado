@@ -39,6 +39,7 @@ func _conectar_sinais() -> void:
 	jogadores_adm.recebido_dados_jog_authority.connect(local_adm.ajusta_dados_jogador)
 	# timer
 	timer_adm.tempo_atualizado.connect(local_adm.ajusta_tempo_partida)
+	timer_adm.tempo_minuto_final.connect(local_adm.tempo_minuto_final)
 	timer_adm.tempo_esgotado.connect(fim_tempo)
 	# estado da partida
 	estado_partida_adm.estado_atualizado.connect(_atualizar_estado_partida)

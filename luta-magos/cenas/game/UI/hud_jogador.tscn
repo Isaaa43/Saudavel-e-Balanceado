@@ -304,8 +304,28 @@ offset_left = -38.5
 offset_right = 38.5
 offset_bottom = 42.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 55
 text = "20:30"
+
+[node name="LabelMinFinal" type="Label" parent="Relogio/LabelRelogio" unique_id=1250821368]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.5
+offset_top = -2.0
+offset_right = 135.5
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.86, 0.45680335, 0.025799977, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 45
+text = "Minuto Final"
 
 [node name="Efeitos" type="Control" parent="." unique_id=232349699]
 visible = false

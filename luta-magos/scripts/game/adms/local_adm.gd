@@ -42,11 +42,15 @@ func ajusta_dados_jogador(_dados_jog: DadosJogador) -> void:
 func ajusta_tempo_partida(_tempo_restante_seg: float) -> void:
 	hud.atualizar_tempo_restante_seg(_tempo_restante_seg)
 
+func tempo_minuto_final() -> void:
+	hud.mostrar_minuto_final()
+
 func _ajustar_hud() -> void:
 	# conectar hud as mudanca de atributos do jogador
 	jogador.sistema_vida.mudanca_vida.connect(hud.mostrar_vida)
 	jogador.sistema_mana.mudanca_mana.connect(hud.mostrar_mana)
 	jogador.sistema_movimento.congelado.connect(hud.efeito_congelado)
+	
 
 func _ajustar_lancador_feiticos() -> void:
 	# conectar lancador de feiticos com o sistema de mana
