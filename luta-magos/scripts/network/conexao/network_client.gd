@@ -92,7 +92,7 @@ func receber_terminar_partida() -> void:
 func _terminar_partida() -> void:
 	Network.logs.add_conexao_texto("Partida Finalizada")
 	
-	if multiplayer.is_server():
+	if multiplayer and multiplayer.is_server():
 		SaveData.encerrar_partida()
 	
 	#TODO: Network.server_disconnected ?
