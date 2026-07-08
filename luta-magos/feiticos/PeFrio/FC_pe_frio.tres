@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 script = ExtResource("4_aj0br")
 reativacao_seg = 20.0
 comportamento_ativacao_def = ExtResource("2_ljx6i")
+duracao_seg = 60.0
 afetados = 4
 visual_def = SubResource("Resource_ce6wc")
 audio_stream = ExtResource("1_5eef4")
