@@ -4,8 +4,8 @@
 [ext_resource type="Resource" uid="uid://7e5u68vx3d6l" path="res://feiticos/Bombinha/FC_explosao.tres" id="2_e2fxu"]
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="2_tqfoh"]
 [ext_resource type="Script" uid="uid://cdb4muk4j1a07" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_bomba_def.gd" id="3_e2fxu"]
-[ext_resource type="PackedScene" uid="uid://co5stxa6rftbb" path="res://feiticos/visuais/FV_bola_fogo.tscn" id="4_41hpc"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="5_8sthr"]
+[ext_resource type="PackedScene" uid="uid://cfoegek0m1lw" path="res://feiticos/visuais/FV_bombinha.tscn" id="5_tqfoh"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="7_42dgc"]
 [ext_resource type="Texture2D" uid="uid://cu0n2r4ev7yli" path="res://assets/icones/bola_fogo_roxa.PNG" id="7_tqfoh"]
 
@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://37y4pismqf76"
 
 [sub_resource type="Resource" id="Resource_ykuvd"]
 script = ExtResource("5_8sthr")
-cena = ExtResource("4_41hpc")
+cena = ExtResource("5_tqfoh")
 metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_on3jg"]
