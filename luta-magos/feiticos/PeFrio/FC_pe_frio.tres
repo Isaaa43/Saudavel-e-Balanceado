@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FeiticoComportamentoArmadilhaDef" format=3 uid="uid://yxloeexb5552"]
+
+[ext_resource type="AudioStream" uid="uid://cnb85cbeh8eox" path="res://assets/audios/feiticos/posicionar_armadilha.wav" id="1_5eef4"]
+[ext_resource type="Resource" uid="uid://do2latievswjb" path="res://feiticos/PeFrio/FC_pe_frio_ativacao.tres" id="2_ljx6i"]
+[ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="3_33cer"]
+[ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_armadilha_def.gd" id="4_aj0br"]
+[ext_resource type="PackedScene" uid="uid://bxbxjx3vghjp8" path="res://feiticos/FuraSapato/FS_fura_sapato.tscn" id="5_23a08"]
+[ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="6_ksjca"]
+
+[sub_resource type="Resource" id="Resource_ce6wc"]
+script = ExtResource("6_ksjca")
+cena = ExtResource("5_23a08")
+metadata/_custom_type_script = "uid://d2ynerodv584f"
+
+[resource]
+script = ExtResource("4_aj0br")
+reativacao_seg = 20.0
+comportamento_ativacao_def = ExtResource("2_ljx6i")
+afetados = 4
+visual_def = SubResource("Resource_ce6wc")
+audio_stream = ExtResource("1_5eef4")
+metadata/_custom_type_script = "uid://dohcgiora0lml"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FeiticoDef" format=3 uid="uid://l71623piabb6"]
+
+[ext_resource type="Resource" uid="uid://yxloeexb5552" path="res://feiticos/PeFrio/FC_pe_frio.tres" id="1_x4e5j"]
+[ext_resource type="Texture2D" uid="uid://6pphy5qpran6" path="res://assets/icones/armadilha_clara.PNG" id="2_i0jo6"]
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="3_olrfe"]
+
+[resource]
+script = ExtResource("3_olrfe")
+feitico_id = "PeFrio"
+nome = "Pé Frio"
+tipo = 1
+descricao = "Imagina ter o azar de cair em uma armadilha e ser congelado por {valor} segundos."
+icone_hud = ExtResource("2_i0jo6")
+comportamento_def = ExtResource("1_x4e5j")
+metadata/_custom_type_script = "uid://dnavupkg51wgc"
