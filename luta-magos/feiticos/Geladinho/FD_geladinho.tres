@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_5qclt"]
 script = ExtResource("2_mexeb")
-valor = 2.0
+valor = 3.0
 metadata/_custom_type_script = "uid://lx21fdb2gntr"
 
 [sub_resource type="Resource" id="Resource_omd85"]
@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 
 [sub_resource type="Resource" id="Resource_ex0k1"]
 script = ExtResource("3_j8xii")
+velocidade = 15.0
 mascara_impacto = 256
 duracao_seg = 6.0
 afetados = 4
