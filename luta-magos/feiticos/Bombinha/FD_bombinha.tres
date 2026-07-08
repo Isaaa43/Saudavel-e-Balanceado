@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://cdb4muk4j1a07" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_bomba_def.gd" id="3_e2fxu"]
 [ext_resource type="PackedScene" uid="uid://co5stxa6rftbb" path="res://feiticos/visuais/FV_bola_fogo.tscn" id="4_41hpc"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="5_8sthr"]
-[ext_resource type="Texture2D" uid="uid://xdli4bq0jeew" path="res://assets/icones/bola de fogo.PNG" id="6_bgeqs"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="7_42dgc"]
+[ext_resource type="Texture2D" uid="uid://cu0n2r4ev7yli" path="res://assets/icones/bola_fogo_roxa.PNG" id="7_tqfoh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0ls3j"]
 rough = true
@@ -41,6 +41,6 @@ espaco = 0
 descricao = "Lança uma bomba que quica no chão e causa {valor} de dano ao explodir."
 cooldown = 2.0
 custo = 25.0
-icone_hud = ExtResource("6_bgeqs")
+icone_hud = ExtResource("7_tqfoh")
 comportamento_def = SubResource("Resource_on3jg")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"
