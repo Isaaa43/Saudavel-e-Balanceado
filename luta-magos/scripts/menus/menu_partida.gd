@@ -47,6 +47,13 @@ func atualizar_botao_comecar_partida() -> void:
 
 func _on_button_comecar_toggled(toggled_on: bool) -> void:
 	Network.client.votar_iniciar_partida(toggled_on)
+	# altera o texto de acordo se deu ready ou nao
+	if toggled_on:
+		# se deu ready
+		button_comecar.text = "Retirar Pronto"
+	else:
+		# sem ready
+		button_comecar.text = "Pronto para Começar"
 
 func _update_votos(qtde_votos: int = 0) -> void:
 	label_jog_prontos.text = "Jogadores prontos:\n %d / %d" % [qtde_votos, 2]
