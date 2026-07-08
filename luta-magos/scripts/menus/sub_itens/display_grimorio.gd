@@ -6,6 +6,9 @@ signal grimorio_atualizado
 @onready var img_card_ref: TextureRect = $ScrollContainer/ImgCardRef
 @onready var grid_deck: GridContainer = $ScrollContainer/GridDeck
 
+## Se true, ignora a as verificacoes e deixa sair do menu deck nao importa as cartas
+@export var ignorar_verificacoes_voltar: bool = false
+
 func _ready() -> void:
 	# mostra o grimorio atual do jogador
 	_mostrar_deck()
@@ -31,6 +34,7 @@ func _on_button_deck_pressed() -> void:
 	get_parent().add_child(menu_deck)
 	menu_deck.move_to_front()
 	menu_deck.sair_menu_deck = _fechar_menu_deck.bind(menu_deck)
+	menu_deck.set_ignorar_verificacoes_voltar(ignorar_verificacoes_voltar)
 
 func _fechar_menu_deck(menu_deck: MenuDeck) -> void:
 	menu_deck.queue_free()

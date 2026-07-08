@@ -55,6 +55,9 @@ var selected_deck_index: int = -1
 
 var sair_menu_deck : Callable = TrocaCenaTemp.go_to_menu_inicial
 
+## Se true, ignora as verificoes e permite sair do menu
+var ignorar_verificacoes_voltar: bool = false
+
 func _ready() -> void:
 	# TODO: melhorar
 	max_deck_size = GlobalDeck.deck_size
@@ -319,8 +322,12 @@ func mostrar_popup(popup: PopupPanel) -> void:
 	await get_tree().create_timer(4.0).timeout
 	popup.hide()
 
+
+func set_ignorar_verificacoes_voltar(ignorar_verificacoes: bool) -> void:
+	ignorar_verificacoes_voltar = ignorar_verificacoes
+
 func _on_button_voltar_pressed() -> void:
-	if deck_cards.size() == 0:
+	if ignorar_verificacoes_voltar or deck_cards.size() == 0:
 		# sem nada pode sair
 		sair_menu_deck.call()
 	

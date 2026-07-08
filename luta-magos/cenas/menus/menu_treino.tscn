@@ -33,6 +33,7 @@ expand_mode = 2
 
 [node name="DisplayGrimorio" parent="." unique_id=2088990354 instance=ExtResource("3_j7c31")]
 layout_mode = 1
+ignorar_verificacoes_voltar = true
 
 [node name="ControlHacks" parent="." unique_id=2110335283 instance=ExtResource("4_j7c31")]
 layout_mode = 1
