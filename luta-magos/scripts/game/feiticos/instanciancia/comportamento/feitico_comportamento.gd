@@ -164,7 +164,7 @@ func iniciar() -> void:
 	if audio_stream:
 		var audio_player := AudioStreamPlayer3D.new()
 		audio_player.stream = audio_stream
-		corpo.add_child(audio_player)
+		corpo.corpo_movimento.add_child(audio_player)
 		audio_player.play()
 	# inicia o comportamento especifico das classes derivadas
 	iniciar_comportamento()
