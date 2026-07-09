@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqhjphfb7wcn7" path="res://assets/mapa/mapa_up.glb" id="1_5367g"]
 [ext_resource type="PhysicsMaterial" uid="uid://c6dbixfsei78q" path="res://cenas/game/mapas/arvore_physics_mat.tres" id="2_31cc0"]
+[ext_resource type="Material" uid="uid://cv2qg1ceiyobd" path="res://assets/mapa/black_mat.tres" id="3_mltr3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiid2"]
 sky_top_color = Color(0.08706657, 0.11346652, 0.1486308, 1)
@@ -76,6 +77,14 @@ radius = 0.9075194
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pcr3s"]
 radius = 0.64387333
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_smq05"]
+material = ExtResource("3_mltr3")
+size = Vector2(500, 500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_31cc0"]
+material = ExtResource("3_mltr3")
+size = Vector2(1000, 500)
 
 [node name="MapaTestNight" type="Node3D" unique_id=869804376]
 
@@ -341,3 +350,39 @@ debug_color = Color(0.44206434, 0.4714948, 0.9572732, 0.41960785)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1492363666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.728136, 0, 0)
+
+[node name="MeshChaoOutside" type="MeshInstance3D" parent="." unique_id=428583209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -75, 0)
+mesh = SubResource("PlaneMesh_smq05")
+
+[node name="MeshChaoOutside2" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=1167727599]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 500, 50, 0)
+mesh = SubResource("PlaneMesh_smq05")
+
+[node name="MeshChaoOutside3" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=1438892865]
+transform = Transform3D(0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 0, 1, -500, 50, 0)
+mesh = SubResource("PlaneMesh_smq05")
+
+[node name="MeshChaoOutside4" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=476308926]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.96592575, -0.25881904, 0, 0.258819, 0.9659258, 0, 50, -500)
+mesh = SubResource("PlaneMesh_smq05")
+
+[node name="MeshChaoOutside5" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=283745920]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.96592575, 0.25881904, 0, -0.258819, 0.9659258, 0, 50, 500)
+mesh = SubResource("PlaneMesh_smq05")
+
+[node name="MeshChaoOutside6" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=1437131012]
+transform = Transform3D(0.7071067, -0.1830127, 0.68301266, 0, 0.9659259, 0.2588191, -0.70710677, -0.18301268, 0.6830127, 425, 50, 425)
+mesh = SubResource("PlaneMesh_31cc0")
+
+[node name="MeshChaoOutside7" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=236504722]
+transform = Transform3D(0.7071067, 0.1830127, -0.68301266, 0, 0.9659258, 0.25881904, 0.7071067, -0.1830127, 0.68301266, -425, 50, 425)
+mesh = SubResource("PlaneMesh_31cc0")
+
+[node name="MeshChaoOutside8" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=1559371305]
+transform = Transform3D(-0.7071067, 0.18301268, -0.6830126, 0, 0.96592575, 0.258819, 0.7071067, 0.18301268, -0.6830126, -425, 50, -425)
+mesh = SubResource("PlaneMesh_31cc0")
+
+[node name="MeshChaoOutside9" type="MeshInstance3D" parent="MeshChaoOutside" unique_id=254392173]
+transform = Transform3D(-0.7071067, -0.18301268, 0.6830126, 0, 0.9659257, 0.258819, -0.7071067, 0.18301268, -0.6830126, 425, 50, -425)
+mesh = SubResource("PlaneMesh_31cc0")
