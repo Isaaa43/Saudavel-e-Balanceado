@@ -36,6 +36,7 @@ feitico_id = "BolaFogo"
 nome = "Bola de Fogo"
 espaco = 0
 descricao = "Lança uma bola de fogo que causa {valor} de dano se acertar outro jogador."
+cooldown = 2.0
 icone_hud = ExtResource("7_2f3yf")
 comportamento_def = SubResource("Resource_2f3yf")
 metadata/_custom_type_script = "uid://dnavupkg51wgc"
