@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://e33rvm32gwqu"]
 
 [ext_resource type="Script" uid="uid://b7ulem2p6o41q" path="res://scripts/game/UI/hud_menu_pause.gd" id="1_viaw2"]
+[ext_resource type="PackedScene" uid="uid://1bq0boade0k5" path="res://cenas/game/UI/hud_help_feitico.tscn" id="2_qbqum"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk3uq"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.24, 0.24, 0.24, 0.93333334)
+bg_color = Color(0.24705882, 0.22352941, 0.30980393, 0.93333334)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbrib"]
+bg_color = Color(0.24705882, 0.22352941, 0.30980393, 0.9411765)
 
 [node name="HudMenuPause" type="Control" unique_id=1536525716]
 layout_mode = 3
@@ -115,6 +119,52 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
 text = "Sair Partida"
+
+[node name="HelpMenu" type="Control" parent="." unique_id=2002316817]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -273.0
+offset_right = -21.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="PanelContainer" parent="HelpMenu" unique_id=392978750]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbrib")
+
+[node name="Margin" type="MarginContainer" parent="HelpMenu/Panel" unique_id=452237547]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxHelpFeitico" type="HBoxContainer" parent="HelpMenu/Panel/Margin" unique_id=559797908]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HelpFeitico" parent="HelpMenu/Panel/Margin/HBoxHelpFeitico" unique_id=1398445581 instance=ExtResource("2_qbqum")]
+layout_mode = 2
+
+[node name="HelpFeitico4" parent="HelpMenu/Panel/Margin/HBoxHelpFeitico" unique_id=1720549720 instance=ExtResource("2_qbqum")]
+layout_mode = 2
+
+[node name="HelpFeitico2" parent="HelpMenu/Panel/Margin/HBoxHelpFeitico" unique_id=324336508 instance=ExtResource("2_qbqum")]
+layout_mode = 2
+
+[node name="HelpFeitico3" parent="HelpMenu/Panel/Margin/HBoxHelpFeitico" unique_id=2082146011 instance=ExtResource("2_qbqum")]
+layout_mode = 2
 
 [connection signal="pressed" from="Tamanho/Panel/Margin/VBox/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 [connection signal="value_changed" from="Tamanho/Panel/Margin/VBox/HScrollSensi" to="." method="_on_h_scroll_sensi_value_changed"]
