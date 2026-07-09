@@ -9,7 +9,7 @@ script = ExtResource("3_olrfe")
 feitico_id = "PeFrio"
 nome = "Pé Frio"
 tipo = 1
-descricao = "Imagina ter o azar de cair em uma armadilha e ser congelado por {valor} segundos.
+descricao = "Imagina ter o azar de cair em uma armadilha e ser congelado por {valor} segundos e revelado.
 Dura 1 minuto."
 icone_hud = ExtResource("2_i0jo6")
 comportamento_def = ExtResource("1_x4e5j")

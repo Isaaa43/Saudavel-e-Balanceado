@@ -10,7 +10,7 @@ feitico_id = "FuraSapato"
 nome = "Fura Sapato"
 tipo = 1
 espaco = 0
-descricao = "Posiciona uma armadilha de espinhos no chão que será ativada quando pisar em cima, causando {valor} de dano.
+descricao = "Posiciona uma armadilha no chão, ativada quando pisar em cima, causando {valor} de dano, revelando e diminuido a velocidade.
 Dura 1 minuto."
 icone_hud = ExtResource("2_73ckh")
 comportamento_def = ExtResource("1_pn68f")
