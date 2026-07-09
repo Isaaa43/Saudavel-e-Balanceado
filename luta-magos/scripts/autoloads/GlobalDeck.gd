@@ -28,3 +28,18 @@ func get_deck() -> Array[MenuDeck.CardData]:
 		#var feitico_def: FeiticoDef = Registros.reg_feiticos.get_feitico(feitico_id)
 		#lista_feiticos_def.append(feitico_def)
 	#return lista_feiticos_def
+
+func calc_add_idx(idx: int, qnt: int) -> int:
+	var qtd_feiticos_deck: int = feiticos_id_escolhidos.size()
+	
+	idx = idx + qnt
+	
+	# ciclico
+	if idx > qtd_feiticos_deck-1: 
+		idx = 0
+	if idx < 0:
+		idx = qtd_feiticos_deck-1
+	
+	idx = min(idx, qtd_feiticos_deck-1)
+	idx = max(idx, 0)
+	return idx

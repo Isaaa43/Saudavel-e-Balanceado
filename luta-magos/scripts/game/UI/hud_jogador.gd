@@ -26,7 +26,6 @@ var custo_mana_porcent: float = 0.0
 
 var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
 var idx_to_feitico_id : Dictionary[int, String] = {}
-var idx_atual := 1
 
 ## Para dado Feitico_id marca se esse feitico esta no lancavel (e pode ser usado)
 var esta_lancavel_feitico_id: Dictionary[String, bool] = {}
@@ -68,7 +67,6 @@ func _ready() -> void:
 		idx_to_feitico_id[idx] = feitico_id
 		idx += 1
 	
-	selecionar_magia(idx_atual)
 	# inicia os mostradores
 	mostrar_vida(1.0)
 	mostrar_mana(1.0)
@@ -84,9 +82,9 @@ func selecionar_magia(idx: int) -> void:
 	if idx < 0 or idx > feitico_id_to_icon.size(): return
 	
 	# prev
-	texture_prev.texture = _idx_to_icon(_calc_add_idx(idx, -1) )
+	texture_prev.texture = _idx_to_icon(GlobalDeck.calc_add_idx(idx, -1) )
 	# prox
-	texture_prox.texture = _idx_to_icon(_calc_add_idx(idx, +1) )
+	texture_prox.texture = _idx_to_icon(GlobalDeck.calc_add_idx(idx, +1) )
 	# atual
 	texture_atual.texture = _idx_to_icon(idx)
 	magia_mira.texture = _idx_to_icon(idx)
@@ -102,36 +100,9 @@ func selecionar_magia(idx: int) -> void:
 func _idx_to_icon(idx: int) -> Texture2D:
 	return feitico_id_to_icon[idx_to_feitico_id[idx]]
 
-func get_feitico_id_from_idx() -> String:
-	return idx_to_feitico_id[idx_atual]
+func get_feitico_id_from_idx(idx: int) -> String:
+	return idx_to_feitico_id[idx]
 
-func _calc_add_idx(idx: int, qnt: int) -> int:
-	idx = idx + qnt
-	
-	# ciclico
-	if idx > idx_to_feitico_id.size()-1: 
-		idx = 0
-	if idx < 0:
-		idx = idx_to_feitico_id.size()-1
-	
-	idx = min(idx, idx_to_feitico_id.size()-1)
-	idx = max(idx, 0)
-	return idx
-
-func add_idx(qnt: int ) -> void:
-	idx_atual = _calc_add_idx(idx_atual, qnt)
-	selecionar_magia(idx_atual)
-
-func update_lancavel(feitico_id: String, esta_lancavel: bool) -> void:
-	# mudou a condeicao de um momento para o outro
-	var mudou : bool = esta_lancavel != esta_lancavel_feitico_id.get(feitico_id, true)
-	# -- se nao mudou, nao precisa fazer mais nada
-	if not mudou: return
-	# -- se mudou
-	# atualiza a condicao de lancar
-	esta_lancavel_feitico_id[feitico_id] = esta_lancavel
-	# chama de novo selecionar, para atualizar o icone
-	selecionar_magia(idx_atual)
 
 # Mostradores
 # -----------------------------------------------------------------------------
