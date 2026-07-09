@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://b0ks5dv5ssm2l" path="res://feiticos/lista_feiticos.tres" id="2_gv3pd"]
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_hcvlw"]
 [ext_resource type="PackedScene" uid="uid://cwuvw7rq625os" path="res://cenas/menus/menu_deck/CardGridItem.tscn" id="7_gr7sa"]
+[ext_resource type="Resource" uid="uid://bc1c7n03soewl" path="res://cenas/menus/menu_deck/grimorio_vento_sul.tres" id="9_g164b"]
 [ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="9_k0n5w"]
 [ext_resource type="Texture2D" uid="uid://c1t4tortw1jtg" path="res://temas/menus/deck/LIVRO.png" id="10_6eq1e"]
 [ext_resource type="Texture2D" uid="uid://rc775mhxren1" path="res://temas/menus/deck/GRIMORIO_SELECT.png" id="11_i2h36"]
@@ -52,7 +53,7 @@ script = ExtResource("1_glkbn")
 lista_feiticos_res = ExtResource("2_gv3pd")
 max_deck_size = 4
 card_button_scene = ExtResource("7_gr7sa")
-lista_grimorios_salvos = Array[ExtResource("11_k0n5w")]([SubResource("Resource_gv3pd"), ExtResource("12_wfhn1"), ExtResource("12_6eq1e"), ExtResource("14_devs0")])
+lista_grimorios_salvos = Array[ExtResource("11_k0n5w")]([SubResource("Resource_gv3pd"), ExtResource("12_wfhn1"), ExtResource("12_6eq1e"), ExtResource("14_devs0"), ExtResource("9_g164b")])
 
 [node name="Background" type="TextureRect" parent="." unique_id=1586859820]
 self_modulate = Color(0.95, 0.95, 0.95, 0.98039216)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GrimorioPresetRes" format=3 uid="uid://bc1c7n03soewl"]
+
+[ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="1_d581g"]
+[ext_resource type="Resource" uid="uid://c4ct5q6ves50i" path="res://feiticos/BolaFogo/FD_bola_fogo.tres" id="2_pmbu1"]
+[ext_resource type="Resource" uid="uid://d2quugw6e5igw" path="res://feiticos/Geladinho/FD_geladinho.tres" id="3_p4ygx"]
+[ext_resource type="Resource" uid="uid://l71623piabb6" path="res://feiticos/PeFrio/FD_pe_frio.tres" id="4_d581g"]
+[ext_resource type="Resource" uid="uid://3e7y43qfnml8" path="res://feiticos/RevelacaoArea/FD_revelacao_area.tres" id="4_nft7w"]
+[ext_resource type="Script" uid="uid://6v8v2o714e64" path="res://scripts/menus/menu_deck/grimorio_preset_res.gd" id="6_f1r7h"]
+
+[resource]
+script = ExtResource("6_f1r7h")
+nome_grimorio = "Vento Sul"
+feiticos = Array[ExtResource("1_d581g")]([ExtResource("2_pmbu1"), ExtResource("3_p4ygx"), ExtResource("4_d581g"), ExtResource("4_nft7w")])
+metadata/_custom_type_script = "uid://6v8v2o714e64"
