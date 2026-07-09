@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="2_hlrh5"]
 [ext_resource type="Script" uid="uid://lx21fdb2gntr" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_congelar_def.gd" id="3_hn40h"]
 [ext_resource type="Script" uid="uid://dohcgiora0lml" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_armadilha_def.gd" id="4_4e6b5"]
+[ext_resource type="Script" uid="uid://ckyjj62ph5wvh" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_revelar_def.gd" id="4_hn40h"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="5_edlfn"]
 [ext_resource type="PackedScene" uid="uid://dl5hnl0sxf6j4" path="res://feiticos/FuraSapato/FS_espinhos.tscn" id="5_hlrh5"]
 
@@ -11,6 +12,11 @@
 script = ExtResource("3_hn40h")
 valor = 2.0
 metadata/_custom_type_script = "uid://lx21fdb2gntr"
+
+[sub_resource type="Resource" id="Resource_5eef4"]
+script = ExtResource("4_hn40h")
+valor = 0.5
+metadata/_custom_type_script = "uid://ckyjj62ph5wvh"
 
 [sub_resource type="Resource" id="Resource_c3n7d"]
 script = ExtResource("5_edlfn")
@@ -21,7 +27,7 @@ metadata/_custom_type_script = "uid://d2ynerodv584f"
 script = ExtResource("4_4e6b5")
 duracao_seg = 20.0
 afetados = 4
-lista_efeitos = Array[ExtResource("2_hlrh5")]([SubResource("Resource_x4e5j")])
+lista_efeitos = Array[ExtResource("2_hlrh5")]([SubResource("Resource_x4e5j"), SubResource("Resource_5eef4")])
 visual_def = SubResource("Resource_c3n7d")
 audio_stream = ExtResource("1_k71vh")
 metadata/_custom_type_script = "uid://dohcgiora0lml"
