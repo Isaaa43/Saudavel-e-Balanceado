@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dnavupkg51wgc" path="res://scripts/game/feiticos/definicoes/feitico_def.gd" id="2_qq211"]
 [ext_resource type="Script" uid="uid://ckyjj62ph5wvh" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_revelar_def.gd" id="2_sdo8q"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="3_ckelo"]
+[ext_resource type="Script" uid="uid://clldisbf177oj" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_mudar_velocidade_def.gd" id="3_viorh"]
 [ext_resource type="PackedScene" uid="uid://c0x4sfg4cudyb" path="res://feiticos/visuais/FV_revelacao.tscn" id="4_sdo8q"]
 [ext_resource type="Texture2D" uid="uid://cctql7bbxo5si" path="res://assets/icones/revelacao_roxa.PNG" id="6_sdo8q"]
 
@@ -12,6 +13,12 @@
 script = ExtResource("2_sdo8q")
 valor = 5.0
 metadata/_custom_type_script = "uid://ckyjj62ph5wvh"
+
+[sub_resource type="Resource" id="Resource_edlfn"]
+script = ExtResource("3_viorh")
+duracao_seg = 3.0
+valor = -0.3
+metadata/_custom_type_script = "uid://clldisbf177oj"
 
 [sub_resource type="Resource" id="Resource_bfg0o"]
 script = ExtResource("3_ckelo")
@@ -26,7 +33,7 @@ tamanho_raio = 5.0
 duracao_seg = 10.0
 afetados = 5
 mascara_afetados = 327936
-lista_efeitos = Array[ExtResource("1_bfg0o")]([SubResource("Resource_viorh")])
+lista_efeitos = Array[ExtResource("1_bfg0o")]([SubResource("Resource_viorh"), SubResource("Resource_edlfn")])
 visual_def = SubResource("Resource_bfg0o")
 metadata/_custom_type_script = "uid://cf63pij16plhl"
 

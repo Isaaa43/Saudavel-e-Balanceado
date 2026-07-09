@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gul6t3vhitfo" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/feitico_efeito_def.gd" id="1_a5gyc"]
 [ext_resource type="Script" uid="uid://ckyjj62ph5wvh" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_revelar_def.gd" id="2_w1dw0"]
+[ext_resource type="Script" uid="uid://clldisbf177oj" path="res://scripts/game/feiticos/definicoes/efeitos_def/lista_efeitos/FE_mudar_velocidade_def.gd" id="3_658hi"]
 [ext_resource type="Script" uid="uid://cf63pij16plhl" path="res://scripts/game/feiticos/definicoes/comportamento_def/FC_projetil_def.gd" id="3_hpii0"]
 [ext_resource type="PackedScene" uid="uid://c0x4sfg4cudyb" path="res://feiticos/visuais/FV_revelacao.tscn" id="4_48f8s"]
 [ext_resource type="Script" uid="uid://d2ynerodv584f" path="res://scripts/game/feiticos/definicoes/feitico_visual_def.gd" id="5_ihkj2"]
@@ -12,6 +13,12 @@
 script = ExtResource("2_w1dw0")
 valor = 5.0
 metadata/_custom_type_script = "uid://ckyjj62ph5wvh"
+
+[sub_resource type="Resource" id="Resource_4e6b5"]
+script = ExtResource("3_658hi")
+duracao_seg = 3.0
+valor = -0.3
+metadata/_custom_type_script = "uid://clldisbf177oj"
 
 [sub_resource type="Resource" id="Resource_bfg0o"]
 script = ExtResource("5_ihkj2")
@@ -26,7 +33,7 @@ tamanho_raio = 15.0
 duracao_seg = 1.0
 afetados = 5
 mascara_afetados = 262400
-lista_efeitos = Array[ExtResource("1_a5gyc")]([SubResource("Resource_viorh")])
+lista_efeitos = Array[ExtResource("1_a5gyc")]([SubResource("Resource_viorh"), SubResource("Resource_4e6b5")])
 visual_def = SubResource("Resource_bfg0o")
 metadata/_custom_type_script = "uid://cf63pij16plhl"
 
