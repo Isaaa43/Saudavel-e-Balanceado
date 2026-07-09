@@ -42,10 +42,24 @@ var idx_feitico_atual := 1
 var idx_to_feitico_id : Dictionary[int, String] = {}
 ## Para dado Feitico_id marca se esse feitico esta no lancavel (e pode ser usado)
 var esta_lancavel_feitico_id: Dictionary[String, bool] = {}
+## Lista de indexes de feiticos posicionados, se tiver
+var idxs_feiticos_posicionados: Array[int] = []
 
+const ARMADILHA_3D = preload("uid://b2stfejm340pq")
+var armadilha_mesh : Node3D
+## Se deve mostrar o preview da posicao onde vai ficar a armadilha
+var mostrar_preview_armadilha: bool = false
 
 func _ready() -> void:
 	audio_stream_player.stream = audio_cast
+	# preview da armadilha
+	armadilha_mesh = ARMADILHA_3D.instantiate()
+	add_child(armadilha_mesh)
+	armadilha_mesh.hide()
+	# TODO: achar solucao melhor
+	# deixa o mesh da armadilha meio transparente
+	var mesh: MeshInstance3D = armadilha_mesh.get_child(0).get_child(0).get_child(0).get_child(0)
+	mesh.transparency = 0.75
 
 # Capturar Inputs
 # -----------------------------------------------------------------------------
@@ -66,6 +80,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("feitico_prev"):
 		add_idx(-1)
 		_mostrar_custo_mana(idx_to_feitico_id[idx_feitico_atual])
+	
+	if mostrar_preview_armadilha:
+		_process_preview_armadilha()
 
 func _physics_process(_delta: float) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
@@ -99,9 +116,15 @@ func _ajustar_feiticos_hud() -> void:
 	# ajusta icones e feiticos por index
 	var idx: int = 0
 	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
+		# salva o feitico def
 		var feitico_def = Registros.reg_feiticos.feiticos[feitico_id]
 		idx_to_feitico_id[idx] = feitico_id
+		# coloca na hud o icone o icone para o index do feitico
 		hud_jogador.add_icon(idx, feitico_def.icone_hud)
+		# salva se for posicionado
+		if feitico_def.tipo == Feitico.Tipo.POSICIONADO:
+			idxs_feiticos_posicionados.append(idx)
+		# proximo
 		idx += 1
 	
 	# atualiza a hud no inicio da partida
@@ -117,6 +140,22 @@ func selecionar_magia_atual() -> void:
 	var lancavel: bool = esta_lancavel_feitico_id.get(feitico_id, true)
 	# atualiza a hud com o feitico selecionado atualmente
 	hud_jogador.selecionar_magia(idx_feitico_atual, lancavel)
+	# ve se o feitico selecionado atualmente eh posicionado
+	mostrar_preview_armadilha = idxs_feiticos_posicionados.has(idx_feitico_atual)
+	armadilha_mesh.visible = mostrar_preview_armadilha
+
+func _process_preview_armadilha() -> void:
+	var pos_global: Vector3 = get_posicao_global_mirando()
+	if pos_global != Vector3.INF:
+		# coloca a o mesh na posicao que o jogador esta mirando
+		armadilha_mesh.global_position = pos_global
+		# rotaciona, orientacao de para cima global
+		armadilha_mesh.global_transform.basis = Basis(Vector3.UP, 0.0)
+		# mostra a armadilha
+		armadilha_mesh.visible = true
+	else:
+		# esconde se for uma posicao impossivel de armadilha
+		armadilha_mesh.visible = false
 
 # Lancar Feitico
 # -----------------------------------------------------------------------------
