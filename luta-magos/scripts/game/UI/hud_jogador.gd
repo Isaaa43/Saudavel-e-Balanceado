@@ -15,6 +15,7 @@ signal sair_partida
 @onready var texture_prev: TextureRect = $SelecaoMagia/TexturePrev
 @onready var texture_atual: TextureRect = $SelecaoMagia/TextureAtual
 @onready var texture_prox: TextureRect = $SelecaoMagia/TextureProx
+@onready var magia_mira: TextureRect = %MagiaMira
 
 @onready var efeitos: Control = $Efeitos
 @onready var congelado: TextureRect = $Efeitos/Congelado
@@ -86,12 +87,15 @@ func selecionar_magia(idx: int) -> void:
 	texture_prox.texture = _idx_to_icon(_calc_add_idx(idx, +1) )
 	# atual
 	texture_atual.texture = _idx_to_icon(idx)
+	magia_mira.texture = _idx_to_icon(idx)
 	# verifica se esta apto a ser lancado
 	var feitico_id: String = idx_to_feitico_id[idx]
 	if esta_lancavel_feitico_id.get(feitico_id, true):
 		texture_atual.modulate = Color.WHITE
+		magia_mira.modulate = Color.WHITE
 	else:
 		texture_atual.modulate = cor_modulate_bloqueado
+		magia_mira.modulate = cor_modulate_bloqueado
 
 func _idx_to_icon(idx: int) -> Texture2D:
 	return feitico_id_to_icon[idx_to_feitico_id[idx]]
