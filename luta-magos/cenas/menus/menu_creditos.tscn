@@ -13,7 +13,7 @@ bg_color = Color(0.13229999, 0.21, 0.16597001, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgj8j"]
 bg_color = Color(0.252, 0.4, 0.3112, 1)
 
-[node name="MenuPartida" type="Control" unique_id=260516147]
+[node name="MenuCreditos" type="Control" unique_id=260516147]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

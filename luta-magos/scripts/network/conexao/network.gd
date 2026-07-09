@@ -8,9 +8,11 @@ signal client_server_disconnected
 
 const SERVER_ID := 1
 
-var PORT			:= 45678
 var IP_ADDR			:= "127.0.0.1"
+var PORT			:= 45678
+const PORT_DEFAULT	:= 45678
 const MAX_CLIENTS 	:= 2
+
 
 var server : NetworkServer
 var client : NetworkClient
