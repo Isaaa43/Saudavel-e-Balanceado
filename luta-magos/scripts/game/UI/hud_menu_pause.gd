@@ -21,10 +21,10 @@ func _on_button_voltar_pressed() -> void:
 func _on_button_sair_pressed() -> void:
 	sair_partida.emit()
 
-func set_feiticos(lista_feiticos_def: Array[FeiticoDef]) -> void:
+func set_feiticos(lista_feiticos_card: Array[MenuDeck.CardData]) -> void:
 	for c in h_box_help_feitico.get_children(): c.queue_free()
 	# adiciona um helper para cada feitico
-	for feitico_def: FeiticoDef in lista_feiticos_def:
+	for feitico_card: MenuDeck.CardData in lista_feiticos_card:
 		var help_feitico := HUD_HELP_FEITICO.instantiate() as HudHelpFeitico
 		h_box_help_feitico.add_child(help_feitico)
-		help_feitico.set_feitico(feitico_def)
+		help_feitico.set_feitico(feitico_card)

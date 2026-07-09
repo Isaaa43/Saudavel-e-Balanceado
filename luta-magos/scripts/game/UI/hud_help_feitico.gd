@@ -5,7 +5,7 @@ extends Control
 @onready var label_nome: Label = $VBoxContainer/LabelNome
 @onready var label_descricao: Label = $VBoxContainer/LabelDescricao
 
-func set_feitico(feitico_def: FeiticoDef) -> void:
-	texture_rect.texture = feitico_def.icone_hud
-	label_nome.text = feitico_def.nome
-	label_descricao.text = feitico_def.descricao
+func set_feitico(feitico_card: MenuDeck.CardData) -> void:
+	texture_rect.texture = feitico_card.icone
+	label_nome.text = feitico_card.nome
+	label_descricao.text = feitico_card.descricao

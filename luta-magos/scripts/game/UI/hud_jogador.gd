@@ -50,7 +50,7 @@ func _ready() -> void:
 	menu_pause.voltar_partida.connect(_esconder_menu_pause)
 	menu_pause.sair_partida.connect(func(): sair_partida.emit())
 	#	ajustar os feiticos
-	menu_pause.set_feiticos(GlobalDeck.get_feiticos_def())
+	menu_pause.set_feiticos(GlobalDeck.cards_escolhidos)
 	# tela de fim de jogo
 	tela_fim.hide()
 	# tempo

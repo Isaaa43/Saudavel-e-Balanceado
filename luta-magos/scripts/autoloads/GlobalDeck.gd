@@ -21,10 +21,10 @@ func set_deck(deck_cards: Array[MenuDeck.CardData]) -> void:
 func get_deck() -> Array[MenuDeck.CardData]:
 	return cards_escolhidos
 
-func get_feiticos_def() -> Array[FeiticoDef]:
-	var lista_feiticos_def: Array[FeiticoDef] = []
-	# transforma os feiticos_id em feiticos_def do deck atual
-	for feitico_id: String in feiticos_id_escolhidos:
-		var feitico_def: FeiticoDef = Registros.reg_feiticos.get_feitico(feitico_id)
-		lista_feiticos_def.append(feitico_def)
-	return lista_feiticos_def
+#func get_feiticos_def() -> Array[FeiticoDef]:
+	#var lista_feiticos_def: Array[FeiticoDef] = []
+	## transforma os feiticos_id em feiticos_def do deck atual
+	#for feitico_id: String in feiticos_id_escolhidos:
+		#var feitico_def: FeiticoDef = Registros.reg_feiticos.get_feitico(feitico_id)
+		#lista_feiticos_def.append(feitico_def)
+	#return lista_feiticos_def
