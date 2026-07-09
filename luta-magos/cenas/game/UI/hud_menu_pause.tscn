@@ -152,7 +152,7 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxHelpFeitico" type="HBoxContainer" parent="HelpMenu/Panel/Margin" unique_id=559797908]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 35
 
 [node name="HelpFeitico" parent="HelpMenu/Panel/Margin/HBoxHelpFeitico" unique_id=1398445581 instance=ExtResource("2_qbqum")]
 layout_mode = 2
