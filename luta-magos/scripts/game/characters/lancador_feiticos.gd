@@ -23,7 +23,7 @@ var qtde_usos_ate_chao_atual : int = 0
 var hud_jogador: HUDJogador :
 	set(_hud):
 		hud_jogador = _hud
-		hud_jogador.selecionar_magia(idx_feitico_atual)
+		_ajustar_feiticos_hud()
 
 ## Peer id do jogador que eh dono desse lancador de feiticos
 var jogador_id : int
@@ -38,6 +38,11 @@ var selecao_feitico_id: int = 0
 
 ## Index do feitico selecionado atualmente no deck
 var idx_feitico_atual := 1
+## Dado index do feitico retorna o feitico_id
+var idx_to_feitico_id : Dictionary[int, String] = {}
+## Para dado Feitico_id marca se esse feitico esta no lancavel (e pode ser usado)
+var esta_lancavel_feitico_id: Dictionary[String, bool] = {}
+
 
 func _ready() -> void:
 	audio_stream_player.stream = audio_cast
@@ -57,10 +62,10 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("feitico_prox"):
 		add_idx(1)
-		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx(idx_feitico_atual))
+		_mostrar_custo_mana(idx_to_feitico_id[idx_feitico_atual])
 	if Input.is_action_just_pressed("feitico_prev"):
 		add_idx(-1)
-		_mostrar_custo_mana(hud_jogador.get_feitico_id_from_idx(idx_feitico_atual))
+		_mostrar_custo_mana(idx_to_feitico_id[idx_feitico_atual])
 
 func _physics_process(_delta: float) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE: return
@@ -78,21 +83,40 @@ func _process_cooldowns(delta: float) -> void:
 
 func update_lancavel(feitico_id: String, esta_lancavel: bool) -> void:
 	# mudou a condicao de um momento para o outro
-	var mudou : bool = esta_lancavel != hud_jogador.esta_lancavel_feitico_id.get(feitico_id, true)
+	var mudou : bool = esta_lancavel != esta_lancavel_feitico_id.get(feitico_id, true)
 	# -- se nao mudou, nao precisa fazer mais nada
 	if not mudou: return
 	# -- se mudou
 	# atualiza a condicao de lancar
-	hud_jogador.esta_lancavel_feitico_id[feitico_id] = esta_lancavel
+	esta_lancavel_feitico_id[feitico_id] = esta_lancavel
 	# chama de novo selecionar, para atualizar o icone
-	hud_jogador.selecionar_magia(idx_feitico_atual)
+	selecionar_magia_atual()
 
 # Escolher Feitico
 # -----------------------------------------------------------------------------
 
+func _ajustar_feiticos_hud() -> void:
+	# ajusta icones e feiticos por index
+	var idx: int = 0
+	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
+		var feitico_def = Registros.reg_feiticos.feiticos[feitico_id]
+		idx_to_feitico_id[idx] = feitico_id
+		hud_jogador.add_icon(idx, feitico_def.icone_hud)
+		idx += 1
+	
+	# atualiza a hud no inicio da partida
+	selecionar_magia_atual()
+
 func add_idx(qnt: int ) -> void:
 	idx_feitico_atual = GlobalDeck.calc_add_idx(idx_feitico_atual, qnt)
-	hud_jogador.selecionar_magia(idx_feitico_atual)
+	selecionar_magia_atual()
+
+func selecionar_magia_atual() -> void:
+	# pega os dados do feitico
+	var feitico_id: String = idx_to_feitico_id[idx_feitico_atual]
+	var lancavel: bool = esta_lancavel_feitico_id.get(feitico_id, true)
+	# atualiza a hud com o feitico selecionado atualmente
+	hud_jogador.selecionar_magia(idx_feitico_atual, lancavel)
 
 # Lancar Feitico
 # -----------------------------------------------------------------------------
@@ -113,9 +137,9 @@ func _tentar_canalizar_feitico() -> void:
 	if feitico_def.lancamento == Feitico.Lancamento.CANALIZAR:
 		processar_lancar_feitico(feitico_id)
 
-## Retorna o feitico que a hud tem como escolhido atualmente
+## Retorna o feitico escolhido atualmente
 func get_feitico_escolhido() -> String:
-	return hud_jogador.get_feitico_id_from_idx(idx_feitico_atual)
+	return idx_to_feitico_id[idx_feitico_atual]
 
 ## Retorna True somente se dado feitico_id esta apto a ser lancado
 func _esta_lancavel(feitico_id: String) -> bool:

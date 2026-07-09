@@ -24,13 +24,12 @@ signal sair_partida
 
 var custo_mana_porcent: float = 0.0
 
-var feitico_id_to_icon : Dictionary[String, Texture2D] = {}
-var idx_to_feitico_id : Dictionary[int, String] = {}
+## Converte de index para icone do feitico no dado idx
+var idx_to_icon: Dictionary[int, Texture2D] = {}
 
-## Para dado Feitico_id marca se esse feitico esta no lancavel (e pode ser usado)
-var esta_lancavel_feitico_id: Dictionary[String, bool] = {}
 ## Cor do modulate no icone que nao esta apto a ser lancado
 @export var cor_modulate_bloqueado := Color.WEB_GRAY
+
 
 func _input(event):
 	# esc para sair do capture
@@ -58,15 +57,7 @@ func _ready() -> void:
 	efeitos.show()
 	congelado.hide()
 	# mira
-	sprite_hit.hide()
-	# ajusta icones e feiticos por index
-	var idx: int = 0
-	for feitico_id: String in GlobalDeck.feiticos_id_escolhidos:
-		var feitico_def = Registros.reg_feiticos.feiticos[feitico_id]
-		add_icon(feitico_id, feitico_def.icone_hud)
-		idx_to_feitico_id[idx] = feitico_id
-		idx += 1
-	
+	sprite_hit.hide()	
 	# inicia os mostradores
 	mostrar_vida(1.0)
 	mostrar_mana(1.0)
@@ -75,34 +66,26 @@ func _ready() -> void:
 # Icones Feiticos
 # -----------------------------------------------------------------------------
 
-func add_icon(feitico_id: String, icon) -> void:
-	feitico_id_to_icon[feitico_id] = icon
+func add_icon(idx: int, icon: Texture2D) -> void:
+	idx_to_icon[idx] = icon
 
-func selecionar_magia(idx: int) -> void:
-	if idx < 0 or idx > feitico_id_to_icon.size(): return
+func selecionar_magia(idx: int, lancavel: bool = true) -> void:
+	if idx < 0 or idx > idx_to_icon.size(): return
 	
 	# prev
-	texture_prev.texture = _idx_to_icon(GlobalDeck.calc_add_idx(idx, -1) )
+	texture_prev.texture = idx_to_icon[GlobalDeck.calc_add_idx(idx, -1)]
 	# prox
-	texture_prox.texture = _idx_to_icon(GlobalDeck.calc_add_idx(idx, +1) )
+	texture_prox.texture = idx_to_icon[GlobalDeck.calc_add_idx(idx, +1)]
 	# atual
-	texture_atual.texture = _idx_to_icon(idx)
-	magia_mira.texture = _idx_to_icon(idx)
+	texture_atual.texture 	= idx_to_icon[idx]
+	magia_mira.texture		= idx_to_icon[idx]
 	# verifica se esta apto a ser lancado
-	var feitico_id: String = idx_to_feitico_id[idx]
-	if esta_lancavel_feitico_id.get(feitico_id, true):
-		texture_atual.modulate = Color.WHITE
-		magia_mira.modulate = Color.WHITE
+	if lancavel:
+		texture_atual.modulate 	= Color.WHITE
+		magia_mira.modulate 	= Color.WHITE
 	else:
-		texture_atual.modulate = cor_modulate_bloqueado
-		magia_mira.modulate = cor_modulate_bloqueado
-
-func _idx_to_icon(idx: int) -> Texture2D:
-	return feitico_id_to_icon[idx_to_feitico_id[idx]]
-
-func get_feitico_id_from_idx(idx: int) -> String:
-	return idx_to_feitico_id[idx]
-
+		texture_atual.modulate 	= cor_modulate_bloqueado
+		magia_mira.modulate 	= cor_modulate_bloqueado
 
 # Mostradores
 # -----------------------------------------------------------------------------
