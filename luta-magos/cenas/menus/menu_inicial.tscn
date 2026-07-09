@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c853f3vcikgmc" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 1.png" id="5_yn5gb"]
 [ext_resource type="Texture2D" uid="uid://gfuu3l72tve" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 2.png" id="6_sjf3n"]
 [ext_resource type="Texture2D" uid="uid://g5hehlwudmh0" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 3.png" id="8_u111g"]
+[ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="9_yn5gb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
 
@@ -43,6 +44,7 @@ expand_mode = 3
 
 [node name="TelaPrincipal" type="PanelContainer" parent="." unique_id=656276633]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -141,33 +143,12 @@ expand_icon = true
 
 [node name="TelaEscolherJogo" type="Control" parent="." unique_id=2072897170]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ButtonVoltar" type="Button" parent="TelaEscolherJogo" unique_id=442530600]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -159.0
-offset_right = 106.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("2_avi7h")
-icon = ExtResource("8_u111g")
-flat = true
-icon_alignment = 1
-expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="TelaEscolherJogo" unique_id=109815067]
 layout_mode = 0
@@ -209,6 +190,9 @@ self_modulate = Color(0.35000002, 0.6099999, 1, 1)
 
 [node name="Label" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" index="1" unique_id=726138241]
 text = "TUTORIAL"
+
+[node name="ButtonVoltar" parent="TelaEscolherJogo" unique_id=21873502 instance=ExtResource("9_yn5gb")]
+layout_mode = 1
 
 [node name="PanelNome" type="Panel" parent="." unique_id=610391779]
 visible = false
@@ -402,10 +386,10 @@ text = "Cancelar"
 [connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
 [connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
 [connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
-[connection signal="pressed" from="TelaEscolherJogo/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 [connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
 [connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
 [connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" to="." method="_on_button_tutorial_pressed"]
+[connection signal="pressed" from="TelaEscolherJogo/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 [connection signal="text_changed" from="PanelNome/Control/VBoxContainer/LineEditNomeJogador" to="." method="_on_line_edit_nome_jogador_text_changed"]
 [connection signal="pressed" from="PanelNome/Control/VBoxContainer/ButtonNome" to="." method="_on_button_nome_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
