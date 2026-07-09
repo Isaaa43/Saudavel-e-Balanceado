@@ -15,6 +15,9 @@ var vida : float
 func _ready() -> void:
 	vida = vida_max
 
+func get_vida_porcent() -> float:
+	return vida * vida_max_inverso
+
 # -----------------------------------------------------------------------------
 # Mudar vida
 # -----------------------------------------------------------------------------
@@ -40,7 +43,7 @@ func receber_vida(_vida: float) -> void:
 
 ## Emite sinal para atualizar a porcentagem de vida
 func _emitir_vida_porcentagem() -> void:
-	var vida_porcent : float = vida * vida_max_inverso
+	var vida_porcent : float = get_vida_porcent()
 	mudanca_vida.emit(vida_porcent)
 
 # -----------------------------------------------------------------------------

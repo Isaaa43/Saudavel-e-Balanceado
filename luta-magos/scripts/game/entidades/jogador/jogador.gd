@@ -33,6 +33,7 @@ func _ready() -> void:
 	
 	jogador_corpo = corpo
 	sistema_vida.levou_dano.connect(jogador_corpo.mostrar_levar_dano)
+	jogador_corpo.sistema_vida = sistema_vida # TODO: melhorar
 	fantasma = fantasma_ref.instantiate()
 	
 	# se nao for este computador controlando esse nodo, desligue esse nodo

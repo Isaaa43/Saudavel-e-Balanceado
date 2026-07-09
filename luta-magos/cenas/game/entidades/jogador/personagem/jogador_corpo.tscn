@@ -126,6 +126,15 @@ text = "Dano:
 font_size = 50
 outline_size = 16
 
+[node name="LabelVida" type="Label3D" parent="." unique_id=58929471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6832335, 0)
+visible = false
+billboard = 2
+modulate = Color(1, 0.31, 0.31, 1)
+text = "Vida
+"
+font_size = 50
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=22801627]
 root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_s5tbn")
