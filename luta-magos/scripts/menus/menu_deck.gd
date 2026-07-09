@@ -141,7 +141,7 @@ func _show_card_info(card: CardData) -> void:
 
 	# Atualiza a coluna da direita com as informações da carta.
 	card_name.text = card.nome
-	card_type_cost.text = "%s | Custo de mana: %d" % [card.tipo, card.custo]
+	card_type_cost.text = "%s | Custo de mana: %d" % [card.espaco_str, card.custo]
 	card_description.text = card.descricao
 
 	# Atualiza a imagem/ícone da carta.
@@ -351,6 +351,8 @@ class CardData:
 	var tipo: String
 	## Espaco que a carta ocupa (Dano, Suporte, Revelacao)
 	var espaco: Feitico.Espaco
+	## Texto do espaco que a carta ocupa
+	var espaco_str: String
 	## Texto descritivo da carta.
 	var descricao: String
 	## Custo de mana para ativar a carta
@@ -363,6 +365,7 @@ class CardData:
 		nome 		= feitico_def.nome
 		tipo 		= _feitico_tipo_para_string(feitico_def.tipo)
 		espaco 		= feitico_def.espaco
+		espaco_str	= _feitico_espaco_para_string(feitico_def.espaco)
 		descricao 	= _formatar_descricao(feitico_def)
 		custo 		= int(feitico_def.custo)
 		icone 		= feitico_def.icone_hud
@@ -413,13 +416,13 @@ class CardData:
 		# caso de erro, retorne essa opcao para podermos diagnosticar
 		return "Feitico.Tipo_" + str(_tipo)
 	#
-	#func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
-		#match (_espaco):
-			#Feitico.Espaco.DANO:
-				#return "Dano"
-			#Feitico.Espaco.SUPORTE:
-				#return "Suporte"
-			#Feitico.Espaco.REVELACAO:
-				#return "Revelacao"
-		## caso de erro, retorne essa opcao para podermos diagnosticar
-		#return "Feitico.Espaco_" + str(_espaco)
+	func _feitico_espaco_para_string(_espaco: Feitico.Espaco) -> String:
+		match (_espaco):
+			Feitico.Espaco.DANO:
+				return "Dano"
+			Feitico.Espaco.SUPORTE:
+				return "Suporte"
+			Feitico.Espaco.REVELACAO:
+				return "Revelacao"
+		# caso de erro, retorne essa opcao para podermos diagnosticar
+		return "Feitico.Espaco_" + str(_espaco)
