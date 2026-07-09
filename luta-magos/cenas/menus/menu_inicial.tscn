@@ -15,7 +15,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifal0"]
 
-[node name="MenuInicial" type="Control" unique_id=1487474413 node_paths=PackedStringArray("focus_inicial", "panel_nome", "panel_jogar")]
+[node name="MenuInicial" type="Control" unique_id=1487474413 node_paths=PackedStringArray("focus_tela", "panel_nome", "panel_jogar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mswjp")
-focus_inicial = NodePath("UI/VBoxUI/VBoxContainer/ButtonJogar")
+focus_tela = {
+0: NodePath("TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar"),
+1: NodePath("TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar")
+}
 panel_nome = NodePath("PanelNome")
 panel_jogar = NodePath("PanelJogar")
 
@@ -38,7 +41,8 @@ grow_vertical = 2
 texture = ExtResource("2_caduv")
 expand_mode = 3
 
-[node name="UI" type="PanelContainer" parent="." unique_id=656276633]
+[node name="TelaPrincipal" type="PanelContainer" parent="." unique_id=656276633]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,17 +50,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -419.0
+offset_top = -409.0
 offset_right = 300.0
-offset_bottom = 504.0
+offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mswjp")
 
-[node name="VBoxUI" type="VBoxContainer" parent="UI" unique_id=1200559368]
+[node name="VBoxUI" type="VBoxContainer" parent="TelaPrincipal" unique_id=1200559368]
 layout_mode = 2
 
-[node name="LabelTitulo" type="Label" parent="UI/VBoxUI" unique_id=1505035427]
+[node name="LabelTitulo" type="Label" parent="TelaPrincipal/VBoxUI" unique_id=1505035427]
+custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_enabled = true
@@ -69,69 +74,63 @@ theme_override_font_sizes/font_size = 100
 text = "Frogspell Arena"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxUI" unique_id=1564714164]
+[node name="VBoxContainer" type="VBoxContainer" parent="TelaPrincipal/VBoxUI" unique_id=1564714164]
 custom_minimum_size = Vector2(600, 0)
 custom_maximum_size = Vector2(900, -1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 alignment = 1
 
-[node name="ButtonJogar" parent="UI/VBoxUI/VBoxContainer" unique_id=1906114435 instance=ExtResource("4_caduv")]
+[node name="ButtonMenuJogar" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=1906114435 instance=ExtResource("4_caduv")]
 layout_mode = 2
 icon = ExtResource("5_yn5gb")
 
-[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonJogar" index="0" unique_id=1723732680]
+[node name="TextureRect" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar" index="0" unique_id=1723732680]
 visible = false
 
-[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonJogar" index="1" unique_id=726138241]
+[node name="Label" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar" index="1" unique_id=726138241]
 visible = false
 
-[node name="ButtonTreino" parent="UI/VBoxUI/VBoxContainer" unique_id=868387961 instance=ExtResource("4_caduv")]
+[node name="Separador2" type="Control" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=674546295]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonTreino" index="0" unique_id=1723732680]
-self_modulate = Color(0.35000002, 0.6099999, 1, 1)
-
-[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonTreino" index="1" unique_id=726138241]
-text = "TREINAR"
-
-[node name="Separador2" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=674546295]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="ButtonDeck" parent="UI/VBoxUI/VBoxContainer" unique_id=1248481750 instance=ExtResource("4_caduv")]
+[node name="ButtonDeck" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=1248481750 instance=ExtResource("4_caduv")]
 layout_mode = 2
 icon = ExtResource("6_sjf3n")
 
-[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonDeck" index="0" unique_id=1723732680]
+[node name="TextureRect" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonDeck" index="0" unique_id=1723732680]
 visible = false
 
-[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonDeck" index="1" unique_id=726138241]
+[node name="Label" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonDeck" index="1" unique_id=726138241]
 visible = false
 text = "GRIMÓRIO"
 
-[node name="ButtonConfig" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=16031350]
-visible = false
-layout_mode = 2
-theme = ExtResource("2_avi7h")
-text = "Configurações"
-
-[node name="ButtonCreditos" parent="UI/VBoxUI/VBoxContainer" unique_id=1505797492 instance=ExtResource("4_caduv")]
+[node name="ButtonConfig" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=1178164881 instance=ExtResource("4_caduv")]
 layout_mode = 2
 
-[node name="TextureRect" parent="UI/VBoxUI/VBoxContainer/ButtonCreditos" index="0" unique_id=1723732680]
+[node name="TextureRect" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonConfig" index="0" unique_id=1723732680]
 self_modulate = Color(0.35000002, 0.6099999, 1, 1)
 
-[node name="Label" parent="UI/VBoxUI/VBoxContainer/ButtonCreditos" index="1" unique_id=726138241]
-text = "CRÉDITOS"
+[node name="Label" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonConfig" index="1" unique_id=726138241]
+text = "CONFIGURAÇÕES"
 
-[node name="Separador" type="Control" parent="UI/VBoxUI/VBoxContainer" unique_id=1874725411]
-custom_minimum_size = Vector2(0, 5)
+[node name="ButtonCreditos" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=1505797492 instance=ExtResource("4_caduv")]
 layout_mode = 2
 
-[node name="ButtonSairJogo" type="Button" parent="UI/VBoxUI/VBoxContainer" unique_id=1063477149]
+[node name="TextureRect" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonCreditos" index="0" unique_id=1723732680]
+self_modulate = Color(0.35000002, 0.6099999, 1, 1)
+
+[node name="Label" parent="TelaPrincipal/VBoxUI/VBoxContainer/ButtonCreditos" index="1" unique_id=726138241]
+text = "CRÉDITOS"
+
+[node name="Separador" type="Control" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=1874725411]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonSairJogo" type="Button" parent="TelaPrincipal/VBoxUI/VBoxContainer" unique_id=1063477149]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("2_avi7h")
@@ -139,6 +138,77 @@ icon = ExtResource("8_u111g")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="TelaEscolherJogo" type="Control" parent="." unique_id=2072897170]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonVoltar" type="Button" parent="TelaEscolherJogo" unique_id=442530600]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -159.0
+offset_right = 106.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_avi7h")
+icon = ExtResource("8_u111g")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="TelaEscolherJogo" unique_id=109815067]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 250
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TelaEscolherJogo/MarginContainer" unique_id=2147111909]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="ButtonJogar" parent="TelaEscolherJogo/MarginContainer/HBoxContainer" unique_id=1100133860 instance=ExtResource("4_caduv")]
+layout_mode = 2
+icon = ExtResource("5_yn5gb")
+
+[node name="TextureRect" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar" index="0" unique_id=1723732680]
+visible = false
+
+[node name="Label" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar" index="1" unique_id=726138241]
+visible = false
+
+[node name="ButtonTreino" parent="TelaEscolherJogo/MarginContainer/HBoxContainer" unique_id=868387961 instance=ExtResource("4_caduv")]
+layout_mode = 2
+
+[node name="TextureRect" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino" index="0" unique_id=1723732680]
+self_modulate = Color(0.35000002, 0.6099999, 1, 1)
+
+[node name="Label" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino" index="1" unique_id=726138241]
+text = "TREINAR"
+
+[node name="ButtonTutorial" parent="TelaEscolherJogo/MarginContainer/HBoxContainer" unique_id=1685432892 instance=ExtResource("4_caduv")]
+layout_mode = 2
+
+[node name="TextureRect" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" index="0" unique_id=1723732680]
+self_modulate = Color(0.35000002, 0.6099999, 1, 1)
+
+[node name="Label" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" index="1" unique_id=726138241]
+text = "TUTORIAL"
 
 [node name="PanelNome" type="Panel" parent="." unique_id=610391779]
 visible = false
@@ -327,18 +397,25 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Cancelar"
 
-[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
-[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
-[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
-[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
-[connection signal="pressed" from="UI/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
+[connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar" to="." method="_on_button_menu_jogar_pressed"]
+[connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
+[connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
+[connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
+[connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]
+[connection signal="pressed" from="TelaEscolherJogo/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
+[connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar" to="." method="_on_button_jogar_pressed"]
+[connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
+[connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" to="." method="_on_button_tutorial_pressed"]
 [connection signal="text_changed" from="PanelNome/Control/VBoxContainer/LineEditNomeJogador" to="." method="_on_line_edit_nome_jogador_text_changed"]
 [connection signal="pressed" from="PanelNome/Control/VBoxContainer/ButtonNome" to="." method="_on_button_nome_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
 [connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/ButtonCancelar" to="." method="_on_button_cancelar_pressed"]
 
-[editable path="UI/VBoxUI/VBoxContainer/ButtonJogar"]
-[editable path="UI/VBoxUI/VBoxContainer/ButtonTreino"]
-[editable path="UI/VBoxUI/VBoxContainer/ButtonDeck"]
-[editable path="UI/VBoxUI/VBoxContainer/ButtonCreditos"]
+[editable path="TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar"]
+[editable path="TelaPrincipal/VBoxUI/VBoxContainer/ButtonDeck"]
+[editable path="TelaPrincipal/VBoxUI/VBoxContainer/ButtonConfig"]
+[editable path="TelaPrincipal/VBoxUI/VBoxContainer/ButtonCreditos"]
+[editable path="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar"]
+[editable path="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino"]
+[editable path="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial"]

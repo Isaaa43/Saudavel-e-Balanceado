@@ -1,10 +1,12 @@
 extends Control
 
-@export var focus_inicial: Control
+@export var focus_tela: Dictionary[Tela, Control]
+
 @export var panel_nome: Panel 
 @export var panel_jogar: Panel 
 
-@onready var ui: PanelContainer = $UI
+@onready var tela_principal: PanelContainer = %TelaPrincipal
+@onready var tela_escolher_jogo: Control = %TelaEscolherJogo
 
 @onready var line_edit_nome_jogador: LineEdit = $PanelNome/Control/VBoxContainer/LineEditNomeJogador
 @onready var button_nome: Button = $PanelNome/Control/VBoxContainer/ButtonNome
@@ -13,8 +15,7 @@ extends Control
 @onready var line_edit_ip: LineEdit = $PanelJogar/Control/Margin/VBoxContainer/HBoxIP/LineEditIp
 @onready var line_edit_port: LineEdit = $PanelJogar/Control/Margin/VBoxContainer/HBoxPort/LineEditPort
 
-func _on_button_sair_jogo_pressed() -> void:
-	get_tree().quit()
+enum Tela {PRINCIPAL, JOGO, CONEXAO}
 
 func _debug_auto_multiplas_inst() -> void:
 	if not TrocaCenaTemp.jogo_iniciado:
@@ -36,22 +37,54 @@ func  _ready() -> void:
 	# TODO: REMOVER
 	_debug_auto_multiplas_inst()
 	
-	ui.show()
-	panel_nome.hide()
-	panel_jogar.hide()
+	_mostrar_tela(Tela.PRINCIPAL)
+	
 	# TODO: criar loading
 	Network.client_connection_failed.connect(_habilitar_button_join.bind(true))
-	# TODO: 
-	focus_inicial.grab_focus()
+
+
+# Tela Principal
+# -----------------------------------------------------------------------------
+
+func _on_button_menu_jogar_pressed() -> void:
+	_mostrar_tela(Tela.JOGO)
+
+func _on_button_config_pressed() -> void:
+	TrocaCenaTemp.go_to_config()
+
+func _on_button_creditos_pressed() -> void:
+	TrocaCenaTemp.go_to_creditos()
+
+func _on_button_deck_pressed() -> void:
+	TrocaCenaTemp.menu_deck()
+
+func _on_button_sair_jogo_pressed() -> void:
+	get_tree().quit()
+
+
+# Tela Escolher Jogo
+# -----------------------------------------------------------------------------
+
+func _on_button_voltar_pressed() -> void:
+	_mostrar_tela(Tela.PRINCIPAL)
+
+func _on_button_jogar_pressed() -> void:
+	pass
+	#panel_nome.show()
+	##ui.hide()
+	#line_edit_nome_jogador.grab_focus()
+	#button_nome.disabled = line_edit_nome_jogador.text.length() < 2
+
+func _on_button_treino_pressed() -> void:
+	TrocaCenaTemp.go_to_menu_treino()
+
+func _on_button_tutorial_pressed() -> void:
+	pass # Replace with function body.
+
 
 # Jogar
 # -----------------------------------------------------------------------------
 
-func _on_button_jogar_pressed() -> void:
-	panel_nome.show()
-	ui.hide()
-	line_edit_nome_jogador.grab_focus()
-	button_nome.disabled = line_edit_nome_jogador.text.length() < 2
 
 func _on_button_cancelar_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
@@ -75,27 +108,12 @@ func _habilitar_button_join(habilitar: bool) -> void:
 		button_join.text = "Join"
 
 
-# Botoes
-# -----------------------------------------------------------------------------
-
-func _on_button_treino_pressed() -> void:
-	TrocaCenaTemp.go_to_menu_treino()
-
-
-func _on_button_creditos_pressed() -> void:
-	TrocaCenaTemp.go_to_creditos()
-
-
-func _on_button_deck_pressed() -> void:
-	TrocaCenaTemp.menu_deck()
-	pass # Replace with function body.
-
 # Conexao
 # -----------------------------------------------------------------------------
 func _show_conectar() -> void:
 	panel_jogar.show()
 	panel_nome.hide()
-	ui.hide()
+	#ui.hide()
 	#
 	button_join.grab_focus()
 	# 
@@ -120,3 +138,23 @@ func _on_button_nome_pressed() -> void:
 
 func _on_line_edit_nome_jogador_text_changed(_new_text: String) -> void:
 	button_nome.disabled = _new_text.length() < 2
+
+
+func _mostrar_tela(tela: Tela) -> void:
+	tela_principal.hide()
+	tela_escolher_jogo.hide()
+	
+	panel_nome.hide()
+	panel_jogar.hide()
+	
+	match (tela):
+		Tela.PRINCIPAL:
+			tela_principal.show()
+		Tela.JOGO:
+			tela_escolher_jogo.show()
+		Tela.CONEXAO:
+			pass
+	
+	# pega o foco no item
+	await get_tree().process_frame
+	focus_tela[tela].grab_focus()

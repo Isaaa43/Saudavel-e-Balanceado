@@ -83,3 +83,9 @@ func go_to_creditos() -> void:
 	var _menu := MENU_CREDITOS.instantiate()
 	# TODO: criar soluacao melhor
 	main_game.add_child(_menu)
+
+func go_to_config() -> void:
+	for c in main_game.get_children(): c.queue_free()
+	var _menu := MENU_CREDITOS.instantiate()
+	# TODO: criar soluacao melhor
+	main_game.add_child(_menu)
