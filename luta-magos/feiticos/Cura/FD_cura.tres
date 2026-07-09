@@ -40,9 +40,8 @@ feitico_id = "Cura"
 nome = "Sara-Mago"
 tipo = 2
 lancamento = 1
-descricao = "\"Se o nome é cura, deve curar né\"
-- Um leitor ávido
-(Cura {valor} de vida por segundo)"
+descricao = "Segure para curar {valor} de vida por segundo
+- Um leitor ávido"
 custo = 7.0
 icone_hud = ExtResource("7_xdwck")
 comportamento_def = SubResource("Resource_1bgnk")
