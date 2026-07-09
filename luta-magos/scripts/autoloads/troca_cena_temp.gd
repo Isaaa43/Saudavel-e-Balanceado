@@ -83,4 +83,3 @@ func go_to_creditos() -> void:
 	var _menu := MENU_CREDITOS.instantiate()
 	# TODO: criar soluacao melhor
 	main_game.add_child(_menu)
-	
