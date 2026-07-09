@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cqcv03rhgirbi" path="res://cenas/menus/sub_itens/display_grimorio.tscn" id="2_j53x0"]
 [ext_resource type="Texture2D" uid="uid://bph52qcmudb6r" path="res://temas/menus/deck/ICONES LIVRO 1.png" id="2_krbyp"]
 [ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="2_ybtxc"]
+[ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="6_hoyad"]
 
 [node name="MenuPartida" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -79,23 +80,6 @@ horizontal_alignment = 2
 
 [node name="DisplayGrimorio" parent="." unique_id=2088990354 instance=ExtResource("2_j53x0")]
 layout_mode = 1
-
-[node name="ButtonSair" type="Button" parent="." unique_id=518067911]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -124.0
-offset_top = -133.0
-offset_right = 125.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("2_c11ds")
-text = "Voltar"
 
 [node name="PivotPartida" type="Control" parent="." unique_id=1975374552]
 layout_mode = 1
@@ -174,9 +158,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -256.0
-offset_top = -260.0
+offset_top = -58.0
 offset_right = 261.0
-offset_bottom = -205.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.478125, 0.85, 0.2125, 1)
@@ -184,5 +168,10 @@ theme_override_font_sizes/font_size = 40
 text = "Validando início da partida"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="ButtonSair" to="." method="_on_button_sair_pressed"]
+[node name="ButtonVoltar" parent="." unique_id=21873502 instance=ExtResource("6_hoyad")]
+layout_mode = 1
+offset_top = -146.0
+offset_bottom = -70.0
+
 [connection signal="toggled" from="PivotPartida/ButtonComecar" to="." method="_on_button_comecar_toggled"]
+[connection signal="pressed" from="ButtonVoltar" to="." method="_on_button_sair_pressed"]

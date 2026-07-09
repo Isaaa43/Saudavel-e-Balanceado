@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_j7c31"]
 [ext_resource type="PackedScene" uid="uid://cqcv03rhgirbi" path="res://cenas/menus/sub_itens/display_grimorio.tscn" id="3_j7c31"]
 [ext_resource type="PackedScene" uid="uid://cpxpiydybrmt4" path="res://cenas/menus/sub_itens/control_hacks.tscn" id="4_j7c31"]
+[ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="6_1536y"]
 
 [node name="MenuTreino" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -84,21 +85,10 @@ theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
 text = "Ajuste o Grimório antes de começar"
 horizontal_alignment = 1
 
-[node name="ButtonSair" type="Button" parent="." unique_id=518067911]
+[node name="ButtonVoltar" parent="." unique_id=21873502 instance=ExtResource("6_1536y")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -124.5
-offset_top = -128.0
-offset_right = 124.5
-offset_bottom = -78.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("2_j7c31")
-text = "Voltar"
+offset_top = -139.0
+offset_bottom = -63.0
 
 [connection signal="pressed" from="PivotPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
-[connection signal="pressed" from="ButtonSair" to="." method="_on_button_sair_pressed"]
+[connection signal="pressed" from="ButtonVoltar" to="." method="_on_button_sair_pressed"]
