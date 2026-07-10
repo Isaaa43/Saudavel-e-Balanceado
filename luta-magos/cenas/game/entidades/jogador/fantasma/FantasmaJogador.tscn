@@ -29,7 +29,7 @@ rings = 4
 [node name="FantasmaJogador" type="Node3D" unique_id=1939585183]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=887978573]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 amount = 4
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_oeaas")
