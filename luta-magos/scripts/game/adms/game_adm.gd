@@ -98,10 +98,11 @@ func _marcar_ganhador(peer_id_jog_morto: int) -> void:
 	estado_partida_adm.set_fim_partida()
 
 func _exibir_ganhador(peer_id_ganhador: int) -> void:
-	# espera um pouco
-	await get_tree().create_timer(2.5).timeout
 	# pega o jogador ganhador
 	var jog_ganhador: Jogador = jogadores_adm.get_jogador_peer_id(peer_id_ganhador)
+	jog_ganhador.deixar_jogador_imortal()
+	# espera um pouco
+	await get_tree().create_timer(2.5).timeout
 	# exibe a tela de fim com o nome do jogador ganhador
 	local_adm.tela_fim(jog_ganhador)
 

@@ -8,6 +8,8 @@ signal morreu
 
 var esta_vivo: bool = true
 
+var esta_imortal: bool = false
+
 var vida : float
 @export var vida_max : float = 150
 @onready var vida_max_inverso : float = 1 / vida_max
@@ -22,6 +24,8 @@ func get_vida_porcent() -> float:
 # Mudar vida
 # -----------------------------------------------------------------------------
 func receber_dano(_dano: float) -> void:
+	if esta_imortal: return
+	
 	# tirar o dano do jogador, ate minimo de 0
 	vida = max(0, vida - _dano)
 	# emite sinal para atualizar a porcentagem de vida
@@ -45,6 +49,12 @@ func receber_vida(_vida: float) -> void:
 func _emitir_vida_porcentagem() -> void:
 	var vida_porcent : float = get_vida_porcent()
 	mudanca_vida.emit(vida_porcent)
+
+# -----------------------------------------------------------------------------
+# Imortal
+
+func deixar_imortal() -> void:
+	esta_imortal = true
 
 # -----------------------------------------------------------------------------
 # Morte

@@ -52,7 +52,9 @@ func ligar_shader_congelar(duracao_seg: float) -> void:
 	)
 
 func ligar_shader_dano(duracao_seg: float) -> void:
-	mesh_corpo.shader_dano(duracao_seg)
+	# so leva dano se nao estiver imortal
+	if is_instance_valid(sistema_vida) and (not sistema_vida.esta_imortal):
+		mesh_corpo.shader_dano(duracao_seg)
 
 func esconder_mesh() -> void:
 	mesh_corpo.esconder_mesh()

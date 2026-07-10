@@ -122,3 +122,6 @@ func virar_fantasma() -> void:
 	jogador_corpo.hide()
 	jogador_corpo.process_mode = Node.PROCESS_MODE_DISABLED
 	remove_child(jogador_corpo)
+
+func deixar_jogador_imortal() -> void:
+	sistema_vida.deixar_imortal()
