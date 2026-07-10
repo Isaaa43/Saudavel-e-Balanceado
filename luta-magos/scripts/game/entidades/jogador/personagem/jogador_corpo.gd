@@ -51,6 +51,8 @@ func ligar_shader_congelar(duracao_seg: float) -> void:
 			sistema_animacao.toggle_pausar(false)
 	)
 
+func ligar_shader_dano(duracao_seg: float) -> void:
+	mesh_corpo.shader_dano(duracao_seg)
 
 func esconder_mesh() -> void:
 	mesh_corpo.esconder_mesh()
@@ -67,9 +69,11 @@ func conectar_camera(_camera_jogador: CameraJogador) -> void:
 
 func mostrar_levar_dano(_dano: float) -> void:
 	if not self.is_inside_tree(): return
-	
+	# tocar audio de hit
 	if audio_player_dano.is_inside_tree():
 		audio_player_dano.play()
+	# piscar dano
+	ligar_shader_dano(0.5)
 
 func mostrar_vida() -> void:
 	if not self.is_inside_tree(): return

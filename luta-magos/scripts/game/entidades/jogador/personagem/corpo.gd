@@ -24,6 +24,7 @@ var mesh_instance_3d: MeshInstance3D
 
 const REVELADO_MAT = preload("uid://c25lrwh5o1e6r")
 const CONGELADO_MAT = preload("uid://cpsyvawnev4gg")
+const DANO_MAT = preload("uid://bidbce865nga2")
 
 
 func _ready() -> void:
@@ -50,7 +51,7 @@ func esconder_mesh() -> void:
 # Shaders
 # -----------------------------------------------------------------------------
 
-enum ShadersTipo {NENHUM, REVELADO, CONGELADO}
+enum ShadersTipo {NENHUM, REVELADO, CONGELADO, DANO}
 var curr_shader := ShadersTipo.NENHUM
 
 var duracao_shader_seg : Dictionary[ShadersTipo, float] = {}
@@ -63,6 +64,10 @@ func shader_congelado(duracao_seg: float) -> void:
 	mudar_shader(ShadersTipo.CONGELADO)
 	duracao_shader_seg[ShadersTipo.CONGELADO] = duracao_seg
 
+func shader_dano(duracao_seg: float) -> void:
+	mudar_shader(ShadersTipo.DANO)
+	duracao_shader_seg[ShadersTipo.DANO] = duracao_seg
+
 func mudar_shader(tipo: ShadersTipo) -> void:
 	match (tipo):
 		ShadersTipo.NENHUM:
@@ -72,6 +77,8 @@ func mudar_shader(tipo: ShadersTipo) -> void:
 			_set_visivel(true)
 		ShadersTipo.CONGELADO:
 			mesh_instance_3d.material_overlay = CONGELADO_MAT
+		ShadersTipo.DANO:
+			mesh_instance_3d.material_overlay = DANO_MAT
 	curr_shader = tipo
 
 func _desligar_shader(shader_tipo: ShadersTipo) -> void:
