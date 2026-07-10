@@ -10,7 +10,11 @@
 [ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="8_gtrsy"]
 [ext_resource type="Theme" uid="uid://bs0lcsespqe3j" path="res://temas/menu_inicial_theme.tres" id="10_yvmir"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjf3n"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms58e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u111g"]
 
 [node name="MenuTreino" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -71,7 +75,9 @@ offset_right = 292.0
 offset_bottom = 104.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sjf3n")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ms58e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u111g")
 icon = ExtResource("6_ms58e")
 flat = true
 icon_alignment = 1

@@ -13,6 +13,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7kka"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k35ja"]
+
 [node name="MenuInicial" type="Control" unique_id=1487474413 node_paths=PackedStringArray("focus_tela")]
 layout_mode = 3
 anchors_preset = 15
@@ -130,6 +134,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("2_avi7h")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v7kka")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k35ja")
 icon = ExtResource("8_u111g")
 flat = true
 icon_alignment = 1

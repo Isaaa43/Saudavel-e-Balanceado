@@ -9,7 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://bf7i03qy3t5nj" path="res://temas/menus/inicial/botao_fundo.png" id="7_pkpo3"]
 [ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="8_ksi1h"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xlh8q"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlhii"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms58e"]
 
 [node name="MenuPartida" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -147,7 +151,9 @@ offset_right = 292.0
 offset_bottom = 104.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xlh8q")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_nlhii")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms58e")
 toggle_mode = true
 icon = ExtResource("6_ylujc")
 flat = true
