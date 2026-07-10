@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="FrogspellArena"
-config/version="v0.2.1"
+config/version="v0.3.0"
 run/main_scene="uid://blu1n6bnam470"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bwv585r3ersff"
+config/windows_native_icon="res://assets/icone/sapona_icon.ico"
 
 [autoload]
 
@@ -39,6 +40,7 @@ folder_colors={
 "res://assets/": "red",
 "res://assets/UI/": "green",
 "res://assets/audios/": "blue",
+"res://assets/icone/": "green",
 "res://assets/temp/": "gray",
 "res://cenas/": "yellow",
 "res://cenas/game/": "orange",
