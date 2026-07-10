@@ -45,6 +45,7 @@ bg_color = Color(0.13229999, 0.21, 0.16597001, 1)
 bg_color = Color(0.252, 0.4, 0.3112, 1)
 
 [node name="MenuDeck" type="Control" unique_id=1395345366]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
