@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://er1au0uphq2l" path="res://assets/icones/armadilha.PNG" id="1_n5ww1"]
 [ext_resource type="Script" uid="uid://5or6m2uh4ptu" path="res://scripts/menus/sub_itens/display_grimorio.gd" id="1_q3yf3"]
 [ext_resource type="Texture2D" uid="uid://rc775mhxren1" path="res://temas/menus/deck/GRIMORIO_SELECT.png" id="2_oe2yp"]
+[ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="4_jmtq3"]
+[ext_resource type="Texture2D" uid="uid://bbwaluhl25ng6" path="res://temas/menus/inicial/BOTAO_VOLTAR_BASE.png" id="5_udmqk"]
+[ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="6_jmtq3"]
 
 [node name="DisplayGrimorio" type="Control" unique_id=2088990354]
 layout_mode = 3
@@ -62,20 +65,40 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonDeck" type="Button" parent="." unique_id=1157791562]
+[node name="ButtonEditarDeck" type="Button" parent="." unique_id=21873502]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -115.5
-offset_top = -114.0
-offset_right = 115.5
-offset_bottom = -64.0
+offset_left = -134.0
+offset_top = -123.0
+offset_right = 135.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Editar Grimório"
+theme = ExtResource("4_jmtq3")
+icon = ExtResource("5_udmqk")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[connection signal="pressed" from="ButtonDeck" to="." method="_on_button_deck_pressed"]
+[node name="Label" type="Label" parent="ButtonEditarDeck" unique_id=420076528]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 14.0
+offset_right = -44.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_jmtq3")
+text = "EDITAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ButtonEditarDeck" to="." method="_on_button_deck_pressed"]
