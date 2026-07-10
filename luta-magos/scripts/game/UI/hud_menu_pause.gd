@@ -4,6 +4,7 @@ extends Control
 signal voltar_partida
 signal sair_partida
 signal sensibilidade_mira_atualizada
+signal feitico_mira_atualizada(mostrar: bool)
 
 @onready var label_sensi_valor: Label = $Tamanho/Panel/Margin/VBox/HScrollSensi/LabelSensiValor
 
@@ -14,6 +15,9 @@ const HUD_HELP_FEITICO = preload("uid://1bq0boade0k5")
 func _on_h_scroll_sensi_value_changed(value: float) -> void:
 	sensibilidade_mira_atualizada.emit(value)
 	label_sensi_valor.text = "%.2f" % value
+
+func _on_check_icone_mira_toggled(toggled_on: bool) -> void:
+	feitico_mira_atualizada.emit(toggled_on)
 
 func _on_button_voltar_pressed() -> void:
 	voltar_partida.emit()

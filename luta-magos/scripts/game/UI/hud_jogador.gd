@@ -47,6 +47,7 @@ func _ready() -> void:
 	menu_pause.hide()
 	menu_pause.voltar_partida.connect(_esconder_menu_pause)
 	menu_pause.sair_partida.connect(func(): sair_partida.emit())
+	menu_pause.feitico_mira_atualizada.connect(_toggle_mostrar_feitico_mira)
 	#	ajustar os feiticos
 	menu_pause.set_feiticos(GlobalDeck.cards_escolhidos)
 	# tela de fim de jogo
@@ -224,6 +225,9 @@ func _esconder_info_tempo() -> void:
 func _esconder_menu_pause() -> void:
 	menu_pause.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _toggle_mostrar_feitico_mira(mostrar: bool) -> void:
+	magia_mira.visible = mostrar
 
 # Tela Fim
 # -----------------------------------------------------------------------------

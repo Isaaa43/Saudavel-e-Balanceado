@@ -46,10 +46,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -200.0
+offset_top = -255.0
+offset_right = 200.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -114,7 +114,17 @@ text = "1.0"
 horizontal_alignment = 1
 
 [node name="Separador" type="Control" parent="Tamanho/Panel/Margin/VBox" unique_id=1634927627]
-custom_minimum_size = Vector2(0, 5)
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CheckIconeMira" type="CheckButton" parent="Tamanho/Panel/Margin/VBox" unique_id=1940307304]
+layout_mode = 2
+button_pressed = true
+text = "Ícone de Feitiço na Mira"
+
+[node name="Separador3" type="Control" parent="Tamanho/Panel/Margin/VBox" unique_id=623797752]
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -206,5 +216,6 @@ layout_mode = 2
 layout_mode = 2
 
 [connection signal="value_changed" from="Tamanho/Panel/Margin/VBox/HScrollSensi" to="." method="_on_h_scroll_sensi_value_changed"]
+[connection signal="toggled" from="Tamanho/Panel/Margin/VBox/CheckIconeMira" to="." method="_on_check_icone_mira_toggled"]
 [connection signal="pressed" from="Tamanho/Panel/Margin/VBox/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 [connection signal="pressed" from="Tamanho/Panel/Margin/VBox/ButtonSair" to="." method="_on_button_sair_pressed"]
