@@ -4,15 +4,6 @@ extends Control
 
 @onready var tela_principal: PanelContainer = %TelaPrincipal
 @onready var tela_escolher_jogo: Control = %TelaEscolherJogo
-@onready var tela_conexao: Control = %TelaConexao
-
-@onready var button_host: Button = %ButtonHost
-@onready var button_join: Button = %ButtonJoin
-
-@onready var line_edit_nome_jogador: LineEdit = $%LineEditNomeJogador
-@onready var line_edit_ip: LineEdit = $%LineEditIp
-@onready var button_conexao_jogar: Button = %ButtonConexaoJogar
-
 
 enum Tela {PRINCIPAL, JOGO, CONEXAO}
 
@@ -78,7 +69,6 @@ func _on_button_tutorial_pressed() -> void:
 func _mostrar_tela(tela: Tela) -> void:
 	tela_principal.hide()
 	tela_escolher_jogo.hide()
-	tela_conexao.hide()
 	
 	match (tela):
 		Tela.PRINCIPAL:

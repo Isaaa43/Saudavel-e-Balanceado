@@ -10,13 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://g5hehlwudmh0" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 3.png" id="8_u111g"]
 [ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="9_sjf3n"]
 [ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="9_yn5gb"]
-[ext_resource type="FontFile" uid="uid://d1dk4jbvuknjs" path="res://temas/fontes/Thunderbolt.ttf" id="11_u111g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avi7h"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifal0"]
 
 [node name="MenuInicial" type="Control" unique_id=1487474413 node_paths=PackedStringArray("focus_tela")]
 layout_mode = 3
@@ -28,8 +23,7 @@ grow_vertical = 2
 script = ExtResource("1_mswjp")
 focus_tela = {
 0: NodePath("TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar"),
-1: NodePath("TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar"),
-2: NodePath("TelaConexao/Top/HBox/ButtonHost")
+1: NodePath("TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar")
 }
 
 [node name="BG" type="TextureRect" parent="." unique_id=1063333670]
@@ -45,7 +39,6 @@ expand_mode = 3
 
 [node name="TelaPrincipal" type="PanelContainer" parent="." unique_id=656276633]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -197,322 +190,6 @@ text = "TUTORIAL"
 [node name="ButtonVoltar" parent="TelaEscolherJogo" unique_id=21873502 instance=ExtResource("9_yn5gb")]
 layout_mode = 1
 
-[node name="PanelNome" type="Panel" parent="." unique_id=610391779]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_avi7h")
-
-[node name="Control" type="Control" parent="PanelNome" unique_id=879224335]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -202.0
-offset_right = 320.0
-offset_bottom = 202.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect2" type="ColorRect" parent="PanelNome/Control" unique_id=886690110]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.16862746, 0.16862746, 0.16862746, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelNome/Control" unique_id=1225902]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -187.0
-offset_top = -56.5
-offset_right = 187.0
-offset_bottom = 56.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 60
-alignment = 1
-
-[node name="Label" type="Label" parent="PanelNome/Control/VBoxContainer" unique_id=1553227884]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "Nome:"
-
-[node name="ButtonNome" type="Button" parent="PanelNome/Control/VBoxContainer" unique_id=2119336689]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "Continuar"
-
-[node name="PanelJogar" type="Panel" parent="." unique_id=222910812]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ifal0")
-
-[node name="Control" type="Control" parent="PanelJogar" unique_id=1192591573]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -282.0
-offset_top = -235.0
-offset_right = 282.0
-offset_bottom = 235.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="PanelJogar/Control" unique_id=113935959]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.16862746, 0.16862746, 0.16862746, 1)
-
-[node name="Margin" type="MarginContainer" parent="PanelJogar/Control" unique_id=2074578181]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelJogar/Control/Margin" unique_id=1258070193]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="HBoxPort" type="HBoxContainer" parent="PanelJogar/Control/Margin/VBoxContainer" unique_id=1729730423]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="PanelJogar/Control/Margin/VBoxContainer/HBoxPort" unique_id=1338436660]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Port:"
-
-[node name="LineEditPort" type="LineEdit" parent="PanelJogar/Control/Margin/VBoxContainer/HBoxPort" unique_id=334507057]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "45678"
-placeholder_text = "Port"
-max_length = 10
-
-[node name="Separador" type="Control" parent="PanelJogar/Control/Margin/VBoxContainer" unique_id=1771329285]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelJogar/Control/Margin/VBoxContainer" unique_id=1176957740]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="ButtonHost" type="Button" parent="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer" unique_id=1751161071]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_avi7h")
-theme_override_font_sizes/font_size = 40
-text = "Host"
-
-[node name="Separador3" type="Control" parent="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer" unique_id=1952039223]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="ButtonJoin" type="Button" parent="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer" unique_id=1125638021]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_avi7h")
-theme_override_font_sizes/font_size = 40
-text = "Join"
-
-[node name="Separador2" type="Control" parent="PanelJogar/Control/Margin/VBoxContainer" unique_id=240775113]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ButtonCancelar" type="Button" parent="PanelJogar/Control/Margin/VBoxContainer" unique_id=1606311039]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Cancelar"
-
-[node name="TelaConexao" type="Control" parent="." unique_id=233816196]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Top" type="Control" parent="TelaConexao" unique_id=2137949056]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 68.0
-offset_bottom = 455.0
-grow_horizontal = 2
-
-[node name="HBox" type="HBoxContainer" parent="TelaConexao/Top" unique_id=1976245564]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 278.0
-offset_right = -278.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 250
-alignment = 1
-
-[node name="ButtonHost" parent="TelaConexao/Top/HBox" unique_id=545403317 instance=ExtResource("4_caduv")]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/icon_normal_color = Color(0.54901963, 0.54901963, 0.54901963, 1)
-theme_override_colors/icon_focus_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-theme_override_colors/icon_hover_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-toggle_mode = true
-
-[node name="TextureRect" parent="TelaConexao/Top/HBox/ButtonHost" index="0" unique_id=1723732680]
-self_modulate = Color(0.34901962, 0.6117647, 1, 1)
-
-[node name="Label" parent="TelaConexao/Top/HBox/ButtonHost" index="1" unique_id=726138241]
-offset_bottom = -47.0
-theme_override_font_sizes/font_size = 40
-text = "CRIAR PARTIDA"
-
-[node name="ButtonJoin" parent="TelaConexao/Top/HBox" unique_id=1071185638 instance=ExtResource("4_caduv")]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/icon_normal_color = Color(0.55, 0.55, 0.55, 1)
-theme_override_colors/icon_focus_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-theme_override_colors/icon_hover_color = Color(0.65, 0.65, 0.65, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-toggle_mode = true
-
-[node name="Label" parent="TelaConexao/Top/HBox/ButtonJoin" index="1" unique_id=726138241]
-offset_bottom = -48.0
-theme = ExtResource("9_sjf3n")
-theme_override_font_sizes/font_size = 40
-text = "SE  JUNTAR"
-
-[node name="Mid" type="Control" parent="TelaConexao" unique_id=255589172]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -123.0
-offset_bottom = 111.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LineEditNomeJogador" type="LineEdit" parent="TelaConexao/Mid" unique_id=563903003]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -293.0
-offset_top = -71.0
-offset_right = 293.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 45
-placeholder_text = "Nome do Jogador"
-max_length = 15
-emoji_menu_enabled = false
-
-[node name="HBoxIP" type="HBoxContainer" parent="TelaConexao/Mid" unique_id=572971708]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -252.0
-offset_right = 252.0
-offset_bottom = 50.0
-grow_horizontal = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="TelaConexao/Mid/HBoxIP" unique_id=1809326957]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.93333334, 0.6862745, 0.27058825, 1)
-theme_override_fonts/font = ExtResource("11_u111g")
-theme_override_font_sizes/font_size = 45
-text = "IP:    "
-
-[node name="LineEditIp" type="LineEdit" parent="TelaConexao/Mid/HBoxIP" unique_id=1234699540]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 45
-placeholder_text = "127.0.0.1"
-max_length = 30
-
-[node name="Bot" type="Control" parent="TelaConexao" unique_id=788485193]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -366.0
-offset_bottom = -91.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ButtonConexaoJogar" parent="TelaConexao/Bot" unique_id=1722893313 instance=ExtResource("4_caduv")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-offset_left = -274.0
-offset_right = 274.0
-offset_bottom = 169.0
-grow_vertical = 1
-disabled = true
-icon = ExtResource("5_yn5gb")
-
-[node name="TextureRect" parent="TelaConexao/Bot/ButtonConexaoJogar" index="0" unique_id=1723732680]
-visible = false
-
-[node name="Label" parent="TelaConexao/Bot/ButtonConexaoJogar" index="1" unique_id=726138241]
-visible = false
-
-[node name="ButtonVoltar" parent="TelaConexao/Bot" unique_id=874263634 instance=ExtResource("9_yn5gb")]
-layout_mode = 1
-offset_top = -76.0
-offset_bottom = 0.0
-
 [connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar" to="." method="_on_button_menu_jogar_pressed"]
 [connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonDeck" to="." method="_on_button_deck_pressed"]
 [connection signal="pressed" from="TelaPrincipal/VBoxUI/VBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
@@ -522,19 +199,6 @@ offset_bottom = 0.0
 [connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino" to="." method="_on_button_treino_pressed"]
 [connection signal="pressed" from="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" to="." method="_on_button_tutorial_pressed"]
 [connection signal="pressed" from="TelaEscolherJogo/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
-[connection signal="pressed" from="PanelNome/Control/VBoxContainer/ButtonNome" to="." method="_on_button_nome_pressed"]
-[connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
-[connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/HBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
-[connection signal="pressed" from="PanelJogar/Control/Margin/VBoxContainer/ButtonCancelar" to="." method="_on_button_cancelar_pressed"]
-[connection signal="pressed" from="TelaConexao/Top/HBox/ButtonHost" to="." method="_on_button_host_pressed"]
-[connection signal="toggled" from="TelaConexao/Top/HBox/ButtonHost" to="." method="_on_button_host_toggled"]
-[connection signal="pressed" from="TelaConexao/Top/HBox/ButtonJoin" to="." method="_on_button_join_pressed"]
-[connection signal="toggled" from="TelaConexao/Top/HBox/ButtonJoin" to="." method="_on_button_join_toggled"]
-[connection signal="text_changed" from="TelaConexao/Mid/LineEditNomeJogador" to="." method="_on_line_edit_nome_jogador_text_changed"]
-[connection signal="editing_toggled" from="TelaConexao/Mid/HBoxIP/LineEditIp" to="." method="_on_line_edit_ip_editing_toggled"]
-[connection signal="text_changed" from="TelaConexao/Mid/HBoxIP/LineEditIp" to="." method="_on_line_edit_ip_text_changed"]
-[connection signal="pressed" from="TelaConexao/Bot/ButtonConexaoJogar" to="." method="_on_button_conexao_jogar_pressed"]
-[connection signal="pressed" from="TelaConexao/Bot/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 
 [editable path="TelaPrincipal/VBoxUI/VBoxContainer/ButtonMenuJogar"]
 [editable path="TelaPrincipal/VBoxUI/VBoxContainer/ButtonDeck"]
@@ -543,6 +207,3 @@ offset_bottom = 0.0
 [editable path="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonJogar"]
 [editable path="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTreino"]
 [editable path="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial"]
-[editable path="TelaConexao/Top/HBox/ButtonHost"]
-[editable path="TelaConexao/Top/HBox/ButtonJoin"]
-[editable path="TelaConexao/Bot/ButtonConexaoJogar"]
