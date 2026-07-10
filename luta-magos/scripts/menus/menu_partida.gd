@@ -30,6 +30,9 @@ func _ready() -> void:
 	Network.logs.update_conexao.connect(_update_logs)
 	_update_logs()
 	
+	# jogador saiu do lobbu
+	Network.server_peer_disconnected.connect(_jog_saiu)
+	
 	# servidor contabilizar os votos
 	Network.server.jogador_votou_iniciar_partida.connect(_receber_voto)
 	# atualiza os votos para iniciar partida
@@ -106,6 +109,11 @@ func _tentar_iniciar_partida() -> void:
 	
 	if _verificar_votos_necessarios():
 		Network.server.iniciar_partida()
+
+## Jogador saiu do lobby
+func _jog_saiu(peer_id_jog: int) -> void:
+	_update_votos()
+	_receber_voto(peer_id_jog, false)
 
 # Sair
 # -----------------------------------------------------------------------------
