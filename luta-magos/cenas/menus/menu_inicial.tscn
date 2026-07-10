@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c853f3vcikgmc" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 1.png" id="5_yn5gb"]
 [ext_resource type="Texture2D" uid="uid://gfuu3l72tve" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 2.png" id="6_sjf3n"]
 [ext_resource type="Texture2D" uid="uid://g5hehlwudmh0" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 3.png" id="8_u111g"]
+[ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="9_sjf3n"]
 [ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="9_yn5gb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswjp"]
@@ -186,9 +187,10 @@ text = "TREINAR"
 layout_mode = 2
 
 [node name="TextureRect" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" index="0" unique_id=1723732680]
-self_modulate = Color(0.35000002, 0.6099999, 1, 1)
+self_modulate = Color(0.88235295, 0, 1, 1)
 
 [node name="Label" parent="TelaEscolherJogo/MarginContainer/HBoxContainer/ButtonTutorial" index="1" unique_id=726138241]
+theme = ExtResource("9_sjf3n")
 text = "TUTORIAL"
 
 [node name="ButtonVoltar" parent="TelaEscolherJogo" unique_id=21873502 instance=ExtResource("9_yn5gb")]
