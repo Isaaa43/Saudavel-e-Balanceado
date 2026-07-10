@@ -170,6 +170,55 @@ layout_mode = 1
 offset_top = -76.0
 offset_bottom = 0.0
 
+[node name="LabelConectando" type="RichTextLabel" parent="." unique_id=2072734419]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 321.0
+offset_right = 250.0
+offset_bottom = 421.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.8784314, 0.6392157, 0.2627451, 1)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Conectando [wave amp=50]. . .[/wave]
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopupFalha" type="PopupPanel" parent="." unique_id=132749634]
+disable_3d = true
+transparent_bg = false
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(500, 300)
+always_on_top = true
+
+[node name="ColorRect" type="ColorRect" parent="PopupFalha" unique_id=1158938409]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 496.0
+offset_bottom = 296.0
+color = Color(0.14472637, 0.112679474, 0.25347877, 1)
+
+[node name="Label" type="Label" parent="PopupFalha" unique_id=30836099]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+text = "Falha ao se Conectar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Top/HBox/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="toggled" from="Top/HBox/ButtonHost" to="." method="_on_button_host_toggled"]
 [connection signal="pressed" from="Top/HBox/ButtonJoin" to="." method="_on_button_join_pressed"]

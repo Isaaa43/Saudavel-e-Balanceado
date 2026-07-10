@@ -22,24 +22,31 @@ extends Control
 @onready var mid: Control = $Mid
 @onready var h_box_ip: HBoxContainer = $Mid/HBoxIP
 
+@onready var label_conectando: RichTextLabel = $LabelConectando
+@onready var popup_falha: PopupPanel = $PopupFalha
+
+
 func _on_button_voltar_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_inicial()
 
 func  _ready() -> void:
-	# TODO: criar loading
-	Network.client_connection_failed.connect(_mostrar_inicio)
-	# 
-	mid.hide()
+	# conexao do join falhou
+	Network.client_connection_failed.connect(_failed_join)
+	#
+	_mostrar_inicio()
 
 func _mostrar_inicio() -> void:
 	line_edit_ip.text = Network.get_ip()
 	if Network.client.dados_jogador.nome.length() > 1:
 		line_edit_nome_jogador.text = Network.client.dados_jogador.nome
 	_verificar_conexao_ready()
-	# mostra os botoes
-	button_host.show()
-	button_join.show()
-	button_conexao_jogar.show()
+	# esconde o meio ate selecionar o host ou join
+	mid.hide()
+	# desliga o loading se tiver
+	_tela_loading(false)
+	#
+	label_conectando.hide()
+	popup_falha.hide()
 
 
 # Conexao
@@ -132,7 +139,28 @@ func _comecar_join() -> void:
 	Network.IP_ADDR = ip_adress
 	# entre no lobby
 	Network.client.entrar_lobby()
+	_tela_loading(true)
 	# TODO: criar loading
 	button_host.hide()
 	button_join.hide()
 	button_conexao_jogar.hide()
+
+# -----------------------------------------------------------------------------
+func _tela_loading(esta_carregando: bool = true) -> void:
+	# esconde coisas se esta carregando
+	button_host.visible = not esta_carregando
+	button_join.visible = not esta_carregando
+	button_conexao_jogar.visible = not esta_carregando
+	# nao deixa editar se esta carregando
+	line_edit_ip.editable = not esta_carregando
+	line_edit_nome_jogador.editable = not esta_carregando
+	# mostra o texto se estiver carregando
+	label_conectando.visible = esta_carregando
+
+# -----------------------------------------------------------------------------
+func _failed_join() -> void:
+	popup_falha.popup_centered()
+	await get_tree().create_timer(5.5).timeout
+	popup_falha.hide()
+	# mostrar tela de novo
+	_mostrar_inicio()
