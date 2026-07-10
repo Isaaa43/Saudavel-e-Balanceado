@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://b0jn8a3mqvhy1"]
+
+[ext_resource type="Script" uid="uid://bps3pwmgwlda0" path="res://scripts/menus/menu_conexao.gd" id="1_67atc"]
+[ext_resource type="Texture2D" uid="uid://dnbn4gm5bbvf3" path="res://temas/menus/inicial/FUNDO TELA INICIAL.png" id="2_vb3gw"]
+[ext_resource type="PackedScene" uid="uid://bpldy0wvwb8d4" path="res://cenas/menus/botoes/button_metal.tscn" id="4_1qcr4"]
+[ext_resource type="Texture2D" uid="uid://c853f3vcikgmc" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 1.png" id="5_ajv6v"]
+[ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="9_j0g72"]
+[ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="10_all7d"]
+[ext_resource type="FontFile" uid="uid://d1dk4jbvuknjs" path="res://temas/fontes/Thunderbolt.ttf" id="11_53d5m"]
+
+[node name="MenuConexao" type="Control" unique_id=1487474413 node_paths=PackedStringArray("foco_inicial")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_67atc")
+foco_inicial = NodePath("Top/HBox/ButtonHost")
+cor_pressed_host = Color(0.666628, 1.1298951, 1.8247963, 1)
+cor_pressed_join = Color(1.1975247, 0, 1.353256, 1)
+
+[node name="BG" type="TextureRect" parent="." unique_id=1063333670]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vb3gw")
+expand_mode = 3
+
+[node name="Top" type="Control" parent="." unique_id=2137949056]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 68.0
+offset_bottom = 455.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="Top" unique_id=1976245564]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 278.0
+offset_right = -278.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="ButtonHost" parent="Top/HBox" unique_id=545403317 instance=ExtResource("4_1qcr4")]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+
+[node name="TextureRect" parent="Top/HBox/ButtonHost" index="0" unique_id=1723732680]
+self_modulate = Color(0.34901962, 0.6117647, 1, 1)
+
+[node name="Label" parent="Top/HBox/ButtonHost" index="1" unique_id=726138241]
+offset_bottom = -47.0
+theme_override_font_sizes/font_size = 40
+text = "CRIAR PARTIDA"
+
+[node name="ButtonJoin" parent="Top/HBox" unique_id=1071185638 instance=ExtResource("4_1qcr4")]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+
+[node name="TextureRect" parent="Top/HBox/ButtonJoin" index="0" unique_id=1723732680]
+self_modulate = Color(0.88235295, 0, 1, 1)
+
+[node name="Label" parent="Top/HBox/ButtonJoin" index="1" unique_id=726138241]
+offset_bottom = -48.0
+theme = ExtResource("9_j0g72")
+theme_override_font_sizes/font_size = 40
+text = "SE  JUNTAR"
+
+[node name="Mid" type="Control" parent="." unique_id=255589172]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -123.0
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxIP" type="HBoxContainer" parent="Mid" unique_id=572971708]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_right = 252.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Mid/HBoxIP" unique_id=1809326957]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93333334, 0.6862745, 0.27058825, 1)
+theme_override_fonts/font = ExtResource("11_53d5m")
+theme_override_font_sizes/font_size = 45
+text = "IP:    "
+
+[node name="LineEditIp" type="LineEdit" parent="Mid/HBoxIP" unique_id=1234699540]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 45
+placeholder_text = "127.0.0.1"
+max_length = 30
+
+[node name="LineEditNomeJogador" type="LineEdit" parent="Mid" unique_id=563903003]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -95.5
+offset_right = 293.0
+offset_bottom = -24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+placeholder_text = "Nome do Jogador"
+max_length = 15
+emoji_menu_enabled = false
+
+[node name="ButtonConexaoJogar" parent="Mid" unique_id=1722893313 instance=ExtResource("4_1qcr4")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -274.0
+offset_top = -169.0
+offset_right = 274.0
+grow_vertical = 0
+disabled = true
+icon = ExtResource("5_ajv6v")
+
+[node name="TextureRect" parent="Mid/ButtonConexaoJogar" index="0" unique_id=1723732680]
+visible = false
+
+[node name="Label" parent="Mid/ButtonConexaoJogar" index="1" unique_id=726138241]
+visible = false
+
+[node name="Bot" type="Control" parent="." unique_id=788485193]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -201.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonVoltar" parent="Bot" unique_id=874263634 instance=ExtResource("10_all7d")]
+layout_mode = 1
+offset_top = -76.0
+offset_bottom = 0.0
+
+[connection signal="pressed" from="Top/HBox/ButtonHost" to="." method="_on_button_host_pressed"]
+[connection signal="toggled" from="Top/HBox/ButtonHost" to="." method="_on_button_host_toggled"]
+[connection signal="pressed" from="Top/HBox/ButtonJoin" to="." method="_on_button_join_pressed"]
+[connection signal="toggled" from="Top/HBox/ButtonJoin" to="." method="_on_button_join_toggled"]
+[connection signal="editing_toggled" from="Mid/LineEditNomeJogador" to="." method="_on_line_edit_nome_jogador_editing_toggled"]
+[connection signal="text_changed" from="Mid/LineEditNomeJogador" to="." method="_on_line_edit_nome_jogador_text_changed"]
+[connection signal="pressed" from="Mid/ButtonConexaoJogar" to="." method="_on_button_conexao_jogar_pressed"]
+[connection signal="pressed" from="Bot/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
+
+[editable path="Top/HBox/ButtonHost"]
+[editable path="Top/HBox/ButtonJoin"]
+[editable path="Mid/ButtonConexaoJogar"]

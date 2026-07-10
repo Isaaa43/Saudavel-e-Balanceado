@@ -5,6 +5,7 @@ var main_game : Node
 var partida : MenuPartida
 
 const MENU_INICIAL = preload("uid://6als3mloubtk")
+const MENU_CONEXAO = preload("uid://b0jn8a3mqvhy1")
 const MENU_PARTIDA = preload("uid://c2ppdl2yqxf16")
 const MENU_DECK = preload("uid://djncp32jv7ppr")
 const MENU_TREINO = preload("uid://uls6035prre4")
@@ -35,6 +36,12 @@ func go_to_menu_inicial() -> void:
 	Network.end()
 	# desliga modo treino
 	is_treino = false
+
+func go_to_conexao() -> void:
+	for c in main_game.get_children(): c.queue_free()
+	var _menu := MENU_CONEXAO.instantiate()
+	# TODO: criar soluacao melhor
+	main_game.add_child(_menu)
 
 func go_to_menu_partida() -> void:
 	for c in main_game.get_children(): c.queue_free()

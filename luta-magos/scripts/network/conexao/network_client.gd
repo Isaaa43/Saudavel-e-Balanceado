@@ -38,7 +38,7 @@ func _enviar_dados_jogador() -> void:
 func criar_dados_jogador() -> DadosJogador:
 	var dados := DadosJogador.new()
 	dados.peer_id	= -1
-	dados.nome 		= "Jogador"
+	dados.nome 		= ""
 	dados.grimorio 	= [1,2,3]
 	dados.stats 	= {"level": 5, "xp": 1200}
 	return dados
