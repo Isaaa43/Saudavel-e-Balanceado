@@ -91,6 +91,7 @@ func receber_terminar_partida() -> void:
 
 func _terminar_partida() -> void:
 	Network.logs.add_conexao_texto("Partida Finalizada")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if multiplayer and multiplayer.is_server():
 		SaveData.encerrar_partida()

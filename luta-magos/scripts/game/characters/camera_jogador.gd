@@ -24,8 +24,9 @@ func start() -> void:
 	camera.make_current()
 	
 	# TODO: garantir que isso esta habilitado isso na build final
-	if not OS.is_debug_build():
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#if not OS.is_debug_build():
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # TODO: ver se precisa linkar isso com o delta time (como o process) ou algo assim
 func _unhandled_input(event: InputEvent) -> void:
