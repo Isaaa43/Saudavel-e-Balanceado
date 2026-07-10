@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://e33rvm32gwqu"]
 
 [ext_resource type="Script" uid="uid://b7ulem2p6o41q" path="res://scripts/game/UI/hud_menu_pause.gd" id="1_viaw2"]
+[ext_resource type="FontFile" uid="uid://d1dk4jbvuknjs" path="res://temas/fontes/Thunderbolt.ttf" id="2_pxyhc"]
 [ext_resource type="PackedScene" uid="uid://1bq0boade0k5" path="res://cenas/game/UI/hud_help_feitico.tscn" id="2_qbqum"]
+[ext_resource type="Texture2D" uid="uid://bbwaluhl25ng6" path="res://temas/menus/inicial/BOTAO_VOLTAR_BASE.png" id="3_fuyjn"]
+[ext_resource type="Texture2D" uid="uid://g5hehlwudmh0" path="res://temas/menus/inicial/BOTÕES MENU INICIAL 3.png" id="4_d4ihk"]
+[ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="4_fuyjn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk3uq"]
 content_margin_left = 0.0
@@ -14,6 +18,13 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_fuyjn"]
+default_font = ExtResource("2_pxyhc")
+default_font_size = 30
+Label/colors/font_color = Color(0.5564782, 0.0014840636, 0.73457825, 0.8352941)
+Label/colors/font_outline_color = Color(0.07349617, 7.830272e-06, 0.07981298, 1)
+Label/constants/outline_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbrib"]
 bg_color = Color(0.29803923, 0.23529412, 0.32156864, 0.9411765)
@@ -69,18 +80,11 @@ theme_override_constants/separation = 20
 
 [node name="LabelTitulo" type="Label" parent="Tamanho/Panel/Margin/VBox" unique_id=351430975]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Menu"
+theme = SubResource("Theme_fuyjn")
+theme_override_fonts/font = ExtResource("2_pxyhc")
+theme_override_font_sizes/font_size = 45
+text = "MENU PAUSA"
 horizontal_alignment = 1
-
-[node name="Separador" type="Control" parent="Tamanho/Panel/Margin/VBox" unique_id=1826700722]
-layout_mode = 2
-
-[node name="ButtonVoltar" type="Button" parent="Tamanho/Panel/Margin/VBox" unique_id=1299684181]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "Voltar ao Jogo"
 
 [node name="LabelSensi" type="Label" parent="Tamanho/Panel/Margin/VBox" unique_id=1201827169]
 layout_mode = 2
@@ -109,16 +113,51 @@ grow_horizontal = 2
 text = "1.0"
 horizontal_alignment = 1
 
+[node name="Separador" type="Control" parent="Tamanho/Panel/Margin/VBox" unique_id=1634927627]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonVoltar" type="Button" parent="Tamanho/Panel/Margin/VBox" unique_id=1299684181]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("3_fuyjn")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Tamanho/Panel/Margin/VBox/ButtonVoltar" unique_id=420076528]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = -3.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_fuyjn")
+theme_override_font_sizes/font_size = 35
+text = "VOLTAR AO JOGO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Separador2" type="Control" parent="Tamanho/Panel/Margin/VBox" unique_id=1924444333]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ButtonSair" type="Button" parent="Tamanho/Panel/Margin/VBox" unique_id=1055120990]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
-text = "Sair Partida"
+icon = ExtResource("4_d4ihk")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="HelpMenu" type="Control" parent="." unique_id=2002316817]
 layout_mode = 1
@@ -166,6 +205,6 @@ layout_mode = 2
 [node name="HelpFeitico3" parent="HelpMenu/Panel/Margin/HBoxHelpFeitico" unique_id=2082146011 instance=ExtResource("2_qbqum")]
 layout_mode = 2
 
-[connection signal="pressed" from="Tamanho/Panel/Margin/VBox/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 [connection signal="value_changed" from="Tamanho/Panel/Margin/VBox/HScrollSensi" to="." method="_on_h_scroll_sensi_value_changed"]
+[connection signal="pressed" from="Tamanho/Panel/Margin/VBox/ButtonVoltar" to="." method="_on_button_voltar_pressed"]
 [connection signal="pressed" from="Tamanho/Panel/Margin/VBox/ButtonSair" to="." method="_on_button_sair_pressed"]
