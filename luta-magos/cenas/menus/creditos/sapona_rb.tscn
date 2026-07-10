@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cmfnnsn2uxyhr"]
+
+[ext_resource type="Script" uid="uid://dx63sjse1s5kw" path="res://scripts/menus/creditos/sapona_rb.gd" id="1_hvu8f"]
+[ext_resource type="Texture2D" uid="uid://j56r1x1ifj7d" path="res://assets/icone/sapona.png" id="2_tflnt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smq05"]
+radius = 86.28442
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u6ok8"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfbug"]
+radius = 32.38827
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlb2j"]
+radius = 44.181442
+
+[node name="SaponaRB" type="RigidBody2D" unique_id=1033932890]
+disable_mode = 2
+input_pickable = true
+can_sleep = false
+script = ExtResource("1_hvu8f")
+
+[node name="Sapona" type="Sprite2D" parent="." unique_id=1721660841]
+scale = Vector2(0.52734375, 0.52734375)
+texture = ExtResource("2_tflnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1624495015]
+visible = false
+position = Vector2(-1, 49)
+shape = SubResource("CircleShape2D_smq05")
+debug_color = Color(0.23574907, 0.6375182, 3.85046e-07, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2059256432]
+visible = false
+position = Vector2(-94, 33)
+shape = SubResource("CircleShape2D_u6ok8")
+debug_color = Color(0.23574907, 0.6375182, 3.85046e-07, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=877381899]
+visible = false
+position = Vector2(95, 11)
+shape = SubResource("CircleShape2D_rfbug")
+debug_color = Color(0.23574907, 0.6375182, 3.85046e-07, 0.41960785)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=1493588512]
+visible = false
+position = Vector2(27, -87)
+shape = SubResource("CircleShape2D_vlb2j")
+debug_color = Color(0.23574907, 0.6375182, 3.85046e-07, 0.41960785)
