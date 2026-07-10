@@ -4,13 +4,14 @@ class_name MenuPartida
 @onready var label_jog_prontos: Label = %LabelJogProntos
 @onready var label_ajustando_inicio: Label = %LabelAjustandoInicio
 @onready var button_comecar: Button = $%ButtonComecar
+@onready var label_button_comecar: Label = %LabelButtonComecar
 @onready var label_ajuste_grimorio: Label = %LabelAjusteGrimorio
 
 @onready var display_grimorio: DisplayGrimorio = $DisplayGrimorio
 
 @onready var label_log: Label = $VBoxLogs/LabelLog
 
-@onready var button_sair: Button = $%ButtonSair
+@onready var button_sair: Button = $%ButtonVoltar
 
 var votos_partida_por_peer_id : Dictionary[int, bool] = {}
 
@@ -50,10 +51,10 @@ func _on_button_comecar_toggled(toggled_on: bool) -> void:
 	# altera o texto de acordo se deu ready ou nao
 	if toggled_on:
 		# se deu ready
-		button_comecar.text = "Retirar Pronto"
+		label_button_comecar.text = "Retirar Pronto"
 	else:
 		# sem ready
-		button_comecar.text = "Pronto para Começar"
+		label_button_comecar.text = "Pronto para Começar"
 
 func _update_votos(qtde_votos: int = 0) -> void:
 	label_jog_prontos.text = "Jogadores prontos:\n %d / %d" % [qtde_votos, 2]

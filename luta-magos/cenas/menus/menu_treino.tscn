@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bqjikjc44tjek" path="res://scripts/menus/menu_treino.gd" id="1_70epw"]
 [ext_resource type="Texture2D" uid="uid://dscv6w2s3nk2e" path="res://temas/menus/deck/FUNDO GRIMORIO.png" id="2_hb3p4"]
-[ext_resource type="Theme" uid="uid://cohn06e4vw5ua" path="res://temas/_temporario_theme.tres" id="2_j7c31"]
 [ext_resource type="PackedScene" uid="uid://cqcv03rhgirbi" path="res://cenas/menus/sub_itens/display_grimorio.tscn" id="3_j7c31"]
 [ext_resource type="PackedScene" uid="uid://cpxpiydybrmt4" path="res://cenas/menus/sub_itens/control_hacks.tscn" id="4_j7c31"]
 [ext_resource type="PackedScene" uid="uid://loauyw21gwq3" path="res://cenas/menus/botoes/button_voltar.tscn" id="6_1536y"]
+[ext_resource type="Texture2D" uid="uid://b7astq4pf6rns" path="res://temas/menus/inicial/botao_frente.png" id="6_ms58e"]
+[ext_resource type="Texture2D" uid="uid://bf7i03qy3t5nj" path="res://temas/menus/inicial/botao_fundo.png" id="7_cq2rl"]
+[ext_resource type="Theme" uid="uid://cp1klg6or8utm" path="res://temas/botao_roxo.tres" id="8_gtrsy"]
+[ext_resource type="Theme" uid="uid://bs0lcsespqe3j" path="res://temas/menu_inicial_theme.tres" id="10_yvmir"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms58e"]
 
 [node name="MenuTreino" type="Control" unique_id=260516147]
 layout_mode = 3
@@ -55,17 +60,50 @@ grow_vertical = 2
 
 [node name="ButtonComecar" type="Button" parent="PivotPartida" unique_id=1308500716]
 unique_name_in_owner = true
+z_index = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -156.5
-offset_right = 156.5
-offset_bottom = 63.0
+offset_left = -292.0
+offset_top = -41.0
+offset_right = 292.0
+offset_bottom = 104.0
 grow_horizontal = 2
-theme = ExtResource("2_j7c31")
 theme_override_font_sizes/font_size = 40
-text = "Começar Treino"
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ms58e")
+icon = ExtResource("6_ms58e")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="PivotPartida/ButtonComecar" unique_id=1723732680]
+self_modulate = Color(0.8833332, 0, 1, 1)
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_cq2rl")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PivotPartida/ButtonComecar" unique_id=726138241]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_gtrsy")
+theme_override_font_sizes/font_size = 45
+text = "COMEÇAR TREINO"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LabelAjusteGrimorio" type="Label" parent="PivotPartida/ButtonComecar" unique_id=253016948]
 unique_name_in_owner = true
@@ -82,6 +120,7 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+theme_override_font_sizes/font_size = 28
 text = "Ajuste o Grimório antes de começar"
 horizontal_alignment = 1
 
@@ -89,6 +128,22 @@ horizontal_alignment = 1
 layout_mode = 1
 offset_top = -139.0
 offset_bottom = -63.0
+
+[node name="ButtonMetal" type="Button" parent="." unique_id=1906114435]
+visible = false
+custom_minimum_size = Vector2(300, 130)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("10_yvmir")
+icon = ExtResource("6_ms58e")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="PivotPartida/ButtonComecar" to="." method="_on_button_comecar_pressed"]
 [connection signal="pressed" from="ButtonVoltar" to="." method="_on_button_sair_pressed"]

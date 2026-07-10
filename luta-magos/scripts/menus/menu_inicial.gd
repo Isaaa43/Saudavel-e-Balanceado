@@ -69,11 +69,10 @@ func _on_button_voltar_pressed() -> void:
 	_mostrar_tela(Tela.PRINCIPAL)
 
 func _on_button_jogar_pressed() -> void:
-	pass
-	#panel_nome.show()
-	##ui.hide()
-	#line_edit_nome_jogador.grab_focus()
-	#button_nome.disabled = line_edit_nome_jogador.text.length() < 2
+	panel_nome.show()
+	#ui.hide()
+	line_edit_nome_jogador.grab_focus()
+	button_nome.disabled = line_edit_nome_jogador.text.length() < 2
 
 func _on_button_treino_pressed() -> void:
 	TrocaCenaTemp.go_to_menu_treino()
